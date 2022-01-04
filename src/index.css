@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+html {
+  height:100%;
+}
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  height:100%;
+  color: #344054;
+  overflow:hidden;
+}
+div#root {
+  height: 100%;
+}
+.App {
+  height: 100%;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.btn-outlined {
+  border: 1px solid #4FADEA !important;
+  color: #4FADEA !important;
+  font-size: 12px !important;
+  text-transform: capitalize !important;
+  font-weight: 500 !important;
+  padding: 10px 30px !important;
+  border-radius: 6px !important;
+}
+.btn-filled {
+  border: 1px solid #4FADEA !important;
+  color: #fff !important;
+  background-color: #4FADEA !important;
+  font-size: 12px !important;
+  text-transform: capitalize !important;
+  font-weight: 500 !important;
+  padding: 10px 30px !important;
+  border-radius: 6px !important;
+}
+

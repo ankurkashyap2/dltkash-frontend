@@ -1,0 +1,76 @@
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: -60px;
+}
+.outer-box {
+    position: relative;
+}
+.bottom-vector {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: -1;
+}
+.upper-vector {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: -2;
+}
+.login-box {
+    padding: 20px;
+    position: relative;
+    display: block;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index:99;
+    width:100%;
+    max-width: 492px;
+}
+form.form-align {
+    text-align: left;
+    padding: 20px;
+}
+.field-size {
+    width: 100%;
+    margin-bottom: 30px !important;
+}
+.text-bottom {
+    margin-bottom: 10px;
+    color:#344054 !important;
+}
+.login-box h3 {
+    font-weight: 500;
+    margin-bottom: 0;
+}
+.login-box p {
+    margin-top: 5px;
+    font-size: 15px;
+}
+.btn-position {
+    float: right;
+}
+.MuiOutlinedInput-input {
+    height: 0.9em !important;
+    border-radius: 8px !important;
+}
+.text-forgot-pwd {
+    float: right;
+    margin-top: -19px;
+    margin-bottom: 3px;
+    text-decoration: auto;
+    color: #4fadea;
+    font-size: 12px;
+}
+.icon-login {
+    margin-right: 10px;
+}
