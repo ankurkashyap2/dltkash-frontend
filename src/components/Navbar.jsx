@@ -1,22 +1,25 @@
 import React from 'react';
-import {AppBar,Toolbar,Typography,IconButton,MenuIcon} from '@mui/material';
 import dltkashlogo from './dltkashlogo.png';
+import Nav from 'react-bootstrap/Nav';
 import './navbar.css'
 
 function Navbar() {
-    return (
-        <AppBar position="static">
-                <Toolbar variant="dense" className='customnavbar-container'>
-                    <IconButton edge="start" color="inherit" aria-label="menu">
-                        <img src={dltkashlogo} alt='logo' />
-                    </IconButton>
-                    <Typography variant="h6">
-                        Login
-                    </Typography>
-                    <p>Register</p>
-                </Toolbar>
-        </AppBar>
-    )
-}
+  return (
+    <div className='container'>
+      <Nav className='customnavbar-container'>
+        <Nav.Item>
+          <Nav.Link href="#"><img src={dltkashlogo} alt='logo' /></Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-1"><h3>Login</h3></Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-2"><p>Register</p></Nav.Link>
+        </Nav.Item>
+      </Nav>
+    </div>
 
+
+  )
+}
 export default Navbar

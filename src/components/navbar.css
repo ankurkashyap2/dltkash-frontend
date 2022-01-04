@@ -1,15 +1,13 @@
-.MuiToolbar-dense {
-    min-height: 65px !important;
-    background: #FFFFFF;
-    box-shadow: 0px 5px 10px rgb(0 0 0 / 15%);
-}
 .customnavbar-container {
     display: flex;
     justify-content: space-between;
+    min-height: 65px !important;
+    background: #FFFFFF;
+    box-shadow: 0px 5px 10px rgb(0 0 0 / 15%);
+    position: relative;
+    padding: 5px 20px;
 }
-.MuiTypography-h6 {
-    color: #000;
-}
+
 p{
     color: #000;
 }

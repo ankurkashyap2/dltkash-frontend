@@ -26,8 +26,9 @@ code {
   font-size: 12px !important;
   text-transform: capitalize !important;
   font-weight: 500 !important;
-  padding: 10px 30px !important;
+  padding: 12px 30px !important;
   border-radius: 6px !important;
+  background-color: transparent;
 }
 .btn-filled {
   border: 1px solid #4FADEA !important;
@@ -36,7 +37,7 @@ code {
   font-size: 12px !important;
   text-transform: capitalize !important;
   font-weight: 500 !important;
-  padding: 10px 30px !important;
+  padding: 12px 30px !important;
   border-radius: 6px !important;
 }
 
