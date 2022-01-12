@@ -5,7 +5,6 @@ import './navbar.css'
 
 function Navbar() {
   return (
-    <div className='container'>
       <Nav className='customnavbar-container'>
         <Nav.Item>
           <Nav.Link href="#"><img src={dltkashlogo} alt='logo' /></Nav.Link>
@@ -17,7 +16,6 @@ function Navbar() {
           <Nav.Link eventKey="link-2"><p>Register</p></Nav.Link>
         </Nav.Item>
       </Nav>
-    </div>
 
 
   )

@@ -9,7 +9,6 @@ import './login.css'
 function Forget() {
     return (
         <div class="main-content">
-            <div className='container'>
                 <div className='outer-box'>
                     <div className='login-box'>
                         <h3>Forgot Password</h3>
@@ -32,7 +31,6 @@ function Forget() {
                         </form>
                     </div>
                 </div>
-            </div>
         </div>
     )
 }

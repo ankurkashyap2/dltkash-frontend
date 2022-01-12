@@ -22,7 +22,7 @@
     border-radius: 8px;
     z-index:99;
     width:100%;
-    max-width: 492px;
+    min-width: 492px;
 }
 .login-box h3,p{
     text-align: center;
@@ -72,9 +72,9 @@ form.form-align {
     margin-right: 10px;
 }
 
-@media screen and (max-width:420px) {
+@media screen and (max-width:468px) {
     .login-box {
-        max-width: 319px;
+        min-width: 320px;
     }
     
 }

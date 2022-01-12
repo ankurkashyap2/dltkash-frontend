@@ -20,7 +20,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.btn-outlined {
+.btn-outlined.btn-primary {
   border: 1px solid #4FADEA !important;
   color: #4FADEA !important;
   font-size: 12px !important;
@@ -29,6 +29,18 @@ code {
   padding: 12px 30px !important;
   border-radius: 6px !important;
   background-color: transparent;
+  margin-top: 20px;
+}
+.btn-outlined.btn-primary:hover {
+  border: 1px solid #4FADEA !important;
+  color: #fff !important;
+  background-color: #4FADEA !important;
+  font-size: 12px !important;
+  text-transform: capitalize !important;
+  font-weight: 500 !important;
+  padding: 12px 30px !important;
+  border-radius: 6px !important;
+  margin-top: 20px;
 }
 .btn-filled {
   border: 1px solid #4FADEA !important;
@@ -39,5 +51,6 @@ code {
   font-weight: 500 !important;
   padding: 12px 30px !important;
   border-radius: 6px !important;
+  margin-top: 20px;
 }
 

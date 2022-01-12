@@ -10,8 +10,7 @@ function Login() {
     return (
         <>
             <Navbar/>
-            {<div class="main-content">
-                <div className='container'>
+            {<div class="main-content">  
                     <div className='outer-box'>
                         <div className='login-box'>
                             <h3>Login</h3>
@@ -35,7 +34,6 @@ function Login() {
                             </Form>
                         </div>
                     </div>
-                </div>
             </div>}
         </>
     )
