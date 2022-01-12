@@ -1,5 +1,5 @@
 {
-  "name": "my-react-app",
+  "name": "dlt-kash",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,10 +7,20 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.1.3",
+    "connected-react-router": "^6.9.2",
+    "history": "^5.2.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.0",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "react-router": "^6.2.1",
+    "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^1.1.3",
+    "redux-thunk": "^2.4.1",
     "web-vitals": "^2.1.2"
   },
   "scripts": {
