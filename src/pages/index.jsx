@@ -1,5 +1,7 @@
 import React from "react";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+// import LandingPage from "./landingPage";
+// import SecuredRoute from "./securedRoute";
 import Login from "./login";
 import Register from "./register";
 import Forgot from "./forgot";
@@ -13,6 +15,7 @@ const AppRoutes = (props) => {
 				<Route path="/register" element={<Register {...props} />} />
 				<Route path="/forgot-password" element={<Forgot {...props} />} />
 				<Route path="/dashboard" element={<Dashboard {...props} />} />
+				<Route path="/" element={<Login {...props} />} />
 			</Routes>
 		</Router>
 	);

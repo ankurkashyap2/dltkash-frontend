@@ -8,7 +8,7 @@ import "../styles/register.css";
 const Register = () => {
 	return (
 		<>
-			<Navbar />
+			<Navbar page="Register" />
 			{
 				<div class="main-content">
 					<div className="outer-box">
