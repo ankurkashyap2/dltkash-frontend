@@ -8,7 +8,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height:100%;
   color: #344054;
-  overflow:hidden;
 }
 div#root {
   height: 100%;
