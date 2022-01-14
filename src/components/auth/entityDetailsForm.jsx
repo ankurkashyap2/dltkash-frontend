@@ -76,7 +76,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 				render={({ errors, handleChange, handleSubmit, values, touched }) => {
 					return (
 						<Form className="form-align" noValidate onSubmit={handleSubmit}>
-							<Form.Group className="mb-1" controlId="validationFormik01">
+							<Form.Group className="mb-3" controlId="validationFormik01">
 								<Form.Label className="text-bottom">Legal Entity</Form.Label>
 								<Form.Control
 									type="text"
@@ -113,9 +113,14 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										{errors.sebiCertificateNumber}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} controlId="formGridPassword">
+								<Form.Group as={Col} controlId="formGridPassword" className="file file--upload upload-label">
+									<span>Upload SEBI Certificate</span>
 									<Form.Label className="text-bottom">
-										Upload SEBI Certificate
+									      <img
+											src={"/assets/images/upload.png"}
+											alt="upload"
+											className="icon-login"
+										/> Upload SEBI Certificate
 									</Form.Label>
 									<Form.Control
 										type="file"
@@ -157,8 +162,13 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										{errors.cinNumber}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} controlId="formGridPassword">
-									<Form.Label className="text-bottom">Upload CIN</Form.Label>
+								<Form.Group as={Col} controlId="formGridPassword" className="file file--upload upload-label">
+								<span>Upload CIN</span>
+									<Form.Label className="text-bottom"><img
+											src={"/assets/images/upload.png"}
+											alt="upload"
+											className="icon-login"
+										/>Upload CIN</Form.Label>
 									<Form.Control
 										type="file"
 										required
@@ -199,8 +209,13 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										{errors.panNumber}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} controlId="formGridPassword">
-									<Form.Label className="text-bottom">Upload PAN</Form.Label>
+								<Form.Group as={Col} controlId="formGridPassword" className="file file--upload upload-label"> 
+								<span>Upload PAN</span>
+									<Form.Label className="text-bottom"><img
+											src={"/assets/images/upload.png"}
+											alt="upload"
+											className="icon-login"
+										/>Upload PAN</Form.Label>
 									<Form.Control
 										type="file"
 										required

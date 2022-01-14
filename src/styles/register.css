@@ -160,6 +160,11 @@ form.form-align {
 .file--upload > label:active {
 	background-color: hsl(204, 86%, 91%);
 }
+
+.upload-label {
+    display: block;
+}
+
 .icon-login-left {
 	margin-left: 9px;
 }
