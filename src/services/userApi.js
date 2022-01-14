@@ -6,10 +6,34 @@ const token = getToken();
 
 export const USER_API = {
 	async userRegister(payload) {
-		const response = await request(`${API_URL}/auth/register-exchange`, {
-			method: "POST",
-			body: { ...payload },
-		});
+		const response = await request(
+			`${API_URL}/auth/register-exchange`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "multipart/form-data",
+				},
+				body: payload,
+			},
+			true
+		);
+		console.log("*********", response);
+		return response;
+	},
+
+	async adminRegister(payload) {
+		const response = await request(
+			`${API_URL}/auth/register-admin`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "multipart/form-data",
+				},
+				body: payload,
+			},
+			true
+		);
+		console.log("*********", response);
 		return response;
 	},
 

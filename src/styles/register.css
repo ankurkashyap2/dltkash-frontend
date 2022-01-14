@@ -43,7 +43,7 @@ form.form-align {
 
 .field-size {
 	width: 96%;
-	margin-bottom: 15px !important;
+	/* margin-bottom: 15px !important; */
 	height: 45px !important;
 	border-radius: 5px;
 	border: 1px solid #d7d7d7;
@@ -54,6 +54,7 @@ form.form-align {
 
 .text-bottom {
 	margin-bottom: 0 !important;
+	/* margin-top: 10px; */
 	color: #344054 !important;
 }
 
