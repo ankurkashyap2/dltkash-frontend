@@ -28,7 +28,7 @@ const Dashboard = () => {
                                 <Nav.Item>
                                     <Nav.Link eventKey="first">
                                         <li>
-                                            <a>
+                                            <a class="active">
                                                 <Dashboard1 className="icon-dashboard" alt="dashboard" />
                                                 Dashboard
                                             </a>
@@ -38,7 +38,7 @@ const Dashboard = () => {
                                 <Nav.Item>
                                     <Nav.Link eventKey="second">
                                         <li>
-                                            <a class="active">
+                                            <a>
                                                 <User alt="user" className="icon-dashboard" /> Add
                                                 User
                                             </a>
@@ -484,117 +484,24 @@ const Dashboard = () => {
                                             <thead>
                                                 <tr>
                                                     <th class="col-md-1">Date</th>
-                                                    <th class="col-md-1">Total Pan’s</th>
+                                                    <th class="col-md-1">Total Pan's</th>
                                                     <th class="col-md-1">Total Mobile No.</th>
-                                                    <th class="col-md-1">Total Email Id’s</th>
+                                                    <th class="col-md-1">Total Email Id's</th>
                                                     <th class="col-md-1">SMS Sent</th>
-                                                    <th class="col-md-1">Email’s Sent </th>
+                                                    <th class="col-md-1">Email's Sent </th>
                                                     <th class="col-md-1">Total Amount</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>01-01-2022</td>
-                                                    <td>155236</td>
-                                                    <td>ABC12345XZ</td>
-                                                    <td>+1 987654 3210</td>
-                                                    <td>username@xyz.com</td>
-                                                    <td className="verfied-pill">
-                                                        <span>Verified</span>
-                                                    </td>
-                                                    <td className="not-verfied-pill">
-                                                        <span>Not Verified</span>
-                                                    </td>
-                                                    <td className="verfied-pill">
-                                                        <span>Verified</span>
-                                                    </td>
-                                                    <td><UserEdit alt="edit" /></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2.</td>
-                                                    <td>155236</td>
-                                                    <td>ABC12345XZ</td>
-                                                    <td>+1 987654 3210</td>
-                                                    <td>username@xyz.com</td>
-                                                    <td className="not-verfied-pill">
-                                                        <span>Not Verified</span>
-                                                    </td>
-                                                    <td className="verfied-pill">
-                                                        <span>Verified</span>
-                                                    </td>
-                                                    <td className="verfied-pill">
-                                                        <span>Verified</span>
-                                                    </td>
-                                                    <td><UserEdit alt="edit" /></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3.</td>
-                                                    <td>155236</td>
-                                                    <td>ABC12345XZ</td>
-                                                    <td>+1 987654 3210</td>
-                                                    <td>username@xyz.com</td>
-                                                    <td className="verfied-pill">
-                                                        <span>Verified</span>
-                                                    </td>
-                                                    <td className="not-verfied-pill">
-                                                        <span>Not Verified</span>
-                                                    </td>
-                                                    <td className="verfied-pill">
-                                                        <span>Verified</span>
-                                                    </td>
-                                                    <td><UserEdit alt="edit" /></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4.</td>
-                                                    <td>155236</td>
-                                                    <td>ABC12345XZ</td>
-                                                    <td>+1 987654 3210</td>
-                                                    <td>username@xyz.com</td>
-                                                    <td className="not-verfied-pill">
-                                                        <span>Not Verified</span>
-                                                    </td>
-                                                    <td className="verfied-pill">
-                                                        <span>Verified</span>
-                                                    </td>
-                                                    <td className="not-verfied-pill">
-                                                        <span>Not Verified</span>
-                                                    </td>
-                                                    <td><UserEdit alt="edit" /></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>5.</td>
-                                                    <td>155236</td>
-                                                    <td>ABC12345XZ</td>
-                                                    <td>+1 987654 3210</td>
-                                                    <td>username@xyz.com</td>
-                                                    <td className="verfied-pill">
-                                                        <span>Verified</span>
-                                                    </td>
-                                                    <td className="not-verfied-pill">
-                                                        <span>Not Verified</span>
-                                                    </td>
-                                                    <td className="not-verfied-pill">
-                                                        <span>Not Verified</span>
-                                                    </td>
-                                                    <td><UserEdit alt="edit" /></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>6.</td>
-                                                    <td>155236</td>
-                                                    <td>ABC12345XZ</td>
-                                                    <td>+1 987654 3210</td>
-                                                    <td>username@xyz.com</td>
-                                                    <td className="not-verfied-pill">
-                                                        <span>Not Verified</span>
-                                                    </td>
-                                                    <td className="verfied-pill">
-                                                        <span>Verified</span>
-                                                    </td>
-                                                    <td className="verfied-pill">
-                                                        <span>Verified</span>
-                                                    </td>
-                                                    <td><UserEdit alt="edit" /></td>
-                                                </tr>
+                                                    <td>100,000</td>
+                                                    <td>110,000</td>
+                                                    <td>125,000</td>
+                                                    <td>115,000</td>
+                                                    <td>120,000</td>
+                                                    <td>01-07-2022</td>
+                                                </tr>         
                                             </tbody>
                                         </table>
                                     </div>
