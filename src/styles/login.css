@@ -34,7 +34,7 @@ form.form-align {
 }
 .field-size {
 	width: 95%;
-	margin-bottom: 30px !important;
+	/* margin-bottom: 30px !important; */
 	height: 40px;
 	border-radius: 5px;
 	border: 1px solid #d7d7d7;

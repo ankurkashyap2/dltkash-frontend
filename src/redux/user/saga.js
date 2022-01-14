@@ -21,7 +21,21 @@ import { setProfile, setToken, setRememberMe } from "../../utils";
 export function* userSignup() {
 	yield takeEvery(USER_REGISTER, function* ({ payload, navigation }) {
 		try {
-			const response = yield call(USER_API.userRegister, payload);
+			const entity = new FormData();
+			for (const key in payload.entity) {
+				entity.append(key, payload.entity[key]);
+			}
+			const response = yield call(USER_API.userRegister, entity);
+			const admin = new FormData();
+			for (const key in payload.admin) {
+				admin.append(key, payload.admin[key]);
+			}
+			if (response) {
+				admin.append("exchangeId", response.data._id);
+			}
+			const response1 = yield call(USER_API.adminRegister, admin);
+
+			console.log("*********", response);
 			if (response.data.status === "ok") {
 				yield put(
 					userRegisterSuccess({
