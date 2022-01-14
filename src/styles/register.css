@@ -103,9 +103,7 @@ form.form-align {
 }
 .file {
 	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	display: block;
 }
 
 .file > input[type="file"] {
@@ -168,6 +166,7 @@ span.after_upload_text {
 	margin-top: 7px;
 	background: #f2f4f7;
 	color: #3b465a8c;
+	padding-top: 10px;
 }
 
 .file--upload > label:active {

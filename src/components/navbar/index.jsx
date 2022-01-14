@@ -4,7 +4,7 @@ import "../../styles/navbar.css";
 
 const Navbar = ({ page }) => {
 	return (
-		<Nav className="customnavbar-container">
+		<Nav className="customnavbar-container p-3">
 			<Nav.Item>
 				<Nav.Link href="#">
 					<img src={"/assets/images/dltkashlogo.png"} alt="logo" />
@@ -15,7 +15,7 @@ const Navbar = ({ page }) => {
 					eventKey="link-1"
 					// href={page === "Login" ? "/register" : "/login"}
 				>
-					<h3>{page}</h3>
+					<h3 className="text-dark">{page}</h3>
 				</Nav.Link>
 			</Nav.Item>
 			<Nav.Item>
