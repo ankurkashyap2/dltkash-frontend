@@ -1,4 +1,5 @@
 import { takeEvery, put, call } from "redux-saga/effects";
+import { push } from "react-router-redux";
 import {
 	USER_REGISTER,
 	USER_LOGIN,
@@ -30,13 +31,13 @@ export function* userSignup() {
 			for (const key in payload.admin) {
 				admin.append(key, payload.admin[key]);
 			}
+			console.log("*********", response);
 			if (response) {
-				admin.append("exchangeId", response.data._id);
+				admin.append("exchangeId", response.data.data._id);
 			}
 			const response1 = yield call(USER_API.adminRegister, admin);
 
-			console.log("*********", response);
-			if (response.data.status === "ok") {
+			if (response.status === 200) {
 				yield put(
 					userRegisterSuccess({
 						token: response.data.data.token,
@@ -56,21 +57,31 @@ export function* userSignup() {
 }
 
 export function* userSignin() {
-	yield takeEvery(USER_LOGIN, function* ({ payload, navigation }) {
-		const { remember, ...rest } = payload;
+	yield takeEvery(USER_LOGIN, function* ({ payload }) {
 		try {
-			const response = yield call(USER_API.userLogin, rest);
-			if (response.data.status === "ok") {
-				yield put(
-					userLoginSuccess({
-						token: response.data.data.token,
-						user: response.data.data.user,
-					})
-				);
-				yield call(setToken, response.data.data.token);
-				yield call(setProfile, response.data.data.user);
-				yield call(setRememberMe, remember);
-				navigation.push("/dashboard");
+			const response = yield call(USER_API.userLogin, payload);
+			if (response.status === 200) {
+				const adminDetailsResponse = yield call(USER_API.getAdminDetails, response);
+				if (adminDetailsResponse.status === 200) {
+					const exchangeDetailsResponse = yield call(
+						USER_API.getExchangeDetails,
+						adminDetailsResponse.data.data.exchangeId,
+						response.data.token
+					);
+					if (exchangeDetailsResponse.status === 200) {
+						yield put(
+							userLoginSuccess({
+								token: response.data.token,
+								admin: adminDetailsResponse.data.data,
+								exchange: exchangeDetailsResponse.data.data,
+							})
+						);
+						yield call(setToken, response.data.token);
+						// yield call(setProfile, response.data.data.user);
+						// yield call(setRememberMe, remember);
+						yield put(push("/dashboard"));
+					}
+				}
 			} else {
 				yield put(userLoginError(response.data.error));
 			}

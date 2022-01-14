@@ -5,7 +5,7 @@ import "../styles/register.css";
 import EntityDetailsForm from "../components/auth/entityDetailsForm";
 import PersonalDetailsForm from "../components/auth/personalDetailsForm";
 
-const Register = () => {
+const Register = ({ history }) => {
 	const [activeTab, setActiveTab] = useState("entity");
 	const [entityDetails, setEntityDetails] = useState(null);
 

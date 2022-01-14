@@ -9,7 +9,7 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
-	margin-top:20px;
+	margin-top: 20px;
 }
 
 .outer-box {
@@ -147,7 +147,7 @@ form.form-align {
 
 .file--upload > label {
 	width: 100%;
-	margin-bottom: 15px !important;
+	/* margin-bottom: 15px !important; */
 	height: 45px;
 	border-radius: 5px;
 	border: 1px solid #d7d7d7;
@@ -157,12 +157,25 @@ form.form-align {
 	background: #f2f4f7;
 }
 
+span.after_upload_text {
+	width: 100%;
+	margin-bottom: 15px !important;
+	height: 45px;
+	border-radius: 5px;
+	border: 1px solid #d7d7d7;
+	font-size: 14px;
+	padding: 1px 10px;
+	margin-top: 7px;
+	background: #f2f4f7;
+	color: #3b465a8c;
+}
+
 .file--upload > label:active {
 	background-color: hsl(204, 86%, 91%);
 }
 
 .upload-label {
-    display: block;
+	display: block;
 }
 
 .icon-login-left {

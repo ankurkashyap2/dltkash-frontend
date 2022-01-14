@@ -18,7 +18,7 @@ import {
 const initState = {
 	loading: false,
 	error: null,
-	user: null,
+	profile: null,
 	token: "",
 };
 

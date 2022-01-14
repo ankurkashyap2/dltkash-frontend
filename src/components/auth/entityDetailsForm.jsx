@@ -2,9 +2,17 @@ import React, { useState } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import Dropzone from "react-dropzone";
 import "../../styles/register.css";
 
 const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
+	const [sebiCertificate, setSebiCertificate] = useState([]);
+	const [sebiCertificateError, setSebiCertificateError] = useState("");
+	const [cinCertificate, setCinCertificate] = useState([]);
+	const [cinCertificateError, setCinCertificateError] = useState("");
+	const [pan, setPan] = useState([]);
+	const [panError, setPanError] = useState("");
+
 	const validationSchema = () => {
 		return Yup.object().shape({
 			legalEntityName: Yup.string().required("* Legal Entity Name is required"),
@@ -13,9 +21,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 			),
 			cinNumber: Yup.string().required("* CIN Number is required"),
 			panNumber: Yup.string().required("* PAN Number is required"),
-			sebiCertificate: Yup.mixed().required("* SEBI Certificate is required"),
-			cinCertificate: Yup.mixed().required("* CIN Certificate is required"),
-			pan: Yup.mixed().required("* PAN is required"),
+			// sebiCertificate: Yup.mixed().required("* SEBI Certificate is required"),
+			// cinCertificate: Yup.mixed().required("* CIN Certificate is required"),
+			// pan: Yup.mixed().required("* PAN is required"),
 		});
 	};
 
@@ -26,9 +34,27 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 				validationSchema.validateSync(values, { abortEarly: false });
 				return {};
 			} catch (error) {
+				validateExtras();
 				return getErrorsFromValidationError(error);
 			}
 		};
+	};
+
+	const validateExtras = () => {
+		let update = true;
+		if (sebiCertificate.length === 0) {
+			setSebiCertificateError("* SEBI Certificate is required");
+			update = false;
+		}
+		if (cinCertificate.length === 0) {
+			setCinCertificateError("* CIN Certificate is required");
+			update = false;
+		}
+		if (pan.length === 0) {
+			setPanError("* PAN is required");
+			update = false;
+		}
+		return update;
 	};
 
 	const getErrorsFromValidationError = (validationError) => {
@@ -47,22 +73,62 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 			sebiCertificateNumber: "",
 			cinNumber: "",
 			panNumber: "",
-			sebiCertificate: null,
-			cinCertificate: null,
-			pan: null,
+			// sebiCertificate: null,
+			// cinCertificate: null,
+			// pan: null,
 		};
 		return initialValues;
 	};
 
-	const handleSubmit = (values) => {
-		setEntityDetails(values);
-		setActiveTab("personalDetails");
-		// userLogin(
-		// 	{ user_name: values.userName.toLowerCase(), password: values.password, remember },
-		// 	history
-		// );
+	const handleFileUpload = (type, acceptedFiles) => {
+		if (type === "sebi") {
+			setSebiCertificateError("");
+			setSebiCertificate(
+				acceptedFiles.map((file) =>
+					Object.assign(file, {
+						preview: URL.createObjectURL(file),
+					})
+				)
+			);
+		} else if (type === "cin") {
+			setCinCertificateError("");
+			setCinCertificate(
+				acceptedFiles.map((file) =>
+					Object.assign(file, {
+						preview: URL.createObjectURL(file),
+					})
+				)
+			);
+		} else {
+			setPanError("");
+			setPan(
+				acceptedFiles.map((file) =>
+					Object.assign(file, {
+						preview: URL.createObjectURL(file),
+					})
+				)
+			);
+		}
 	};
 
+	const handleDropReject = (type, rejected) => {
+		if (type === "sebi") {
+			setSebiCertificateError("* SEBI Certificate is required");
+		} else if (type === "cin") {
+			setCinCertificateError("* CIN Certificate is required");
+		} else {
+			setPanError("* PAN is required");
+		}
+	};
+
+	const handleSubmit = (values) => {
+		if (validateExtras()) {
+			setEntityDetails(values);
+			setActiveTab("personalDetails");
+		}
+	};
+
+	console.log(sebiCertificateError, cinCertificateError, panError);
 	return (
 		<>
 			<p>Step 1</p>
@@ -113,26 +179,78 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										{errors.sebiCertificateNumber}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} controlId="formGridPassword" className="file file--upload upload-label">
+								<Form.Group as={Col} controlId="formGridEmail">
+									<Form.Label className="text-bottom">SEBI Certificate</Form.Label>
+									<Dropzone
+										// maxSize={512000}
+										onDrop={(acceptedFiles) => handleFileUpload("sebi", acceptedFiles)}
+										onDropRejected={(rejected) => handleDropReject("sebi", rejected)}
+										multiple={false}
+										accept=".pdf"
+									>
+										{({ getRootProps, getInputProps }) => (
+											<div>
+												{sebiCertificate.length && sebiCertificate.length > 0 ? (
+													<section className="file file--upload">
+														<input {...getInputProps()} />
+														<div {...getRootProps()}>
+															{sebiCertificate.map((file, index) => {
+																return (
+																	<div {...getRootProps()} className="file file--upload">
+																		<span className="after_upload_text">{file.name}</span>
+																	</div>
+																);
+															})}
+														</div>
+													</section>
+												) : (
+													<section>
+														<input {...getInputProps()} />
+														<div {...getRootProps()} className="file file--upload">
+															<label for="input-file">
+																<img
+																	src={"/assets/images/upload.png"}
+																	alt="upload"
+																	className="icon-login"
+																/>
+																Upload SEBI Certificate
+															</label>
+														</div>
+													</section>
+												)}
+											</div>
+										)}
+									</Dropzone>
+									<Form.Control.Feedback type="invalid" style={{ display: "block" }}>
+										{sebiCertificateError}
+									</Form.Control.Feedback>
+								</Form.Group>
+								{/* <Form.Group
+									as={Col}
+									controlId="formGridPassword"
+									className="file file--upload upload-label"
+								>
 									<span>Upload SEBI Certificate</span>
 									<Form.Label className="text-bottom">
-									      <img
+										<img
 											src={"/assets/images/upload.png"}
 											alt="upload"
 											className="icon-login"
-										/> Upload SEBI Certificate
+										/>{" "}
+										Upload SEBI Certificate
 									</Form.Label>
 									<Form.Control
 										type="file"
 										required
 										name="sebiCertificate"
 										onChange={handleChange}
+										value={values.sebiCertificate}
 										isInvalid={!!errors.sebiCertificate}
 									/>
 									<Form.Control.Feedback type="invalid">
 										{errors.sebiCertificate}
 									</Form.Control.Feedback>
-									{/* <div className="file file--upload">
+									<div className="file file--upload">
 																<label for="input-file">
 																	<img
 																		src={"/assets/images/upload.png"}
@@ -142,8 +260,8 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 																	Upload SEBI Certificate
 																</label>
 																<input id="input-file" type="file" />
-															</div> */}
-								</Form.Group>
+															</div>
+								</Form.Group> */}
 							</Row>
 							<Row>
 								<Form.Group as={Col} controlId="formGridEmail">
@@ -162,34 +280,51 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										{errors.cinNumber}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} controlId="formGridPassword" className="file file--upload upload-label">
-								<span>Upload CIN</span>
-									<Form.Label className="text-bottom"><img
-											src={"/assets/images/upload.png"}
-											alt="upload"
-											className="icon-login"
-										/>Upload CIN</Form.Label>
-									<Form.Control
-										type="file"
-										required
-										name="cinCertificate"
-										onChange={handleChange}
-										isInvalid={!!errors.cinCertificate}
-									/>
+								<Form.Group as={Col} controlId="formGridEmail">
+									<Form.Label className="text-bottom">Upload CIN</Form.Label>
+									<Dropzone
+										// maxSize={512000}
+										onDrop={(acceptedFiles) => handleFileUpload("cin", acceptedFiles)}
+										onDropRejected={(rejected) => handleDropReject("cin", rejected)}
+										multiple={false}
+										accept=".pdf"
+									>
+										{({ getRootProps, getInputProps }) => (
+											<div>
+												{cinCertificate.length && cinCertificate.length > 0 ? (
+													<section className="file file--upload">
+														<input {...getInputProps()} />
+														<div {...getRootProps()}>
+															{cinCertificate.map((file, index) => {
+																return (
+																	<div {...getRootProps()} className="file file--upload">
+																		<span className="after_upload_text">{file.name}</span>
+																	</div>
+																);
+															})}
+														</div>
+													</section>
+												) : (
+													<section>
+														<input {...getInputProps()} />
+														<div {...getRootProps()} className="file file--upload">
+															<label for="input-file">
+																<img
+																	src={"/assets/images/upload.png"}
+																	alt="upload"
+																	className="icon-login"
+																/>
+																Upload CIN
+															</label>
+														</div>
+													</section>
+												)}
+											</div>
+										)}
+									</Dropzone>
 									<Form.Control.Feedback type="invalid">
-										{errors.cinCertificate}
+										{cinCertificateError}
 									</Form.Control.Feedback>
-									{/* <div className="file file--upload">
-																<label for="input-file">
-																	<img
-																		src={"/assets/images/upload.png"}
-																		alt="upload"
-																		className="icon-login"
-																	/>
-																	Upload CIN
-																</label>
-																<input id="input-file" type="file" />
-															</div> */}
 								</Form.Group>
 							</Row>
 							<Row>
@@ -209,34 +344,51 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										{errors.panNumber}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} controlId="formGridPassword" className="file file--upload upload-label"> 
-								<span>Upload PAN</span>
-									<Form.Label className="text-bottom"><img
-											src={"/assets/images/upload.png"}
-											alt="upload"
-											className="icon-login"
-										/>Upload PAN</Form.Label>
-									<Form.Control
-										type="file"
-										required
-										name="pan"
-										onChange={handleChange}
-										isInvalid={!!errors.pan}
-									/>
+								<Form.Group as={Col} controlId="formGridPassword">
+									<Form.Label className="text-bottom">Upload PAN</Form.Label>
+									<Dropzone
+										// maxSize={512000}
+										onDrop={(acceptedFiles) => handleFileUpload("pan", acceptedFiles)}
+										onDropRejected={(rejected) => handleDropReject("pan", rejected)}
+										multiple={false}
+										accept=".pdf"
+									>
+										{({ getRootProps, getInputProps }) => (
+											<div>
+												{pan.length && pan.length > 0 ? (
+													<section className="file file--upload">
+														<input {...getInputProps()} />
+														<div {...getRootProps()}>
+															{pan.map((file, index) => {
+																return (
+																	<div {...getRootProps()} className="file file--upload">
+																		<span className="after_upload_text">{file.name}</span>
+																	</div>
+																);
+															})}
+														</div>
+													</section>
+												) : (
+													<section>
+														<input {...getInputProps()} />
+														<div {...getRootProps()} className="file file--upload">
+															<label for="input-file">
+																<img
+																	src={"/assets/images/upload.png"}
+																	alt="upload"
+																	className="icon-login"
+																/>
+																Upload PAN
+															</label>
+														</div>
+													</section>
+												)}
+											</div>
+										)}
+									</Dropzone>
 									<Form.Control.Feedback type="invalid">
-										{errors.pan}
+										{panError}
 									</Form.Control.Feedback>
-									{/* <div className="file file--upload">
-																<label for="input-file">
-																	<img
-																		src={"/assets/images/upload.png"}
-																		alt="upload"
-																		className="icon-login"
-																	/>
-																	Upload PAN
-																</label>
-																<input id="input-file" type="file" />
-															</div> */}
 								</Form.Group>
 							</Row>
 							<Button className="btn-position btn-filled" type="submit">

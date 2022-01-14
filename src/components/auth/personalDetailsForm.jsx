@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -70,10 +70,6 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 			entity: entityDetails,
 			admin: { ...values, isFirstExchangeAdmin: true },
 		});
-		// userLogin(
-		// 	{ user_name: values.userName.toLowerCase(), password: values.password, remember },
-		// 	history
-		// );
 	};
 
 	return (

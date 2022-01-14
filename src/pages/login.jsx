@@ -10,13 +10,10 @@ import { ReactComponent as TickIcon } from "../components/icons/tick.svg";
 import Navbar from "../components/navbar";
 import "../styles/login.css";
 
-const Login = () => {
+const Login = ({ userLogin }) => {
 	const validationSchema = () => {
 		return Yup.object().shape({
-			userName: Yup.string().required("*User Name is required"),
-			// email: Yup.string()
-			// 	.required("* Email is required")
-			// 	.email("* Please enter valid format"),
+			email: Yup.string().required("*Email is required"),
 			password: Yup.string().required("* Password is required"),
 		});
 	};
@@ -45,7 +42,7 @@ const Login = () => {
 
 	const getInitialValues = () => {
 		const initialValues = {
-			userName: "",
+			email: "",
 			password: "",
 		};
 		return initialValues;
@@ -56,10 +53,7 @@ const Login = () => {
 		// 	entity: entityDetails,
 		// 	admin: { ...values, isFirstExchangeAdmin: true },
 		// });
-		userLogin(
-			{ ...values }
-			// history
-		);
+		userLogin({ ...values });
 	};
 	return (
 		<>
@@ -83,15 +77,15 @@ const Login = () => {
 												type="email"
 												placeholder="Enter Username"
 												className="field-size"
-												name="userName"
+												name="email"
 												required
 												onChange={handleChange}
-												value={values.userName}
-												isInvalid={!!errors.userName}
-												isValid={touched.userName && !errors.userName}
+												value={values.email}
+												isInvalid={!!errors.email}
+												isValid={touched.email && !errors.email}
 											/>
 											<Form.Control.Feedback type="invalid">
-												{errors.userName}
+												{errors.email}
 											</Form.Control.Feedback>
 
 											<Form.Label className="text-bottom">Password</Form.Label>
@@ -116,7 +110,7 @@ const Login = () => {
 												<RightArrow className="icon-login" />
 												Register
 											</Button>
-											<Button className="btn-position btn-filled">
+											<Button className="btn-position btn-filled" type="submit">
 												<TickIcon className="icon-login" />
 												Login
 											</Button>

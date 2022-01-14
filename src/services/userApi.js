@@ -17,7 +17,6 @@ export const USER_API = {
 			},
 			true
 		);
-		console.log("*********", response);
 		return response;
 	},
 
@@ -33,17 +32,41 @@ export const USER_API = {
 			},
 			true
 		);
-		console.log("*********", response);
 		return response;
 	},
 
 	async userLogin(payload) {
-		const response = await request(`${API_URL}/api/users/login`, {
+		const response = await request(`${API_URL}/auth/login`, {
 			method: "POST",
-			body: {
-				...payload,
-			},
+			body: payload,
 		});
+		return response;
+	},
+
+	async getExchangeDetails(exchangeId, token) {
+		const response = await request(
+			`${API_URL}/auth/get-exchange?exchangeId=${exchangeId}`,
+			{
+				method: "GET",
+				headers: {
+					Authorization: token,
+				},
+			}
+		);
+		return response;
+	},
+
+	async getAdminDetails(payload) {
+		const response = await request(
+			`${API_URL}/auth/get-admin`,
+			{
+				method: "GET",
+				headers: {
+					Authorization: payload.data.token,
+				},
+			},
+			true
+		);
 		return response;
 	},
 
