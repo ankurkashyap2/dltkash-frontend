@@ -16,7 +16,7 @@ ul.pagination .page-item a {
   display: -webkit-flex;
   display: flex;
   min-height: 100%;
-  margin-top: 96px;
+  margin-top: 80px;
 }
 
 .sidebar {
@@ -42,18 +42,26 @@ ul.pagination .page-item a {
   display: none;
 }
 
-input#formGridEmail {
-    font-size: 14px;
-    border: 2px solid #a1a0a021;
+.field-size {
+  font-size: 14px;
+  border: 2px solid #a1a0a021 !important;
 }
 
 /* Demo nav_dashboardigation */
 .nav_dashboard {
     list-style: none;
-    padding: 0 15px;
-    margin-top: 20px;
+    padding: 0 10px;
+    margin-top: 7px;
 }
 
+.nav-item a {
+  padding: 0;
+}
+
+.nav-pills .nav-link.active {
+  color: #fff;
+  background: transparent !important;
+}
 .nav_dashboard li{
     margin-top: 10px;
 }
@@ -246,8 +254,62 @@ thead {
     display: none;
   }
 }
-
 /*end table styling */
+
+/*add user**/
+.add_user.row {
+  background: #F9F9F9;
+  padding: 35px 20px;
+}
+
+.text-bold {
+  font-weight: 500;
+}
+
+.add-user-tab li button {
+  padding: 10px 40px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #969696;
+}
+
+.add-user-tab.nav-tabs .nav-link.active {
+  color: #ffffff;
+  background-color: #4fadea;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.upload-send {
+  margin-right: 6px;
+  margin-top: 3px;
+}
+/*end add user**/
+/**user verification**/
+select.select-custom.form-select {
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  padding: 11px;
+  font-size: 14px;
+}
+
+.send-btn.file--upload > label {
+  width: 100%;
+  margin-bottom: 15px !important;
+  height: 45px;
+  border-radius: 5px;
+  border: 1px solid #4fadea;
+  font-size: 14px;
+  padding: 1px 10px;
+  margin-top: 7px;
+  background: #4fadea;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+}
+/**end user verification**/
+
 @media only screen and (max-width: 768px) {
   .content {
     margin-left: 0;
