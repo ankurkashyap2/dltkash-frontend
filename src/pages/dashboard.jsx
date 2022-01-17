@@ -58,7 +58,7 @@ const Dashboard = () => {
 									<Nav.Link eventKey="Third">
 										<li>
 											<a>
-												<Varification alt="Verification" className="icon-dashboard" /> User
+												<Varification alt="Verification" className="icon-dashboard" /> UCC
 												Verification
 											</a>
 										</li>
@@ -148,10 +148,10 @@ const Dashboard = () => {
 													<th class="col-md-1">S.No.</th>
 													<th class="col-md-1">TM ID</th>
 													<th class="col-md-1">PAN</th>
-													<th class="col-md-1">Mobile No.</th>
 													<th class="col-md-1">Email ID</th>
+													<th class="col-md-1">Mobile No.</th>
 													<th class="col-md-1">
-														Mobile Status <Up alt="down" className="up-arrow" />
+														PAN Status <Up alt="down" className="up-arrow" />
 														<Down alt="down" className="down-arrow" />
 													</th>
 													<th class="col-md-1">
@@ -159,7 +159,7 @@ const Dashboard = () => {
 														<Down alt="down" className="down-arrow" />
 													</th>
 													<th class="col-md-1">
-														PAN Status <Up alt="down" className="up-arrow" />
+														Mobile Status <Up alt="down" className="up-arrow" />
 														<Down alt="down" className="down-arrow" />
 													</th>
 													<th class="col-md-1">Action</th>
@@ -170,8 +170,8 @@ const Dashboard = () => {
 													<td>1.</td>
 													<td>155236</td>
 													<td>ABC12345XZ</td>
-													<td>+1 987654 3210</td>
 													<td>username@xyz.com</td>
+													<td>+1 987654 3210</td>
 													<td className="verfied-pill">
 														<span>Verified</span>
 													</td>
@@ -186,30 +186,11 @@ const Dashboard = () => {
 													</td>
 												</tr>
 												<tr>
-													<td>2.</td>
+													<td>1.</td>
 													<td>155236</td>
 													<td>ABC12345XZ</td>
-													<td>+1 987654 3210</td>
 													<td>username@xyz.com</td>
-													<td className="not-verfied-pill">
-														<span>Not Verified</span>
-													</td>
-													<td className="verfied-pill">
-														<span>Verified</span>
-													</td>
-													<td className="verfied-pill">
-														<span>Verified</span>
-													</td>
-													<td>
-														<UserEdit alt="edit" />
-													</td>
-												</tr>
-												<tr>
-													<td>3.</td>
-													<td>155236</td>
-													<td>ABC12345XZ</td>
 													<td>+1 987654 3210</td>
-													<td>username@xyz.com</td>
 													<td className="verfied-pill">
 														<span>Verified</span>
 													</td>
@@ -224,54 +205,73 @@ const Dashboard = () => {
 													</td>
 												</tr>
 												<tr>
-													<td>4.</td>
+													<td>1.</td>
 													<td>155236</td>
 													<td>ABC12345XZ</td>
-													<td>+1 987654 3210</td>
 													<td>username@xyz.com</td>
-													<td className="not-verfied-pill">
-														<span>Not Verified</span>
-													</td>
+													<td>+1 987654 3210</td>
 													<td className="verfied-pill">
 														<span>Verified</span>
 													</td>
 													<td className="not-verfied-pill">
 														<span>Not Verified</span>
+													</td>
+													<td className="verfied-pill">
+														<span>Verified</span>
 													</td>
 													<td>
 														<UserEdit alt="edit" />
 													</td>
 												</tr>
 												<tr>
-													<td>5.</td>
+													<td>1.</td>
 													<td>155236</td>
 													<td>ABC12345XZ</td>
-													<td>+1 987654 3210</td>
 													<td>username@xyz.com</td>
+													<td>+1 987654 3210</td>
 													<td className="verfied-pill">
 														<span>Verified</span>
 													</td>
 													<td className="not-verfied-pill">
 														<span>Not Verified</span>
 													</td>
-													<td className="not-verfied-pill">
-														<span>Not Verified</span>
+													<td className="verfied-pill">
+														<span>Verified</span>
 													</td>
 													<td>
 														<UserEdit alt="edit" />
 													</td>
 												</tr>
 												<tr>
-													<td>6.</td>
+													<td>1.</td>
 													<td>155236</td>
 													<td>ABC12345XZ</td>
-													<td>+1 987654 3210</td>
 													<td>username@xyz.com</td>
+													<td>+1 987654 3210</td>
+													<td className="verfied-pill">
+														<span>Verified</span>
+													</td>
 													<td className="not-verfied-pill">
 														<span>Not Verified</span>
 													</td>
 													<td className="verfied-pill">
 														<span>Verified</span>
+													</td>
+													<td>
+														<UserEdit alt="edit" />
+													</td>
+												</tr>
+												<tr>
+													<td>1.</td>
+													<td>155236</td>
+													<td>ABC12345XZ</td>
+													<td>username@xyz.com</td>
+													<td>+1 987654 3210</td>
+													<td className="verfied-pill">
+														<span>Verified</span>
+													</td>
+													<td className="not-verfied-pill">
+														<span>Not Verified</span>
 													</td>
 													<td className="verfied-pill">
 														<span>Verified</span>
@@ -376,12 +376,12 @@ const Dashboard = () => {
 							{/* User Verification */}
 
 							<Tab.Pane eventKey="Third">
-								<h3>User Verificaiton</h3>
+								<h3>UCC Verificaiton</h3>
 								<Row className="add_user">
 									<Col sm={7}>
 										<Row className="mb-5">
 											<Form.Label column lg={3} className="text-bold">
-												Notification send via
+											Verificaiton send via
 											</Form.Label>
 											<Col>
 												<Form.Select defaultValue="Choose..." className="select-custom">
@@ -485,9 +485,9 @@ const Dashboard = () => {
 											<thead>
 												<tr>
 													<th class="col-md-1">Date</th>
-													<th class="col-md-1">Total Pan's</th>
-													<th class="col-md-1">Total Mobile No.</th>
+													<th class="col-md-1">Total PAN's</th>
 													<th class="col-md-1">Total Email Id's</th>
+													<th class="col-md-1">Total Mobile No.</th>
 													<th class="col-md-1">SMS Sent</th>
 													<th class="col-md-1">Email's Sent </th>
 													<th class="col-md-1">Total Amount</th>

@@ -155,7 +155,7 @@ form.form-align {
 	background: #f2f4f7;
 }
 
-span.after_upload_text {
+.after_upload_text {
 	width: 100%;
 	margin-bottom: 15px !important;
 	height: 45px;

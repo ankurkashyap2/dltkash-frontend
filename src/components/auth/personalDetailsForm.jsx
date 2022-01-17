@@ -88,7 +88,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 									<Form.Control
 										type="text"
 										placeholder="Enter User Name"
-										className="field-size"
+										className="field-size mb-3"
 										name="userName"
 										required
 										onChange={handleChange}
@@ -100,7 +100,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 										{errors.userName}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} controlId="formGridEmail">
+								{/* <Form.Group as={Col} controlId="formGridEmail">
 									<div class="box box-primary">
 										<div class="box-body box-profile">
 											<div>
@@ -123,7 +123,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 											</div>
 										</div>
 									</div>
-								</Form.Group>
+								</Form.Group> */}
 							</Row>
 							<Row>
 								<Form.Group as={Col} controlId="formGridEmail">
@@ -164,7 +164,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 									<Form.Control
 										type="text"
 										placeholder="Enter Email Address"
-										className="field-size"
+										className="field-size mb-3"
 										name="email"
 										required
 										onChange={handleChange}
@@ -187,7 +187,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 									<Form.Control
 										type="text"
 										placeholder="Enter OTP"
-										className="field-size"
+										className="field-size mb-3"
 									/>
 								</Form.Group>
 							</Row>
@@ -197,7 +197,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 									<Form.Control
 										type="password"
 										placeholder="Enter Password"
-										className="field-size"
+										className="field-size mb-3"
 										name="password"
 										required
 										onChange={handleChange}
@@ -214,7 +214,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 									<Form.Control
 										type="password"
 										placeholder="Confirm Password"
-										className="field-size"
+										className="field-size mb-3"
 										name="confirmPassword"
 										required
 										onChange={handleChange}

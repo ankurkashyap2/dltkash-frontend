@@ -142,6 +142,30 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 				render={({ errors, handleChange, handleSubmit, values, touched }) => {
 					return (
 						<Form className="form-align" noValidate onSubmit={handleSubmit}>
+							<Form.Group as={Col} controlId="formGridEmail" className="center">
+									<div class="box box-primary">
+										<div class="box-body box-profile">
+											<div>
+												<div class="avatar-upload">
+													<div class="avatar-edit">
+														<form action="" method="post" id="form-image">
+															<input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
+															<label for="imageUpload"></label>
+														</form>
+													</div>
+													<div class="avatar-preview">
+														<img
+															src="/assets/images/avatar.png"
+															class="profile-user-img img-responsive img-circle"
+															alt="User profile"
+															id="imagePreview"
+														/>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</Form.Group>
 							<Form.Group className="mb-3" controlId="validationFormik01">
 								<Form.Label className="text-bottom">Legal Entity</Form.Label>
 								<Form.Control
@@ -197,7 +221,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 															{sebiCertificate.map((file, index) => {
 																return (
 																	<div {...getRootProps()} className="file file--upload">
-																		<span className="after_upload_text">{file.name}</span>
+																		<div className="after_upload_text">{file.name}</div>
 																	</div>
 																);
 															})}
@@ -298,7 +322,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 															{cinCertificate.map((file, index) => {
 																return (
 																	<div {...getRootProps()} className="file file--upload">
-																		<span className="after_upload_text">{file.name}</span>
+																		<div className="after_upload_text">{file.name}</div>
 																	</div>
 																);
 															})}
@@ -362,7 +386,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 															{pan.map((file, index) => {
 																return (
 																	<div {...getRootProps()} className="file file--upload">
-																		<span className="after_upload_text">{file.name}</span>
+																		<div className="after_upload_text">{file.name}</div>
 																	</div>
 																);
 															})}
