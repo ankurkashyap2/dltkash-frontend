@@ -58,7 +58,7 @@ const Login = ({ userLogin }) => {
 	return (
 		<>
 			<Navbar page="Login" />
-			<div class="main-content">
+			<div class="main-content-login">
 				<div className="outer-box">
 					<div className="login-box">
 						<h3>Login</h3>
