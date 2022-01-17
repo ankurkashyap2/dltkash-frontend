@@ -12,6 +12,8 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 	const [cinCertificateError, setCinCertificateError] = useState("");
 	const [pan, setPan] = useState([]);
 	const [panError, setPanError] = useState("");
+	const [logo, setLogo] = useState([]);
+	const [logoError, setLogoError] = useState("");
 
 	const validationSchema = () => {
 		return Yup.object().shape({
@@ -21,9 +23,6 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 			),
 			cinNumber: Yup.string().required("* CIN Number is required"),
 			panNumber: Yup.string().required("* PAN Number is required"),
-			// sebiCertificate: Yup.mixed().required("* SEBI Certificate is required"),
-			// cinCertificate: Yup.mixed().required("* CIN Certificate is required"),
-			// pan: Yup.mixed().required("* PAN is required"),
 		});
 	};
 
@@ -54,6 +53,10 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 			setPanError("* PAN is required");
 			update = false;
 		}
+		if (logo.length === 0) {
+			setLogoError("* Logo is required");
+			update = false;
+		}
 		return update;
 	};
 
@@ -73,9 +76,6 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 			sebiCertificateNumber: "",
 			cinNumber: "",
 			panNumber: "",
-			// sebiCertificate: null,
-			// cinCertificate: null,
-			// pan: null,
 		};
 		return initialValues;
 	};
@@ -99,6 +99,15 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 					})
 				)
 			);
+		} else if (type === "logo") {
+			setLogoError("");
+			setLogo(
+				acceptedFiles.map((file) =>
+					Object.assign(file, {
+						preview: URL.createObjectURL(file),
+					})
+				)
+			);
 		} else {
 			setPanError("");
 			setPan(
@@ -116,6 +125,8 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 			setSebiCertificateError("* SEBI Certificate is required");
 		} else if (type === "cin") {
 			setCinCertificateError("* CIN Certificate is required");
+		} else if (type === "logo") {
+			setLogoError("* Logo is required");
 		} else {
 			setPanError("* PAN is required");
 		}
@@ -128,7 +139,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 		}
 	};
 
-	console.log(sebiCertificateError, cinCertificateError, panError);
+	console.log(sebiCertificate, cinCertificate, pan, logo);
 	return (
 		<>
 			<p>Step 1</p>
@@ -143,29 +154,89 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 					return (
 						<Form className="form-align" noValidate onSubmit={handleSubmit}>
 							<Form.Group as={Col} controlId="formGridEmail" className="center">
-									<div class="box box-primary">
-										<div class="box-body box-profile">
-											<div>
-												<div class="avatar-upload">
-													<div class="avatar-edit">
-														<form action="" method="post" id="form-image">
-															<input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
-															<label for="imageUpload"></label>
-														</form>
-													</div>
-													<div class="avatar-preview">
-														<img
-															src="/assets/images/avatar.png"
-															class="profile-user-img img-responsive img-circle"
-															alt="User profile"
-															id="imagePreview"
-														/>
-													</div>
+								<div class="box box-primary">
+									<div class="box-body box-profile">
+										<Dropzone
+											// maxSize={512000}
+											onDrop={(acceptedFiles) => handleFileUpload("logo", acceptedFiles)}
+											onDropRejected={(rejected) => handleDropReject("logo", rejected)}
+											multiple={false}
+											accept=".png, .jpg, .jpeg"
+										>
+											{({ getRootProps, getInputProps }) => (
+												<div>
+													{logo.length && logo.length > 0 ? (
+														<section>
+															<input {...getInputProps()} />
+															<div {...getRootProps()}>
+																{logo.map((file, index) => {
+																	return (
+																		<div {...getRootProps()}>
+																			<label for="imageUpload"></label>
+																			<div class="avatar-preview">
+																				<img
+																					src={file.preview}
+																					class="profile-user-img img-responsive img-circle"
+																					alt="User profile"
+																					id="imagePreview"
+																				/>
+																			</div>
+																		</div>
+																	);
+																})}
+															</div>
+														</section>
+													) : (
+														<section>
+															<input {...getInputProps()} />
+															<div {...getRootProps()} className="file file--upload">
+																<div class="avatar-upload">
+																	<div class="avatar-edit">
+																		<form action="" method="post" id="form-image">
+																			<input
+																				type="file"
+																				id="imageUpload"
+																				accept=".png, .jpg, .jpeg"
+																			/>
+																			<label for="imageUpload"></label>
+																		</form>
+																	</div>
+																	<div class="avatar-preview">
+																		<img
+																			src="/assets/images/avatar.png"
+																			class="profile-user-img img-responsive img-circle"
+																			alt="User profile"
+																			id="imagePreview"
+																		/>
+																	</div>
+																</div>
+															</div>
+														</section>
+													)}
 												</div>
-											</div>
+											)}
+										</Dropzone>
+										<div>
+											{/* <div class="avatar-upload">
+												<div class="avatar-edit">
+													<form action="" method="post" id="form-image">
+														<input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
+														<label for="imageUpload"></label>
+													</form>
+												</div>
+												<div class="avatar-preview">
+													<img
+														src="/assets/images/avatar.png"
+														class="profile-user-img img-responsive img-circle"
+														alt="User profile"
+														id="imagePreview"
+													/>
+												</div>
+											</div> */}
 										</div>
 									</div>
-								</Form.Group>
+								</div>
+							</Form.Group>
 							<Form.Group className="mb-3" controlId="validationFormik01">
 								<Form.Label className="text-bottom">Legal Entity</Form.Label>
 								<Form.Control
@@ -204,7 +275,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									</Form.Control.Feedback>
 								</Form.Group>
 								<Form.Group as={Col} controlId="formGridEmail">
-									<Form.Label className="text-bottom">SEBI Certificate</Form.Label>
+									<Form.Label className="text-bottom">
+										Upload SEBI Certificate
+									</Form.Label>
 									<Dropzone
 										// maxSize={512000}
 										onDrop={(acceptedFiles) => handleFileUpload("sebi", acceptedFiles)}
