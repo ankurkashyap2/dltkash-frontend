@@ -215,6 +215,10 @@ ul.btn-tab {
 
 .profile-user-img {
 	width: 75px;
+	height: 75px;
+    border: 1px solid #d7d7d7;
+    border-radius: 40px;
+    margin-bottom: 10px;
 }
 .avatar-upload {
 	position: relative;
@@ -243,11 +247,7 @@ ul.btn-tab {
 	font-weight: normal;
 	transition: all 0.2s ease-in-out;
 }
-.avatar-upload .avatar-edit input + label:hover {
-	background: #f1f1f1;
-	border-color: #d6d6d6;
-}
-.avatar-upload .avatar-edit input + label:after {
+.avatar-edit:after {
 	content: url("../components/icons/camera.svg");
 	font-family: "FontAwesome";
 	color: #337ab7;
@@ -257,6 +257,7 @@ ul.btn-tab {
 	text-align: center;
 	line-height: 26px;
 	margin: auto;
+	cursor: pointer;
 }
 
 @media screen and (max-width: 568px) {

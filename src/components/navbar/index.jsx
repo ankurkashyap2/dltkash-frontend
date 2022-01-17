@@ -26,12 +26,14 @@ const Navbar = ({ page }) => {
 				>
 					{/* <p>{page === "Login" ? "Register" : "Login"}</p> */}
 					<Nav.Link href="#">
-					<div className="icon-user"><img src={"/assets/images/dltkashlogo.png"} alt="logo" /></div>
-				</Nav.Link>
-					<DropdownButton id="dropdown-basic-button" className="login-link" title="John Doe">
-							<Dropdown.Item href="#">John Doe</Dropdown.Item>
-							<Dropdown.Item href="#">Another action</Dropdown.Item>
-							<Dropdown.Item href="#">Something else</Dropdown.Item>
+						<div className="icon-user"><img src={"/assets/images/dltkashlogo.png"} alt="logo" /></div>
+					</Nav.Link>
+					<DropdownButton className="login-link" title="John Doe">
+						<div className="list-login">
+							<Dropdown.Item>John Doe</Dropdown.Item>
+							<Dropdown.Item>Another action</Dropdown.Item>
+							<Dropdown.Item>Logout</Dropdown.Item>
+						</div>
 					</DropdownButton>
 				</Nav.Link>
 			</Nav.Item>

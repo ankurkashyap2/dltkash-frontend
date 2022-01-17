@@ -192,14 +192,6 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 															<div {...getRootProps()} className="file file--upload">
 																<div class="avatar-upload">
 																	<div class="avatar-edit">
-																		<form action="" method="post" id="form-image">
-																			<input
-																				type="file"
-																				id="imageUpload"
-																				accept=".png, .jpg, .jpeg"
-																			/>
-																			<label for="imageUpload"></label>
-																		</form>
 																	</div>
 																	<div class="avatar-preview">
 																		<img
