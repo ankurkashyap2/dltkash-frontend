@@ -1,43 +1,56 @@
 import React from "react";
-import Nav from "react-bootstrap/Nav";
-import { DropdownButton, Dropdown, Figure } from "react-bootstrap";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { DropdownButton, Dropdown, Figure, Nav } from "react-bootstrap";
 import "../../styles/navbar.css";
 
-const Navbar = ({ page }) => {
+const Navbar = ({ page, profile }) => {
 	return (
 		<Nav className="customnavbar-container p-3">
 			<Nav.Item>
-				<Nav.Link href="#">
-					<img src={"/assets/images/dltkashlogo.png"} alt="logo" />
-				</Nav.Link>
+				<img src={"/assets/images/dltkashlogo.png"} alt="logo" />
 			</Nav.Item>
 			<Nav.Item>
-				<Nav.Link
-					eventKey="link-1"
-				// href={page === "Login" ? "/register" : "/login"}
-				>
-					<h3 className="text-dark">{page}</h3>
-				</Nav.Link>
+				<h3 className="text-dark">{page}</h3>
 			</Nav.Item>
 			<Nav.Item>
-				<Nav.Link
-					eventKey="link-2"
-					href={page === "Login" ? "/register" : "/login"}
-				>
-					{/* <p>{page === "Login" ? "Register" : "Login"}</p> */}
-					<Nav.Link href="#">
-						<div className="icon-user"><img src={"/assets/images/dltkashlogo.png"} alt="logo" /></div>
+				{profile ? (
+					<Nav.Link
+						eventKey="link-2"
+						href={page === "Login" ? "/register" : "/login"}
+					>
+						<Nav.Link href="#">
+							<div className="icon-user">
+								<img src={"/assets/images/dltkashlogo.png"} alt="logo" />
+							</div>
+						</Nav.Link>
+						<DropdownButton className="login-link" title="John Doe">
+							<div className="list-login">
+								<Dropdown.Item>John Doe</Dropdown.Item>
+								<Dropdown.Item>Another action</Dropdown.Item>
+								<Dropdown.Item>Logout</Dropdown.Item>
+							</div>
+						</DropdownButton>
 					</Nav.Link>
-					<DropdownButton className="login-link" title="John Doe">
-						<div className="list-login">
-							<Dropdown.Item>John Doe</Dropdown.Item>
-							<Dropdown.Item>Another action</Dropdown.Item>
-							<Dropdown.Item>Logout</Dropdown.Item>
-						</div>
-					</DropdownButton>
-				</Nav.Link>
+				) : (
+					<Nav.Link
+						eventKey="link-2"
+						href={page === "Register" ? "/login" : "/register"}
+					>
+						<p>{page === "Register" ? "Login" : "Register"}</p>
+					</Nav.Link>
+				)}
 			</Nav.Item>
 		</Nav>
 	);
 };
-export default Navbar;
+
+const mapStateToProps = (state) => {
+	return {
+		profile: state.user.profile,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

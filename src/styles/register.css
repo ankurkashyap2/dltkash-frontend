@@ -4,12 +4,12 @@
 	align-items: center;
 	width: 100%;
 	height: 100%;
-	margin-top: -60px;
+	/* margin-top: -60px; */
 	background-image: url(/public/assets/images/loginbg.png);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
-	margin-top: 20px;
+	/* margin-top: 20px; */
 }
 
 .outer-box {
@@ -23,7 +23,6 @@
 	background: #ffffff;
 	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
 	border-radius: 8px;
-	z-index: 99;
 	width: 100%;
 	min-width: 800px;
 }
@@ -216,9 +215,9 @@ ul.btn-tab {
 .profile-user-img {
 	width: 75px;
 	height: 75px;
-    border: 1px solid #d7d7d7;
-    border-radius: 40px;
-    margin-bottom: 10px;
+	border: 1px solid #d7d7d7;
+	border-radius: 40px;
+	margin-bottom: 10px;
 }
 .avatar-upload {
 	position: relative;
@@ -259,9 +258,21 @@ ul.btn-tab {
 	margin: auto;
 	cursor: pointer;
 }
-
+/* 
 @media screen and (max-width: 568px) {
 	.Register-box {
 		min-width: 320px;
+		margin-top: 67px;
 	}
 }
+@media screen and (max-width: 991px) {
+	.Register-box {
+		margin-top: 67px;
+		min-width: 530px;
+	}
+}
+@media screen and (max-width: 1500px) {
+	.Register-box {
+		margin-top: 67px;
+	}
+} */

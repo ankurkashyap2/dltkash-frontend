@@ -134,12 +134,11 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 
 	const handleSubmit = (values) => {
 		if (validateExtras()) {
-			setEntityDetails(values);
+			setEntityDetails({ ...values, sebiCertificate, cinCertificate, pan, logo });
 			setActiveTab("personalDetails");
 		}
 	};
 
-	console.log(sebiCertificate, cinCertificate, pan, logo);
 	return (
 		<>
 			<p>Step 1</p>
@@ -191,8 +190,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 															<input {...getInputProps()} />
 															<div {...getRootProps()} className="file file--upload">
 																<div class="avatar-upload">
-																	<div class="avatar-edit">
-																	</div>
+																	<div class="avatar-edit"></div>
 																	<div class="avatar-preview">
 																		<img
 																			src="/assets/images/avatar.png"
@@ -208,26 +206,11 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 												</div>
 											)}
 										</Dropzone>
-										<div>
-											{/* <div class="avatar-upload">
-												<div class="avatar-edit">
-													<form action="" method="post" id="form-image">
-														<input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
-														<label for="imageUpload"></label>
-													</form>
-												</div>
-												<div class="avatar-preview">
-													<img
-														src="/assets/images/avatar.png"
-														class="profile-user-img img-responsive img-circle"
-														alt="User profile"
-														id="imagePreview"
-													/>
-												</div>
-											</div> */}
-										</div>
 									</div>
 								</div>
+								<Form.Control.Feedback type="invalid" style={{ display: "block" }}>
+									{logoError}
+								</Form.Control.Feedback>
 							</Form.Group>
 							<Form.Group className="mb-3" controlId="validationFormik01">
 								<Form.Label className="text-bottom">Legal Entity</Form.Label>
@@ -411,7 +394,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											</div>
 										)}
 									</Dropzone>
-									<Form.Control.Feedback type="invalid">
+									<Form.Control.Feedback type="invalid" style={{ display: "block" }}>
 										{cinCertificateError}
 									</Form.Control.Feedback>
 								</Form.Group>
@@ -475,7 +458,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											</div>
 										)}
 									</Dropzone>
-									<Form.Control.Feedback type="invalid">
+									<Form.Control.Feedback type="invalid" style={{ display: "block" }}>
 										{panError}
 									</Form.Control.Feedback>
 								</Form.Group>
