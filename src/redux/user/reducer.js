@@ -13,6 +13,7 @@ import {
 	USER_LOGOUT,
 	USER_LOGOUT_SUCCESS,
 	USER_LOGOUT_ERROR,
+	RESET_USER_FLAGS,
 } from "../actionTypes";
 
 const initState = {
@@ -34,8 +35,9 @@ const userReducer = (state = initState, action) => {
 			return {
 				...state,
 				loading: false,
-				token: action.response.token,
-				profile: action.response.user,
+
+				// token: action.response.token,
+				// profile: action.response.user,
 			};
 		case USER_REGISTER_ERROR:
 			return {
@@ -119,6 +121,11 @@ const userReducer = (state = initState, action) => {
 				...state,
 				loading: false,
 				error: action.error,
+			};
+		}
+		case RESET_USER_FLAGS: {
+			return {
+				state: { ...state, [action.flagName]: false },
 			};
 		}
 		default:

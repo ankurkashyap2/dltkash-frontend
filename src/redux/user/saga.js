@@ -27,26 +27,15 @@ export function* userSignup() {
 				entity.append(key, payload.entity[key]);
 			}
 			const response = yield call(USER_API.userRegister, entity);
-			const admin = new FormData();
-			for (const key in payload.admin) {
-				admin.append(key, payload.admin[key]);
-			}
-			console.log("*********", response);
-			if (response) {
-				admin.append("exchangeId", response.data.data._id);
-			}
-			const response1 = yield call(USER_API.adminRegister, admin);
-
 			if (response.status === 200) {
-				yield put(
-					userRegisterSuccess({
-						token: response.data.data.token,
-						user: response.data.data.user,
-					})
-				);
-				yield call(setToken, response.data.data.token);
-				yield call(setProfile, response.data.data.user);
-				navigation.push("/dashboard");
+				const adminResponse = yield call(USER_API.adminRegister, {
+					...payload.admin,
+					exchangeId: response.data.data._id,
+				});
+				if (adminResponse.status === 200) {
+					yield put(userRegisterSuccess());
+					navigation("/login");
+				}
 			} else {
 				yield put(userRegisterError(response.data.error));
 			}
@@ -57,7 +46,7 @@ export function* userSignup() {
 }
 
 export function* userSignin() {
-	yield takeEvery(USER_LOGIN, function* ({ payload }) {
+	yield takeEvery(USER_LOGIN, function* ({ payload, navigation }) {
 		try {
 			const response = yield call(USER_API.userLogin, payload);
 			if (response.status === 200) {
@@ -77,9 +66,7 @@ export function* userSignin() {
 							})
 						);
 						yield call(setToken, response.data.token);
-						// yield call(setProfile, response.data.data.user);
-						// yield call(setRememberMe, remember);
-						yield put(push("/dashboard"));
+						navigation("/dashboard");
 					}
 				}
 			} else {

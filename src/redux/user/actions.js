@@ -13,10 +13,11 @@ import {
 	USER_LOGOUT,
 	USER_LOGOUT_SUCCESS,
 	USER_LOGOUT_ERROR,
+	RESET_USER_FLAGS,
 } from "../actionTypes";
 
-export const userRegister = (payload) => {
-	return { type: USER_REGISTER, payload };
+export const userRegister = (payload, navigation) => {
+	return { type: USER_REGISTER, payload, navigation };
 };
 export const userRegisterSuccess = (response) => {
 	return { type: USER_REGISTER_SUCCESS, response };
@@ -24,8 +25,8 @@ export const userRegisterSuccess = (response) => {
 export const userRegisterError = (error) => {
 	return { type: USER_REGISTER_ERROR, error };
 };
-export const userLogin = (payload) => {
-	return { type: USER_LOGIN, payload };
+export const userLogin = (payload, navigation) => {
+	return { type: USER_LOGIN, payload, navigation };
 };
 export const userLoginSuccess = (response) => {
 	return { type: USER_LOGIN_SUCCESS, response };
@@ -56,4 +57,7 @@ export const userLogoutSuccess = () => {
 };
 export const userLogoutError = (error) => {
 	return { type: USER_LOGOUT_ERROR, error };
+};
+export const resetUserFlags = (flagName) => {
+	return { type: RESET_USER_FLAGS, flagName };
 };

@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { useNavigate } from "react-router-dom";
 import { userRegister } from "../../redux/user/actions";
 import { ReactComponent as RightArrow } from "../icons/rightarrow.svg";
 import { ReactComponent as TickIcon } from "../icons/tick.svg";
 import "../../styles/register.css";
 
 const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
+	const navigate = useNavigate();
+
 	const validationSchema = () => {
 		return Yup.object().shape({
 			userName: Yup.string().required("*User Name is required"),
@@ -66,10 +69,13 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 	};
 
 	const handleSubmit = (values) => {
-		userRegister({
-			entity: entityDetails,
-			admin: { ...values, isFirstExchangeAdmin: true },
-		});
+		userRegister(
+			{
+				entity: entityDetails,
+				admin: { ...values, isFirstExchangeAdmin: true },
+			},
+			navigate
+		);
 	};
 
 	return (
