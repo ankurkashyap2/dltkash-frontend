@@ -462,7 +462,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									</Form.Control.Feedback>
 								</Form.Group>
 							</Row>
-							<Button className="btn-position btn-filled" type="submit">
+							<Button className="btn-position btn-filled w-custom" type="submit">
 								Next Step{" "}
 								<img
 									src={"/assets/images/arrowblue.png"}

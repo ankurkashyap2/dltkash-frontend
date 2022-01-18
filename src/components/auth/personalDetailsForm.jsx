@@ -237,7 +237,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 								<RightArrow className="icon-login" />
 								Prev Step
 							</Button>
-							<Button className="btn-position btn-filled" type="submit">
+							<Button className="btn-position btn-filled w-custom" type="submit">
 								<TickIcon className="icon-login" />
 								Register
 							</Button>

@@ -267,7 +267,7 @@ ul.btn-tab {
 	button.btn-outlined {
 		width: 100%;
 	}
-	.btn-filled {
+	.btn-filled .w-custom{
 		width: 100%;
 	}
 }
@@ -286,7 +286,7 @@ ul.btn-tab {
 	button.btn-outlined {
 		width: 100%;
 	}
-	.btn-filled {
+	.btn-filled .w-custom {
 		width: 100%;
 	}
 }
