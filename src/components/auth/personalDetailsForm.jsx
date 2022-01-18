@@ -71,7 +71,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 	const handleSubmit = (values) => {
 		userRegister(
 			{
-				entityDetails,
+				...entityDetails,
 				...values,
 				isFirstExchangeAdmin: true,
 			},
@@ -90,7 +90,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 					return (
 						<Form className="form-align" noValidate onSubmit={handleSubmit}>
 							<Row>
-								<Form.Group as={Col} as={Col} md="12" sm="12" controlId="formGridEmail">
+								<Form.Group as={Col} md="12" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">User Name</Form.Label>
 									<Form.Control
 										type="text"
