@@ -71,8 +71,9 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 	const handleSubmit = (values) => {
 		userRegister(
 			{
-				entity: entityDetails,
-				admin: { ...values, isFirstExchangeAdmin: true },
+				entityDetails,
+				...values,
+				isFirstExchangeAdmin: true,
 			},
 			navigate
 		);
@@ -80,7 +81,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 
 	return (
 		<>
-		<p>Step 2</p>
+			<p>Step 2</p>
 			<h3>Personal Details</h3>
 			<p>Please enter your personal detail</p>
 			<Formik
@@ -201,7 +202,13 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridPassword">
+								<Form.Group
+									as={Col}
+									as={Col}
+									md="6"
+									sm="12"
+									controlId="formGridPassword"
+								>
 									<Form.Label className="text-bottom">Password</Form.Label>
 									<Form.Control
 										type="password"
@@ -218,7 +225,13 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 										{errors.password}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridPassword">
+								<Form.Group
+									as={Col}
+									as={Col}
+									md="6"
+									sm="12"
+									controlId="formGridPassword"
+								>
 									<Form.Label className="text-bottom">Confirm Password</Form.Label>
 									<Form.Control
 										type="password"

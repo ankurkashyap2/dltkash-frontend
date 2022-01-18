@@ -23,19 +23,20 @@ export function* userSignup() {
 	yield takeEvery(USER_REGISTER, function* ({ payload, navigation }) {
 		try {
 			const entity = new FormData();
-			for (const key in payload.entity) {
-				entity.append(key, payload.entity[key]);
+			console.log(payload);
+			for (const key in payload) {
+				entity.append(key, payload[key]);
 			}
 			const response = yield call(USER_API.userRegister, entity);
 			if (response.status === 200) {
-				const adminResponse = yield call(USER_API.adminRegister, {
-					...payload.admin,
-					exchangeId: response.data.data._id,
-				});
-				if (adminResponse.status === 200) {
-					yield put(userRegisterSuccess());
-					navigation("/login");
-				}
+				// const adminResponse = yield call(USER_API.adminRegister, {
+				// 	...payload.admin,
+				// 	exchangeId: response.data.data._id,
+				// });
+				// if (adminResponse.status === 200) {
+				yield put(userRegisterSuccess());
+				navigation("/login");
+				// }
 			} else {
 				yield put(userRegisterError(response.data.error));
 			}

@@ -153,7 +153,13 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 					return (
 						<Form className="form-align" noValidate onSubmit={handleSubmit}>
 							<Row>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail" className="center">
+								<Form.Group
+									as={Col}
+									md="6"
+									sm="12"
+									controlId="formGridEmail"
+									className="center"
+								>
 									<div class="box box-primary">
 										<div class="box-body box-profile">
 											<Dropzone
@@ -213,7 +219,13 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										{logoError}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} md="6" sm="12" className="mb-3" controlId="validationFormik01">
+								<Form.Group
+									as={Col}
+									md="6"
+									sm="12"
+									className="mb-3"
+									controlId="validationFormik01"
+								>
 									<Form.Label className="text-bottom">Legal Entity</Form.Label>
 									<Form.Control
 										type="text"
@@ -418,7 +430,13 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										{errors.panNumber}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridPassword">
+								<Form.Group
+									as={Col}
+									as={Col}
+									md="6"
+									sm="12"
+									controlId="formGridPassword"
+								>
 									<Form.Label className="text-bottom">Upload PAN</Form.Label>
 									<Dropzone
 										// maxSize={512000}
