@@ -71,12 +71,12 @@ const Login = ({ userLogin }) => {
 							render={({ errors, handleChange, handleSubmit, values, touched }) => {
 								return (
 									<Form className="form-align" noValidate onSubmit={handleSubmit}>
-										<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+										<Form.Group controlId="exampleForm.ControlInput1">
 											<Form.Label className="text-bottom">Username</Form.Label>
 											<Form.Control
 												type="email"
 												placeholder="Enter Username"
-												className="field-size"
+												className="field-size mb-3"
 												name="email"
 												required
 												onChange={handleChange}
@@ -95,7 +95,7 @@ const Login = ({ userLogin }) => {
 											<Form.Control
 												type="password"
 												placeholder="Enter Password"
-												className="field-size"
+												className="field-size mb-3"
 												name="password"
 												required
 												onChange={handleChange}

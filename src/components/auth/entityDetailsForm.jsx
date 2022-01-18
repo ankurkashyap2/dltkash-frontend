@@ -141,9 +141,6 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 
 	return (
 		<>
-			<p>Step 1</p>
-			<h3>Entity Details</h3>
-			<p>Please enter the information about the entity</p>
 			<Formik
 				initialValues={getInitialValues()}
 				validate={validate(validationSchema)}

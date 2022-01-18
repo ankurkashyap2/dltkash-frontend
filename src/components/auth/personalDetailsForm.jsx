@@ -74,9 +74,6 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 
 	return (
 		<>
-		<p>Step 2</p>
-			<h3>Personal Details</h3>
-			<p>Please enter your personal detail</p>
 			<Formik
 				initialValues={getInitialValues()}
 				validate={validate(validationSchema)}
