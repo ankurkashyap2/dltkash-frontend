@@ -21,17 +21,10 @@ export const USER_API = {
 	},
 
 	async adminRegister(payload) {
-		const response = await request(
-			`${API_URL}/auth/register-admin`,
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "multipart/form-data",
-				},
-				body: payload,
-			},
-			true
-		);
+		const response = await request(`${API_URL}/auth/register-admin`, {
+			method: "POST",
+			body: payload,
+		});
 		return response;
 	},
 

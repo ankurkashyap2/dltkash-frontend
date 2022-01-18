@@ -4,6 +4,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { useNavigate } from "react-router-dom";
 import { userLogin } from "../redux/user/actions";
 import { ReactComponent as RightArrow } from "../components/icons/rightarrow.svg";
 import { ReactComponent as TickIcon } from "../components/icons/tick.svg";
@@ -11,6 +12,8 @@ import Navbar from "../components/navbar";
 import "../styles/login.css";
 
 const Login = ({ userLogin }) => {
+	const navigate = useNavigate();
+
 	const validationSchema = () => {
 		return Yup.object().shape({
 			email: Yup.string().required("*Email is required"),
@@ -49,11 +52,7 @@ const Login = ({ userLogin }) => {
 	};
 
 	const handleSubmit = (values) => {
-		// userRegister({
-		// 	entity: entityDetails,
-		// 	admin: { ...values, isFirstExchangeAdmin: true },
-		// });
-		userLogin({ ...values });
+		userLogin({ ...values }, navigate);
 	};
 	return (
 		<>

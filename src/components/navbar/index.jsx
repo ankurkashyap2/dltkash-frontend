@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { DropdownButton, Dropdown, Figure, Nav } from "react-bootstrap";
 import "../../styles/navbar.css";
 
-const Navbar = ({ page, profile }) => {
+const Navbar = ({ page, token }) => {
 	return (
 		<Nav className="customnavbar-container p-3">
 			<Nav.Item>
@@ -14,7 +14,7 @@ const Navbar = ({ page, profile }) => {
 				<h3 className="text-dark">{page}</h3>
 			</Nav.Item>
 			<Nav.Item>
-				{profile ? (
+				{token ? (
 					<Nav.Link
 						eventKey="link-2"
 						href={page === "Login" ? "/register" : "/login"}
@@ -47,7 +47,7 @@ const Navbar = ({ page, profile }) => {
 
 const mapStateToProps = (state) => {
 	return {
-		profile: state.user.profile,
+		token: state.user.token,
 	};
 };
 
