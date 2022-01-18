@@ -81,9 +81,6 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 
 	return (
 		<>
-			<p>Step 2</p>
-			<h3>Personal Details</h3>
-			<p>Please enter your personal detail</p>
 			<Formik
 				initialValues={getInitialValues()}
 				validate={validate(validationSchema)}
@@ -253,7 +250,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 								<RightArrow className="icon-login" />
 								Prev Step
 							</Button>
-							<Button className="btn-position btn-filled" type="submit">
+							<Button className="btn-position btn-filled w-custom" type="submit">
 								<TickIcon className="icon-login" />
 								Register
 							</Button>

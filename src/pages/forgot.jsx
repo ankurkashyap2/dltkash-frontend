@@ -24,7 +24,7 @@ const Forgot = () => {
 									<Form.Control
 										type="email"
 										placeholder="Enter Username or Email Address"
-										className="field-size"
+										className="field-size mb-3"
 									/>
 									<Button className="btn-outlined" href="/login">
 										<RightArrow className="icon-login" />
