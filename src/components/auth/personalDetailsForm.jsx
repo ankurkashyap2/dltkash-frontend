@@ -80,6 +80,9 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 
 	return (
 		<>
+		<p>Step 2</p>
+			<h3>Personal Details</h3>
+			<p>Please enter your personal detail</p>
 			<Formik
 				initialValues={getInitialValues()}
 				validate={validate(validationSchema)}
@@ -89,7 +92,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 					return (
 						<Form className="form-align" noValidate onSubmit={handleSubmit}>
 							<Row>
-								<Form.Group as={Col} controlId="formGridEmail">
+								<Form.Group as={Col} as={Col} md="12" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">User Name</Form.Label>
 									<Form.Control
 										type="text"
@@ -132,7 +135,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 								</Form.Group> */}
 							</Row>
 							<Row>
-								<Form.Group as={Col} controlId="formGridEmail">
+								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">Mobile Number</Form.Label>
 									<Form.Control
 										type="phone"
@@ -145,14 +148,14 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 										isInvalid={!!errors.phoneNo}
 										isValid={touched.phoneNo && !errors.phoneNo}
 									/>
-									<a href="#" className="text-verify">
+									<a href="#" className="text-verify-1">
 										Verify
 									</a>
 									<Form.Control.Feedback type="invalid">
 										{errors.phoneNo}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} controlId="formGridEmail">
+								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">Enter Mobile OTP </Form.Label>
 									<a href="#" className="text-forgot-pwd">
 										Resend OTP
@@ -165,7 +168,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group as={Col} controlId="formGridEmail">
+								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">Email Address</Form.Label>
 									<Form.Control
 										type="text"
@@ -185,7 +188,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 										{errors.email}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} controlId="formGridEmail">
+								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">Enter Email OTP </Form.Label>
 									<a href="#" className="text-forgot-pwd">
 										Resend OTP
@@ -198,7 +201,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group as={Col} controlId="formGridPassword">
+								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridPassword">
 									<Form.Label className="text-bottom">Password</Form.Label>
 									<Form.Control
 										type="password"
@@ -215,7 +218,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 										{errors.password}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} controlId="formGridPassword">
+								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridPassword">
 									<Form.Label className="text-bottom">Confirm Password</Form.Label>
 									<Form.Control
 										type="password"

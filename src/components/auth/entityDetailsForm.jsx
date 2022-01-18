@@ -152,86 +152,88 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 				render={({ errors, handleChange, handleSubmit, values, touched }) => {
 					return (
 						<Form className="form-align" noValidate onSubmit={handleSubmit}>
-							<Form.Group as={Col} controlId="formGridEmail" className="center">
-								<div class="box box-primary">
-									<div class="box-body box-profile">
-										<Dropzone
-											// maxSize={512000}
-											onDrop={(acceptedFiles) => handleFileUpload("logo", acceptedFiles)}
-											onDropRejected={(rejected) => handleDropReject("logo", rejected)}
-											multiple={false}
-											accept=".png, .jpg, .jpeg"
-										>
-											{({ getRootProps, getInputProps }) => (
-												<div>
-													{logo.length && logo.length > 0 ? (
-														<section>
-															<input {...getInputProps()} />
-															<div {...getRootProps()}>
-																{logo.map((file, index) => {
-																	return (
-																		<div {...getRootProps()}>
-																			<label for="imageUpload"></label>
-																			<div class="avatar-preview">
-																				<img
-																					src={file.preview}
-																					class="profile-user-img img-responsive img-circle"
-																					alt="User profile"
-																					id="imagePreview"
-																				/>
+							<Row>
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail" className="center">
+									<div class="box box-primary">
+										<div class="box-body box-profile">
+											<Dropzone
+												// maxSize={512000}
+												onDrop={(acceptedFiles) => handleFileUpload("logo", acceptedFiles)}
+												onDropRejected={(rejected) => handleDropReject("logo", rejected)}
+												multiple={false}
+												accept=".png, .jpg, .jpeg"
+											>
+												{({ getRootProps, getInputProps }) => (
+													<div>
+														{logo.length && logo.length > 0 ? (
+															<section>
+																<input {...getInputProps()} />
+																<div {...getRootProps()}>
+																	{logo.map((file, index) => {
+																		return (
+																			<div {...getRootProps()}>
+																				<label for="imageUpload"></label>
+																				<div class="avatar-preview">
+																					<img
+																						src={file.preview}
+																						class="profile-user-img img-responsive img-circle"
+																						alt="User profile"
+																						id="imagePreview"
+																					/>
+																				</div>
 																			</div>
+																		);
+																	})}
+																</div>
+															</section>
+														) : (
+															<section>
+																<input {...getInputProps()} />
+																<div {...getRootProps()} className="file file--upload">
+																	<div class="avatar-upload">
+																		<div class="avatar-edit"></div>
+																		<div class="avatar-preview">
+																			<img
+																				src="/assets/images/avatar.png"
+																				class="profile-user-img img-responsive img-circle"
+																				alt="User profile"
+																				id="imagePreview"
+																			/>
 																		</div>
-																	);
-																})}
-															</div>
-														</section>
-													) : (
-														<section>
-															<input {...getInputProps()} />
-															<div {...getRootProps()} className="file file--upload">
-																<div class="avatar-upload">
-																	<div class="avatar-edit"></div>
-																	<div class="avatar-preview">
-																		<img
-																			src="/assets/images/avatar.png"
-																			class="profile-user-img img-responsive img-circle"
-																			alt="User profile"
-																			id="imagePreview"
-																		/>
 																	</div>
 																</div>
-															</div>
-														</section>
-													)}
-												</div>
-											)}
-										</Dropzone>
+															</section>
+														)}
+													</div>
+												)}
+											</Dropzone>
+										</div>
 									</div>
-								</div>
-								<Form.Control.Feedback type="invalid" style={{ display: "block" }}>
-									{logoError}
-								</Form.Control.Feedback>
-							</Form.Group>
-							<Form.Group className="mb-3" controlId="validationFormik01">
-								<Form.Label className="text-bottom">Legal Entity</Form.Label>
-								<Form.Control
-									type="text"
-									name="legalEntityName"
-									required
-									placeholder="Enter Legal Entity"
-									className="field-size"
-									onChange={handleChange}
-									value={values.legalEntityName}
-									isInvalid={!!errors.legalEntityName}
-									isValid={touched.legalEntityName && !errors.legalEntityName}
-								/>
+									<Form.Control.Feedback type="invalid" style={{ display: "block" }}>
+										{logoError}
+									</Form.Control.Feedback>
+								</Form.Group>
+								<Form.Group as={Col} md="6" sm="12" className="mb-3" controlId="validationFormik01">
+									<Form.Label className="text-bottom">Legal Entity</Form.Label>
+									<Form.Control
+										type="text"
+										name="legalEntityName"
+										required
+										placeholder="Enter Legal Entity"
+										className="field-size"
+										onChange={handleChange}
+										value={values.legalEntityName}
+										isInvalid={!!errors.legalEntityName}
+										isValid={touched.legalEntityName && !errors.legalEntityName}
+									/>
 
-								<Form.Control.Feedback type="invalid">
-									{errors.legalEntityName}
-								</Form.Control.Feedback>
-							</Form.Group>
+									<Form.Control.Feedback type="invalid">
+										{errors.legalEntityName}
+									</Form.Control.Feedback>
+								</Form.Group>
+							</Row>
 							<Row>
-								<Form.Group as={Col} controlId="formGridEmail">
+								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">SEBI Certificate</Form.Label>
 									<Form.Control
 										type="text"
@@ -249,7 +251,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										{errors.sebiCertificateNumber}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} controlId="formGridEmail">
+								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">
 										Upload SEBI Certificate
 									</Form.Label>
@@ -336,7 +338,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 								</Form.Group> */}
 							</Row>
 							<Row>
-								<Form.Group as={Col} controlId="formGridEmail">
+								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">CIN</Form.Label>
 									<Form.Control
 										type="text"
@@ -352,7 +354,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										{errors.cinNumber}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} controlId="formGridEmail">
+								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">Upload CIN</Form.Label>
 									<Dropzone
 										// maxSize={512000}
@@ -400,7 +402,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group as={Col} controlId="formGridEmail">
+								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">PAN</Form.Label>
 									<Form.Control
 										type="text"
@@ -416,7 +418,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										{errors.panNumber}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} controlId="formGridPassword">
+								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridPassword">
 									<Form.Label className="text-bottom">Upload PAN</Form.Label>
 									<Dropzone
 										// maxSize={512000}
