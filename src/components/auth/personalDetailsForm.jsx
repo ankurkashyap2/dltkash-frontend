@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { connect } from "react-redux";
@@ -10,7 +10,12 @@ import { ReactComponent as RightArrow } from "../icons/rightarrow.svg";
 import { ReactComponent as TickIcon } from "../icons/tick.svg";
 import "../../styles/register.css";
 
-const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
+const PersonalDetailsForm = ({
+	setActiveTab,
+	entityDetails,
+	userRegister,
+	error,
+}) => {
 	const navigate = useNavigate();
 
 	const validationSchema = () => {
@@ -81,6 +86,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 
 	return (
 		<>
+			{error && <Alert variant="danger">{error}!</Alert>}
 			<Formik
 				initialValues={getInitialValues()}
 				validate={validate(validationSchema)}
@@ -100,8 +106,8 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 										required
 										onChange={handleChange}
 										value={values.userName}
-										isInvalid={!!errors.userName}
-										isValid={touched.userName && !errors.userName}
+										isInvalid={!!errors.userName && !!touched.userName}
+										// isValid={touched.userName && !errors.userName}
 									/>
 									<Form.Control.Feedback type="invalid">
 										{errors.userName}
@@ -133,7 +139,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 								</Form.Group> */}
 							</Row>
 							<Row>
-								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">Mobile Number</Form.Label>
 									<Form.Control
 										type="phone"
@@ -143,8 +149,8 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 										required
 										onChange={handleChange}
 										value={values.phoneNo}
-										isInvalid={!!errors.phoneNo}
-										isValid={touched.phoneNo && !errors.phoneNo}
+										isInvalid={!!touched.phoneNo && !!errors.phoneNo}
+										// isValid={touched.phoneNo && !errors.phoneNo}
 									/>
 									<a href="#" className="text-verify-1">
 										Verify
@@ -153,7 +159,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 										{errors.phoneNo}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">Enter Mobile OTP </Form.Label>
 									<a href="#" className="text-forgot-pwd">
 										Resend OTP
@@ -166,7 +172,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">Email Address</Form.Label>
 									<Form.Control
 										type="text"
@@ -176,8 +182,8 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 										required
 										onChange={handleChange}
 										value={values.email}
-										isInvalid={!!errors.email}
-										isValid={touched.email && !errors.email}
+										isInvalid={!!touched.email && !!errors.email}
+										// isValid={touched.email && !errors.email}
 									/>
 									<a href="#" className="text-verify">
 										Verify
@@ -199,13 +205,7 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group
-									as={Col}
-									as={Col}
-									md="6"
-									sm="12"
-									controlId="formGridPassword"
-								>
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridPassword">
 									<Form.Label className="text-bottom">Password</Form.Label>
 									<Form.Control
 										type="password"
@@ -215,20 +215,14 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 										required
 										onChange={handleChange}
 										value={values.password}
-										isInvalid={!!errors.password}
-										isValid={touched.password && !errors.password}
+										isInvalid={!!touched.password && !!errors.password}
+										// isValid={touched.password && !errors.password}
 									/>
 									<Form.Control.Feedback type="invalid">
 										{errors.password}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group
-									as={Col}
-									as={Col}
-									md="6"
-									sm="12"
-									controlId="formGridPassword"
-								>
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridPassword">
 									<Form.Label className="text-bottom">Confirm Password</Form.Label>
 									<Form.Control
 										type="password"
@@ -238,8 +232,8 @@ const PersonalDetailsForm = ({ setActiveTab, entityDetails, userRegister }) => {
 										required
 										onChange={handleChange}
 										value={values.confirmPassword}
-										isInvalid={!!errors.confirmPassword}
-										isValid={touched.confirmPassword && !errors.confirmPassword}
+										isInvalid={!!touched.confirmPassword && !!errors.confirmPassword}
+										// isValid={touched.confirmPassword && !errors.confirmPassword}
 									/>
 									<Form.Control.Feedback type="invalid">
 										{errors.confirmPassword}
@@ -266,6 +260,7 @@ const mapStateToProps = (state) => {
 	return {
 		profile: state.user.profile,
 		token: state.user.token,
+		error: state.user.error,
 	};
 };
 

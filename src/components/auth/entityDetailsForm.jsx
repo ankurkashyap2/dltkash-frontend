@@ -232,8 +232,8 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										className="field-size"
 										onChange={handleChange}
 										value={values.legalEntityName}
-										isInvalid={!!errors.legalEntityName}
-										isValid={touched.legalEntityName && !errors.legalEntityName}
+										isInvalid={!!touched.legalEntityName && !!errors.legalEntityName}
+										// isValid={touched.legalEntityName && !errors.legalEntityName}
 									/>
 
 									<Form.Control.Feedback type="invalid">
@@ -242,7 +242,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">SEBI Certificate</Form.Label>
 									<Form.Control
 										type="text"
@@ -251,16 +251,18 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										className="field-size"
 										onChange={handleChange}
 										value={values.sebiCertificateNumber}
-										isInvalid={!!errors.sebiCertificateNumber}
-										isValid={
-											touched.sebiCertificateNumber && !errors.sebiCertificateNumber
+										isInvalid={
+											!!touched.sebiCertificateNumber && !!errors.sebiCertificateNumber
 										}
+										// isValid={
+										// 	touched.sebiCertificateNumber && !errors.sebiCertificateNumber
+										// }
 									/>
 									<Form.Control.Feedback type="invalid">
 										{errors.sebiCertificateNumber}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">
 										Upload SEBI Certificate
 									</Form.Label>
@@ -347,7 +349,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 								</Form.Group> */}
 							</Row>
 							<Row>
-								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">CIN</Form.Label>
 									<Form.Control
 										type="text"
@@ -356,14 +358,14 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										className="field-size"
 										onChange={handleChange}
 										value={values.cinNumber}
-										isInvalid={!!errors.cinNumber}
-										isValid={touched.cinNumber && !errors.cinNumber}
+										isInvalid={!!touched.cinNumber && !!errors.cinNumber}
+										// isValid={touched.cinNumber && !errors.cinNumber}
 									/>
 									<Form.Control.Feedback type="invalid">
 										{errors.cinNumber}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">Upload CIN</Form.Label>
 									<Dropzone
 										// maxSize={512000}
@@ -411,7 +413,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">PAN</Form.Label>
 									<Form.Control
 										type="text"
@@ -420,20 +422,14 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										className="field-size"
 										onChange={handleChange}
 										value={values.panNumber}
-										isInvalid={!!errors.panNumber}
-										isValid={touched.panNumber && !errors.panNumber}
+										isInvalid={!!touched.panNumber && !!errors.panNumber}
+										// isValid={touched.panNumber && !errors.panNumber}
 									/>
 									<Form.Control.Feedback type="invalid">
 										{errors.panNumber}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group
-									as={Col}
-									as={Col}
-									md="6"
-									sm="12"
-									controlId="formGridPassword"
-								>
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridPassword">
 									<Form.Label className="text-bottom">Upload PAN</Form.Label>
 									<Dropzone
 										// maxSize={512000}

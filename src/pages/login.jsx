@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { connect } from "react-redux";
@@ -10,8 +10,9 @@ import { ReactComponent as RightArrow } from "../components/icons/rightarrow.svg
 import { ReactComponent as TickIcon } from "../components/icons/tick.svg";
 import Navbar from "../components/navbar";
 import "../styles/login.css";
+import AppLayout from "../layouts/appLayout";
 
-const Login = ({ userLogin }) => {
+const Login = ({ userLogin, error, loading }) => {
 	const navigate = useNavigate();
 
 	const validationSchema = () => {
@@ -55,13 +56,14 @@ const Login = ({ userLogin }) => {
 		userLogin({ ...values }, navigate);
 	};
 	return (
-		<>
-			<Navbar page="Login" />
+		<AppLayout page="Login" loading={loading}>
+			{/* <Navbar page="Login" /> */}
 			<div class="main-content-login">
 				<div className="outer-box">
 					<div className="login-box">
 						<h3>Login</h3>
 						<p>Enter the following details to login</p>
+						{error && <Alert variant="danger">{error}!</Alert>}
 						<Formik
 							initialValues={getInitialValues()}
 							validate={validate(validationSchema)}
@@ -80,8 +82,7 @@ const Login = ({ userLogin }) => {
 												required
 												onChange={handleChange}
 												value={values.email}
-												isInvalid={!!errors.email}
-												isValid={touched.email && !errors.email}
+												isInvalid={!!touched.email && !!errors.email}
 											/>
 											<Form.Control.Feedback type="invalid">
 												{errors.email}
@@ -99,8 +100,7 @@ const Login = ({ userLogin }) => {
 												required
 												onChange={handleChange}
 												value={values.password}
-												isInvalid={!!errors.password}
-												isValid={touched.password && !errors.password}
+												isInvalid={!!touched.password && !!errors.password}
 											/>
 											<Form.Control.Feedback type="invalid">
 												{errors.password}
@@ -121,7 +121,7 @@ const Login = ({ userLogin }) => {
 					</div>
 				</div>
 			</div>
-		</>
+		</AppLayout>
 	);
 };
 
@@ -129,6 +129,8 @@ const mapStateToProps = (state) => {
 	return {
 		profile: state.user.profile,
 		token: state.user.token,
+		error: state.user.error,
+		loading: state.user.loading,
 	};
 };
 

@@ -38,7 +38,7 @@ export function* userSignup() {
 				navigation("/login");
 				// }
 			} else {
-				yield put(userRegisterError(response.data.error));
+				yield put(userRegisterError(response.error.error.message));
 			}
 		} catch (ex) {
 			yield put(userRegisterError("Error while registration"));
@@ -50,6 +50,7 @@ export function* userSignin() {
 	yield takeEvery(USER_LOGIN, function* ({ payload, navigation }) {
 		try {
 			const response = yield call(USER_API.userLogin, payload);
+			console.log("respo****", response);
 			if (response.status === 200) {
 				const adminDetailsResponse = yield call(USER_API.getAdminDetails, response);
 				if (adminDetailsResponse.status === 200) {
@@ -71,7 +72,7 @@ export function* userSignin() {
 					}
 				}
 			} else {
-				yield put(userLoginError(response.data.error));
+				yield put(userLoginError(response.error.error.message));
 			}
 		} catch (ex) {
 			console.log("ex", ex);

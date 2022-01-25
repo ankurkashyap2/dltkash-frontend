@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { DropdownButton, Dropdown, Figure, Nav } from "react-bootstrap";
 import "../../styles/navbar.css";
 
-const Navbar = ({ page, token }) => {
+const Navbar = ({ page, token, user }) => {
 	return (
 		<Nav className="customnavbar-container p-3">
 			<Nav.Item>
@@ -26,7 +26,7 @@ const Navbar = ({ page, token }) => {
 						</Nav.Link>
 						<DropdownButton className="login-link" title="John Doe">
 							<div className="list-login">
-								<Dropdown.Item>John Doe</Dropdown.Item>
+								<Dropdown.Item>{user && user.userName}</Dropdown.Item>
 								<Dropdown.Item>Another action</Dropdown.Item>
 								<Dropdown.Item>Logout</Dropdown.Item>
 							</div>
@@ -48,6 +48,7 @@ const Navbar = ({ page, token }) => {
 const mapStateToProps = (state) => {
 	return {
 		token: state.user.token,
+		user: state.user.user,
 	};
 };
 
