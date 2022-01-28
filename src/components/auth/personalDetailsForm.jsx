@@ -113,30 +113,6 @@ const PersonalDetailsForm = ({
 										{errors.userName}
 									</Form.Control.Feedback>
 								</Form.Group>
-								{/* <Form.Group as={Col} controlId="formGridEmail">
-									<div class="box box-primary">
-										<div class="box-body box-profile">
-											<div>
-												<div class="avatar-upload">
-													<div class="avatar-edit">
-														<form action="" method="post" id="form-image">
-															<input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
-															<label for="imageUpload"></label>
-														</form>
-													</div>
-													<div class="avatar-preview">
-														<img
-															src="/assets/images/avatar.png"
-															class="profile-user-img img-responsive img-circle"
-															alt="User profile"
-															id="imagePreview"
-														/>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</Form.Group> */}
 							</Row>
 							<Row>
 								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
@@ -150,7 +126,6 @@ const PersonalDetailsForm = ({
 										onChange={handleChange}
 										value={values.phoneNo}
 										isInvalid={!!touched.phoneNo && !!errors.phoneNo}
-										// isValid={touched.phoneNo && !errors.phoneNo}
 									/>
 									<a href="#" className="text-verify-1">
 										Verify
@@ -216,8 +191,8 @@ const PersonalDetailsForm = ({
 										onChange={handleChange}
 										value={values.password}
 										isInvalid={!!touched.password && !!errors.password}
-										// isValid={touched.password && !errors.password}
 									/>
+									<i class="fa fa-eye-slash" className="text-verify"></i>
 									<Form.Control.Feedback type="invalid">
 										{errors.password}
 									</Form.Control.Feedback>

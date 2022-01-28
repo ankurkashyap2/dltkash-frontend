@@ -102,6 +102,7 @@ const Login = ({ userLogin, error, loading }) => {
 												value={values.password}
 												isInvalid={!!touched.password && !!errors.password}
 											/>
+											<i class="fas fa-eye"></i>
 											<Form.Control.Feedback type="invalid">
 												{errors.password}
 											</Form.Control.Feedback>

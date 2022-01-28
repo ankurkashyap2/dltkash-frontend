@@ -16,8 +16,8 @@ const AppRoutes = (props) => {
 				<Route path="/login" element={<Login {...props} />} />
 				<Route path="/register" element={<Register {...props} />} />
 				<Route path="/forgot-password" element={<Forgot {...props} />} />
-				<Route path="/otp" element={<Otp {...props} />} />
 				<Route path="/reset-password" element={<ResetPassword {...props} />} />
+				<Route path="/otp" element={<Otp {...props} />} />
 				<Route path="/dashboard" element={<Dashboard {...props} />} />
 				<Route path="/" element={<Login {...props} />} />
 			</Routes>
