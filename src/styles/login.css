@@ -21,7 +21,7 @@
 	border-radius: 8px;
 	width: 100%;
 	min-width: 492px;
-	margin-top:-150px;
+	margin-top: -150px;
 }
 .login-box h3,
 p {
@@ -71,6 +71,11 @@ form.form-align {
 .icon-login {
 	margin-right: 10px;
 }
+/* .eye-icon {
+	position: absolute;
+	right: 0;
+	top: 0;
+} */
 
 @media screen and (max-width: 468px) {
 	.login-box {

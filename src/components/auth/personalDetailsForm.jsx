@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -8,6 +8,9 @@ import { useNavigate } from "react-router-dom";
 import { userRegister } from "../../redux/user/actions";
 import { ReactComponent as RightArrow } from "../icons/rightarrow.svg";
 import { ReactComponent as TickIcon } from "../icons/tick.svg";
+import { ReactComponent as EyeIcon } from "../icons/eye.svg";
+import { ReactComponent as EyeHiddenIcon } from "../icons/eye-hidden.svg";
+
 import "../../styles/register.css";
 
 const PersonalDetailsForm = ({
@@ -17,6 +20,8 @@ const PersonalDetailsForm = ({
 	error,
 }) => {
 	const navigate = useNavigate();
+	const [showPassword, setShowPassword] = useState(false);
+	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
 	const validationSchema = () => {
 		return Yup.object().shape({
@@ -167,14 +172,14 @@ const PersonalDetailsForm = ({
 										{errors.email}
 									</Form.Control.Feedback>
 								</Form.Group>
-								<Form.Group as={Col} as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">Enter Email OTP </Form.Label>
 									<a href="#" className="text-forgot-pwd">
 										Resend OTP
 									</a>
 									<Form.Control
 										type="text"
-										placeholder="Enter OTP"
+										placeholder="Enter Email OTP"
 										className="field-size mb-3"
 									/>
 								</Form.Group>
@@ -183,7 +188,7 @@ const PersonalDetailsForm = ({
 								<Form.Group as={Col} md="6" sm="12" controlId="formGridPassword">
 									<Form.Label className="text-bottom">Password</Form.Label>
 									<Form.Control
-										type="password"
+										type={showPassword ? "text" : "password"}
 										placeholder="Enter Password"
 										className="field-size mb-3"
 										name="password"
@@ -192,7 +197,17 @@ const PersonalDetailsForm = ({
 										value={values.password}
 										isInvalid={!!touched.password && !!errors.password}
 									/>
-									<i class="fa fa-eye-slash" className="text-verify"></i>
+									{showPassword ? (
+										<EyeIcon
+											className="eye-icon"
+											onClick={() => setShowPassword(false)}
+										/>
+									) : (
+										<EyeHiddenIcon
+											className="eye-icon"
+											onClick={() => setShowPassword(true)}
+										/>
+									)}
 									<Form.Control.Feedback type="invalid">
 										{errors.password}
 									</Form.Control.Feedback>
@@ -200,7 +215,7 @@ const PersonalDetailsForm = ({
 								<Form.Group as={Col} md="6" sm="12" controlId="formGridPassword">
 									<Form.Label className="text-bottom">Confirm Password</Form.Label>
 									<Form.Control
-										type="password"
+										type={showConfirmPassword ? "text" : "password"}
 										placeholder="Confirm Password"
 										className="field-size mb-3"
 										name="confirmPassword"
@@ -208,8 +223,18 @@ const PersonalDetailsForm = ({
 										onChange={handleChange}
 										value={values.confirmPassword}
 										isInvalid={!!touched.confirmPassword && !!errors.confirmPassword}
-										// isValid={touched.confirmPassword && !errors.confirmPassword}
 									/>
+									{showConfirmPassword ? (
+										<EyeIcon
+											className="eye-icon"
+											onClick={() => setShowConfirmPassword(false)}
+										/>
+									) : (
+										<EyeHiddenIcon
+											className="eye-icon"
+											onClick={() => setShowConfirmPassword(true)}
+										/>
+									)}
 									<Form.Control.Feedback type="invalid">
 										{errors.confirmPassword}
 									</Form.Control.Feedback>

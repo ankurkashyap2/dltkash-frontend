@@ -35,9 +35,9 @@ const Navbar = ({ page, token, user }) => {
 				) : (
 					<Nav.Link
 						eventKey="link-2"
-						href={page === "Register" ? "/login" : "/register"}
+						href={page === "Login" ? "/register" : "/login"}
 					>
-						<p>{page === "Register" ? "Login" : "Register"}</p>
+						<p className="text-link">{page === "Login" ? "Register" : "Login"}</p>
 					</Nav.Link>
 				)}
 			</Nav.Item>

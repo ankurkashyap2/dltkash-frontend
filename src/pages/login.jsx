@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -8,12 +8,14 @@ import { useNavigate } from "react-router-dom";
 import { userLogin } from "../redux/user/actions";
 import { ReactComponent as RightArrow } from "../components/icons/rightarrow.svg";
 import { ReactComponent as TickIcon } from "../components/icons/tick.svg";
-import Navbar from "../components/navbar";
-import "../styles/login.css";
 import AppLayout from "../layouts/appLayout";
+import { ReactComponent as EyeIcon } from "../components/icons/eye.svg";
+import { ReactComponent as EyeHiddenIcon } from "../components/icons/eye-hidden.svg";
+import "../styles/login.css";
 
 const Login = ({ userLogin, error, loading }) => {
 	const navigate = useNavigate();
+	const [showPassword, setShowPassword] = useState(false);
 
 	const validationSchema = () => {
 		return Yup.object().shape({
@@ -93,7 +95,7 @@ const Login = ({ userLogin, error, loading }) => {
 												Forgot Password?
 											</a>
 											<Form.Control
-												type="password"
+												type={showPassword ? "text" : "password"}
 												placeholder="Enter Password"
 												className="field-size mb-3"
 												name="password"
@@ -102,7 +104,17 @@ const Login = ({ userLogin, error, loading }) => {
 												value={values.password}
 												isInvalid={!!touched.password && !!errors.password}
 											/>
-											<i class="fas fa-eye"></i>
+											{showPassword ? (
+												<EyeIcon
+													className="eye-icon"
+													onClick={() => setShowPassword(false)}
+												/>
+											) : (
+												<EyeHiddenIcon
+													className="eye-icon"
+													onClick={() => setShowPassword(true)}
+												/>
+											)}
 											<Form.Control.Feedback type="invalid">
 												{errors.password}
 											</Form.Control.Feedback>
