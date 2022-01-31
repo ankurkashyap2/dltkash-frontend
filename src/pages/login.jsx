@@ -74,22 +74,22 @@ const Login = ({ userLogin, error, loading }) => {
 							render={({ errors, handleChange, handleSubmit, values, touched }) => {
 								return (
 									<Form className="form-align" noValidate onSubmit={handleSubmit}>
-										<Form.Group controlId="exampleForm.ControlInput1">
+										<Form.Group controlId="exampleForm.ControlInput1" className="mb-3">
 											<Form.Label className="text-bottom">Email</Form.Label>
 											<Form.Control
 												type="email"
 												placeholder="Enter Email"
-												className="field-size mb-3"
+												className="field-size"
 												name="email"
 												required
 												onChange={handleChange}
 												value={values.email}
-												isInvalid={!!touched.email && !!errors.email}
 											/>
-											<Form.Control.Feedback type="invalid">
-												{errors.email}
-											</Form.Control.Feedback>
-
+											{!!touched.email && !!errors.email && (
+												<p className="error-text">{errors.email}</p>
+											)}
+										</Form.Group>
+										<Form.Group controlId="exampleForm.ControlInput1" className="mb-3">
 											<Form.Label className="text-bottom">Password</Form.Label>
 											<a href="/forgot-password" className="text-forgot-pwd">
 												Forgot Password?
@@ -97,12 +97,11 @@ const Login = ({ userLogin, error, loading }) => {
 											<Form.Control
 												type={showPassword ? "text" : "password"}
 												placeholder="Enter Password"
-												className="field-size mb-3"
+												className="field-size"
 												name="password"
 												required
 												onChange={handleChange}
 												value={values.password}
-												isInvalid={!!touched.password && !!errors.password}
 											/>
 											{showPassword ? (
 												<EyeIcon
@@ -115,18 +114,18 @@ const Login = ({ userLogin, error, loading }) => {
 													onClick={() => setShowPassword(true)}
 												/>
 											)}
-											<Form.Control.Feedback type="invalid">
-												{errors.password}
-											</Form.Control.Feedback>
-											<Button className="btn-outlined" href="/register">
-												<RightArrow className="icon-login" />
-												Register
-											</Button>
-											<Button className="btn-position btn-filled" type="submit">
-												<TickIcon className="icon-login" />
-												Login
-											</Button>
+											{!!touched.password && !!errors.password && (
+												<p className="error-text">{errors.password}</p>
+											)}
 										</Form.Group>
+										<Button className="btn-outlined" href="/register">
+											<RightArrow className="icon-login" />
+											Register
+										</Button>
+										<Button className="btn-position btn-filled" type="submit">
+											<TickIcon className="icon-login" />
+											Login
+										</Button>
 									</Form>
 								);
 							}}

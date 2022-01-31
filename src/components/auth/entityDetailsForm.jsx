@@ -212,9 +212,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											</Dropzone>
 										</div>
 									</div>
-									<Form.Control.Feedback type="invalid" style={{ display: "block" }}>
-										{logoError}
-									</Form.Control.Feedback>
+									{logoError && <p className="error-text">{logoError}</p>}
 								</Form.Group>
 								<Form.Group
 									as={Col}
@@ -232,13 +230,10 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										className="field-size"
 										onChange={handleChange}
 										value={values.legalEntityName}
-										isInvalid={!!touched.legalEntityName && !!errors.legalEntityName}
-										// isValid={touched.legalEntityName && !errors.legalEntityName}
 									/>
-
-									<Form.Control.Feedback type="invalid">
-										{errors.legalEntityName}
-									</Form.Control.Feedback>
+									{!!touched.legalEntityName && !!errors.legalEntityName && (
+										<p className="error-text">{errors.legalEntityName}</p>
+									)}
 								</Form.Group>
 							</Row>
 							<Row>
@@ -251,16 +246,10 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										className="field-size"
 										onChange={handleChange}
 										value={values.sebiCertificateNumber}
-										isInvalid={
-											!!touched.sebiCertificateNumber && !!errors.sebiCertificateNumber
-										}
-										// isValid={
-										// 	touched.sebiCertificateNumber && !errors.sebiCertificateNumber
-										// }
 									/>
-									<Form.Control.Feedback type="invalid">
-										{errors.sebiCertificateNumber}
-									</Form.Control.Feedback>
+									{!!touched.sebiCertificateNumber && !!errors.sebiCertificateNumber && (
+										<p className="error-text">{errors.sebiCertificateNumber}</p>
+									)}
 								</Form.Group>
 								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">
@@ -306,47 +295,10 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											</div>
 										)}
 									</Dropzone>
-									<Form.Control.Feedback type="invalid" style={{ display: "block" }}>
-										{sebiCertificateError}
-									</Form.Control.Feedback>
+									{sebiCertificateError && (
+										<p className="error-text">{sebiCertificateError}</p>
+									)}
 								</Form.Group>
-								{/* <Form.Group
-									as={Col}
-									controlId="formGridPassword"
-									className="file file--upload upload-label"
-								>
-									<span>Upload SEBI Certificate</span>
-									<Form.Label className="text-bottom">
-										<img
-											src={"/assets/images/upload.png"}
-											alt="upload"
-											className="icon-login"
-										/>{" "}
-										Upload SEBI Certificate
-									</Form.Label>
-									<Form.Control
-										type="file"
-										required
-										name="sebiCertificate"
-										onChange={handleChange}
-										value={values.sebiCertificate}
-										isInvalid={!!errors.sebiCertificate}
-									/>
-									<Form.Control.Feedback type="invalid">
-										{errors.sebiCertificate}
-									</Form.Control.Feedback>
-									<div className="file file--upload">
-																<label for="input-file">
-																	<img
-																		src={"/assets/images/upload.png"}
-																		alt="upload"
-																		className="icon-login"
-																	/>
-																	Upload SEBI Certificate
-																</label>
-																<input id="input-file" type="file" />
-															</div>
-								</Form.Group> */}
 							</Row>
 							<Row>
 								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
@@ -358,12 +310,10 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										className="field-size"
 										onChange={handleChange}
 										value={values.cinNumber}
-										isInvalid={!!touched.cinNumber && !!errors.cinNumber}
-										// isValid={touched.cinNumber && !errors.cinNumber}
 									/>
-									<Form.Control.Feedback type="invalid">
-										{errors.cinNumber}
-									</Form.Control.Feedback>
+									{!!touched.cinNumber && !!errors.cinNumber && (
+										<p className="error-text">{errors.cinNumber}</p>
+									)}
 								</Form.Group>
 								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">Upload CIN</Form.Label>
@@ -407,9 +357,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											</div>
 										)}
 									</Dropzone>
-									<Form.Control.Feedback type="invalid" style={{ display: "block" }}>
-										{cinCertificateError}
-									</Form.Control.Feedback>
+									{cinCertificateError && (
+										<p className="error-text">{cinCertificateError}</p>
+									)}
 								</Form.Group>
 							</Row>
 							<Row>
@@ -422,12 +372,10 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										className="field-size"
 										onChange={handleChange}
 										value={values.panNumber}
-										isInvalid={!!touched.panNumber && !!errors.panNumber}
-										// isValid={touched.panNumber && !errors.panNumber}
 									/>
-									<Form.Control.Feedback type="invalid">
-										{errors.panNumber}
-									</Form.Control.Feedback>
+									{!!touched.panNumber && !!errors.panNumber && (
+										<p className="error-text">{errors.panNumber}</p>
+									)}
 								</Form.Group>
 								<Form.Group as={Col} md="6" sm="12" controlId="formGridPassword">
 									<Form.Label className="text-bottom">Upload PAN</Form.Label>
@@ -471,9 +419,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											</div>
 										)}
 									</Dropzone>
-									<Form.Control.Feedback type="invalid" style={{ display: "block" }}>
-										{panError}
-									</Form.Control.Feedback>
+									{panError && <p className="error-text">{panError}</p>}
 								</Form.Group>
 							</Row>
 							<Button className="btn-position btn-filled w-custom" type="submit">

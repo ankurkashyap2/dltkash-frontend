@@ -29,14 +29,8 @@ export function* userSignup() {
 			}
 			const response = yield call(USER_API.userRegister, entity);
 			if (response.status === 200) {
-				// const adminResponse = yield call(USER_API.adminRegister, {
-				// 	...payload.admin,
-				// 	exchangeId: response.data.data._id,
-				// });
-				// if (adminResponse.status === 200) {
 				yield put(userRegisterSuccess());
 				navigation("/login");
-				// }
 			} else {
 				yield put(userRegisterError(response.error.error.message));
 			}
@@ -50,7 +44,6 @@ export function* userSignin() {
 	yield takeEvery(USER_LOGIN, function* ({ payload, navigation }) {
 		try {
 			const response = yield call(USER_API.userLogin, payload);
-			console.log("respo****", response);
 			if (response.status === 200) {
 				const adminDetailsResponse = yield call(USER_API.getAdminDetails, response);
 				if (adminDetailsResponse.status === 200) {
@@ -75,7 +68,6 @@ export function* userSignin() {
 				yield put(userLoginError(response.error.error.message));
 			}
 		} catch (ex) {
-			console.log("ex", ex);
 			yield put(userLoginError("Error while sign in"));
 		}
 	});
@@ -85,7 +77,6 @@ export function* forgotPassword() {
 	yield takeEvery(FORGOT_PASSWORD, function* ({ payload }) {
 		try {
 			const response = yield call(USER_API.forgotPassword, payload);
-
 			if (response.data.status === "ok") {
 				yield put(
 					forgotPasswordSuccess({

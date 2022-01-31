@@ -106,17 +106,15 @@ const PersonalDetailsForm = ({
 									<Form.Control
 										type="text"
 										placeholder="Enter User Name"
-										className="field-size mb-3"
+										className="field-size"
 										name="userName"
 										required
 										onChange={handleChange}
 										value={values.userName}
-										isInvalid={!!errors.userName && !!touched.userName}
-										// isValid={touched.userName && !errors.userName}
 									/>
-									<Form.Control.Feedback type="invalid">
-										{errors.userName}
-									</Form.Control.Feedback>
+									{!!touched.userName && !!errors.userName && (
+										<p className="error-text">{errors.userName}</p>
+									)}
 								</Form.Group>
 							</Row>
 							<Row>
@@ -130,14 +128,13 @@ const PersonalDetailsForm = ({
 										required
 										onChange={handleChange}
 										value={values.phoneNo}
-										isInvalid={!!touched.phoneNo && !!errors.phoneNo}
 									/>
 									<a href="#" className="text-verify-1">
 										Verify
 									</a>
-									<Form.Control.Feedback type="invalid">
-										{errors.phoneNo}
-									</Form.Control.Feedback>
+									{!!touched.phoneNo && !!errors.phoneNo && (
+										<p className="error-text">{errors.phoneNo}</p>
+									)}
 								</Form.Group>
 								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">Enter Mobile OTP </Form.Label>
@@ -157,20 +154,18 @@ const PersonalDetailsForm = ({
 									<Form.Control
 										type="text"
 										placeholder="Enter Email Address"
-										className="field-size mb-3"
+										className="field-size"
 										name="email"
 										required
 										onChange={handleChange}
 										value={values.email}
-										isInvalid={!!touched.email && !!errors.email}
-										// isValid={touched.email && !errors.email}
 									/>
 									<a href="#" className="text-verify">
 										Verify
 									</a>
-									<Form.Control.Feedback type="invalid">
-										{errors.email}
-									</Form.Control.Feedback>
+									{!!touched.email && !!errors.email && (
+										<p className="error-text">{errors.email}</p>
+									)}
 								</Form.Group>
 								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
 									<Form.Label className="text-bottom">Enter Email OTP </Form.Label>
@@ -180,7 +175,7 @@ const PersonalDetailsForm = ({
 									<Form.Control
 										type="text"
 										placeholder="Enter Email OTP"
-										className="field-size mb-3"
+										className="field-size"
 									/>
 								</Form.Group>
 							</Row>
@@ -190,12 +185,11 @@ const PersonalDetailsForm = ({
 									<Form.Control
 										type={showPassword ? "text" : "password"}
 										placeholder="Enter Password"
-										className="field-size mb-3"
+										className="field-size"
 										name="password"
 										required
 										onChange={handleChange}
 										value={values.password}
-										isInvalid={!!touched.password && !!errors.password}
 									/>
 									{showPassword ? (
 										<EyeIcon
@@ -208,21 +202,20 @@ const PersonalDetailsForm = ({
 											onClick={() => setShowPassword(true)}
 										/>
 									)}
-									<Form.Control.Feedback type="invalid">
-										{errors.password}
-									</Form.Control.Feedback>
+									{!!touched.password && !!errors.password && (
+										<p className="error-text">{errors.password}</p>
+									)}
 								</Form.Group>
 								<Form.Group as={Col} md="6" sm="12" controlId="formGridPassword">
 									<Form.Label className="text-bottom">Confirm Password</Form.Label>
 									<Form.Control
 										type={showConfirmPassword ? "text" : "password"}
 										placeholder="Confirm Password"
-										className="field-size mb-3"
+										className="field-size"
 										name="confirmPassword"
 										required
 										onChange={handleChange}
 										value={values.confirmPassword}
-										isInvalid={!!touched.confirmPassword && !!errors.confirmPassword}
 									/>
 									{showConfirmPassword ? (
 										<EyeIcon
@@ -235,9 +228,9 @@ const PersonalDetailsForm = ({
 											onClick={() => setShowConfirmPassword(true)}
 										/>
 									)}
-									<Form.Control.Feedback type="invalid">
-										{errors.confirmPassword}
-									</Form.Control.Feedback>
+									{!!touched.confirmPassword && !!errors.confirmPassword && (
+										<p className="error-text">{errors.confirmPassword}</p>
+									)}
 								</Form.Group>
 							</Row>
 							<Button className="btn-outlined" onClick={() => setActiveTab("entity")}>

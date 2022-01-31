@@ -71,11 +71,18 @@ form.form-align {
 .icon-login {
 	margin-right: 10px;
 }
-/* .eye-icon {
-	position: absolute;
-	right: 0;
-	top: 0;
-} */
+.login-box .error-text {
+	font-size: 12px !important;
+	color: #dc3545;
+	text-align: left;
+}
+.login-box .eye-icon {
+	float: right;
+	margin-top: -31px;
+	margin-right: 6px;
+	cursor: pointer;
+	height: 16px;
+}
 
 @media screen and (max-width: 468px) {
 	.login-box {

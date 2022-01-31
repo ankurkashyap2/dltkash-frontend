@@ -20,13 +20,13 @@ export const USER_API = {
 		return response;
 	},
 
-	async adminRegister(payload) {
-		const response = await request(`${API_URL}/auth/register-admin`, {
-			method: "POST",
-			body: payload,
-		});
-		return response;
-	},
+	// async adminRegister(payload) {
+	// 	const response = await request(`${API_URL}/auth/register-admin`, {
+	// 		method: "POST",
+	// 		body: payload,
+	// 	});
+	// 	return response;
+	// },
 
 	async userLogin(payload) {
 		const response = await request(`${API_URL}/auth/login`, {
@@ -63,16 +63,15 @@ export const USER_API = {
 		return response;
 	},
 
-	// async userUpdate(payload) {
-	// 	const response = await request(`${API_URL}/api/users/update`, {
-	// 		method: 'POST',
-	// 		headers: { Authorization: `Bearer ${token}` },
-	// 		body: {
-	// 			...payload,
-	// 		},
-	// 	});
-	// 	return response;
-	// },
+	async forgotPassword(payload) {
+		const response = await request(
+			`${API_URL}/auth/forget-password/${payload.email}`,
+			{
+				method: "GET",
+			}
+		);
+		return response;
+	},
 
 	async userUpdatePassword(payload) {
 		const response = await request(`${API_URL}/api/users/update-password`, {

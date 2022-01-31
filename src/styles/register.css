@@ -284,6 +284,11 @@ ul.btn-tab {
 	cursor: pointer;
 	height: 16px;
 }
+.Register-box .error-text {
+	font-size: 12px !important;
+	color: #dc3545;
+	text-align: left;
+}
 @media screen and (max-width: 468px) {
 	.Register-box {
 		max-width: 320px;
