@@ -177,6 +177,9 @@ const PersonalDetailsForm = ({
 										placeholder="Enter Mobile OTP "
 										className="field-size"
 									/>
+									<a href="#" className="text-verify">
+										Verify
+									</a>
 								</Form.Group>
 							</Row>
 							<Row>
@@ -228,6 +231,9 @@ const PersonalDetailsForm = ({
 										placeholder="Enter Email OTP"
 										className="field-size"
 									/>
+									<a href="#" className="text-verify">
+										Verify
+									</a>
 								</Form.Group>
 							</Row>
 							<Row>

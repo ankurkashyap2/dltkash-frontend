@@ -22,6 +22,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.form-control:focus {
+  box-shadow: none;
+}
 .btn-outlined.btn-primary {
   border: 1px solid #4FADEA !important;
   color: #4FADEA !important;
