@@ -153,7 +153,6 @@ form.form-align {
 
 .after_upload_text {
 	width: 100%;
-	margin-bottom: 15px !important;
 	height: 45px;
 	border-radius: 5px;
 	border: 1px solid #d7d7d7;
@@ -281,9 +280,20 @@ ul.btn-tab {
 	text-align: left;
 	margin-bottom: 0;
 }
+.text-verify-1 {
+    float: right;
+    margin-top: -32px;
+    margin-right: 10px;
+    text-decoration: auto !important;
+    color: #4fadea !important;
+    font-size: 12px !important;
+} 
 .tooltip_icon {
     margin-top: -80px;
     margin-left: -8px;
+}
+.tooltip-bg{
+	background: #d7d7d7;
 }
 @media screen and (max-width: 468px) {
 	.Register-box {
