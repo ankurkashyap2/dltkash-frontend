@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Form, Button, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
+import {
+	Form,
+	Button,
+	Row,
+	Col,
+	OverlayTrigger,
+	Tooltip,
+} from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { ReactComponent as Question } from "../icons/Question.svg";
@@ -294,14 +301,16 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 													<section>
 														<input {...getInputProps()} />
 														<div {...getRootProps()} className="file file--upload">
-														    
 															<label for="input-file">
 																<img
 																	src={"/assets/images/upload.png"}
 																	alt="upload"
 																	className="icon-login"
 																/>
-																Upload SEBI Certificate <Question className ="tooltip_icon"/>
+																Upload SEBI Certificate{" "}
+																<OverlayTrigger overlay={<Tooltip>Tooltip!</Tooltip>}>
+																	<Question className="tooltip_icon" />
+																</OverlayTrigger>
 															</label>
 														</div>
 													</section>
@@ -375,7 +384,10 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 																	alt="upload"
 																	className="icon-login"
 																/>
-																Upload CIN <Question className ="tooltip_icon"/>
+																Upload CIN{" "}
+																<OverlayTrigger overlay={<Tooltip>Tooltip!</Tooltip>}>
+																	<Question className="tooltip_icon" />
+																</OverlayTrigger>
 															</label>
 														</div>
 													</section>
@@ -449,7 +461,10 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 																	alt="upload"
 																	className="icon-login"
 																/>
-																Upload PAN <Question className ="tooltip_icon"/>
+																Upload PAN{" "}
+																<OverlayTrigger overlay={<Tooltip>Tooltip!</Tooltip>}>
+																	<Question className="tooltip_icon" />
+																</OverlayTrigger>
 															</label>
 														</div>
 													</section>
