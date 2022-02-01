@@ -8,6 +8,15 @@ import {
 	FORGOT_PASSWORD,
 	FORGOT_PASSWORD_SUCCESS,
 	FORGOT_PASSWORD_ERROR,
+	RESET_PASSWORD,
+	RESET_PASSWORD_SUCCESS,
+	RESET_PASSWORD_ERROR,
+	EMAIL_VERIFICATION,
+	EMAIL_VERIFICATION_SUCCESS,
+	EMAIL_VERIFICATION_ERROR,
+	MOBILE_VERIFICATION,
+	MOBILE_VERIFICATION_SUCCESS,
+	MOBILE_VERIFICATION_ERROR,
 	SET_TOKEN,
 	SET_PROFILE,
 	USER_LOGOUT,
@@ -42,6 +51,33 @@ export const forgotPasswordSuccess = (response) => {
 };
 export const forgotPasswordError = (error) => {
 	return { type: FORGOT_PASSWORD_ERROR, error };
+};
+export const resetPassword = (payload) => {
+	return { type: RESET_PASSWORD, payload };
+};
+export const resetPasswordSuccess = (response) => {
+	return { type: RESET_PASSWORD_SUCCESS, response };
+};
+export const resetPasswordError = (error) => {
+	return { type: RESET_PASSWORD_ERROR, error };
+};
+export const emailVerification = (payload) => {
+	return { type: EMAIL_VERIFICATION, payload };
+};
+export const emailVerificationSuccess = (response) => {
+	return { type: EMAIL_VERIFICATION_SUCCESS, response };
+};
+export const emailVerificationError = (error) => {
+	return { type: EMAIL_VERIFICATION_ERROR, error };
+};
+export const mobileVerification = (payload) => {
+	return { type: MOBILE_VERIFICATION, payload };
+};
+export const mobileVerificationSuccess = (response) => {
+	return { type: MOBILE_VERIFICATION_SUCCESS, response };
+};
+export const mobileVerificationError = (error) => {
+	return { type: MOBILE_VERIFICATION_ERROR, error };
 };
 export const setToken = (token) => {
 	return { type: SET_TOKEN, token };

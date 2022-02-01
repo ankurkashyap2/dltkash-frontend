@@ -3,6 +3,9 @@ import {
 	userSignin,
 	userSignup,
 	forgotPassword,
+	resetPassword,
+	emailVerification,
+	mobileVerification,
 	userLogout,
 } from "./user/saga";
 
@@ -11,6 +14,9 @@ export function* rootSaga() {
 		fork(userSignup),
 		fork(userSignin),
 		fork(forgotPassword),
+		fork(resetPassword),
+		fork(emailVerification),
+		fork(mobileVerification),
 		fork(userLogout),
 	]);
 }

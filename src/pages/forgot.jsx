@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Form, Button, Alert } from "react-bootstrap";
@@ -7,9 +8,11 @@ import * as Yup from "yup";
 import { ReactComponent as RightArrow } from "../components/icons/rightarrow.svg";
 import { ReactComponent as TickIcon } from "../components/icons/tick.svg";
 import AppLayout from "../layouts/appLayout";
+import { forgotPassword } from "../redux/user/actions";
 import "../styles/login.css";
 
-const Forgot = ({ loading, error }) => {
+const Forgot = ({ loading, error, forgotPassword }) => {
+	const navigate = useNavigate();
 	const validationSchema = () => {
 		return Yup.object().shape({
 			email: Yup.string()
@@ -48,7 +51,7 @@ const Forgot = ({ loading, error }) => {
 	};
 
 	const handleSubmit = (values) => {
-		// userLogin({ ...values }, navigate);
+		forgotPassword({ ...values }, navigate);
 	};
 	return (
 		<AppLayout page="Forgot Password" loading={loading}>
@@ -76,11 +79,10 @@ const Forgot = ({ loading, error }) => {
 												required
 												onChange={handleChange}
 												value={values.email}
-												isInvalid={!!touched.email && !!errors.email}
 											/>
-											<Form.Control.Feedback type="invalid">
-												{errors.email}
-											</Form.Control.Feedback>
+											{!!touched.email && !!errors.email && (
+												<p className="error-text">{errors.email}</p>
+											)}
 										</Form.Group>
 										<Button className="btn-outlined" href="/login">
 											<RightArrow className="icon-login" />
@@ -103,13 +105,12 @@ const Forgot = ({ loading, error }) => {
 
 const mapStateToProps = (state) => {
 	return {
-		profile: state.user.profile,
-		token: state.user.token,
 		error: state.user.error,
 		loading: state.user.loading,
 	};
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch) =>
+	bindActionCreators({ forgotPassword }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Forgot);

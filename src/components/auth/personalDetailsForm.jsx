@@ -10,7 +10,6 @@ import { ReactComponent as RightArrow } from "../icons/rightarrow.svg";
 import { ReactComponent as TickIcon } from "../icons/tick.svg";
 import { ReactComponent as EyeIcon } from "../icons/eye.svg";
 import { ReactComponent as EyeHiddenIcon } from "../icons/eye-hidden.svg";
-
 import "../../styles/register.css";
 
 const PersonalDetailsForm = ({
@@ -129,7 +128,7 @@ const PersonalDetailsForm = ({
 										onChange={handleChange}
 										value={values.phoneNo}
 									/>
-									<a href="#" className="text-verify-1">
+									<a href="#" className="text-verify">
 										Verify
 									</a>
 									{!!touched.phoneNo && !!errors.phoneNo && (

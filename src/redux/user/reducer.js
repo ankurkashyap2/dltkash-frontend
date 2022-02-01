@@ -8,6 +8,15 @@ import {
 	FORGOT_PASSWORD,
 	FORGOT_PASSWORD_SUCCESS,
 	FORGOT_PASSWORD_ERROR,
+	RESET_PASSWORD,
+	RESET_PASSWORD_SUCCESS,
+	RESET_PASSWORD_ERROR,
+	EMAIL_VERIFICATION,
+	EMAIL_VERIFICATION_SUCCESS,
+	EMAIL_VERIFICATION_ERROR,
+	MOBILE_VERIFICATION,
+	MOBILE_VERIFICATION_SUCCESS,
+	MOBILE_VERIFICATION_ERROR,
 	SET_TOKEN,
 	SET_PROFILE,
 	USER_LOGOUT,
@@ -35,9 +44,6 @@ const userReducer = (state = initState, action) => {
 			return {
 				...state,
 				loading: false,
-
-				// token: action.response.token,
-				// profile: action.response.user,
 			};
 		case USER_REGISTER_ERROR:
 			return {
@@ -82,6 +88,69 @@ const userReducer = (state = initState, action) => {
 			};
 		}
 		case FORGOT_PASSWORD_ERROR: {
+			return {
+				...state,
+				loading: false,
+				error: action.error,
+			};
+		}
+		case RESET_PASSWORD: {
+			return {
+				...state,
+				loading: true,
+				error: null,
+			};
+		}
+		case RESET_PASSWORD_SUCCESS: {
+			return {
+				...state,
+				loading: false,
+				// profile: action.response.user,
+			};
+		}
+		case RESET_PASSWORD_ERROR: {
+			return {
+				...state,
+				loading: false,
+				error: action.error,
+			};
+		}
+		case EMAIL_VERIFICATION: {
+			return {
+				...state,
+				loading: true,
+				error: null,
+			};
+		}
+		case EMAIL_VERIFICATION_SUCCESS: {
+			return {
+				...state,
+				loading: false,
+				// profile: action.response.user,
+			};
+		}
+		case EMAIL_VERIFICATION_ERROR: {
+			return {
+				...state,
+				loading: false,
+				error: action.error,
+			};
+		}
+		case MOBILE_VERIFICATION: {
+			return {
+				...state,
+				loading: true,
+				error: null,
+			};
+		}
+		case MOBILE_VERIFICATION_SUCCESS: {
+			return {
+				...state,
+				loading: false,
+				// profile: action.response.user,
+			};
+		}
+		case MOBILE_VERIFICATION_ERROR: {
 			return {
 				...state,
 				loading: false,

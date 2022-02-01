@@ -20,14 +20,6 @@ export const USER_API = {
 		return response;
 	},
 
-	// async adminRegister(payload) {
-	// 	const response = await request(`${API_URL}/auth/register-admin`, {
-	// 		method: "POST",
-	// 		body: payload,
-	// 	});
-	// 	return response;
-	// },
-
 	async userLogin(payload) {
 		const response = await request(`${API_URL}/auth/login`, {
 			method: "POST",
@@ -50,22 +42,18 @@ export const USER_API = {
 	},
 
 	async getAdminDetails(payload) {
-		const response = await request(
-			`${API_URL}/auth/get-admin`,
-			{
-				method: "GET",
-				headers: {
-					Authorization: payload.data.token,
-				},
+		const response = await request(`${API_URL}/auth/get-admin`, {
+			method: "GET",
+			headers: {
+				Authorization: payload.data.token,
 			},
-			true
-		);
+		});
 		return response;
 	},
 
 	async forgotPassword(payload) {
 		const response = await request(
-			`${API_URL}/auth/forget-password/${payload.email}`,
+			`${API_URL}/auth/forget-password?email=${payload.email}`,
 			{
 				method: "GET",
 			}
@@ -73,14 +61,34 @@ export const USER_API = {
 		return response;
 	},
 
-	async userUpdatePassword(payload) {
-		const response = await request(`${API_URL}/api/users/update-password`, {
+	async resetPassword(payload) {
+		const response = await request(`${API_URL}/auth/reset-password`, {
 			method: "POST",
-			headers: { Authorization: `Bearer ${token}` },
-			body: {
-				...payload,
+			headers: {
+				Authorization: payload.token,
 			},
+			body: payload.email,
 		});
+		return response;
+	},
+
+	async emailVerification(payload) {
+		const response = await request(
+			`${API_URL}/auth/email-verification?email=${payload.email}`,
+			{
+				method: "GET",
+			}
+		);
+		return response;
+	},
+
+	async mobileVerification(payload) {
+		const response = await request(
+			`${API_URL}/auth/mobile-verification?email=${payload.email}`,
+			{
+				method: "GET",
+			}
+		);
 		return response;
 	},
 };

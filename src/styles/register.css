@@ -80,21 +80,12 @@ form.form-align {
 
 .text-verify {
 	float: right;
-	margin-top: -47px;
-	margin-right: 5px;
-	text-decoration: auto;
-	color: #4fadea;
-	font-size: 12px;
-}
-.text-verify-1 {
-	float: right;
 	margin-top: -33px;
 	margin-right: 5px;
 	text-decoration: auto;
 	color: #4fadea;
 	font-size: 12px;
 }
-
 .icon-login {
 	margin-right: 10px;
 }
@@ -279,7 +270,7 @@ ul.btn-tab {
 }
 .eye-icon {
 	float: right;
-	margin-top: -47px;
+	margin-top: -31px;
 	margin-right: 6px;
 	cursor: pointer;
 	height: 16px;

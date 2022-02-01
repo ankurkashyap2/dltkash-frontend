@@ -5,6 +5,9 @@ import {
 	USER_LOGIN,
 	FORGOT_PASSWORD,
 	USER_LOGOUT,
+	RESET_PASSWORD,
+	EMAIL_VERIFICATION,
+	MOBILE_VERIFICATION,
 } from "../actionTypes";
 import {
 	userRegisterSuccess,
@@ -13,11 +16,17 @@ import {
 	userLoginError,
 	forgotPasswordSuccess,
 	forgotPasswordError,
+	resetPasswordSuccess,
+	resetPasswordError,
 	userLogoutSuccess,
 	userLogoutError,
+	emailVerificationSuccess,
+	emailVerificationError,
+	mobileVerificationSuccess,
+	mobileVerificationError,
 } from "./actions";
 import { USER_API } from "../../services/userApi";
-import { setProfile, setToken, setRememberMe } from "../../utils";
+import { setProfile, setToken } from "../../utils";
 
 export function* userSignup() {
 	yield takeEvery(USER_REGISTER, function* ({ payload, navigation }) {
@@ -77,18 +86,58 @@ export function* forgotPassword() {
 	yield takeEvery(FORGOT_PASSWORD, function* ({ payload }) {
 		try {
 			const response = yield call(USER_API.forgotPassword, payload);
-			if (response.data.status === "ok") {
-				yield put(
-					forgotPasswordSuccess({
-						user: response.data.data.user,
-					})
-				);
-				yield call(setProfile, response.data.data.user);
+			if (response.status === 200) {
+				yield put(forgotPasswordSuccess(response));
 			} else {
-				yield put(forgotPasswordError(response.data.error));
+				yield put(forgotPasswordError(response.error.error.message));
 			}
 		} catch (ex) {
-			yield put(forgotPasswordError("Error while updating info"));
+			yield put(forgotPasswordError("Error while fetching info"));
+		}
+	});
+}
+
+export function* resetPassword() {
+	yield takeEvery(RESET_PASSWORD, function* ({ payload }) {
+		try {
+			const response = yield call(USER_API.resetPassword, payload);
+			if (response.status === 200) {
+				yield put(resetPasswordSuccess(response));
+			} else {
+				yield put(resetPasswordError(response.error.error.message));
+			}
+		} catch (ex) {
+			yield put(resetPasswordError("Error while updating info"));
+		}
+	});
+}
+
+export function* emailVerification() {
+	yield takeEvery(EMAIL_VERIFICATION, function* ({ payload }) {
+		try {
+			const response = yield call(USER_API.emailVerification, payload);
+			if (response.status === 200) {
+				yield put(emailVerificationSuccess(response));
+			} else {
+				yield put(emailVerificationError(response.error.error.message));
+			}
+		} catch (ex) {
+			yield put(emailVerificationError("Error while verification"));
+		}
+	});
+}
+
+export function* mobileVerification() {
+	yield takeEvery(MOBILE_VERIFICATION, function* ({ payload }) {
+		try {
+			const response = yield call(USER_API.mobileVerification, payload);
+			if (response.status === 200) {
+				yield put(mobileVerificationSuccess(response));
+			} else {
+				yield put(mobileVerificationError(response.error.error.message));
+			}
+		} catch (ex) {
+			yield put(mobileVerificationError("Error while verification"));
 		}
 	});
 }

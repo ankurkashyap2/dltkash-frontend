@@ -237,7 +237,13 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group
+									as={Col}
+									md="6"
+									sm="12"
+									controlId="formGridEmail"
+									className="mb-3"
+								>
 									<Form.Label className="text-bottom">SEBI Certificate</Form.Label>
 									<Form.Control
 										type="text"
@@ -251,7 +257,13 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										<p className="error-text">{errors.sebiCertificateNumber}</p>
 									)}
 								</Form.Group>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group
+									as={Col}
+									md="6"
+									sm="12"
+									controlId="formGridEmail"
+									className="mb-3"
+								>
 									<Form.Label className="text-bottom">
 										Upload SEBI Certificate
 									</Form.Label>
@@ -301,7 +313,13 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group
+									as={Col}
+									md="6"
+									sm="12"
+									controlId="formGridEmail"
+									className="mb-3"
+								>
 									<Form.Label className="text-bottom">CIN</Form.Label>
 									<Form.Control
 										type="text"
@@ -315,7 +333,13 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										<p className="error-text">{errors.cinNumber}</p>
 									)}
 								</Form.Group>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group
+									as={Col}
+									md="6"
+									sm="12"
+									controlId="formGridEmail"
+									className="mb-3"
+								>
 									<Form.Label className="text-bottom">Upload CIN</Form.Label>
 									<Dropzone
 										// maxSize={512000}
@@ -363,7 +387,13 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group
+									as={Col}
+									md="6"
+									sm="12"
+									controlId="formGridEmail"
+									className="mb-3"
+								>
 									<Form.Label className="text-bottom">PAN</Form.Label>
 									<Form.Control
 										type="text"
@@ -377,7 +407,13 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										<p className="error-text">{errors.panNumber}</p>
 									)}
 								</Form.Group>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridPassword">
+								<Form.Group
+									as={Col}
+									md="6"
+									sm="12"
+									controlId="formGridPassword"
+									className="mb-3"
+								>
 									<Form.Label className="text-bottom">Upload PAN</Form.Label>
 									<Dropzone
 										// maxSize={512000}
