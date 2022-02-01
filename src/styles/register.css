@@ -279,6 +279,7 @@ ul.btn-tab {
 	font-size: 12px !important;
 	color: #dc3545;
 	text-align: left;
+	margin-bottom: 0;
 }
 @media screen and (max-width: 468px) {
 	.Register-box {

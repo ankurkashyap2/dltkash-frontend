@@ -218,7 +218,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									as={Col}
 									md="6"
 									sm="12"
-									className="mb-3"
+									className="mb-2"
 									controlId="validationFormik01"
 								>
 									<Form.Label className="text-bottom">Legal Entity</Form.Label>
@@ -242,7 +242,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									md="6"
 									sm="12"
 									controlId="formGridEmail"
-									className="mb-3"
+									className="mb-2"
 								>
 									<Form.Label className="text-bottom">SEBI Certificate</Form.Label>
 									<Form.Control
@@ -262,7 +262,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									md="6"
 									sm="12"
 									controlId="formGridEmail"
-									className="mb-3"
+									className="mb-2"
 								>
 									<Form.Label className="text-bottom">
 										Upload SEBI Certificate
@@ -318,7 +318,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									md="6"
 									sm="12"
 									controlId="formGridEmail"
-									className="mb-3"
+									className="mb-2"
 								>
 									<Form.Label className="text-bottom">CIN</Form.Label>
 									<Form.Control
@@ -338,7 +338,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									md="6"
 									sm="12"
 									controlId="formGridEmail"
-									className="mb-3"
+									className="mb-2"
 								>
 									<Form.Label className="text-bottom">Upload CIN</Form.Label>
 									<Dropzone
@@ -392,7 +392,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									md="6"
 									sm="12"
 									controlId="formGridEmail"
-									className="mb-3"
+									className="mb-2"
 								>
 									<Form.Label className="text-bottom">PAN</Form.Label>
 									<Form.Control
@@ -412,7 +412,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									md="6"
 									sm="12"
 									controlId="formGridPassword"
-									className="mb-3"
+									className="mb-2"
 								>
 									<Form.Label className="text-bottom">Upload PAN</Form.Label>
 									<Dropzone
