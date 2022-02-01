@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { ReactComponent as Question } from "../icons/Question.svg";
 import Dropzone from "react-dropzone";
 import "../../styles/register.css";
 
@@ -218,7 +219,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									as={Col}
 									md="6"
 									sm="12"
-									className="mb-2"
+									className="mb-3"
 									controlId="validationFormik01"
 								>
 									<Form.Label className="text-bottom">Legal Entity</Form.Label>
@@ -242,7 +243,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									md="6"
 									sm="12"
 									controlId="formGridEmail"
-									className="mb-2"
+									className="mb-3"
 								>
 									<Form.Label className="text-bottom">SEBI Certificate</Form.Label>
 									<Form.Control
@@ -262,7 +263,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									md="6"
 									sm="12"
 									controlId="formGridEmail"
-									className="mb-2"
+									className="mb-3"
 								>
 									<Form.Label className="text-bottom">
 										Upload SEBI Certificate
@@ -293,13 +294,14 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 													<section>
 														<input {...getInputProps()} />
 														<div {...getRootProps()} className="file file--upload">
+														    
 															<label for="input-file">
 																<img
 																	src={"/assets/images/upload.png"}
 																	alt="upload"
 																	className="icon-login"
 																/>
-																Upload SEBI Certificate
+																Upload SEBI Certificate <Question className ="tooltip_icon"/>
 															</label>
 														</div>
 													</section>
@@ -318,7 +320,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									md="6"
 									sm="12"
 									controlId="formGridEmail"
-									className="mb-2"
+									className="mb-3"
 								>
 									<Form.Label className="text-bottom">CIN</Form.Label>
 									<Form.Control
@@ -338,9 +340,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									md="6"
 									sm="12"
 									controlId="formGridEmail"
-									className="mb-2"
+									className="mb-3"
 								>
-									<Form.Label className="text-bottom">Upload CIN</Form.Label>
+									<Form.Label className="text-bottom">Upload CIN </Form.Label>
 									<Dropzone
 										// maxSize={512000}
 										onDrop={(acceptedFiles) => handleFileUpload("cin", acceptedFiles)}
@@ -373,7 +375,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 																	alt="upload"
 																	className="icon-login"
 																/>
-																Upload CIN
+																Upload CIN <Question className ="tooltip_icon"/>
 															</label>
 														</div>
 													</section>
@@ -392,7 +394,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									md="6"
 									sm="12"
 									controlId="formGridEmail"
-									className="mb-2"
+									className="mb-3"
 								>
 									<Form.Label className="text-bottom">PAN</Form.Label>
 									<Form.Control
@@ -412,7 +414,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									md="6"
 									sm="12"
 									controlId="formGridPassword"
-									className="mb-2"
+									className="mb-3"
 								>
 									<Form.Label className="text-bottom">Upload PAN</Form.Label>
 									<Dropzone
@@ -447,7 +449,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 																	alt="upload"
 																	className="icon-login"
 																/>
-																Upload PAN
+																Upload PAN <Question className ="tooltip_icon"/>
 															</label>
 														</div>
 													</section>

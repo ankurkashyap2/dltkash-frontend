@@ -100,7 +100,7 @@ const PersonalDetailsForm = ({
 					return (
 						<Form className="form-align" noValidate onSubmit={handleSubmit}>
 							<Row>
-								<Form.Group as={Col} md="12" sm="12" controlId="formGridEmail">
+								<Form.Group as={Col} md="12" sm="12" controlId="formGridEmail" className="mb-3">
 									<Form.Label className="text-bottom">User Name</Form.Label>
 									<Form.Control
 										type="text"
@@ -117,7 +117,7 @@ const PersonalDetailsForm = ({
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail" className="mb-3">
 									<Form.Label className="text-bottom">Mobile Number</Form.Label>
 									<Form.Control
 										type="phone"
@@ -135,7 +135,7 @@ const PersonalDetailsForm = ({
 										<p className="error-text">{errors.phoneNo}</p>
 									)}
 								</Form.Group>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail" className="mb-3">
 									<Form.Label className="text-bottom">Enter Mobile OTP </Form.Label>
 									<a href="#" className="text-forgot-pwd">
 										Resend OTP
@@ -145,10 +145,13 @@ const PersonalDetailsForm = ({
 										placeholder="Enter Mobile OTP "
 										className="field-size"
 									/>
+									<a href="#" className="text-verify">
+										Verify
+									</a>
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail" className="mb-3">
 									<Form.Label className="text-bottom">Email Address</Form.Label>
 									<Form.Control
 										type="text"
@@ -166,7 +169,7 @@ const PersonalDetailsForm = ({
 										<p className="error-text">{errors.email}</p>
 									)}
 								</Form.Group>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail" className="mb-3">
 									<Form.Label className="text-bottom">Enter Email OTP </Form.Label>
 									<a href="#" className="text-forgot-pwd">
 										Resend OTP
@@ -176,10 +179,13 @@ const PersonalDetailsForm = ({
 										placeholder="Enter Email OTP"
 										className="field-size"
 									/>
+									<a href="#" className="text-verify">
+										Verify
+									</a>
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridPassword">
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridPassword" className="mb-3">
 									<Form.Label className="text-bottom">Password</Form.Label>
 									<Form.Control
 										type={showPassword ? "text" : "password"}
@@ -205,7 +211,7 @@ const PersonalDetailsForm = ({
 										<p className="error-text">{errors.password}</p>
 									)}
 								</Form.Group>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridPassword">
+								<Form.Group as={Col} md="6" sm="12" controlId="formGridPassword" className="mb-3">
 									<Form.Label className="text-bottom">Confirm Password</Form.Label>
 									<Form.Control
 										type={showConfirmPassword ? "text" : "password"}
