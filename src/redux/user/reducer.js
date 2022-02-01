@@ -17,6 +17,9 @@ import {
 	MOBILE_VERIFICATION,
 	MOBILE_VERIFICATION_SUCCESS,
 	MOBILE_VERIFICATION_ERROR,
+	OTP_VERIFICATION,
+	OTP_VERIFICATION_SUCCESS,
+	OTP_VERIFICATION_ERROR,
 	SET_TOKEN,
 	SET_PROFILE,
 	USER_LOGOUT,
@@ -30,6 +33,8 @@ const initState = {
 	error: null,
 	profile: null,
 	token: "",
+	isOTPSent: false,
+	isEmailVerified: false,
 };
 
 const userReducer = (state = initState, action) => {
@@ -126,7 +131,7 @@ const userReducer = (state = initState, action) => {
 			return {
 				...state,
 				loading: false,
-				// profile: action.response.user,
+				isOTPSent: true,
 			};
 		}
 		case EMAIL_VERIFICATION_ERROR: {
@@ -147,10 +152,30 @@ const userReducer = (state = initState, action) => {
 			return {
 				...state,
 				loading: false,
-				// profile: action.response.user,
 			};
 		}
 		case MOBILE_VERIFICATION_ERROR: {
+			return {
+				...state,
+				loading: false,
+				error: action.error,
+			};
+		}
+		case OTP_VERIFICATION: {
+			return {
+				...state,
+				loading: true,
+				error: null,
+			};
+		}
+		case OTP_VERIFICATION_SUCCESS: {
+			return {
+				...state,
+				loading: false,
+				isEmailVerified: true,
+			};
+		}
+		case OTP_VERIFICATION_ERROR: {
 			return {
 				...state,
 				loading: false,

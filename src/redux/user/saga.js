@@ -8,6 +8,7 @@ import {
 	RESET_PASSWORD,
 	EMAIL_VERIFICATION,
 	MOBILE_VERIFICATION,
+	OTP_VERIFICATION,
 } from "../actionTypes";
 import {
 	userRegisterSuccess,
@@ -24,6 +25,8 @@ import {
 	emailVerificationError,
 	mobileVerificationSuccess,
 	mobileVerificationError,
+	otpVerificationSuccess,
+	otpVerificationError,
 } from "./actions";
 import { USER_API } from "../../services/userApi";
 import { setProfile, setToken } from "../../utils";
@@ -138,6 +141,21 @@ export function* mobileVerification() {
 			}
 		} catch (ex) {
 			yield put(mobileVerificationError("Error while verification"));
+		}
+	});
+}
+
+export function* otpVerification() {
+	yield takeEvery(OTP_VERIFICATION, function* ({ payload }) {
+		try {
+			const response = yield call(USER_API.otpVerification, payload);
+			if (response.status === 200) {
+				yield put(otpVerificationSuccess(response));
+			} else {
+				yield put(otpVerificationError(response.error.error.message));
+			}
+		} catch (ex) {
+			yield put(otpVerificationError("Error while verification"));
 		}
 	});
 }

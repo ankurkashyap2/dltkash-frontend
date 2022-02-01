@@ -1,8 +1,5 @@
 import request from "../utils/request";
 import { API_URL } from "../configs";
-import { getToken } from "../utils";
-
-const token = getToken();
 
 export const USER_API = {
 	async userRegister(payload) {
@@ -72,9 +69,9 @@ export const USER_API = {
 		return response;
 	},
 
-	async emailVerification(payload) {
+	async emailVerification(email) {
 		const response = await request(
-			`${API_URL}/auth/email-verification?email=${payload.email}`,
+			`${API_URL}/auth/email-verification?email=${email}`,
 			{
 				method: "GET",
 			}
@@ -89,6 +86,14 @@ export const USER_API = {
 				method: "GET",
 			}
 		);
+		return response;
+	},
+
+	async otpVerification(payload) {
+		const response = await request(`${API_URL}/auth/otp-verify`, {
+			method: "POST",
+			body: payload,
+		});
 		return response;
 	},
 };

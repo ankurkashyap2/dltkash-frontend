@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { useNavigate } from "react-router-dom";
-import { userRegister } from "../../redux/user/actions";
+import { userRegister, emailVerification } from "../../redux/user/actions";
 import { ReactComponent as RightArrow } from "../icons/rightarrow.svg";
 import { ReactComponent as TickIcon } from "../icons/tick.svg";
 import { ReactComponent as EyeIcon } from "../icons/eye.svg";
@@ -16,7 +16,10 @@ const PersonalDetailsForm = ({
 	setActiveTab,
 	entityDetails,
 	userRegister,
+	emailVerification,
 	error,
+	isOTPSent,
+	isEmailVerified,
 }) => {
 	const navigate = useNavigate();
 	const [showPassword, setShowPassword] = useState(false);
@@ -88,6 +91,10 @@ const PersonalDetailsForm = ({
 		);
 	};
 
+	const handleEmailVerification = (values) => {
+		emailVerification(values.email);
+	};
+
 	return (
 		<>
 			{error && <Alert variant="danger">{error}!</Alert>}
@@ -100,7 +107,13 @@ const PersonalDetailsForm = ({
 					return (
 						<Form className="form-align" noValidate onSubmit={handleSubmit}>
 							<Row>
-								<Form.Group as={Col} md="12" sm="12" controlId="formGridEmail">
+								<Form.Group
+									as={Col}
+									md="12"
+									sm="12"
+									controlId="formGridEmail"
+									className="mb-2"
+								>
 									<Form.Label className="text-bottom">User Name</Form.Label>
 									<Form.Control
 										type="text"
@@ -117,7 +130,13 @@ const PersonalDetailsForm = ({
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group
+									as={Col}
+									md="6"
+									sm="12"
+									controlId="formGridEmail"
+									className="mb-2"
+								>
 									<Form.Label className="text-bottom">Mobile Number</Form.Label>
 									<Form.Control
 										type="phone"
@@ -128,14 +147,27 @@ const PersonalDetailsForm = ({
 										onChange={handleChange}
 										value={values.phoneNo}
 									/>
-									<a href="#" className="text-verify">
+									<Button
+										className="text-verify"
+										variant="link"
+										// onClick={() => handleEmailVerification(values)}
+									>
 										Verify
-									</a>
+									</Button>
+									{/* <a href="#" className="text-verify">
+										Verify
+									</a> */}
 									{!!touched.phoneNo && !!errors.phoneNo && (
 										<p className="error-text">{errors.phoneNo}</p>
 									)}
 								</Form.Group>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group
+									as={Col}
+									md="6"
+									sm="12"
+									controlId="formGridEmail"
+									className="mb-2"
+								>
 									<Form.Label className="text-bottom">Enter Mobile OTP </Form.Label>
 									<a href="#" className="text-forgot-pwd">
 										Resend OTP
@@ -148,7 +180,13 @@ const PersonalDetailsForm = ({
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group
+									as={Col}
+									md="6"
+									sm="12"
+									controlId="formGridEmail"
+									className="mb-2"
+								>
 									<Form.Label className="text-bottom">Email Address</Form.Label>
 									<Form.Control
 										type="text"
@@ -159,18 +197,32 @@ const PersonalDetailsForm = ({
 										onChange={handleChange}
 										value={values.email}
 									/>
-									<a href="#" className="text-verify">
+									<Button
+										className="text-verify"
+										variant="link"
+										onClick={() => handleEmailVerification(values)}
+									>
 										Verify
-									</a>
+									</Button>
 									{!!touched.email && !!errors.email && (
 										<p className="error-text">{errors.email}</p>
 									)}
 								</Form.Group>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridEmail">
+								<Form.Group
+									as={Col}
+									md="6"
+									sm="12"
+									controlId="formGridEmail"
+									className="mb-2"
+								>
 									<Form.Label className="text-bottom">Enter Email OTP </Form.Label>
-									<a href="#" className="text-forgot-pwd">
+									<Button
+										variant="link"
+										// onClick={() => handleEmailVerification(values)}
+										className="text-forgot-pwd"
+									>
 										Resend OTP
-									</a>
+									</Button>
 									<Form.Control
 										type="text"
 										placeholder="Enter Email OTP"
@@ -179,7 +231,13 @@ const PersonalDetailsForm = ({
 								</Form.Group>
 							</Row>
 							<Row>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridPassword">
+								<Form.Group
+									as={Col}
+									md="6"
+									sm="12"
+									controlId="formGridPassword"
+									className="mb-2"
+								>
 									<Form.Label className="text-bottom">Password</Form.Label>
 									<Form.Control
 										type={showPassword ? "text" : "password"}
@@ -205,7 +263,13 @@ const PersonalDetailsForm = ({
 										<p className="error-text">{errors.password}</p>
 									)}
 								</Form.Group>
-								<Form.Group as={Col} md="6" sm="12" controlId="formGridPassword">
+								<Form.Group
+									as={Col}
+									md="6"
+									sm="12"
+									controlId="formGridPassword"
+									className="mb-2"
+								>
 									<Form.Label className="text-bottom">Confirm Password</Form.Label>
 									<Form.Control
 										type={showConfirmPassword ? "text" : "password"}
@@ -236,7 +300,11 @@ const PersonalDetailsForm = ({
 								<RightArrow className="icon-login" />
 								Prev Step
 							</Button>
-							<Button className="btn-position btn-filled w-custom" type="submit">
+							<Button
+								className="btn-position btn-filled w-custom"
+								type="submit"
+								// disabled={!isEmailVerified}
+							>
 								<TickIcon className="icon-login" />
 								Register
 							</Button>
@@ -253,11 +321,13 @@ const mapStateToProps = (state) => {
 		profile: state.user.profile,
 		token: state.user.token,
 		error: state.user.error,
+		isOTPSent: state.user.isOTPSent,
+		isEmailVerified: state.user.isEmailVerified,
 	};
 };
 
 const mapDispatchToProps = (dispatch) =>
-	bindActionCreators({ userRegister }, dispatch);
+	bindActionCreators({ userRegister, emailVerification }, dispatch);
 
 export default connect(
 	mapStateToProps,

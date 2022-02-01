@@ -71,20 +71,20 @@ form.form-align {
 }
 
 .text-forgot-pwd {
-	float: right;
-	margin-top: 9px;
-	text-decoration: auto;
-	color: #4fadea;
-	font-size: 12px;
+	float: right !important;
+	margin-top: 9px !important;
+	text-decoration: auto !important;
+	color: #4fadea !important;
+	font-size: 12px !important;
 }
 
 .text-verify {
 	float: right;
-	margin-top: -33px;
-	margin-right: 5px;
-	text-decoration: auto;
-	color: #4fadea;
-	font-size: 12px;
+	margin-top: -40px;
+	margin-right: -5px;
+	text-decoration: auto !important;
+	color: #4fadea !important;
+	font-size: 12px !important;
 }
 .icon-login {
 	margin-right: 10px;

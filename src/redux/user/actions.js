@@ -17,6 +17,9 @@ import {
 	MOBILE_VERIFICATION,
 	MOBILE_VERIFICATION_SUCCESS,
 	MOBILE_VERIFICATION_ERROR,
+	OTP_VERIFICATION,
+	OTP_VERIFICATION_SUCCESS,
+	OTP_VERIFICATION_ERROR,
 	SET_TOKEN,
 	SET_PROFILE,
 	USER_LOGOUT,
@@ -78,6 +81,15 @@ export const mobileVerificationSuccess = (response) => {
 };
 export const mobileVerificationError = (error) => {
 	return { type: MOBILE_VERIFICATION_ERROR, error };
+};
+export const otpVerification = (payload) => {
+	return { type: OTP_VERIFICATION, payload };
+};
+export const otpVerificationSuccess = (response) => {
+	return { type: OTP_VERIFICATION_SUCCESS, response };
+};
+export const otpVerificationError = (error) => {
+	return { type: OTP_VERIFICATION_ERROR, error };
 };
 export const setToken = (token) => {
 	return { type: SET_TOKEN, token };
