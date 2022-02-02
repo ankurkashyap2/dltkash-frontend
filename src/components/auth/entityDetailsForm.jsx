@@ -291,7 +291,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 															{sebiCertificate.map((file, index) => {
 																return (
 																	<div {...getRootProps()} className="file file--upload">
-																		<div className="after_upload_text">{file.name}</div>
+																		<div className="after_upload_text">
+																			<p>{file.name}</p>
+																		</div>
 																	</div>
 																);
 															})}
@@ -368,7 +370,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 															{cinCertificate.map((file, index) => {
 																return (
 																	<div {...getRootProps()} className="file file--upload">
-																		<div className="after_upload_text">{file.name}</div>
+																		<div className="after_upload_text">
+																			<p>{file.name}</p>
+																		</div>
 																	</div>
 																);
 															})}
@@ -445,7 +449,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 															{pan.map((file, index) => {
 																return (
 																	<div {...getRootProps()} className="file file--upload">
-																		<div className="after_upload_text">{file.name}</div>
+																		<div className="after_upload_text">
+																			<p>{file.name}</p>
+																		</div>
 																	</div>
 																);
 															})}

@@ -157,12 +157,20 @@ form.form-align {
 	height: 45px;
 	border-radius: 5px;
 	border: 1px solid #d7d7d7;
-	font-size: 14px;
 	padding: 1px 10px;
 	margin-top: 7px;
 	background: #f2f4f7;
-	color: #3b465a8c;
 	padding-top: 10px;
+}
+
+.after_upload_text p {
+	width: 100%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	margin: 0px;
+	color: #3b465a8c;
+	font-size: 14px;
 }
 
 .file--upload > label:active {
@@ -282,8 +290,8 @@ ul.btn-tab {
 	margin-bottom: 0;
 }
 .tooltip_icon {
-    margin-top: -80px;
-    margin-left: -8px;
+	margin-top: -80px;
+	margin-left: -8px;
 }
 @media screen and (max-width: 468px) {
 	.Register-box {
