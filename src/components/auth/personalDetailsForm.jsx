@@ -26,7 +26,6 @@ const PersonalDetailsForm = ({
 	otpVerification,
 	error,
 	isOTPSent,
-	isEmailVerified,
 	receivedOTP,
 }) => {
 	const navigate = useNavigate();
@@ -35,6 +34,8 @@ const PersonalDetailsForm = ({
 	const [mobileOtp, setMobileOtp] = useState("");
 	const [emailOtp, setEmailOtp] = useState("");
 	const [successModal, setSuccessModal] = useState("");
+	const [otpError, setOtpError] = useState(false);
+	const [isEmailVerified, setIsEmailVerified] = useState(false);
 
 	const validationSchema = () => {
 		return Yup.object().shape({
@@ -113,12 +114,17 @@ const PersonalDetailsForm = ({
 		console.log(originalText === emailOtp);
 		if (originalText === emailOtp) {
 			setSuccessModal("emailVerified");
+			setIsEmailVerified(true);
+		} else {
+			setOtpError(true);
 		}
 	};
 
 	return (
 		<>
-			{error && <Alert variant="danger">{error}!</Alert>}
+			{(error || otpError) && (
+				<Alert variant="danger">{error ? error : "Wrong OTP"}!</Alert>
+			)}
 			<Formik
 				initialValues={getInitialValues()}
 				validate={validate(validationSchema)}
@@ -195,7 +201,7 @@ const PersonalDetailsForm = ({
 									</a> */}
 									<Form.Control
 										type="text"
-										placeholder="Enter Mobile OTP "
+										placeholder="Enter OTP "
 										className="field-size"
 									/>
 									<a href="#" className="text-verify-1">
@@ -250,9 +256,12 @@ const PersonalDetailsForm = ({
 									</Button> */}
 									<Form.Control
 										type="text"
-										placeholder="Enter Email OTP"
+										placeholder="Enter OTP"
 										className="field-size"
-										onChange={(e) => setEmailOtp(e.target.value)}
+										onChange={(e) => {
+											setEmailOtp(e.target.value);
+											setOtpError(false);
+										}}
 									/>
 									<Button
 										className="text-verify"
@@ -363,7 +372,6 @@ const mapStateToProps = (state) => {
 		error: state.user.error,
 		isOTPSent: state.user.isOTPSent,
 		receivedOTP: state.user.receivedOTP,
-		isEmailVerified: state.user.isEmailVerified,
 	};
 };
 

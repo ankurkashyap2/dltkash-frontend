@@ -170,6 +170,7 @@ form.form-align {
 	margin: 0px;
 	color: #3b465a8c;
 	font-size: 14px;
+	text-align: left;
 }
 
 .file--upload > label:active {
@@ -289,23 +290,23 @@ ul.btn-tab {
 	margin-bottom: 0;
 }
 .text-verify-1 {
-    float: right;
-    margin-top: -32px;
-    margin-right: 10px;
-    text-decoration: auto !important;
-    color: #4fadea !important;
-    font-size: 12px !important;
-} 
+	float: right;
+	margin-top: -32px;
+	margin-right: 10px;
+	text-decoration: auto !important;
+	color: #4fadea !important;
+	font-size: 12px !important;
+}
 .tooltip_icon {
 	margin-top: -80px;
 	margin-left: -8px;
 }
-.tooltip-bg{
+.tooltip-bg {
 	background: #d7d7d7;
 }
 .btn:focus {
-    outline: 0;
-    box-shadow: none !important;
+	outline: 0;
+	box-shadow: none !important;
 }
 @media screen and (max-width: 468px) {
 	.Register-box {

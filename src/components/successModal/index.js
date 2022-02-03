@@ -5,15 +5,18 @@ const SuccessModal = (props) => {
 	return (
 		<Modal
 			{...props}
-			size="lg"
+			size="md"
 			aria-labelledby="contained-modal-title-vcenter"
 			centered
+			style={{ textAlign: "center" }}
 		>
 			<Modal.Body>
 				<h5>Success!</h5>
 				<CheckIcon />
 				<p>{props.message}</p>
-				<Button onClick={props.onHide}>Okay</Button>
+				<Button className="btn-filled " onClick={props.onHide}>
+					Okay
+				</Button>
 			</Modal.Body>
 		</Modal>
 	);
