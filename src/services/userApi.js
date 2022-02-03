@@ -59,12 +59,13 @@ export const USER_API = {
 	},
 
 	async resetPassword(payload) {
+		console.log("pay", payload);
 		const response = await request(`${API_URL}/auth/reset-password`, {
 			method: "POST",
 			headers: {
 				Authorization: payload.token,
 			},
-			body: payload.email,
+			body: { password: payload.password },
 		});
 		return response;
 	},

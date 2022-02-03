@@ -88,6 +88,7 @@ const PersonalDetailsForm = ({
 			phoneNo: "",
 			email: "",
 			password: "",
+			confirmPassword: "",
 		};
 		return initialValues;
 	};
