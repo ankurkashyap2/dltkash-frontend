@@ -303,6 +303,10 @@ ul.btn-tab {
 .tooltip-bg{
 	background: #d7d7d7;
 }
+.btn:focus {
+    outline: 0;
+    box-shadow: none !important;
+}
 @media screen and (max-width: 468px) {
 	.Register-box {
 		max-width: 320px;

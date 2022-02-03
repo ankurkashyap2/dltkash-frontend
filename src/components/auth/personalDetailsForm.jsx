@@ -112,7 +112,7 @@ const PersonalDetailsForm = ({
 									md="12"
 									sm="12"
 									controlId="formGridEmail"
-									className="mb-2"
+									className="mb-3"
 								>
 									<Form.Label className="text-bottom">User Name</Form.Label>
 									<Form.Control
@@ -135,7 +135,7 @@ const PersonalDetailsForm = ({
 									md="6"
 									sm="12"
 									controlId="formGridEmail"
-									className="mb-2"
+									className="mb-3"
 								>
 									<Form.Label className="text-bottom">Mobile Number</Form.Label>
 									<Form.Control
@@ -166,7 +166,7 @@ const PersonalDetailsForm = ({
 									md="6"
 									sm="12"
 									controlId="formGridEmail"
-									className="mb-2"
+									className="mb-3"
 								>
 									<Form.Label className="text-bottom">Enter Mobile OTP </Form.Label>
 									<a href="#" className="text-forgot-pwd">
@@ -188,7 +188,7 @@ const PersonalDetailsForm = ({
 									md="6"
 									sm="12"
 									controlId="formGridEmail"
-									className="mb-2"
+									className="mb-3"
 								>
 									<Form.Label className="text-bottom">Email Address</Form.Label>
 									<Form.Control
@@ -216,7 +216,7 @@ const PersonalDetailsForm = ({
 									md="6"
 									sm="12"
 									controlId="formGridEmail"
-									className="mb-2"
+									className="mb-3"
 								>
 									<Form.Label className="text-bottom">Enter Email OTP </Form.Label>
 									<Button
@@ -242,7 +242,7 @@ const PersonalDetailsForm = ({
 									md="6"
 									sm="12"
 									controlId="formGridPassword"
-									className="mb-2"
+									className="mb-3"
 								>
 									<Form.Label className="text-bottom">Password</Form.Label>
 									<Form.Control
@@ -274,7 +274,7 @@ const PersonalDetailsForm = ({
 									md="6"
 									sm="12"
 									controlId="formGridPassword"
-									className="mb-2"
+									className="mb-3"
 								>
 									<Form.Label className="text-bottom">Confirm Password</Form.Label>
 									<Form.Control
