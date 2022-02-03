@@ -120,7 +120,7 @@ export function* emailVerification() {
 		try {
 			const response = yield call(USER_API.emailVerification, payload);
 			if (response.status === 200) {
-				yield put(emailVerificationSuccess(response));
+				yield put(emailVerificationSuccess(response.data));
 			} else {
 				yield put(emailVerificationError(response.error.error.message));
 			}

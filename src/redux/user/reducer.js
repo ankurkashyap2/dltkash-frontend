@@ -34,6 +34,7 @@ const initState = {
 	profile: null,
 	token: "",
 	isOTPSent: false,
+	receivedOTP: "",
 	isEmailVerified: false,
 };
 
@@ -132,6 +133,7 @@ const userReducer = (state = initState, action) => {
 				...state,
 				loading: false,
 				isOTPSent: true,
+				receivedOTP: action.response.enc,
 			};
 		}
 		case EMAIL_VERIFICATION_ERROR: {

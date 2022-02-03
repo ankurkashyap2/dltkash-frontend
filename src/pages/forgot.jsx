@@ -73,7 +73,7 @@ const Forgot = ({ loading, error, forgotPassword }) => {
 											<Form.Label className="text-bottom">Email Address</Form.Label>
 											<Form.Control
 												type="text"
-												placeholder="Enter  Email Address"
+												placeholder="Enter Email Address"
 												className="field-size"
 												name="email"
 												required

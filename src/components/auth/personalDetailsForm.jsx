@@ -5,25 +5,36 @@ import * as Yup from "yup";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { useNavigate } from "react-router-dom";
-import { userRegister, emailVerification } from "../../redux/user/actions";
+import CryptoJS from "crypto-js";
+import {
+	userRegister,
+	emailVerification,
+	otpVerification,
+} from "../../redux/user/actions";
 import { ReactComponent as RightArrow } from "../icons/rightarrow.svg";
 import { ReactComponent as TickIcon } from "../icons/tick.svg";
 import { ReactComponent as EyeIcon } from "../icons/eye.svg";
 import { ReactComponent as EyeHiddenIcon } from "../icons/eye-hidden.svg";
 import "../../styles/register.css";
+import SuccessModal from "../successModal";
 
 const PersonalDetailsForm = ({
 	setActiveTab,
 	entityDetails,
 	userRegister,
 	emailVerification,
+	otpVerification,
 	error,
 	isOTPSent,
 	isEmailVerified,
+	receivedOTP,
 }) => {
 	const navigate = useNavigate();
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+	const [mobileOtp, setMobileOtp] = useState("");
+	const [emailOtp, setEmailOtp] = useState("");
+	const [successModal, setSuccessModal] = useState("");
 
 	const validationSchema = () => {
 		return Yup.object().shape({
@@ -95,6 +106,16 @@ const PersonalDetailsForm = ({
 		emailVerification(values.email);
 	};
 
+	const handleOTPVerification = (values, type) => {
+		const passphrase = "DLTkash@";
+		const bytes = CryptoJS.AES.decrypt(receivedOTP, passphrase);
+		const originalText = bytes.toString(CryptoJS.enc.Utf8);
+		console.log(originalText === emailOtp);
+		if (originalText === emailOtp) {
+			setSuccessModal("emailVerified");
+		}
+	};
+
 	return (
 		<>
 			{error && <Alert variant="danger">{error}!</Alert>}
@@ -152,7 +173,7 @@ const PersonalDetailsForm = ({
 										variant="link"
 										// onClick={() => handleEmailVerification(values)}
 									>
-										Verify
+										Send OTP
 									</Button>
 									{/* <a href="#" className="text-verify">
 										Verify
@@ -169,9 +190,9 @@ const PersonalDetailsForm = ({
 									className="mb-3"
 								>
 									<Form.Label className="text-bottom">Enter Mobile OTP </Form.Label>
-									<a href="#" className="text-forgot-pwd">
+									{/* <a href="#" className="text-forgot-pwd">
 										Resend OTP
-									</a>
+									</a> */}
 									<Form.Control
 										type="text"
 										placeholder="Enter Mobile OTP "
@@ -203,9 +224,10 @@ const PersonalDetailsForm = ({
 									<Button
 										className="text-verify"
 										variant="link"
+										disabled={!values.email && !!errors.email}
 										onClick={() => handleEmailVerification(values)}
 									>
-										Verify
+										Send OTP
 									</Button>
 									{!!touched.email && !!errors.email && (
 										<p className="error-text">{errors.email}</p>
@@ -219,21 +241,27 @@ const PersonalDetailsForm = ({
 									className="mb-3"
 								>
 									<Form.Label className="text-bottom">Enter Email OTP </Form.Label>
-									<Button
+									{/* <Button
 										variant="link"
 										// onClick={() => handleEmailVerification(values)}
 										className="text-forgot-pwd"
 									>
 										Resend OTP
-									</Button>
+									</Button> */}
 									<Form.Control
 										type="text"
 										placeholder="Enter Email OTP"
 										className="field-size"
+										onChange={(e) => setEmailOtp(e.target.value)}
 									/>
-									<a href="#" className="text-verify-1">
+									<Button
+										className="text-verify"
+										variant="link"
+										disabled={!emailOtp}
+										onClick={() => handleOTPVerification(values, "EMAIL")}
+									>
 										Verify
-									</a>
+									</Button>
 								</Form.Group>
 							</Row>
 							<Row>
@@ -309,7 +337,7 @@ const PersonalDetailsForm = ({
 							<Button
 								className="btn-position btn-filled w-custom"
 								type="submit"
-								// disabled={!isEmailVerified}
+								disabled={!isEmailVerified}
 							>
 								<TickIcon className="icon-login" />
 								Register
@@ -317,6 +345,12 @@ const PersonalDetailsForm = ({
 						</Form>
 					);
 				}}
+			/>
+
+			<SuccessModal
+				show={successModal === "emailVerified"}
+				message={"Email is verified Successfully!"}
+				onHide={() => setSuccessModal("")}
 			/>
 		</>
 	);
@@ -328,12 +362,16 @@ const mapStateToProps = (state) => {
 		token: state.user.token,
 		error: state.user.error,
 		isOTPSent: state.user.isOTPSent,
+		receivedOTP: state.user.receivedOTP,
 		isEmailVerified: state.user.isEmailVerified,
 	};
 };
 
 const mapDispatchToProps = (dispatch) =>
-	bindActionCreators({ userRegister, emailVerification }, dispatch);
+	bindActionCreators(
+		{ userRegister, emailVerification, otpVerification },
+		dispatch
+	);
 
 export default connect(
 	mapStateToProps,
