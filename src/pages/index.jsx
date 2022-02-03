@@ -7,6 +7,7 @@ import Register from "./register";
 import Forgot from "./forgot";
 import Dashboard from "./dashboard";
 import ResetPassword from "./reset";
+import Investor from "./Investor";
 import Otp from "./otp";
 
 const AppRoutes = (props) => {
@@ -18,6 +19,7 @@ const AppRoutes = (props) => {
 				<Route path="/forgot-password" element={<Forgot {...props} />} />
 				<Route path="/reset-password" element={<ResetPassword {...props} />} />
 				<Route path="/otp" element={<Otp {...props} />} />
+				<Route path="/investor" element={<Investor {...props} />} />
 				<Route path="/dashboard" element={<Dashboard {...props} />} />
 				<Route path="/" element={<Login {...props} />} />
 			</Routes>
