@@ -36,6 +36,7 @@ const initState = {
 	isOTPSent: false,
 	receivedOTP: "",
 	isEmailVerified: false,
+	isLinkSent: false,
 };
 
 const userReducer = (state = initState, action) => {
@@ -90,7 +91,7 @@ const userReducer = (state = initState, action) => {
 			return {
 				...state,
 				loading: false,
-				// profile: action.response.user,
+				isLinkSent: true,
 			};
 		}
 		case FORGOT_PASSWORD_ERROR: {

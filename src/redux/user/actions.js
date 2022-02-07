@@ -55,8 +55,8 @@ export const forgotPasswordSuccess = (response) => {
 export const forgotPasswordError = (error) => {
 	return { type: FORGOT_PASSWORD_ERROR, error };
 };
-export const resetPassword = (payload) => {
-	return { type: RESET_PASSWORD, payload };
+export const resetPassword = (payload, navigation) => {
+	return { type: RESET_PASSWORD, payload, navigation };
 };
 export const resetPasswordSuccess = (response) => {
 	return { type: RESET_PASSWORD_SUCCESS, response };

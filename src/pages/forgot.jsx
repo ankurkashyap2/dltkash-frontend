@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Form, Button, Alert } from "react-bootstrap";
@@ -8,11 +7,17 @@ import * as Yup from "yup";
 import { ReactComponent as RightArrow } from "../components/icons/rightarrow.svg";
 import { ReactComponent as TickIcon } from "../components/icons/tick.svg";
 import AppLayout from "../layouts/appLayout";
-import { forgotPassword } from "../redux/user/actions";
+import { forgotPassword, resetUserFlags } from "../redux/user/actions";
+import SuccessModal from "../components/successModal";
 import "../styles/login.css";
 
-const Forgot = ({ loading, error, forgotPassword }) => {
-	const navigate = useNavigate();
+const Forgot = ({
+	loading,
+	error,
+	forgotPassword,
+	isLinkSent,
+	resetUserFlags,
+}) => {
 	const validationSchema = () => {
 		return Yup.object().shape({
 			email: Yup.string()
@@ -51,7 +56,7 @@ const Forgot = ({ loading, error, forgotPassword }) => {
 	};
 
 	const handleSubmit = (values) => {
-		forgotPassword({ ...values }, navigate);
+		forgotPassword({ ...values });
 	};
 	return (
 		<AppLayout page="Forgot Password" loading={loading}>
@@ -69,7 +74,7 @@ const Forgot = ({ loading, error, forgotPassword }) => {
 							render={({ errors, handleChange, handleSubmit, values, touched }) => {
 								return (
 									<Form className="form-align" noValidate onSubmit={handleSubmit}>
-										<Form.Group controlId="exampleForm.ControlInput1">
+										<Form.Group controlId="exampleForm.ControlInput1" className="mb-3">
 											<Form.Label className="text-bottom">Email Address</Form.Label>
 											<Form.Control
 												type="text"
@@ -99,6 +104,13 @@ const Forgot = ({ loading, error, forgotPassword }) => {
 					</div>
 				</div>
 			</div>
+			<SuccessModal
+				show={isLinkSent}
+				message={
+					"Reset password Link is sent to your Email Id. Please check your email to continue!"
+				}
+				onHide={() => resetUserFlags("isLinkSent")}
+			/>
 		</AppLayout>
 	);
 };
@@ -107,10 +119,11 @@ const mapStateToProps = (state) => {
 	return {
 		error: state.user.error,
 		loading: state.user.loading,
+		isLinkSent: state.user.isLinkSent,
 	};
 };
 
 const mapDispatchToProps = (dispatch) =>
-	bindActionCreators({ forgotPassword }, dispatch);
+	bindActionCreators({ forgotPassword, resetUserFlags }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Forgot);

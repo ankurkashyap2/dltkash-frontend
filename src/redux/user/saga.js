@@ -101,11 +101,12 @@ export function* forgotPassword() {
 }
 
 export function* resetPassword() {
-	yield takeEvery(RESET_PASSWORD, function* ({ payload }) {
+	yield takeEvery(RESET_PASSWORD, function* ({ payload, navigation }) {
 		try {
 			const response = yield call(USER_API.resetPassword, payload);
 			if (response.status === 200) {
 				yield put(resetPasswordSuccess(response));
+				navigation("/login");
 			} else {
 				yield put(resetPasswordError(response.error.error.message));
 			}
