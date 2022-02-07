@@ -10,9 +10,9 @@ const SuccessModal = (props) => {
 			centered
 			style={{ textAlign: "center" }}
 		>
-			<Modal.Body>
+			<Modal.Body className="p-5">
 				<h5>Success!</h5>
-				<CheckIcon />
+				<CheckIcon className="img-size"/>
 				<p>{props.message}</p>
 				<Button className="btn-filled " onClick={props.onHide}>
 					Okay
