@@ -1,20 +1,31 @@
-import React, { useState } from "react";
-import { Form, Button, Row, Col, Alert } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import {
+	Form,
+	Button,
+	Row,
+	Col,
+	Alert,
+	OverlayTrigger,
+	Tooltip,
+} from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
+import Countdown from "react-countdown";
 import {
 	userRegister,
 	emailVerification,
 	otpVerification,
+	resetUserFlags,
 } from "../../redux/user/actions";
 import { ReactComponent as RightArrow } from "../icons/rightarrow.svg";
 import { ReactComponent as TickIcon } from "../icons/tick.svg";
 import { ReactComponent as EyeIcon } from "../icons/eye.svg";
 import { ReactComponent as EyeHiddenIcon } from "../icons/eye-hidden.svg";
+import { ReactComponent as Question } from "../icons/Question.svg";
 import "../../styles/register.css";
 import SuccessModal from "../successModal";
 
@@ -27,15 +38,23 @@ const PersonalDetailsForm = ({
 	error,
 	isOTPSent,
 	receivedOTP,
+	resetUserFlags,
 }) => {
 	const navigate = useNavigate();
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 	const [mobileOtp, setMobileOtp] = useState("");
 	const [emailOtp, setEmailOtp] = useState("");
+	const [emailOtpText, setEmailOtpText] = useState("Send OTP");
 	const [successModal, setSuccessModal] = useState("");
 	const [otpError, setOtpError] = useState(false);
 	const [isEmailVerified, setIsEmailVerified] = useState(false);
+
+	useEffect(() => {
+		if (receivedOTP) {
+			setEmailOtpText("Resend OTP");
+		}
+	}, [receivedOTP]);
 
 	const validationSchema = () => {
 		return Yup.object().shape({
@@ -121,6 +140,26 @@ const PersonalDetailsForm = ({
 		}
 	};
 
+	const renderer = ({ hours, minutes, seconds, completed }, values) => {
+		if (completed) {
+			return (
+				<Button
+					className="text-verify"
+					variant="link"
+					onClick={() => handleEmailVerification(values)}
+				>
+					{emailOtpText}
+				</Button>
+			);
+		} else {
+			return (
+				<span className="text-verify" style={{ bottom: "13px", right: "9px" }}>
+					0{minutes}:{seconds}
+				</span>
+			);
+		}
+	};
+
 	return (
 		<>
 			{(error || otpError) && (
@@ -166,25 +205,24 @@ const PersonalDetailsForm = ({
 									className="mb-3"
 								>
 									<Form.Label className="text-bottom">Mobile Number</Form.Label>
-									<Form.Control
-										type="phone"
-										placeholder="Enter Mobile Number"
-										className="field-size"
-										name="phoneNo"
-										required
-										onChange={handleChange}
-										value={values.phoneNo}
-									/>
-									<Button
-										className="text-verify"
-										variant="link"
-										// onClick={() => handleEmailVerification(values)}
-									>
-										Send OTP
-									</Button>
-									{/* <a href="#" className="text-verify">
-										Verify
-									</a> */}
+									<div style={{ position: "relative" }}>
+										<Form.Control
+											type="phone"
+											placeholder="Enter Mobile Number"
+											className="field-size"
+											name="phoneNo"
+											required
+											onChange={handleChange}
+											value={values.phoneNo}
+										/>
+										<Button
+											className="text-verify"
+											variant="link"
+											// onClick={() => handleEmailVerification(values)}
+										>
+											Send OTP
+										</Button>
+									</div>
 									{!!touched.phoneNo && !!errors.phoneNo && (
 										<p className="error-text">{errors.phoneNo}</p>
 									)}
@@ -197,17 +235,20 @@ const PersonalDetailsForm = ({
 									className="mb-3"
 								>
 									<Form.Label className="text-bottom">Enter Mobile OTP </Form.Label>
-									{/* <a href="#" className="text-forgot-pwd">
-										Resend OTP
-									</a> */}
-									<Form.Control
-										type="text"
-										placeholder="Enter OTP "
-										className="field-size"
-									/>
-									<a href="#" className="text-verify-1">
-										Verify
-									</a>
+									<div style={{ position: "relative" }}>
+										<Form.Control
+											type="text"
+											placeholder="Enter OTP "
+											className="field-size"
+										/>
+										<Button
+											className="text-verify"
+											variant="link"
+											// onClick={() => handleEmailVerification(values)}
+										>
+											Verify
+										</Button>
+									</div>
 								</Form.Group>
 							</Row>
 							<Row>
@@ -219,23 +260,32 @@ const PersonalDetailsForm = ({
 									className="mb-3"
 								>
 									<Form.Label className="text-bottom">Email Address</Form.Label>
-									<Form.Control
-										type="text"
-										placeholder="Enter Email Address"
-										className="field-size"
-										name="email"
-										required
-										onChange={handleChange}
-										value={values.email}
-									/>
-									<Button
-										className="text-verify"
-										variant="link"
-										disabled={!values.email && !!errors.email}
-										onClick={() => handleEmailVerification(values)}
-									>
-										Send OTP
-									</Button>
+									<div style={{ position: "relative" }}>
+										<Form.Control
+											type="text"
+											placeholder="Enter Email Address"
+											className="field-size"
+											name="email"
+											required
+											onChange={handleChange}
+											value={values.email}
+										/>
+										{receivedOTP ? (
+											<Countdown
+												date={Date.now() + 30000}
+												renderer={(props) => renderer(props, values)}
+											/>
+										) : (
+											<Button
+												className="text-verify"
+												variant="link"
+												disabled={!values.email && !!errors.email}
+												onClick={() => handleEmailVerification(values)}
+											>
+												{emailOtpText}
+											</Button>
+										)}
+									</div>
 									{!!touched.email && !!errors.email && (
 										<p className="error-text">{errors.email}</p>
 									)}
@@ -248,30 +298,25 @@ const PersonalDetailsForm = ({
 									className="mb-3"
 								>
 									<Form.Label className="text-bottom">Enter Email OTP </Form.Label>
-									{/* <Button
-										variant="link"
-										// onClick={() => handleEmailVerification(values)}
-										className="text-forgot-pwd"
-									>
-										Resend OTP
-									</Button> */}
-									<Form.Control
-										type="text"
-										placeholder="Enter OTP"
-										className="field-size"
-										onChange={(e) => {
-											setEmailOtp(e.target.value);
-											setOtpError(false);
-										}}
-									/>
-									<Button
-										className="text-verify"
-										variant="link"
-										disabled={!emailOtp}
-										onClick={() => handleOTPVerification(values, "EMAIL")}
-									>
-										Verify
-									</Button>
+									<div style={{ position: "relative" }}>
+										<Form.Control
+											type="text"
+											placeholder="Enter OTP"
+											className="field-size"
+											onChange={(e) => {
+												setEmailOtp(e.target.value);
+												setOtpError(false);
+											}}
+										/>
+										<Button
+											className="text-verify"
+											variant="link"
+											disabled={!emailOtp}
+											onClick={() => handleOTPVerification(values, "EMAIL")}
+										>
+											Verify
+										</Button>
+									</div>
 								</Form.Group>
 							</Row>
 							<Row>
@@ -283,6 +328,16 @@ const PersonalDetailsForm = ({
 									className="mb-3"
 								>
 									<Form.Label className="text-bottom">Password</Form.Label>
+									<OverlayTrigger
+										overlay={
+											<Tooltip>
+												Password must contain minimum of 8 characters with a capital letter,
+												a number, and a symbol
+											</Tooltip>
+										}
+									>
+										<Question className="tooltip_icon" />
+									</OverlayTrigger>
 									<Form.Control
 										type={showPassword ? "text" : "password"}
 										placeholder="Enter Password"
@@ -358,9 +413,15 @@ const PersonalDetailsForm = ({
 			/>
 
 			<SuccessModal
-				show={successModal === "emailVerified"}
-				message={"Email is verified Successfully!"}
-				onHide={() => setSuccessModal("")}
+				show={successModal === "emailVerified" || isOTPSent}
+				message={
+					isOTPSent
+						? "An OTP is sent to your Email. Please verify it first to get yourself register."
+						: "Email is verified Successfully!"
+				}
+				onHide={() =>
+					isOTPSent ? resetUserFlags("isOTPSent") : setSuccessModal("")
+				}
 			/>
 		</>
 	);
@@ -378,7 +439,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) =>
 	bindActionCreators(
-		{ userRegister, emailVerification, otpVerification },
+		{ userRegister, emailVerification, otpVerification, resetUserFlags },
 		dispatch
 	);
 

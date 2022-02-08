@@ -24,21 +24,21 @@ import { ReactComponent as Filter } from "../components/icons/filter.svg";
 import { ReactComponent as PlusCircleFill } from "../components/icons/PlusCircleFill.svg";
 import { ReactComponent as CloudUploadFill } from "../components/icons/CloudUploadFill.svg";
 import { ReactComponent as BorderStyle } from "../components/icons/BorderStyle.svg";
+import AppLayout from "../layouts/appLayout";
 import "../styles/dashboard.css";
 
-const Dashboard = () => {
+const Dashboard = ({ loading }) => {
 	return (
-		<>
-			<Navbar />
-			<div class="wrapper">
+		<AppLayout page="Dashboard" loading={loading}>
+			<div className="wrapper">
 				<Tab.Container id="left-tabs-example" defaultActiveKey="first">
-					<div class="sidebar">
-						<ul class="nav_dashboard">
+					<div className="sidebar">
+						<ul className="nav_dashboard">
 							<Nav variant="pills" className="flex-column">
 								<Nav.Item>
 									<Nav.Link eventKey="first">
 										<li>
-											<a class="active">
+											<a className="active">
 												<Dashboard1 className="icon-dashboard" alt="dashboard" />
 												Dashboard
 											</a>
@@ -86,9 +86,9 @@ const Dashboard = () => {
 						</ul>
 					</div>
 
-					<div class="content content-is-open">
-						<span class="side-panel-toggle">
-							<i class="fa fa-bars"></i>
+					<div className="content content-is-open">
+						<span className="side-panel-toggle">
+							<i className="fa fa-bars"></i>
 						</span>
 						<Tab.Content>
 							<Tab.Pane eventKey="first">
@@ -137,32 +137,32 @@ const Dashboard = () => {
 											<Filter alt="filter" className="icon-dashboard btn-position mt-4" />
 										</Col>
 									</Row>
-									<div class="table-responsive">
+									<div className="table-responsive">
 										<table
-											class="table table-hover dashboard-table"
+											className="table table-hover dashboard-table"
 											cellspacing="0"
 											width="100%"
 										>
 											<thead>
 												<tr>
-													<th class="col-md-1">S.No.</th>
-													<th class="col-md-1">TM ID</th>
-													<th class="col-md-1">PAN</th>
-													<th class="col-md-1">Email ID</th>
-													<th class="col-md-1">Mobile No.</th>
-													<th class="col-md-1">
+													<th className="col-md-1">S.No.</th>
+													<th className="col-md-1">TM ID</th>
+													<th className="col-md-1">PAN</th>
+													<th className="col-md-1">Email ID</th>
+													<th className="col-md-1">Mobile No.</th>
+													<th className="col-md-1">
 														PAN Status <Up alt="down" className="up-arrow" />
 														<Down alt="down" className="down-arrow" />
 													</th>
-													<th class="col-md-1">
+													<th className="col-md-1">
 														Email Status <Up alt="down" className="up-arrow" />
 														<Down alt="down" className="down-arrow" />
 													</th>
-													<th class="col-md-1">
+													<th className="col-md-1">
 														Mobile Status <Up alt="down" className="up-arrow" />
 														<Down alt="down" className="down-arrow" />
 													</th>
-													<th class="col-md-1">Action</th>
+													<th className="col-md-1">Action</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -381,7 +381,7 @@ const Dashboard = () => {
 									<Col sm={7}>
 										<Row className="mb-5">
 											<Form.Label column lg={3} className="text-bold">
-											Verificaiton send via
+												Verificaiton send via
 											</Form.Label>
 											<Col>
 												<Form.Select defaultValue="Choose..." className="select-custom">
@@ -401,7 +401,7 @@ const Dashboard = () => {
 											<Col>
 												<Form.Group as={Col}>
 													<div className="file file--upload send-btn">
-														<label for="input-file">
+														<label htmlFor="input-file">
 															<PlusCircleFill alt="upload" className="upload-send" />
 															Send to specific user
 														</label>
@@ -409,7 +409,7 @@ const Dashboard = () => {
 													</div>
 													<p>OR</p>
 													<div className="file file--upload send-btn">
-														<label for="input-file">
+														<label htmlFor="input-file">
 															<CloudUploadFill alt="upload" className="upload-send" />
 															Upload Verification file
 														</label>
@@ -476,21 +476,21 @@ const Dashboard = () => {
 											<Filter alt="filter" className="icon-dashboard btn-position mt-4" />
 										</Col>
 									</Row>
-									<div class="table-responsive">
+									<div className="table-responsive">
 										<table
-											class="table table-hover dashboard-table"
+											className="table table-hover dashboard-table"
 											cellspacing="0"
 											width="100%"
 										>
 											<thead>
 												<tr>
-													<th class="col-md-1">Date</th>
-													<th class="col-md-1">Total PAN's</th>
-													<th class="col-md-1">Total Email Id's</th>
-													<th class="col-md-1">Total Mobile No.</th>
-													<th class="col-md-1">SMS Sent</th>
-													<th class="col-md-1">Email's Sent </th>
-													<th class="col-md-1">Total Amount</th>
+													<th className="col-md-1">Date</th>
+													<th className="col-md-1">Total PAN's</th>
+													<th className="col-md-1">Total Email Id's</th>
+													<th className="col-md-1">Total Mobile No.</th>
+													<th className="col-md-1">SMS Sent</th>
+													<th className="col-md-1">Email's Sent </th>
+													<th className="col-md-1">Total Amount</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -530,7 +530,7 @@ const Dashboard = () => {
 					</div>
 				</Tab.Container>
 			</div>
-		</>
+		</AppLayout>
 	);
 };
 

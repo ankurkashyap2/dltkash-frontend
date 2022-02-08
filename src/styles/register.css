@@ -79,9 +79,9 @@ form.form-align {
 }
 
 .text-verify {
-	float: right;
-	margin-top: -40px;
-	margin-right: -5px;
+	position: absolute;
+	bottom: 7px;
+	right: -6px;
 	text-decoration: auto !important;
 	color: #4fadea !important;
 	font-size: 12px !important;
@@ -141,7 +141,7 @@ form.form-align {
 
 .file--upload > label {
 	width: 100%;
-	/* margin-bottom: 15px !important; */
+	margin-bottom: 15px !important;
 	height: 45px;
 	border-radius: 5px;
 	border: 1px solid #d7d7d7;
@@ -229,21 +229,27 @@ ul.btn-tab {
 	border-radius: 40px;
 	margin-bottom: 10px;
 }
-.avatar-upload {
+/* .avatar-upload {
 	position: relative;
 	max-width: 205px;
 	margin-bottom: 13px;
-}
-.avatar-upload .avatar-edit {
+} */
+/* .avatar-upload .avatar-edit {
 	position: absolute;
 	left: 53px;
 	z-index: 1;
 	top: 50px;
-}
+} */
 .avatar-preview {
 	position: relative;
 }
-.avatar-preview:after {
+.camera-icon {
+	position: absolute;
+	bottom: 13px;
+	left: 54px;
+	cursor: pointer;
+}
+/* .avatar-preview:after {
 	content: url("../components/icons/camera.svg");
 	font-family: "FontAwesome";
 	color: #337ab7;
@@ -254,7 +260,7 @@ ul.btn-tab {
 	line-height: 26px;
 	margin: auto;
 	cursor: pointer;
-}
+} */
 .tab-title-box {
 	display: flex;
 	align-items: center;
@@ -298,8 +304,7 @@ ul.btn-tab {
 	font-size: 12px !important;
 }
 .tooltip_icon {
-	margin-top: -80px;
-	margin-left: -8px;
+	margin-left: 10px;
 }
 .tooltip-bg {
 	background: #d7d7d7;

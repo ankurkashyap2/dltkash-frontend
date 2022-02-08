@@ -1,43 +1,38 @@
-import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Route, Redirect } from 'react-router-dom';
-import { setToken, setProfile } from '../redux/user/actions';
-import { getProfile, getToken } from '../utils/index';
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Route, Navigate } from "react-router-dom";
+import { setToken, setProfile } from "../redux/user/actions";
+import { getProfile, getToken } from "../utils/index";
 
 const SecuredRoute = ({
-	component: Component,
+	path,
+	element: Component,
 	setToken,
 	setProfile,
 	token,
 	profile,
-	noMatch,
-	...rest
+	children,
 }) => {
+	const sessionToken = getToken();
+	const sessionProfile = getProfile();
 	useEffect(() => {
 		if (!token || !profile) {
-			const token = getToken();
-			const profile = getProfile();
-			if (token !== 'null' && token !== null) {
-				setToken(token);
+			if (sessionToken) {
+				setToken(sessionToken);
 			}
-		
-			if (profile) {
-				setProfile(profile);
+			if (sessionProfile) {
+				setProfile(sessionProfile);
 			}
 		}
-	}, [token, profile]);
+	}, [token, profile, sessionToken, sessionProfile, setProfile, setToken]);
 
-
-	return token && profile ? (
-		
-		<Route {...rest} render={(props) => <Component {...props} />} />
+	return sessionToken && sessionProfile ? (
+		children
 	) : (
-		<Route {...rest} render={() => <Redirect to={{ pathname: noMatch }} />} />
+		<Navigate replace to="/login" />
 	);
 };
-
-
 
 const mapStateToProps = (state) => {
 	return {

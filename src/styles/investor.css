@@ -1,71 +1,73 @@
 .w-investor {
-    background: #fff;
-    width: 70%;
-    margin-top: 40px;
+	background: #fff;
+	width: 70%;
+	margin-top: 40px;
 }
 .bg-otp {
-    background: #f0f0fc;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	background: #f0f0fc;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .bg-white {
-    background: #ffffff;
+	background: #ffffff;
 }
 .investor-box {
-    box-shadow: 1px 14px 18px 1px #8686f740;
+	box-shadow: 1px 14px 18px 1px #8686f740;
 }
 .form-login {
-    padding: 50px;
+	padding: 50px;
 }
 .btn-otp-inner {
-    border-radius: 0;
-    box-shadow: none;
-    outline: none;
-    padding: 10px 50px !important;
-    background: #e9e8e8 !important;
-    border: 1px solid #e9e8e8 !important;
-    color: #000 !important;
-    border-radius: 0 !important;
-    font-weight: 500 !important;
+	border-radius: 0;
+	box-shadow: none;
+	outline: none;
+	padding: 10px 50px !important;
+	background: #e9e8e8 !important;
+	border: 1px solid #e9e8e8 !important;
+	color: #000 !important;
+	border-radius: 0 !important;
+	font-weight: 500 !important;
+	box-shadow: none !important;
 }
 .btn-otp-inner.active {
-    background: #3b80f7 !important;
-    border: 1px solid #3b80f7 !important;
-    color: #fff !important;
+	background: #3b80f7 !important;
+	border: 1px solid #3b80f7 !important;
+	color: #fff !important;
 }
+
 .radio-otp label {
-    font-size: 14px;
-    font-weight: 500;
-    margin-left: 10px;
-    margin-bottom: 2px;
+	font-size: 14px;
+	font-weight: 500;
+	margin-left: 10px;
+	margin-bottom: 2px;
 }
 .form-login h3 {
-    text-align: center;
-    color: #4fadea;
+	text-align: center;
+	color: #4fadea;
 }
 .text-otp {
-    font-size: 16px;
-    font-weight: 500;
+	font-size: 16px;
+	font-weight: 500;
 }
 .text-otp span {
-    font-size: 30px;
+	font-size: 30px;
 }
 .otp-radio-btn {
-    text-align: center;
+	text-align: center;
 }
 .bg-otp img {
-    width: 100%;
+	width: 100%;
 }
 
 @media screen and (max-width: 1200px) {
 	.form-login {
-        padding: 0px;
-    }
+		padding: 0px;
+	}
 }
 @media screen and (max-width: 991px) {
 	.btn-otp-inner {
-        padding: 10px 30px !important;
-    }
+		padding: 10px 30px !important;
+	}
 }

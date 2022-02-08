@@ -14,7 +14,7 @@ const Register = ({ loading }) => {
 
 	return (
 		<AppLayout page="Registration" loading={loading}>
-			<div class="main-content">
+			<div className="main-content">
 				<div className="outer-box">
 					<div className="Register-box">
 						<Tabs

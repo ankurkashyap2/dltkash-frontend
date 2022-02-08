@@ -1,7 +1,6 @@
 import React from "react";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-// import LandingPage from "./landingPage";
-// import SecuredRoute from "./securedRoute";
+import SecuredRoute from "./securedRoute";
 import Login from "./login";
 import Register from "./register";
 import Forgot from "./forgot";
@@ -23,8 +22,16 @@ const AppRoutes = (props) => {
 				/>
 				<Route path="/otp" element={<Otp {...props} />} />
 				<Route path="/investor" element={<Investor {...props} />} />
-				<Route path="/dashboard" element={<Dashboard {...props} />} />
-				<Route path="/" element={<Login {...props} />} />
+				<Route
+					path="/"
+					element={
+						<SecuredRoute>
+							<Dashboard {...props} />
+						</SecuredRoute>
+					}
+				/>
+				{/* <SecuredRoute path="/" element={<Dashboard {...props} />} /> */}
+				{/* <Route path="/" element={<Login {...props} />} /> */}
 			</Routes>
 		</Router>
 	);

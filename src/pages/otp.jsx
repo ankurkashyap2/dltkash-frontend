@@ -10,7 +10,7 @@ const Otp = () => {
 	return (
 		<>
 			<Navbar page="OTP" />
-			<div class="main-content">
+			<div className="main-content">
 				<div className="outer-box">
 					<div className="login-box">
 						<h3>Send OTP</h3>
@@ -18,16 +18,13 @@ const Otp = () => {
 						<form noValidate autoComplete="off" className="form-align">
 							<Form className="form-align">
 								<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-									<Form.Label className="text-bottom">
-										Enter OTP
-									</Form.Label>
+									<Form.Label className="text-bottom">Enter OTP</Form.Label>
 									<Form.Control
 										type="text"
 										placeholder="Enter your OTP"
 										className="field-size mb-3"
 									/>
 									<Button className="btn-outlined" href="/login">
-										
 										<RightArrow className="icon-login" />
 										Login
 									</Button>

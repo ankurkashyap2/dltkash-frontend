@@ -10,6 +10,7 @@ import {
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { ReactComponent as Question } from "../icons/Question.svg";
+import { ReactComponent as CameraIcon } from "../icons/camera.svg";
 import Dropzone from "react-dropzone";
 import "../../styles/register.css";
 
@@ -165,8 +166,8 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									controlId="formGridEmail"
 									className="center"
 								>
-									<div class="box box-primary">
-										<div class="box-body box-profile">
+									<div className="box box-primary">
+										<div className="box-body box-profile">
 											<Dropzone
 												// maxSize={512000}
 												onDrop={(acceptedFiles) => handleFileUpload("logo", acceptedFiles)}
@@ -178,39 +179,35 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 													<div>
 														{logo.length && logo.length > 0 ? (
 															<section>
-																<input {...getInputProps()} />
-																<div {...getRootProps()}>
+																<div className="avatar-preview">
 																	{logo.map((file, index) => {
 																		return (
-																			<div {...getRootProps()}>
-																				<label for="imageUpload"></label>
-																				<div class="avatar-preview">
-																					<img
-																						src={file.preview}
-																						class="profile-user-img img-responsive img-circle"
-																						alt="User profile"
-																						id="imagePreview"
-																					/>
-																				</div>
-																			</div>
+																			<img
+																				src={file.preview}
+																				className="profile-user-img img-responsive img-circle"
+																				alt="User profile"
+																				id="imagePreview"
+																			/>
 																		);
 																	})}
+																	<input {...getInputProps()} />
+																	<div {...getRootProps()}>
+																		<CameraIcon className="camera-icon" />
+																	</div>
 																</div>
 															</section>
 														) : (
 															<section>
-																<input {...getInputProps()} />
-																<div {...getRootProps()} className="file file--upload">
-																	<div class="avatar-upload">
-																		<div class="avatar-edit"></div>
-																		<div class="avatar-preview">
-																			<img
-																				src="/assets/images/avatar.png"
-																				class="profile-user-img img-responsive img-circle"
-																				alt="User profile"
-																				id="imagePreview"
-																			/>
-																		</div>
+																<div className="avatar-preview">
+																	<img
+																		src="/assets/images/avatar.png"
+																		className="profile-user-img img-responsive img-circle"
+																		alt="User profile"
+																		id="imagePreview"
+																	/>
+																	<input {...getInputProps()} />
+																	<div {...getRootProps()}>
+																		<CameraIcon className="camera-icon" />
 																	</div>
 																</div>
 															</section>
@@ -275,6 +272,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									<Form.Label className="text-bottom">
 										Upload SEBI Certificate
 									</Form.Label>
+									<OverlayTrigger overlay={<Tooltip>Upload SEBI Certificate</Tooltip>}>
+										<Question className="tooltip_icon" />
+									</OverlayTrigger>
 									<Dropzone
 										// maxSize={512000}
 										onDrop={(acceptedFiles) => handleFileUpload("sebi", acceptedFiles)}
@@ -286,33 +286,30 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											<div>
 												{sebiCertificate.length && sebiCertificate.length > 0 ? (
 													<section className="file file--upload">
-														<input {...getInputProps()} />
-														<div {...getRootProps()}>
-															{sebiCertificate.map((file, index) => {
-																return (
+														{sebiCertificate.map((file, index) => {
+															return (
+																<div>
+																	<input {...getInputProps()} />
 																	<div {...getRootProps()} className="file file--upload">
 																		<div className="after_upload_text">
 																			<p>{file.name}</p>
 																		</div>
 																	</div>
-																);
-															})}
-														</div>
+																</div>
+															);
+														})}
 													</section>
 												) : (
 													<section>
 														<input {...getInputProps()} />
 														<div {...getRootProps()} className="file file--upload">
-															<label for="input-file">
+															<label htmlFor="input-file">
 																<img
 																	src={"/assets/images/upload.png"}
 																	alt="upload"
 																	className="icon-login"
 																/>
 																Upload SEBI Certificate{" "}
-																<OverlayTrigger overlay={<Tooltip>Tooltip!</Tooltip>}>
-																	<Question className="tooltip_icon" />
-																</OverlayTrigger>
 															</label>
 														</div>
 													</section>
@@ -354,6 +351,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									className="mb-3"
 								>
 									<Form.Label className="text-bottom">Upload CIN </Form.Label>
+									<OverlayTrigger overlay={<Tooltip>Upload CIN </Tooltip>}>
+										<Question className="tooltip_icon" />
+									</OverlayTrigger>
 									<Dropzone
 										// maxSize={512000}
 										onDrop={(acceptedFiles) => handleFileUpload("cin", acceptedFiles)}
@@ -365,33 +365,30 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											<div>
 												{cinCertificate.length && cinCertificate.length > 0 ? (
 													<section className="file file--upload">
-														<input {...getInputProps()} />
-														<div {...getRootProps()}>
-															{cinCertificate.map((file, index) => {
-																return (
+														{cinCertificate.map((file, index) => {
+															return (
+																<div>
+																	<input {...getInputProps()} />
 																	<div {...getRootProps()} className="file file--upload">
 																		<div className="after_upload_text">
 																			<p>{file.name}</p>
 																		</div>
 																	</div>
-																);
-															})}
-														</div>
+																</div>
+															);
+														})}
 													</section>
 												) : (
 													<section>
 														<input {...getInputProps()} />
 														<div {...getRootProps()} className="file file--upload">
-															<label for="input-file">
+															<label htmlFor="input-file">
 																<img
 																	src={"/assets/images/upload.png"}
 																	alt="upload"
 																	className="icon-login"
 																/>
 																Upload CIN{" "}
-																<OverlayTrigger overlay={<Tooltip>Tooltip!</Tooltip>}>
-																	<Question className="tooltip_icon" />
-																</OverlayTrigger>
 															</label>
 														</div>
 													</section>
@@ -433,6 +430,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									className="mb-3"
 								>
 									<Form.Label className="text-bottom">Upload PAN</Form.Label>
+									<OverlayTrigger overlay={<Tooltip>Upload PAN</Tooltip>}>
+										<Question className="tooltip_icon" />
+									</OverlayTrigger>
 									<Dropzone
 										// maxSize={512000}
 										onDrop={(acceptedFiles) => handleFileUpload("pan", acceptedFiles)}
@@ -444,33 +444,30 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											<div>
 												{pan.length && pan.length > 0 ? (
 													<section className="file file--upload">
-														<input {...getInputProps()} />
-														<div {...getRootProps()}>
-															{pan.map((file, index) => {
-																return (
+														{pan.map((file, index) => {
+															return (
+																<div>
+																	<input {...getInputProps()} />
 																	<div {...getRootProps()} className="file file--upload">
 																		<div className="after_upload_text">
 																			<p>{file.name}</p>
 																		</div>
 																	</div>
-																);
-															})}
-														</div>
+																</div>
+															);
+														})}
 													</section>
 												) : (
 													<section>
 														<input {...getInputProps()} />
 														<div {...getRootProps()} className="file file--upload">
-															<label for="input-file">
+															<label htmlFor="input-file">
 																<img
 																	src={"/assets/images/upload.png"}
 																	alt="upload"
 																	className="icon-login"
 																/>
 																Upload PAN{" "}
-																<OverlayTrigger overlay={<Tooltip>Tooltip!</Tooltip>}>
-																	<Question className="tooltip_icon" />
-																</OverlayTrigger>
 															</label>
 														</div>
 													</section>

@@ -12,7 +12,7 @@ import AppLayout from "../layouts/appLayout";
 import { ReactComponent as EyeIcon } from "../components/icons/eye.svg";
 import { ReactComponent as EyeHiddenIcon } from "../components/icons/eye-hidden.svg";
 import "../styles/login.css";
-import SuccessModal from '../components/successModal'
+
 const Login = ({ userLogin, error, loading }) => {
 	const navigate = useNavigate();
 	const [showPassword, setShowPassword] = useState(false);
@@ -55,13 +55,14 @@ const Login = ({ userLogin, error, loading }) => {
 	};
 
 	const handleSubmit = (values) => {
-		userLogin({ ...values }, navigate);
+		userLogin(
+			{ email: values.email.trim(), password: values.password.trim() },
+			navigate
+		);
 	};
 	return (
 		<AppLayout page="Login" loading={loading}>
-			<SuccessModal show={true} message="Enter the following details to login"/>
-			{/* <Navbar page="Login" /> */}
-			<div class="main-content-login">
+			<div className="main-content-login">
 				<div className="outer-box">
 					<div className="login-box">
 						<h3>Login</h3>

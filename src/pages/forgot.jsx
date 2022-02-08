@@ -60,7 +60,7 @@ const Forgot = ({
 	};
 	return (
 		<AppLayout page="Forgot Password" loading={loading}>
-			<div class="main-content">
+			<div className="main-content">
 				<div className="outer-box">
 					<div className="login-box">
 						<h3>Forgot Password</h3>

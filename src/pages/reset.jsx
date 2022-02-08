@@ -72,7 +72,7 @@ const Reset = ({ loading, error, resetPassword }) => {
 	};
 	return (
 		<AppLayout page="Reset Password" loading={loading}>
-			<div class="main-content">
+			<div className="main-content">
 				<div className="outer-box">
 					<div className="login-box">
 						<h3>Reset Password</h3>

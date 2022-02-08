@@ -65,15 +65,18 @@ export function* userSignin() {
 						response.data.token
 					);
 					if (exchangeDetailsResponse.status === 200) {
+						const admin = adminDetailsResponse.data.data;
+						const exchange = exchangeDetailsResponse.data.data;
 						yield put(
 							userLoginSuccess({
 								token: response.data.token,
-								admin: adminDetailsResponse.data.data,
-								exchange: exchangeDetailsResponse.data.data,
+								admin,
+								exchange,
 							})
 						);
 						yield call(setToken, response.data.token);
-						navigation("/dashboard");
+						yield call(setProfile, { ...admin, ...exchange });
+						navigation("/");
 					}
 				}
 			} else {

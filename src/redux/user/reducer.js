@@ -222,7 +222,8 @@ const userReducer = (state = initState, action) => {
 		}
 		case RESET_USER_FLAGS: {
 			return {
-				state: { ...state, [action.flagName]: false },
+				...state,
+				[action.flagName]: false,
 			};
 		}
 		default:
