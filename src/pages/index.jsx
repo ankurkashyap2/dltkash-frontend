@@ -21,7 +21,10 @@ const AppRoutes = (props) => {
 					element={<ResetPassword {...props} />}
 				/>
 				<Route path="/otp" element={<Otp {...props} />} />
-				<Route path="/investor" element={<Investor {...props} />} />
+				<Route
+					path="/investor/email-verification/:token"
+					element={<Investor {...props} />}
+				/>
 				<Route
 					path="/"
 					element={
