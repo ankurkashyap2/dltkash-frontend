@@ -17,6 +17,7 @@ ul.pagination .page-item a {
 	display: flex;
 	min-height: 100%;
 	overflow: scroll;
+	overflow-x: hidden;
 }
 
 .sidebar {
@@ -308,7 +309,23 @@ select.select-custom.form-select {
 	justify-content: center;
 }
 /**end user verification**/
+.switch-ucc {
+    width: 3em;
+    height: 25px;
+}
 
+label.form-check-label {
+    margin-left: 10px;
+	margin-top: 24px;
+}
+
+input#custom-switch\ switch-ucc {
+    margin-top: 25px;
+}
+.form-check-input:checked {
+    background-color: #4fadea;
+    border-color: #3896d2;
+}
 @media only screen and (max-width: 768px) {
 	.content {
 		margin-left: 0;
