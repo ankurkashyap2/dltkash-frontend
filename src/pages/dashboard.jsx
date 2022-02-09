@@ -318,7 +318,7 @@ const Dashboard = ({ loading }) => {
 										>
 											<Tab eventKey="home" title="Add Admin">
 												<Form>
-													<Row>
+													<Row className="mb-3">
 														<Form.Group as={Col} controlId="formGridEmail">
 															<Form.Label className="text-bottom text-bold">
 																Username
@@ -332,7 +332,7 @@ const Dashboard = ({ loading }) => {
 															<Form.Control type="email" className="field-size" />
 														</Form.Group>
 													</Row>
-													<Row>
+													<Row className="mb-3">
 														<Form.Group as={Col} controlId="formGridEmail">
 															<Form.Label className="text-bottom text-bold">
 																Mobile No
@@ -344,7 +344,7 @@ const Dashboard = ({ loading }) => {
 															<Form.Control type="email" className="field-size" />
 														</Form.Group>
 													</Row>
-													<Row>
+													<Row className="mb-3">
 														<Form.Group as={Col} controlId="formGridEmail">
 															<Form.Label className="text-bottom text-bold">
 																Legel Entity
@@ -356,7 +356,7 @@ const Dashboard = ({ loading }) => {
 															<Form.Control type="email" className="field-size" />
 														</Form.Group>
 													</Row>
-													<Row>
+													<Row className="mb-3">
 														<Form.Group as={Col} controlId="formGridEmail"></Form.Group>
 														<Form.Group as={Col} controlId="formGridEmail">
 															<Button type="submit" className="btn-filled w-100">
@@ -379,11 +379,11 @@ const Dashboard = ({ loading }) => {
 								<h3>UCC Verificaiton</h3>
 								<Row className="add_user">
 									<Col sm={7}>
-										<Row className="mb-5">
-											<Form.Label column lg={3} className="text-bold">
-												Verificaiton send via
-											</Form.Label>
+										<Row className="mb-4">
 											<Col>
+												<Form.Label className="text-bold">
+													Verificaiton send via
+												</Form.Label>
 												<Form.Select defaultValue="Choose..." className="select-custom">
 													<option>SMS and Email</option>
 													<option>Option 2 </option>
@@ -395,11 +395,196 @@ const Dashboard = ({ loading }) => {
 											</Col>
 										</Row>
 										<Row>
-											<Form.Label column lg={3} className="text-bold">
-												Send To
-											</Form.Label>
 											<Col>
-												<Form.Group as={Col}>
+												<Form >
+													<Row className="mb-3">
+														<Form.Group as={Col} md="6" controlId="validationCustom01">
+															<Form.Label className="mb-0 text-bold">Request ID</Form.Label>
+															<Form.Control
+																required
+																type="text"
+																placeholder="Enter Request Id"
+																className="field-size"
+															/>
+															<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+														</Form.Group>
+														<Form.Group as={Col} md="6" controlId="validationCustom02">
+															<Form.Label className="mb-0 text-bold">Mobile No</Form.Label>
+															<Form.Control
+																required
+																type="text"
+																placeholder="Enter Mobile No"
+																className="field-size"
+															/>
+															<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+														</Form.Group>
+													</Row>
+													<Row className="mb-3">
+														<Form.Group as={Col} md="6" controlId="validationCustom01">
+															<Form.Label className="mb-0 text-bold">TM Name</Form.Label>
+															<Form.Control
+																required
+																type="text"
+																placeholder="Enter TM Name"
+																className="field-size"
+															/>
+															<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+														</Form.Group>
+														<Form.Group as={Col} md="6" controlId="validationCustom02">
+															<Form.Label className="mb-0 text-bold">TM ID</Form.Label>
+															<Form.Control
+																required
+																type="text"
+																placeholder="Enter TM ID"
+																className="field-size"
+															/>
+															<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+														</Form.Group>
+													</Row>
+													<Row className="mb-3">
+														<Form.Group as={Col} md="6" controlId="validationCustom02">
+															<Form.Label className="mb-0 text-bold">DP ID</Form.Label>
+															<Form.Control
+																required
+																type="text"
+																placeholder="Enter DP ID"
+																className="field-size"
+															/>
+															<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+														</Form.Group>
+														<Form.Group as={Col} md="6" controlId="validationCustom01">
+															<Form.Label className="mb-0 text-bold">Country</Form.Label>
+															<Form.Select defaultValue="Choose..." className="field-size">
+																<option></option>
+																<option>Option 2 </option>
+																<option>Option 3 </option>
+																<option>Option 4 </option>
+																<option>Option 5 </option>
+																<option>Option 6 </option>
+															</Form.Select>
+															<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+														</Form.Group>
+													</Row>
+													<Row className="mb-3">
+														<Form.Group as={Col} md="6" controlId="validationCustom01">
+															<Form.Label className="mb-0 text-bold">Client ID</Form.Label>
+															<Form.Control
+																required
+																type="text"
+																placeholder="Enter Client ID"
+																className="field-size"
+															/>
+															<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+														</Form.Group>
+														<Form.Group as={Col} md="6" controlId="validationCustom02">
+															<Form.Label className="mb-0 text-bold">Investor Code</Form.Label>
+															<Form.Control
+																required
+																type="text"
+																placeholder="Enter Investor Code"
+																className="field-size"
+															/>
+															<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+														</Form.Group>
+													</Row>
+													<Row className="mb-3">
+														<Form.Group as={Col} md="6" controlId="validationCustom02">
+															<Form.Label className="mb-0 text-bold">PAN No</Form.Label>
+															<Form.Control
+																required
+																type="text"
+																placeholder="Enter PAN No"
+																className="field-size"
+															/>
+															<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+														</Form.Group>
+														<Form.Group as={Col} md="6" controlId="validationCustom02">
+															<Form className="mt-3">
+																<Form.Check
+																	type="switch"
+																	id="custom-switch switch-ucc"
+																	label="PAN Exempt"
+																/>
+															</Form>
+															<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+														</Form.Group>
+													</Row>
+													<Row className="mb-3">
+														<Form.Group as={Col} md="6" controlId="validationCustom01">
+															<Form.Label className="mb-0 text-bold">Email ID</Form.Label>
+															<Form.Control
+																required
+																type="email"
+																placeholder="Enter Email ID"
+																className="field-size"
+															/>
+															<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+														</Form.Group>
+														<Form.Group as={Col} md="6" controlId="validationCustom02">
+															<Form className="mt-3">
+																<Form.Check
+																	type="switch"
+																	id="custom-switch switch-ucc"
+																	label="Email ID Modified"
+																/>
+															</Form>
+															<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+														</Form.Group>
+													</Row>
+													<Row className="mb-3">
+														<Form.Group as={Col} md="6" controlId="validationCustom01">
+															<Form.Label className="mb-0 text-bold">Request Type</Form.Label>
+															<Form.Select defaultValue="Choose..." className="field-size">
+																<option></option>
+																<option>Option 2 </option>
+																<option>Option 3 </option>
+																<option>Option 4 </option>
+																<option>Option 5 </option>
+																<option>Option 6 </option>
+															</Form.Select>
+															<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+														</Form.Group>
+														<Form.Group as={Col} md="6" controlId="validationCustom02">
+															<Form className="mt-3">
+																<Form.Check
+																	type="switch"
+																	id="custom-switch switch-ucc"
+																	label="Email Status"
+																/>
+															</Form>
+															<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+														</Form.Group>
+													</Row>
+													<Row className="mb-3">
+													<Form.Group as={Col} md="6" controlId="validationCustom02">
+															<Form className="mt-3">
+																<Form.Check
+																	type="switch"
+																	id="custom-switch switch-ucc"
+																	label="Pan Status"
+																/>
+															</Form>
+															<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+														</Form.Group>
+														<Form.Group as={Col} md="6" controlId="validationCustom02">
+															<Form className="mt-3">
+																<Form.Check
+																	type="switch"
+																	id="custom-switch switch-ucc"
+																	label="Mobile Status"
+																/>
+															</Form>
+															<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+														</Form.Group>
+													</Row>
+													<Row className="mt-5">
+														<Col>
+															<Button className="btn-outlined">Cancel</Button>
+															<Button className="btn-position btn-filled">Submit</Button>
+														</Col>
+													</Row>
+												</Form>
+												{/* <Form.Group as={Col}>
 													<div className="file file--upload send-btn">
 														<label htmlFor="input-file">
 															<PlusCircleFill alt="upload" className="upload-send" />
@@ -415,14 +600,7 @@ const Dashboard = ({ loading }) => {
 														</label>
 														<input id="input-file" type="file" />
 													</div>
-												</Form.Group>
-											</Col>
-										</Row>
-										<Row className="mt-5">
-											<Col sm={3}></Col>
-											<Col>
-												<Button className="btn-outlined">Cancel</Button>
-												<Button className="btn-position btn-filled">Submit</Button>
+												</Form.Group> */}
 											</Col>
 										</Row>
 									</Col>
