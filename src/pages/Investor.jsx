@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import {
 	Form,
 	Button,
@@ -7,12 +8,34 @@ import {
 	ToggleButton,
 } from "react-bootstrap";
 import AppLayout from "../layouts/appLayout";
+import Countdown from "react-countdown";
+
 import "../styles/investor.css";
 
-const Investor = () => {
+const Investor = ({}) => {
 	const [otpType, setOtpType] = useState("email");
 	const [otpStatus, setOtpStatus] = useState("reject");
+	let { token } = useParams();
 
+	const renderer = ({ hours, minutes, seconds, completed }, values) => {
+		// if (completed) {
+		// 	return (
+		// 		<Button
+		// 			className="text-verify"
+		// 			variant="link"
+		// 			// onClick={() => handleEmailVerification(values)}
+		// 		>
+		// 			{/* {emailOtpText} */}
+		// 		</Button>
+		// 	);
+		// } else {
+		return (
+			<span className="text-verify" style={{ bottom: "13px", right: "9px" }}>
+				0{minutes}:{seconds}
+			</span>
+		);
+		// }
+	};
 	console.log(otpStatus);
 	return (
 		<>
@@ -92,6 +115,7 @@ const Investor = () => {
 											<p className="text-otp p-3">
 												Your OTP is <span>345673</span>
 											</p>
+											<Countdown date={Date.now() + 60000} renderer={renderer} />
 										</>
 									) : null}
 									<Button variant="primary" className="w-100 p-2 mt-3">
