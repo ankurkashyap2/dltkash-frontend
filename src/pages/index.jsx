@@ -6,7 +6,7 @@ import Register from "./register";
 import Forgot from "./forgot";
 import Dashboard from "./dashboard";
 import ResetPassword from "./reset";
-import Investor from "./Investor";
+import Investor from "./investor";
 import Otp from "./otp";
 
 const AppRoutes = (props) => {
@@ -33,8 +33,6 @@ const AppRoutes = (props) => {
 						</SecuredRoute>
 					}
 				/>
-				{/* <SecuredRoute path="/" element={<Dashboard {...props} />} /> */}
-				{/* <Route path="/" element={<Login {...props} />} /> */}
 			</Routes>
 		</Router>
 	);
