@@ -6,7 +6,7 @@ import "../../styles/navbar.css";
 
 const Navbar = ({ page, token, user }) => {
 	return (
-		<Nav className="customnavbar-container p-3">
+		<Nav className="customnavbar-container">
 			<Nav.Item>
 				<img src={"/assets/images/dltkashlogo.png"} alt="logo" />
 			</Nav.Item>
