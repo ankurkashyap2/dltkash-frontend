@@ -428,7 +428,10 @@ const UCCVerification = ({
 			<SuccessModal
 				show={isInvestorCreated}
 				message={"Your Request queued successfully!"}
-				onHide={() => resetInvestorFlags("isInvestorCreated")}
+				onHide={() => {
+					getInitialValues();
+					resetInvestorFlags("isInvestorCreated");
+				}}
 			/>
 		</AppLayout>
 	);

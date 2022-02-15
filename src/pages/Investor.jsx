@@ -81,7 +81,7 @@ const Investor = ({
 	};
 
 	const handleOTPSubmit = () => {
-		if (otp === enteredOtp) {
+		if (otp === enteredOtp || otpStatus === "reject") {
 			setOtpError(false);
 			otpType === "email"
 				? verifyInvestorEmail(
@@ -184,7 +184,20 @@ const Investor = ({
 							</div>
 							<div className="col-md-6 bg-white p-5">
 								<div className="form-login">
-									<h3>Please Verify your Account</h3>
+									<h3>
+										{otpType === "email"
+											? investorData &&
+											  (investorData.uccEmailStatus === "VERIFIED" ||
+													investorData.uccEmailStatus === "REJECTED")
+												? "Your email is verified!"
+												: "Please Verify your Account"
+											: investorData &&
+											  (investorData.uccMobileStatus === "VERIFIED" ||
+													investorData.uccMobileStatus === "REJECTED")
+											? "Your mobile is verified!"
+											: "Please Verify your Account"}
+									</h3>
+
 									<div className="otp-radio-btn">
 										<ToggleButtonGroup
 											type="radio"
@@ -213,17 +226,17 @@ const Investor = ({
 											</ToggleButton>
 										</ToggleButtonGroup>
 									</div>
-									{otpType === "email" ? (
-										investorData && investorData.uccEmailStatus === "VERIFIED" ? (
-											<h3>Your email is already verified!</h3>
-										) : (
-											renderOTPOptions()
-										)
-									) : investorData && investorData.uccMobileStatus === "VERIFIED" ? (
-										<h3>Your mobile is already verified!</h3>
-									) : (
-										renderOTPOptions()
-									)}
+									{otpType === "email"
+										? investorData &&
+										  (investorData.uccEmailStatus === "VERIFIED" ||
+												investorData.uccEmailStatus === "REJECTED")
+											? null
+											: renderOTPOptions()
+										: investorData &&
+										  (investorData.uccMobileStatus === "VERIFIED" ||
+												investorData.uccMobileStatus === "REJECTED")
+										? null
+										: renderOTPOptions()}
 								</div>
 							</div>
 						</div>
@@ -232,11 +245,7 @@ const Investor = ({
 			</div>
 			<SuccessModal
 				show={isEmailVerified || isMobileVerified}
-				message={
-					isEmailVerified
-						? "Your Email is verified successfully!"
-						: "Your Mobile is verified successfully!"
-				}
+				message={(isEmailVerified || isMobileVerified) && "Verified successfully!"}
 				onHide={() =>
 					resetInvestorFlags(
 						isEmailVerified ? "isEmailVerified" : "isMobileVerified"

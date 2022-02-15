@@ -62,7 +62,7 @@ export function* verifyInvestorEmail() {
 				token
 			);
 			if (response.status === 200) {
-				yield put(verifyInvestorEmailSuccess());
+				yield put(verifyInvestorEmailSuccess(response.data.data));
 			} else {
 				yield put(verifyInvestorEmailError(response.error.error.message));
 			}
@@ -81,7 +81,7 @@ export function* verifyInvestorMobile() {
 				token
 			);
 			if (response.status === 200) {
-				yield put(verifyInvestorMobileSuccess());
+				yield put(verifyInvestorMobileSuccess(response.data.data));
 			} else {
 				yield put(verifyInvestorMobileError(response.error.error.message));
 			}

@@ -72,6 +72,7 @@ const investorReducer = (state = initState, action) => {
 				...state,
 				loading: false,
 				isEmailVerified: true,
+				investorData: action.response,
 			};
 		case VERIFY_INVESTOR_EMAIL_ERROR:
 			return {
@@ -90,6 +91,7 @@ const investorReducer = (state = initState, action) => {
 				...state,
 				loading: false,
 				isMobileVerified: true,
+				investorData: action.response,
 			};
 		case VERIFY_INVESTOR_MOBILE_ERROR:
 			return {
