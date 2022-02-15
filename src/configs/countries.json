@@ -1,0 +1,2220 @@
+{
+    "status": true,
+    "total": 246,
+    "records": [
+        {
+            "id": 1,
+            "country": "Afghanistan",
+            "capital": null,
+            "country_code": "AF",
+            "nationality": null,
+            "dial_code": "93",
+            "approved": 1
+        },
+        {
+            "id": 2,
+            "country": "Aland Islands",
+            "capital": null,
+            "country_code": "AX",
+            "nationality": null,
+            "dial_code": "358",
+            "approved": 1
+        },
+        {
+            "id": 3,
+            "country": "Albania",
+            "capital": null,
+            "country_code": "AL",
+            "nationality": null,
+            "dial_code": "355",
+            "approved": 1
+        },
+        {
+            "id": 4,
+            "country": "Algeria",
+            "capital": null,
+            "country_code": "DZ",
+            "nationality": null,
+            "dial_code": "213",
+            "approved": 1
+        },
+        {
+            "id": 5,
+            "country": "American Samoa",
+            "capital": null,
+            "country_code": "AS",
+            "nationality": null,
+            "dial_code": "684",
+            "approved": 1
+        },
+        {
+            "id": 6,
+            "country": "Andorra",
+            "capital": null,
+            "country_code": "AD",
+            "nationality": null,
+            "dial_code": "376",
+            "approved": 1
+        },
+        {
+            "id": 7,
+            "country": "Angola",
+            "capital": null,
+            "country_code": "AO",
+            "nationality": null,
+            "dial_code": "244",
+            "approved": 1
+        },
+        {
+            "id": 8,
+            "country": "Anguilla",
+            "capital": null,
+            "country_code": "AI",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 9,
+            "country": "Antarctica",
+            "capital": null,
+            "country_code": "AQ",
+            "nationality": null,
+            "dial_code": "672",
+            "approved": 1
+        },
+        {
+            "id": 10,
+            "country": "Antigua And Barbuda",
+            "capital": null,
+            "country_code": "AG",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 11,
+            "country": "Argentina",
+            "capital": null,
+            "country_code": "AR",
+            "nationality": null,
+            "dial_code": "54",
+            "approved": 1
+        },
+        {
+            "id": 12,
+            "country": "Armenia",
+            "capital": null,
+            "country_code": "AM",
+            "nationality": null,
+            "dial_code": "374",
+            "approved": 1
+        },
+        {
+            "id": 13,
+            "country": "Aruba",
+            "capital": null,
+            "country_code": "AW",
+            "nationality": null,
+            "dial_code": "297",
+            "approved": 1
+        },
+        {
+            "id": 14,
+            "country": "Australia",
+            "capital": null,
+            "country_code": "AU",
+            "nationality": null,
+            "dial_code": "61",
+            "approved": 1
+        },
+        {
+            "id": 15,
+            "country": "Austria",
+            "capital": null,
+            "country_code": "AT",
+            "nationality": null,
+            "dial_code": "43",
+            "approved": 1
+        },
+        {
+            "id": 16,
+            "country": "Azerbaijan",
+            "capital": null,
+            "country_code": "AZ",
+            "nationality": null,
+            "dial_code": "994",
+            "approved": 1
+        },
+        {
+            "id": 17,
+            "country": "Bahamas",
+            "capital": null,
+            "country_code": "BS",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 18,
+            "country": "Bahrain",
+            "capital": "Manama",
+            "country_code": "BH",
+            "nationality": null,
+            "dial_code": "973",
+            "approved": 1
+        },
+        {
+            "id": 19,
+            "country": "Bangladesh",
+            "capital": null,
+            "country_code": "BD",
+            "nationality": null,
+            "dial_code": "880",
+            "approved": 1
+        },
+        {
+            "id": 20,
+            "country": "Barbados",
+            "capital": null,
+            "country_code": "BB",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 21,
+            "country": "Belarus",
+            "capital": null,
+            "country_code": "BY",
+            "nationality": null,
+            "dial_code": "375",
+            "approved": 1
+        },
+        {
+            "id": 22,
+            "country": "Belgium",
+            "capital": null,
+            "country_code": "BE",
+            "nationality": null,
+            "dial_code": "32",
+            "approved": 1
+        },
+        {
+            "id": 23,
+            "country": "Belize",
+            "capital": null,
+            "country_code": "BZ",
+            "nationality": null,
+            "dial_code": "501",
+            "approved": 1
+        },
+        {
+            "id": 24,
+            "country": "Benin",
+            "capital": null,
+            "country_code": "BJ",
+            "nationality": null,
+            "dial_code": "229",
+            "approved": 1
+        },
+        {
+            "id": 25,
+            "country": "Bermuda",
+            "capital": null,
+            "country_code": "BM",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 26,
+            "country": "Bhutan",
+            "capital": null,
+            "country_code": "BT",
+            "nationality": null,
+            "dial_code": "975",
+            "approved": 1
+        },
+        {
+            "id": 27,
+            "country": "Bolivia",
+            "capital": null,
+            "country_code": "BO",
+            "nationality": null,
+            "dial_code": "591",
+            "approved": 1
+        },
+        {
+            "id": 28,
+            "country": "Bosnia And Herzegovina",
+            "capital": null,
+            "country_code": "BA",
+            "nationality": null,
+            "dial_code": "387",
+            "approved": 1
+        },
+        {
+            "id": 29,
+            "country": "Botswana",
+            "capital": null,
+            "country_code": "BW",
+            "nationality": null,
+            "dial_code": "267",
+            "approved": 1
+        },
+        {
+            "id": 30,
+            "country": "Bouvet Island",
+            "capital": null,
+            "country_code": "BV",
+            "nationality": null,
+            "dial_code": "47",
+            "approved": 1
+        },
+        {
+            "id": 31,
+            "country": "Brazil",
+            "capital": null,
+            "country_code": "BR",
+            "nationality": null,
+            "dial_code": "55",
+            "approved": 1
+        },
+        {
+            "id": 32,
+            "country": "British Indian Ocean Territory",
+            "capital": null,
+            "country_code": "IO",
+            "nationality": null,
+            "dial_code": "246",
+            "approved": 1
+        },
+        {
+            "id": 33,
+            "country": "Brunei Darussalam",
+            "capital": null,
+            "country_code": "BN",
+            "nationality": null,
+            "dial_code": "673",
+            "approved": 1
+        },
+        {
+            "id": 34,
+            "country": "Bulgaria",
+            "capital": null,
+            "country_code": "BG",
+            "nationality": null,
+            "dial_code": "359",
+            "approved": 1
+        },
+        {
+            "id": 35,
+            "country": "Burkina Faso",
+            "capital": null,
+            "country_code": "BF",
+            "nationality": null,
+            "dial_code": "226",
+            "approved": 1
+        },
+        {
+            "id": 36,
+            "country": "Burundi",
+            "capital": null,
+            "country_code": "BI",
+            "nationality": null,
+            "dial_code": "257",
+            "approved": 1
+        },
+        {
+            "id": 37,
+            "country": "Cambodia",
+            "capital": null,
+            "country_code": "KH",
+            "nationality": null,
+            "dial_code": "855",
+            "approved": 1
+        },
+        {
+            "id": 38,
+            "country": "Cameroon",
+            "capital": null,
+            "country_code": "CM",
+            "nationality": null,
+            "dial_code": "237",
+            "approved": 1
+        },
+        {
+            "id": 39,
+            "country": "Canada",
+            "capital": null,
+            "country_code": "CA",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 40,
+            "country": "Cape Verde",
+            "capital": null,
+            "country_code": "CV",
+            "nationality": null,
+            "dial_code": "238",
+            "approved": 1
+        },
+        {
+            "id": 41,
+            "country": "Cayman Islands",
+            "capital": null,
+            "country_code": "KY",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 42,
+            "country": "Central African Republic",
+            "capital": null,
+            "country_code": "CF",
+            "nationality": null,
+            "dial_code": "236",
+            "approved": 1
+        },
+        {
+            "id": 43,
+            "country": "Chad",
+            "capital": null,
+            "country_code": "TD",
+            "nationality": null,
+            "dial_code": "235",
+            "approved": 1
+        },
+        {
+            "id": 44,
+            "country": "Chile",
+            "capital": null,
+            "country_code": "CL",
+            "nationality": null,
+            "dial_code": "56",
+            "approved": 1
+        },
+        {
+            "id": 45,
+            "country": "China",
+            "capital": null,
+            "country_code": "CN",
+            "nationality": null,
+            "dial_code": "86",
+            "approved": 1
+        },
+        {
+            "id": 46,
+            "country": "Christmas Island",
+            "capital": null,
+            "country_code": "CX",
+            "nationality": null,
+            "dial_code": "618",
+            "approved": 1
+        },
+        {
+            "id": 47,
+            "country": "Cocos (Keeling) Islands",
+            "capital": null,
+            "country_code": "CC",
+            "nationality": null,
+            "dial_code": "61",
+            "approved": 1
+        },
+        {
+            "id": 48,
+            "country": "Colombia",
+            "capital": null,
+            "country_code": "CO",
+            "nationality": null,
+            "dial_code": "57",
+            "approved": 1
+        },
+        {
+            "id": 49,
+            "country": "Comoros",
+            "capital": null,
+            "country_code": "KM",
+            "nationality": null,
+            "dial_code": "269",
+            "approved": 1
+        },
+        {
+            "id": 50,
+            "country": "Congo",
+            "capital": null,
+            "country_code": "CG",
+            "nationality": null,
+            "dial_code": "242",
+            "approved": 1
+        },
+        {
+            "id": 51,
+            "country": "Congo, Democratic Republic",
+            "capital": null,
+            "country_code": "CD",
+            "nationality": null,
+            "dial_code": "243",
+            "approved": 1
+        },
+        {
+            "id": 52,
+            "country": "Cook Islands",
+            "capital": null,
+            "country_code": "CK",
+            "nationality": null,
+            "dial_code": "682",
+            "approved": 1
+        },
+        {
+            "id": 53,
+            "country": "Costa Rica",
+            "capital": null,
+            "country_code": "CR",
+            "nationality": null,
+            "dial_code": "506",
+            "approved": 1
+        },
+        {
+            "id": 54,
+            "country": "Cote D'Ivoire",
+            "capital": null,
+            "country_code": "CI",
+            "nationality": null,
+            "dial_code": "225",
+            "approved": 1
+        },
+        {
+            "id": 55,
+            "country": "Croatia",
+            "capital": null,
+            "country_code": "HR",
+            "nationality": null,
+            "dial_code": "385",
+            "approved": 1
+        },
+        {
+            "id": 56,
+            "country": "Cuba",
+            "capital": null,
+            "country_code": "CU",
+            "nationality": null,
+            "dial_code": "53",
+            "approved": 1
+        },
+        {
+            "id": 57,
+            "country": "Curacao",
+            "capital": null,
+            "country_code": "CW",
+            "nationality": null,
+            "dial_code": null,
+            "approved": 1
+        },
+        {
+            "id": 58,
+            "country": "Cyprus",
+            "capital": null,
+            "country_code": "CY",
+            "nationality": null,
+            "dial_code": "357",
+            "approved": 1
+        },
+        {
+            "id": 59,
+            "country": "Czech Republic",
+            "capital": null,
+            "country_code": "CZ",
+            "nationality": null,
+            "dial_code": "420",
+            "approved": 1
+        },
+        {
+            "id": 60,
+            "country": "Denmark",
+            "capital": null,
+            "country_code": "DK",
+            "nationality": null,
+            "dial_code": "45",
+            "approved": 1
+        },
+        {
+            "id": 61,
+            "country": "Djibouti",
+            "capital": null,
+            "country_code": "DJ",
+            "nationality": null,
+            "dial_code": "253",
+            "approved": 1
+        },
+        {
+            "id": 62,
+            "country": "Dominica",
+            "capital": null,
+            "country_code": "DM",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 63,
+            "country": "Dominican Republic",
+            "capital": null,
+            "country_code": "DO",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 64,
+            "country": "Ecuador",
+            "capital": null,
+            "country_code": "EC",
+            "nationality": null,
+            "dial_code": "593",
+            "approved": 1
+        },
+        {
+            "id": 65,
+            "country": "Egypt",
+            "capital": null,
+            "country_code": "EG",
+            "nationality": null,
+            "dial_code": "20",
+            "approved": 1
+        },
+        {
+            "id": 66,
+            "country": "El Salvador",
+            "capital": null,
+            "country_code": "SV",
+            "nationality": null,
+            "dial_code": "503",
+            "approved": 1
+        },
+        {
+            "id": 67,
+            "country": "Equatorial Guinea",
+            "capital": null,
+            "country_code": "GQ",
+            "nationality": null,
+            "dial_code": "240",
+            "approved": 1
+        },
+        {
+            "id": 68,
+            "country": "Eritrea",
+            "capital": null,
+            "country_code": "ER",
+            "nationality": null,
+            "dial_code": "291",
+            "approved": 1
+        },
+        {
+            "id": 69,
+            "country": "Estonia",
+            "capital": null,
+            "country_code": "EE",
+            "nationality": null,
+            "dial_code": "372",
+            "approved": 1
+        },
+        {
+            "id": 70,
+            "country": "Ethiopia",
+            "capital": null,
+            "country_code": "ET",
+            "nationality": null,
+            "dial_code": "251",
+            "approved": 1
+        },
+        {
+            "id": 71,
+            "country": "Falkland Islands (Malvinas)",
+            "capital": null,
+            "country_code": "FK",
+            "nationality": null,
+            "dial_code": "500",
+            "approved": 1
+        },
+        {
+            "id": 72,
+            "country": "Faroe Islands",
+            "capital": null,
+            "country_code": "FO",
+            "nationality": null,
+            "dial_code": "298",
+            "approved": 1
+        },
+        {
+            "id": 73,
+            "country": "Fiji",
+            "capital": null,
+            "country_code": "FJ",
+            "nationality": null,
+            "dial_code": "679",
+            "approved": 1
+        },
+        {
+            "id": 74,
+            "country": "Finland",
+            "capital": null,
+            "country_code": "FI",
+            "nationality": null,
+            "dial_code": "358",
+            "approved": 1
+        },
+        {
+            "id": 75,
+            "country": "France",
+            "capital": null,
+            "country_code": "FR",
+            "nationality": null,
+            "dial_code": "33",
+            "approved": 1
+        },
+        {
+            "id": 76,
+            "country": "French Guiana",
+            "capital": null,
+            "country_code": "GF",
+            "nationality": null,
+            "dial_code": "594",
+            "approved": 1
+        },
+        {
+            "id": 77,
+            "country": "French Polynesia",
+            "capital": null,
+            "country_code": "PF",
+            "nationality": null,
+            "dial_code": "689",
+            "approved": 1
+        },
+        {
+            "id": 78,
+            "country": "French Southern Territories",
+            "capital": null,
+            "country_code": "TF",
+            "nationality": null,
+            "dial_code": "0",
+            "approved": 1
+        },
+        {
+            "id": 79,
+            "country": "Gabon",
+            "capital": null,
+            "country_code": "GA",
+            "nationality": null,
+            "dial_code": "241",
+            "approved": 1
+        },
+        {
+            "id": 80,
+            "country": "Gambia",
+            "capital": null,
+            "country_code": "GM",
+            "nationality": null,
+            "dial_code": "220",
+            "approved": 1
+        },
+        {
+            "id": 81,
+            "country": "Georgia",
+            "capital": null,
+            "country_code": "GE",
+            "nationality": null,
+            "dial_code": "995",
+            "approved": 1
+        },
+        {
+            "id": 82,
+            "country": "Germany",
+            "capital": null,
+            "country_code": "DE",
+            "nationality": null,
+            "dial_code": "49",
+            "approved": 1
+        },
+        {
+            "id": 83,
+            "country": "Ghana",
+            "capital": null,
+            "country_code": "GH",
+            "nationality": null,
+            "dial_code": "233",
+            "approved": 1
+        },
+        {
+            "id": 84,
+            "country": "Gibraltar",
+            "capital": null,
+            "country_code": "GI",
+            "nationality": null,
+            "dial_code": "350",
+            "approved": 1
+        },
+        {
+            "id": 85,
+            "country": "Greece",
+            "capital": null,
+            "country_code": "GR",
+            "nationality": null,
+            "dial_code": "30",
+            "approved": 1
+        },
+        {
+            "id": 86,
+            "country": "Greenland",
+            "capital": null,
+            "country_code": "GL",
+            "nationality": null,
+            "dial_code": "299",
+            "approved": 1
+        },
+        {
+            "id": 87,
+            "country": "Grenada",
+            "capital": null,
+            "country_code": "GD",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 88,
+            "country": "Guadeloupe",
+            "capital": null,
+            "country_code": "GP",
+            "nationality": null,
+            "dial_code": "590",
+            "approved": 1
+        },
+        {
+            "id": 89,
+            "country": "Guam",
+            "capital": null,
+            "country_code": "GU",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 90,
+            "country": "Guatemala",
+            "capital": null,
+            "country_code": "GT",
+            "nationality": null,
+            "dial_code": "502",
+            "approved": 1
+        },
+        {
+            "id": 91,
+            "country": "Guernsey",
+            "capital": null,
+            "country_code": "GG",
+            "nationality": null,
+            "dial_code": "44",
+            "approved": 1
+        },
+        {
+            "id": 92,
+            "country": "Guinea",
+            "capital": null,
+            "country_code": "GN",
+            "nationality": null,
+            "dial_code": "224",
+            "approved": 1
+        },
+        {
+            "id": 93,
+            "country": "Guinea-Bissau",
+            "capital": null,
+            "country_code": "GW",
+            "nationality": null,
+            "dial_code": "245",
+            "approved": 1
+        },
+        {
+            "id": 94,
+            "country": "Guyana",
+            "capital": null,
+            "country_code": "GY",
+            "nationality": null,
+            "dial_code": "592",
+            "approved": 1
+        },
+        {
+            "id": 95,
+            "country": "Haiti",
+            "capital": null,
+            "country_code": "HT",
+            "nationality": null,
+            "dial_code": "509",
+            "approved": 1
+        },
+        {
+            "id": 96,
+            "country": "Heard Island & Mcdonald Islands",
+            "capital": null,
+            "country_code": "HM",
+            "nationality": null,
+            "dial_code": "0",
+            "approved": 1
+        },
+        {
+            "id": 97,
+            "country": "Holy See (Vatican City State)",
+            "capital": null,
+            "country_code": "VA",
+            "nationality": null,
+            "dial_code": "39",
+            "approved": 1
+        },
+        {
+            "id": 98,
+            "country": "Honduras",
+            "capital": null,
+            "country_code": "HN",
+            "nationality": null,
+            "dial_code": "504",
+            "approved": 1
+        },
+        {
+            "id": 99,
+            "country": "Hong Kong",
+            "capital": null,
+            "country_code": "HK",
+            "nationality": null,
+            "dial_code": "852",
+            "approved": 1
+        },
+        {
+            "id": 100,
+            "country": "Hungary",
+            "capital": null,
+            "country_code": "HU",
+            "nationality": null,
+            "dial_code": "36",
+            "approved": 1
+        },
+        {
+            "id": 101,
+            "country": "Iceland",
+            "capital": null,
+            "country_code": "IS",
+            "nationality": null,
+            "dial_code": "354",
+            "approved": 1
+        },
+        {
+            "id": 102,
+            "country": "India",
+            "capital": null,
+            "country_code": "IN",
+            "nationality": null,
+            "dial_code": "91",
+            "approved": 1
+        },
+        {
+            "id": 103,
+            "country": "Indonesia",
+            "capital": null,
+            "country_code": "ID",
+            "nationality": null,
+            "dial_code": "62",
+            "approved": 1
+        },
+        {
+            "id": 104,
+            "country": "Iran, Islamic Republic Of",
+            "capital": null,
+            "country_code": "IR",
+            "nationality": null,
+            "dial_code": "98",
+            "approved": 1
+        },
+        {
+            "id": 105,
+            "country": "Iraq",
+            "capital": null,
+            "country_code": "IQ",
+            "nationality": null,
+            "dial_code": "964",
+            "approved": 1
+        },
+        {
+            "id": 106,
+            "country": "Ireland",
+            "capital": null,
+            "country_code": "IE",
+            "nationality": null,
+            "dial_code": "353",
+            "approved": 1
+        },
+        {
+            "id": 107,
+            "country": "Isle Of Man",
+            "capital": null,
+            "country_code": "IM",
+            "nationality": null,
+            "dial_code": "44",
+            "approved": 1
+        },
+        {
+            "id": 108,
+            "country": "Israel",
+            "capital": null,
+            "country_code": "IL",
+            "nationality": null,
+            "dial_code": "972",
+            "approved": 1
+        },
+        {
+            "id": 109,
+            "country": "Italy",
+            "capital": null,
+            "country_code": "IT",
+            "nationality": null,
+            "dial_code": "39",
+            "approved": 1
+        },
+        {
+            "id": 110,
+            "country": "Jamaica",
+            "capital": null,
+            "country_code": "JM",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 111,
+            "country": "Japan",
+            "capital": null,
+            "country_code": "JP",
+            "nationality": null,
+            "dial_code": "81",
+            "approved": 1
+        },
+        {
+            "id": 112,
+            "country": "Jersey",
+            "capital": null,
+            "country_code": "JE",
+            "nationality": null,
+            "dial_code": "44",
+            "approved": 1
+        },
+        {
+            "id": 113,
+            "country": "Jordan",
+            "capital": null,
+            "country_code": "JO",
+            "nationality": null,
+            "dial_code": "962",
+            "approved": 1
+        },
+        {
+            "id": 114,
+            "country": "Kazakhstan",
+            "capital": null,
+            "country_code": "KZ",
+            "nationality": null,
+            "dial_code": "7",
+            "approved": 1
+        },
+        {
+            "id": 115,
+            "country": "Kenya",
+            "capital": null,
+            "country_code": "KE",
+            "nationality": null,
+            "dial_code": "254",
+            "approved": 1
+        },
+        {
+            "id": 116,
+            "country": "Kiribati",
+            "capital": null,
+            "country_code": "KI",
+            "nationality": null,
+            "dial_code": "686",
+            "approved": 1
+        },
+        {
+            "id": 117,
+            "country": "Korea",
+            "capital": null,
+            "country_code": "KR",
+            "nationality": null,
+            "dial_code": "82",
+            "approved": 1
+        },
+        {
+            "id": 118,
+            "country": "Kuwait",
+            "capital": null,
+            "country_code": "KW",
+            "nationality": null,
+            "dial_code": "965",
+            "approved": 1
+        },
+        {
+            "id": 119,
+            "country": "Kyrgyzstan",
+            "capital": null,
+            "country_code": "KG",
+            "nationality": null,
+            "dial_code": "996",
+            "approved": 1
+        },
+        {
+            "id": 120,
+            "country": "Lao People's Democratic Republic",
+            "capital": null,
+            "country_code": "LA",
+            "nationality": null,
+            "dial_code": "856",
+            "approved": 1
+        },
+        {
+            "id": 121,
+            "country": "Latvia",
+            "capital": null,
+            "country_code": "LV",
+            "nationality": null,
+            "dial_code": "371",
+            "approved": 1
+        },
+        {
+            "id": 122,
+            "country": "Lebanon",
+            "capital": null,
+            "country_code": "LB",
+            "nationality": null,
+            "dial_code": "961",
+            "approved": 1
+        },
+        {
+            "id": 123,
+            "country": "Lesotho",
+            "capital": null,
+            "country_code": "LS",
+            "nationality": null,
+            "dial_code": "266",
+            "approved": 1
+        },
+        {
+            "id": 124,
+            "country": "Liberia",
+            "capital": null,
+            "country_code": "LR",
+            "nationality": null,
+            "dial_code": "231",
+            "approved": 1
+        },
+        {
+            "id": 125,
+            "country": "Libyan Arab Jamahiriya",
+            "capital": null,
+            "country_code": "LY",
+            "nationality": null,
+            "dial_code": "218",
+            "approved": 1
+        },
+        {
+            "id": 126,
+            "country": "Liechtenstein",
+            "capital": null,
+            "country_code": "LI",
+            "nationality": null,
+            "dial_code": "423",
+            "approved": 1
+        },
+        {
+            "id": 127,
+            "country": "Lithuania",
+            "capital": null,
+            "country_code": "LT",
+            "nationality": null,
+            "dial_code": "370",
+            "approved": 1
+        },
+        {
+            "id": 128,
+            "country": "Luxembourg",
+            "capital": null,
+            "country_code": "LU",
+            "nationality": null,
+            "dial_code": "352",
+            "approved": 1
+        },
+        {
+            "id": 129,
+            "country": "Macao",
+            "capital": null,
+            "country_code": "MO",
+            "nationality": null,
+            "dial_code": "853",
+            "approved": 1
+        },
+        {
+            "id": 130,
+            "country": "Macedonia",
+            "capital": null,
+            "country_code": "MK",
+            "nationality": null,
+            "dial_code": "389",
+            "approved": 1
+        },
+        {
+            "id": 131,
+            "country": "Madagascar",
+            "capital": null,
+            "country_code": "MG",
+            "nationality": null,
+            "dial_code": "261",
+            "approved": 1
+        },
+        {
+            "id": 132,
+            "country": "Malawi",
+            "capital": null,
+            "country_code": "MW",
+            "nationality": null,
+            "dial_code": "265",
+            "approved": 1
+        },
+        {
+            "id": 133,
+            "country": "Malaysia",
+            "capital": null,
+            "country_code": "MY",
+            "nationality": null,
+            "dial_code": "60",
+            "approved": 1
+        },
+        {
+            "id": 134,
+            "country": "Maldives",
+            "capital": null,
+            "country_code": "MV",
+            "nationality": null,
+            "dial_code": "960",
+            "approved": 1
+        },
+        {
+            "id": 135,
+            "country": "Mali",
+            "capital": null,
+            "country_code": "ML",
+            "nationality": null,
+            "dial_code": "223",
+            "approved": 1
+        },
+        {
+            "id": 136,
+            "country": "Malta",
+            "capital": null,
+            "country_code": "MT",
+            "nationality": null,
+            "dial_code": "356",
+            "approved": 1
+        },
+        {
+            "id": 137,
+            "country": "Marshall Islands",
+            "capital": null,
+            "country_code": "MH",
+            "nationality": null,
+            "dial_code": "692",
+            "approved": 1
+        },
+        {
+            "id": 138,
+            "country": "Martinique",
+            "capital": null,
+            "country_code": "MQ",
+            "nationality": null,
+            "dial_code": "596",
+            "approved": 1
+        },
+        {
+            "id": 139,
+            "country": "Mauritania",
+            "capital": null,
+            "country_code": "MR",
+            "nationality": null,
+            "dial_code": "222",
+            "approved": 1
+        },
+        {
+            "id": 140,
+            "country": "Mauritius",
+            "capital": null,
+            "country_code": "MU",
+            "nationality": null,
+            "dial_code": "230",
+            "approved": 1
+        },
+        {
+            "id": 141,
+            "country": "Mayotte",
+            "capital": null,
+            "country_code": "YT",
+            "nationality": null,
+            "dial_code": "269",
+            "approved": 1
+        },
+        {
+            "id": 142,
+            "country": "Mexico",
+            "capital": null,
+            "country_code": "MX",
+            "nationality": null,
+            "dial_code": "52",
+            "approved": 1
+        },
+        {
+            "id": 143,
+            "country": "Micronesia, Federated States Of",
+            "capital": null,
+            "country_code": "FM",
+            "nationality": null,
+            "dial_code": "691",
+            "approved": 1
+        },
+        {
+            "id": 144,
+            "country": "Moldova",
+            "capital": null,
+            "country_code": "MD",
+            "nationality": null,
+            "dial_code": "373",
+            "approved": 1
+        },
+        {
+            "id": 145,
+            "country": "Monaco",
+            "capital": null,
+            "country_code": "MC",
+            "nationality": null,
+            "dial_code": "377",
+            "approved": 1
+        },
+        {
+            "id": 146,
+            "country": "Mongolia",
+            "capital": null,
+            "country_code": "MN",
+            "nationality": null,
+            "dial_code": "976",
+            "approved": 1
+        },
+        {
+            "id": 147,
+            "country": "Montenegro",
+            "capital": null,
+            "country_code": "ME",
+            "nationality": null,
+            "dial_code": "382",
+            "approved": 1
+        },
+        {
+            "id": 148,
+            "country": "Montserrat",
+            "capital": null,
+            "country_code": "MS",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 149,
+            "country": "Morocco",
+            "capital": null,
+            "country_code": "MA",
+            "nationality": null,
+            "dial_code": "212",
+            "approved": 1
+        },
+        {
+            "id": 150,
+            "country": "Mozambique",
+            "capital": null,
+            "country_code": "MZ",
+            "nationality": null,
+            "dial_code": "258",
+            "approved": 1
+        },
+        {
+            "id": 151,
+            "country": "Myanmar",
+            "capital": null,
+            "country_code": "MM",
+            "nationality": null,
+            "dial_code": "95",
+            "approved": 1
+        },
+        {
+            "id": 152,
+            "country": "Namibia",
+            "capital": null,
+            "country_code": "NA",
+            "nationality": null,
+            "dial_code": "264",
+            "approved": 1
+        },
+        {
+            "id": 153,
+            "country": "Nauru",
+            "capital": null,
+            "country_code": "NR",
+            "nationality": null,
+            "dial_code": "674",
+            "approved": 1
+        },
+        {
+            "id": 154,
+            "country": "Nepal",
+            "capital": null,
+            "country_code": "NP",
+            "nationality": null,
+            "dial_code": "977",
+            "approved": 1
+        },
+        {
+            "id": 155,
+            "country": "Netherlands",
+            "capital": null,
+            "country_code": "NL",
+            "nationality": null,
+            "dial_code": "31",
+            "approved": 1
+        },
+        {
+            "id": 156,
+            "country": "Netherlands Antilles",
+            "capital": null,
+            "country_code": "AN",
+            "nationality": null,
+            "dial_code": "599",
+            "approved": 1
+        },
+        {
+            "id": 157,
+            "country": "New Caledonia",
+            "capital": null,
+            "country_code": "NC",
+            "nationality": null,
+            "dial_code": "687",
+            "approved": 1
+        },
+        {
+            "id": 158,
+            "country": "New Zealand",
+            "capital": null,
+            "country_code": "NZ",
+            "nationality": null,
+            "dial_code": "64",
+            "approved": 1
+        },
+        {
+            "id": 159,
+            "country": "Nicaragua",
+            "capital": null,
+            "country_code": "NI",
+            "nationality": null,
+            "dial_code": "505",
+            "approved": 1
+        },
+        {
+            "id": 160,
+            "country": "Niger",
+            "capital": null,
+            "country_code": "NE",
+            "nationality": null,
+            "dial_code": "227",
+            "approved": 1
+        },
+        {
+            "id": 161,
+            "country": "Nigeria",
+            "capital": null,
+            "country_code": "NG",
+            "nationality": null,
+            "dial_code": "234",
+            "approved": 1
+        },
+        {
+            "id": 162,
+            "country": "Niue",
+            "capital": null,
+            "country_code": "NU",
+            "nationality": null,
+            "dial_code": "683",
+            "approved": 1
+        },
+        {
+            "id": 163,
+            "country": "Norfolk Island",
+            "capital": null,
+            "country_code": "NF",
+            "nationality": null,
+            "dial_code": "6723",
+            "approved": 1
+        },
+        {
+            "id": 164,
+            "country": "Northern Mariana Islands",
+            "capital": null,
+            "country_code": "MP",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 165,
+            "country": "Norway",
+            "capital": null,
+            "country_code": "NO",
+            "nationality": null,
+            "dial_code": "47",
+            "approved": 1
+        },
+        {
+            "id": 166,
+            "country": "Oman",
+            "capital": null,
+            "country_code": "OM",
+            "nationality": null,
+            "dial_code": "968",
+            "approved": 1
+        },
+        {
+            "id": 167,
+            "country": "Pakistan",
+            "capital": null,
+            "country_code": "PK",
+            "nationality": null,
+            "dial_code": "92",
+            "approved": 1
+        },
+        {
+            "id": 168,
+            "country": "Palau",
+            "capital": null,
+            "country_code": "PW",
+            "nationality": null,
+            "dial_code": "680",
+            "approved": 1
+        },
+        {
+            "id": 169,
+            "country": "Palestine, State of",
+            "capital": null,
+            "country_code": "PS",
+            "nationality": null,
+            "dial_code": "970",
+            "approved": 1
+        },
+        {
+            "id": 170,
+            "country": "Panama",
+            "capital": null,
+            "country_code": "PA",
+            "nationality": null,
+            "dial_code": "507",
+            "approved": 1
+        },
+        {
+            "id": 171,
+            "country": "Papua New Guinea",
+            "capital": null,
+            "country_code": "PG",
+            "nationality": null,
+            "dial_code": "675",
+            "approved": 1
+        },
+        {
+            "id": 172,
+            "country": "Paraguay",
+            "capital": null,
+            "country_code": "PY",
+            "nationality": null,
+            "dial_code": "595",
+            "approved": 1
+        },
+        {
+            "id": 173,
+            "country": "Peru",
+            "capital": null,
+            "country_code": "PE",
+            "nationality": null,
+            "dial_code": "51",
+            "approved": 1
+        },
+        {
+            "id": 174,
+            "country": "Philippines",
+            "capital": null,
+            "country_code": "PH",
+            "nationality": null,
+            "dial_code": "63",
+            "approved": 1
+        },
+        {
+            "id": 175,
+            "country": "Pitcairn",
+            "capital": null,
+            "country_code": "PN",
+            "nationality": null,
+            "dial_code": "64",
+            "approved": 1
+        },
+        {
+            "id": 176,
+            "country": "Poland",
+            "capital": null,
+            "country_code": "PL",
+            "nationality": null,
+            "dial_code": "48",
+            "approved": 1
+        },
+        {
+            "id": 177,
+            "country": "Portugal",
+            "capital": null,
+            "country_code": "PT",
+            "nationality": null,
+            "dial_code": "351",
+            "approved": 1
+        },
+        {
+            "id": 178,
+            "country": "Puerto Rico",
+            "capital": null,
+            "country_code": "PR",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 179,
+            "country": "Qatar",
+            "capital": null,
+            "country_code": "QA",
+            "nationality": null,
+            "dial_code": "974",
+            "approved": 1
+        },
+        {
+            "id": 180,
+            "country": "Reunion",
+            "capital": null,
+            "country_code": "RE",
+            "nationality": null,
+            "dial_code": "262",
+            "approved": 1
+        },
+        {
+            "id": 181,
+            "country": "Romania",
+            "capital": null,
+            "country_code": "RO",
+            "nationality": null,
+            "dial_code": "40",
+            "approved": 1
+        },
+        {
+            "id": 182,
+            "country": "Russian Federation",
+            "capital": null,
+            "country_code": "RU",
+            "nationality": null,
+            "dial_code": "7",
+            "approved": 1
+        },
+        {
+            "id": 183,
+            "country": "Rwanda",
+            "capital": null,
+            "country_code": "RW",
+            "nationality": null,
+            "dial_code": "250",
+            "approved": 1
+        },
+        {
+            "id": 184,
+            "country": "Saint Barthelemy",
+            "capital": null,
+            "country_code": "BL",
+            "nationality": null,
+            "dial_code": "590",
+            "approved": 1
+        },
+        {
+            "id": 185,
+            "country": "Saint Helena",
+            "capital": null,
+            "country_code": "SH",
+            "nationality": null,
+            "dial_code": "290",
+            "approved": 1
+        },
+        {
+            "id": 186,
+            "country": "Saint Kitts And Nevis",
+            "capital": null,
+            "country_code": "KN",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 187,
+            "country": "Saint Lucia",
+            "capital": null,
+            "country_code": "LC",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 188,
+            "country": "Saint Martin",
+            "capital": null,
+            "country_code": "MF",
+            "nationality": null,
+            "dial_code": "590",
+            "approved": 1
+        },
+        {
+            "id": 189,
+            "country": "Saint Pierre And Miquelon",
+            "capital": null,
+            "country_code": "PM",
+            "nationality": null,
+            "dial_code": "508",
+            "approved": 1
+        },
+        {
+            "id": 190,
+            "country": "Saint Vincent And Grenadines",
+            "capital": null,
+            "country_code": "VC",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 191,
+            "country": "Samoa",
+            "capital": null,
+            "country_code": "WS",
+            "nationality": null,
+            "dial_code": "685",
+            "approved": 1
+        },
+        {
+            "id": 192,
+            "country": "San Marino",
+            "capital": null,
+            "country_code": "SM",
+            "nationality": null,
+            "dial_code": "378",
+            "approved": 1
+        },
+        {
+            "id": 193,
+            "country": "Sao Tome And Principe",
+            "capital": null,
+            "country_code": "ST",
+            "nationality": null,
+            "dial_code": "239",
+            "approved": 1
+        },
+        {
+            "id": 194,
+            "country": "Saudi Arabia",
+            "capital": null,
+            "country_code": "SA",
+            "nationality": null,
+            "dial_code": "966",
+            "approved": 1
+        },
+        {
+            "id": 195,
+            "country": "Senegal",
+            "capital": null,
+            "country_code": "SN",
+            "nationality": null,
+            "dial_code": "221",
+            "approved": 1
+        },
+        {
+            "id": 196,
+            "country": "Serbia",
+            "capital": null,
+            "country_code": "RS",
+            "nationality": null,
+            "dial_code": "381",
+            "approved": 1
+        },
+        {
+            "id": 197,
+            "country": "Seychelles",
+            "capital": null,
+            "country_code": "SC",
+            "nationality": null,
+            "dial_code": "248",
+            "approved": 1
+        },
+        {
+            "id": 198,
+            "country": "Sierra Leone",
+            "capital": null,
+            "country_code": "SL",
+            "nationality": null,
+            "dial_code": "232",
+            "approved": 1
+        },
+        {
+            "id": 199,
+            "country": "Singapore",
+            "capital": null,
+            "country_code": "SG",
+            "nationality": null,
+            "dial_code": "65",
+            "approved": 1
+        },
+        {
+            "id": 200,
+            "country": "Slovakia",
+            "capital": null,
+            "country_code": "SK",
+            "nationality": null,
+            "dial_code": "421",
+            "approved": 1
+        },
+        {
+            "id": 201,
+            "country": "Slovenia",
+            "capital": null,
+            "country_code": "SI",
+            "nationality": null,
+            "dial_code": "386",
+            "approved": 1
+        },
+        {
+            "id": 202,
+            "country": "Solomon Islands",
+            "capital": null,
+            "country_code": "SB",
+            "nationality": null,
+            "dial_code": "677",
+            "approved": 1
+        },
+        {
+            "id": 203,
+            "country": "Somalia",
+            "capital": null,
+            "country_code": "SO",
+            "nationality": null,
+            "dial_code": "252",
+            "approved": 1
+        },
+        {
+            "id": 204,
+            "country": "South Africa",
+            "capital": null,
+            "country_code": "ZA",
+            "nationality": null,
+            "dial_code": "27",
+            "approved": 1
+        },
+        {
+            "id": 205,
+            "country": "South Georgia And Sandwich Isl.",
+            "capital": null,
+            "country_code": "GS",
+            "nationality": null,
+            "dial_code": "500",
+            "approved": 1
+        },
+        {
+            "id": 206,
+            "country": "Spain",
+            "capital": null,
+            "country_code": "ES",
+            "nationality": null,
+            "dial_code": "34",
+            "approved": 1
+        },
+        {
+            "id": 207,
+            "country": "Sri Lanka",
+            "capital": null,
+            "country_code": "LK",
+            "nationality": null,
+            "dial_code": "94",
+            "approved": 1
+        },
+        {
+            "id": 208,
+            "country": "Sudan",
+            "capital": null,
+            "country_code": "SD",
+            "nationality": null,
+            "dial_code": "249",
+            "approved": 1
+        },
+        {
+            "id": 209,
+            "country": "Suriname",
+            "capital": null,
+            "country_code": "SR",
+            "nationality": null,
+            "dial_code": "597",
+            "approved": 1
+        },
+        {
+            "id": 210,
+            "country": "Svalbard And Jan Mayen",
+            "capital": null,
+            "country_code": "SJ",
+            "nationality": null,
+            "dial_code": "47",
+            "approved": 1
+        },
+        {
+            "id": 211,
+            "country": "Swaziland",
+            "capital": null,
+            "country_code": "SZ",
+            "nationality": null,
+            "dial_code": "268",
+            "approved": 1
+        },
+        {
+            "id": 212,
+            "country": "Sweden",
+            "capital": null,
+            "country_code": "SE",
+            "nationality": null,
+            "dial_code": "46",
+            "approved": 1
+        },
+        {
+            "id": 213,
+            "country": "Switzerland",
+            "capital": null,
+            "country_code": "CH",
+            "nationality": null,
+            "dial_code": "41",
+            "approved": 1
+        },
+        {
+            "id": 214,
+            "country": "Syrian Arab Republic",
+            "capital": null,
+            "country_code": "SY",
+            "nationality": null,
+            "dial_code": "963",
+            "approved": 1
+        },
+        {
+            "id": 215,
+            "country": "Taiwan",
+            "capital": null,
+            "country_code": "TW",
+            "nationality": null,
+            "dial_code": "886",
+            "approved": 1
+        },
+        {
+            "id": 216,
+            "country": "Tajikistan",
+            "capital": null,
+            "country_code": "TJ",
+            "nationality": null,
+            "dial_code": "992",
+            "approved": 1
+        },
+        {
+            "id": 217,
+            "country": "Tanzania",
+            "capital": null,
+            "country_code": "TZ",
+            "nationality": null,
+            "dial_code": "255",
+            "approved": 1
+        },
+        {
+            "id": 218,
+            "country": "Thailand",
+            "capital": null,
+            "country_code": "TH",
+            "nationality": null,
+            "dial_code": "66",
+            "approved": 1
+        },
+        {
+            "id": 219,
+            "country": "Timor-Leste",
+            "capital": null,
+            "country_code": "TL",
+            "nationality": null,
+            "dial_code": "670",
+            "approved": 1
+        },
+        {
+            "id": 220,
+            "country": "Togo",
+            "capital": null,
+            "country_code": "TG",
+            "nationality": null,
+            "dial_code": "228",
+            "approved": 1
+        },
+        {
+            "id": 221,
+            "country": "Tokelau",
+            "capital": null,
+            "country_code": "TK",
+            "nationality": null,
+            "dial_code": "690",
+            "approved": 1
+        },
+        {
+            "id": 222,
+            "country": "Tonga",
+            "capital": null,
+            "country_code": "TO",
+            "nationality": null,
+            "dial_code": "676",
+            "approved": 1
+        },
+        {
+            "id": 223,
+            "country": "Trinidad And Tobago",
+            "capital": null,
+            "country_code": "TT",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 224,
+            "country": "Tunisia",
+            "capital": null,
+            "country_code": "TN",
+            "nationality": null,
+            "dial_code": "216",
+            "approved": 1
+        },
+        {
+            "id": 225,
+            "country": "Turkey",
+            "capital": null,
+            "country_code": "TR",
+            "nationality": null,
+            "dial_code": "90",
+            "approved": 1
+        },
+        {
+            "id": 226,
+            "country": "Turkmenistan",
+            "capital": null,
+            "country_code": "TM",
+            "nationality": null,
+            "dial_code": "993",
+            "approved": 1
+        },
+        {
+            "id": 227,
+            "country": "Turks And Caicos Islands",
+            "capital": null,
+            "country_code": "TC",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 228,
+            "country": "Tuvalu",
+            "capital": null,
+            "country_code": "TV",
+            "nationality": null,
+            "dial_code": "688",
+            "approved": 1
+        },
+        {
+            "id": 229,
+            "country": "Uganda",
+            "capital": null,
+            "country_code": "UG",
+            "nationality": null,
+            "dial_code": "256",
+            "approved": 1
+        },
+        {
+            "id": 230,
+            "country": "Ukraine",
+            "capital": null,
+            "country_code": "UA",
+            "nationality": null,
+            "dial_code": "380",
+            "approved": 1
+        },
+        {
+            "id": 231,
+            "country": "United Arab Emirates",
+            "capital": null,
+            "country_code": "AE",
+            "nationality": null,
+            "dial_code": "971",
+            "approved": 1
+        },
+        {
+            "id": 232,
+            "country": "United Kingdom",
+            "capital": null,
+            "country_code": "GB",
+            "nationality": null,
+            "dial_code": "44",
+            "approved": 1
+        },
+        {
+            "id": 233,
+            "country": "United States",
+            "capital": null,
+            "country_code": "US",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 234,
+            "country": "United States Outlying Islands",
+            "capital": null,
+            "country_code": "UM",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 235,
+            "country": "Uruguay",
+            "capital": null,
+            "country_code": "UY",
+            "nationality": null,
+            "dial_code": "598",
+            "approved": 1
+        },
+        {
+            "id": 236,
+            "country": "Uzbekistan",
+            "capital": null,
+            "country_code": "UZ",
+            "nationality": null,
+            "dial_code": "998",
+            "approved": 1
+        },
+        {
+            "id": 237,
+            "country": "Vanuatu",
+            "capital": null,
+            "country_code": "VU",
+            "nationality": null,
+            "dial_code": "678",
+            "approved": 1
+        },
+        {
+            "id": 238,
+            "country": "Venezuela",
+            "capital": null,
+            "country_code": "VE",
+            "nationality": null,
+            "dial_code": "58",
+            "approved": 1
+        },
+        {
+            "id": 239,
+            "country": "Viet Nam",
+            "capital": null,
+            "country_code": "VN",
+            "nationality": null,
+            "dial_code": "84",
+            "approved": 1
+        },
+        {
+            "id": 240,
+            "country": "Virgin Islands, British",
+            "capital": null,
+            "country_code": "VG",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 241,
+            "country": "Virgin Islands, U.S.",
+            "capital": null,
+            "country_code": "VI",
+            "nationality": null,
+            "dial_code": "1",
+            "approved": 1
+        },
+        {
+            "id": 242,
+            "country": "Wallis And Futuna",
+            "capital": null,
+            "country_code": "WF",
+            "nationality": null,
+            "dial_code": "681",
+            "approved": 1
+        },
+        {
+            "id": 243,
+            "country": "Western Sahara",
+            "capital": null,
+            "country_code": "EH",
+            "nationality": null,
+            "dial_code": "212",
+            "approved": 1
+        },
+        {
+            "id": 244,
+            "country": "Yemen",
+            "capital": null,
+            "country_code": "YE",
+            "nationality": null,
+            "dial_code": "967",
+            "approved": 1
+        },
+        {
+            "id": 245,
+            "country": "Zambia",
+            "capital": null,
+            "country_code": "ZM",
+            "nationality": null,
+            "dial_code": "260",
+            "approved": 1
+        },
+        {
+            "id": 246,
+            "country": "Zimbabwe",
+            "capital": null,
+            "country_code": "ZW",
+            "nationality": null,
+            "dial_code": "263",
+            "approved": 1
+        }
+    ]
+}

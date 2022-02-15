@@ -8,6 +8,12 @@ import {
 	mobileVerification,
 	userLogout,
 } from "./user/saga";
+import {
+	addInvestor,
+	getInvestorData,
+	verifyInvestorEmail,
+	verifyInvestorMobile,
+} from "./investor/saga";
 
 export function* rootSaga() {
 	yield all([
@@ -18,5 +24,9 @@ export function* rootSaga() {
 		fork(emailVerification),
 		fork(mobileVerification),
 		fork(userLogout),
+		fork(addInvestor),
+		fork(getInvestorData),
+		fork(verifyInvestorEmail),
+		fork(verifyInvestorMobile),
 	]);
 }

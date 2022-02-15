@@ -26,6 +26,7 @@ import {
 	USER_LOGOUT_SUCCESS,
 	USER_LOGOUT_ERROR,
 	RESET_USER_FLAGS,
+	SET_SELECTED_DRAWER_ITEM,
 } from "../actionTypes";
 
 export const userRegister = (payload, navigation) => {
@@ -108,4 +109,7 @@ export const userLogoutError = (error) => {
 };
 export const resetUserFlags = (flagName) => {
 	return { type: RESET_USER_FLAGS, flagName };
+};
+export const setSelectedDrawerItem = (drawerTab) => {
+	return { type: SET_SELECTED_DRAWER_ITEM, drawerTab };
 };

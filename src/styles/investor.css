@@ -60,7 +60,10 @@
 .bg-otp img {
 	width: 100%;
 }
-
+.timer {
+	color: #4fadea;
+	font-size: 12px;
+}
 @media screen and (max-width: 1200px) {
 	.form-login {
 		padding: 0px;

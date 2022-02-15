@@ -26,6 +26,7 @@ import {
 	USER_LOGOUT_SUCCESS,
 	USER_LOGOUT_ERROR,
 	RESET_USER_FLAGS,
+	SET_SELECTED_DRAWER_ITEM,
 } from "../actionTypes";
 
 const initState = {
@@ -37,6 +38,7 @@ const initState = {
 	receivedOTP: "",
 	isEmailVerified: false,
 	isLinkSent: false,
+	selectedDrawerTab: "dashboard",
 };
 
 const userReducer = (state = initState, action) => {
@@ -224,6 +226,12 @@ const userReducer = (state = initState, action) => {
 			return {
 				...state,
 				[action.flagName]: false,
+			};
+		}
+		case SET_SELECTED_DRAWER_ITEM: {
+			return {
+				...state,
+				selectedDrawerTab: action.drawerTab,
 			};
 		}
 		default:

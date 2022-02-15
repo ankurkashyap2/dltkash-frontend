@@ -8,6 +8,9 @@ import Dashboard from "./dashboard";
 import ResetPassword from "./reset";
 import Investor from "./investor";
 import Otp from "./otp";
+import AddUser from "./addUser";
+import UCCVerification from "./uccVerification";
+import Trails from "./trails";
 
 const AppRoutes = (props) => {
 	return (
@@ -22,8 +25,36 @@ const AppRoutes = (props) => {
 				/>
 				<Route path="/otp" element={<Otp {...props} />} />
 				<Route
-					path="/investor/email-verification/:token"
+					path="/investor/email-verification/:uccRequestId/:token"
 					element={<Investor {...props} />}
+				/>
+				<Route
+					path="/investor/mobile-verification/:uccRequestId/:token"
+					element={<Investor {...props} />}
+				/>
+				<Route
+					path="/add-user"
+					element={
+						<SecuredRoute>
+							<AddUser {...props} />
+						</SecuredRoute>
+					}
+				/>
+				<Route
+					path="/ucc-verification"
+					element={
+						<SecuredRoute>
+							<UCCVerification {...props} />
+						</SecuredRoute>
+					}
+				/>
+				<Route
+					path="/trails"
+					element={
+						<SecuredRoute>
+							<Trails {...props} />
+						</SecuredRoute>
+					}
 				/>
 				<Route
 					path="/"

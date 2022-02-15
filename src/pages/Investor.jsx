@@ -1,44 +1,176 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import {
 	Form,
 	Button,
 	Alert,
 	ToggleButtonGroup,
 	ToggleButton,
+	Spinner,
 } from "react-bootstrap";
-import AppLayout from "../layouts/appLayout";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import Countdown from "react-countdown";
-
+import LoadingOverlay from "react-loading-overlay";
+import {
+	getExchangeInvestorData,
+	verifyInvestorEmail,
+	verifyInvestorMobile,
+	resetInvestorFlags,
+} from "../redux/investor/actions";
+import { generateOTP } from "../utils";
+import SuccessModal from "../components/successModal";
 import "../styles/investor.css";
 
-const Investor = ({}) => {
-	const [otpType, setOtpType] = useState("email");
-	const [otpStatus, setOtpStatus] = useState("reject");
-	let { token } = useParams();
+const Investor = ({
+	error,
+	loading,
+	getExchangeInvestorData,
+	investorData,
+	verifyInvestorEmail,
+	verifyInvestorMobile,
+	isEmailVerified,
+	isMobileVerified,
+	resetInvestorFlags,
+}) => {
+	let { token, uccRequestId } = useParams();
+	let location = useLocation();
+	let navigate = useNavigate();
+	const [otpType, setOtpType] = useState(
+		location && location.pathname.includes("email-verification")
+			? "email"
+			: "mobile"
+	);
+	const [otpStatus, setOtpStatus] = useState("");
+	const [enteredOtp, setEnteredOtp] = useState("");
+	const [otpError, setOtpError] = useState(false);
+	const [otp, setOtp] = useState(generateOTP());
 
-	const renderer = ({ hours, minutes, seconds, completed }, values) => {
-		// if (completed) {
-		// 	return (
-		// 		<Button
-		// 			className="text-verify"
-		// 			variant="link"
-		// 			// onClick={() => handleEmailVerification(values)}
-		// 		>
-		// 			{/* {emailOtpText} */}
-		// 		</Button>
-		// 	);
-		// } else {
+	useEffect(() => {
+		if (uccRequestId) {
+			getExchangeInvestorData({ uccRequestId }, token);
+		}
+	}, [uccRequestId, token, getExchangeInvestorData]);
+
+	// useEffect(() => {
+	// 	// if (receivedOTP) {
+	// 	setOtp(generateOTP());
+	// 	// }
+	// }, []);
+
+	const renderer = ({ formatted, completed, api }, values) => {
+		if (completed) {
+			setOtp(generateOTP());
+			api.start();
+		}
 		return (
-			<span className="text-verify" style={{ bottom: "13px", right: "9px" }}>
-				0{minutes}:{seconds}
-			</span>
+			<p className="timer">
+				{formatted.minutes}:{formatted.seconds}
+			</p>
 		);
-		// }
 	};
-	console.log(otpStatus);
+
+	const handleToggle = (val) => {
+		const newUrl =
+			val === "email"
+				? location && location.pathname.replace("mobile", "email")
+				: location && location.pathname.replace("email", "mobile");
+		navigate(newUrl);
+		setOtpType(val);
+		setOtp(generateOTP());
+	};
+
+	const handleOTPSubmit = () => {
+		if (otp === enteredOtp) {
+			setOtpError(false);
+			otpType === "email"
+				? verifyInvestorEmail(
+						otpStatus === "reject" ? "REJECTED" : "VERIFIED",
+						token
+				  )
+				: verifyInvestorMobile(
+						otpStatus === "reject" ? "REJECTED" : "VERIFIED",
+						token
+				  );
+		} else {
+			setOtpError(true);
+		}
+	};
+
+	const renderOTPOptions = () => {
+		return (
+			<>
+				<div className="radio-otp mt-4">
+					{(error || otpError) && (
+						<Alert variant="danger">{error ? error : "Wrong OTP"}!</Alert>
+					)}
+					<Form>
+						<Form.Check
+							label="Reject Verification"
+							name="group1"
+							type="radio"
+							id="reject"
+							value="reject"
+							onChange={(e) => setOtpStatus(e.target.value)}
+						/>
+						<Form.Check
+							label="Generate OTP"
+							name="group1"
+							type="radio"
+							id="generate"
+							value="generate"
+							onChange={(e) => setOtpStatus(e.target.value)}
+						/>
+					</Form>
+				</div>
+				{otpStatus === "generate" ? (
+					<>
+						<Form.Group controlId="validationCustom01">
+							<Form.Control
+								required
+								type="text"
+								placeholder="Please Enter OTP here"
+								className="field-size mt-4"
+								onChange={(e) => setEnteredOtp(parseInt(e.target.value))}
+							/>
+						</Form.Group>
+						<p className="text-otp p-3">
+							Your OTP is <span>{otp}</span>
+						</p>
+						<Countdown date={Date.now() + 60000} renderer={renderer} />
+					</>
+				) : null}
+				<Button
+					variant="primary"
+					className="w-100 p-2 mt-3"
+					disabled={!otpStatus}
+					onClick={() => handleOTPSubmit()}
+				>
+					Submit
+				</Button>
+			</>
+		);
+	};
+
 	return (
-		<>
+		<LoadingOverlay
+			active={loading}
+			spinner={<Spinner animation="border" variant="info" />}
+			text=""
+			styles={{
+				content: (base) => ({
+					...base,
+					color: "#919191",
+					marginTop: "50vh",
+				}),
+				overlay: (base) => ({
+					...base,
+					zIndex: 9999,
+					color: "#919191",
+					backgroundColor: "rgba(255,255,255,.5)",
+				}),
+			}}
+		>
 			<div className="main-content">
 				<div className="outer-box w-investor">
 					<div className="investor-box">
@@ -59,7 +191,7 @@ const Investor = ({}) => {
 											className="btn-otp mt-3"
 											name="options"
 											value={otpType}
-											onChange={(val) => setOtpType(val)}
+											onChange={(val) => handleToggle(val)}
 										>
 											<ToggleButton
 												id="tbg-btn-2"
@@ -81,54 +213,60 @@ const Investor = ({}) => {
 											</ToggleButton>
 										</ToggleButtonGroup>
 									</div>
-									<div className="radio-otp mt-4">
-										<Form>
-											<Form.Check
-												label="Reject Verification"
-												name="group1"
-												type="radio"
-												id="reject"
-												value="reject"
-												onChange={(e) => setOtpStatus(e.target.value)}
-											/>
-											<Form.Check
-												label="Generate OTP"
-												name="group1"
-												type="radio"
-												id="generate"
-												value="generate"
-												onChange={(e) => setOtpStatus(e.target.value)}
-											/>
-										</Form>
-									</div>
-									{otpStatus === "generate" ? (
-										<>
-											<Form.Group controlId="validationCustom01">
-												<Form.Control
-													required
-													type="text"
-													placeholder="Please Enter OTP here"
-													className="field-size mt-4"
-												/>
-												<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-											</Form.Group>
-											<p className="text-otp p-3">
-												Your OTP is <span>345673</span>
-											</p>
-											<Countdown date={Date.now() + 60000} renderer={renderer} />
-										</>
-									) : null}
-									<Button variant="primary" className="w-100 p-2 mt-3">
-										Submit
-									</Button>
+									{otpType === "email" ? (
+										investorData && investorData.uccEmailStatus === "VERIFIED" ? (
+											<h3>Your email is already verified!</h3>
+										) : (
+											renderOTPOptions()
+										)
+									) : investorData && investorData.uccMobileStatus === "VERIFIED" ? (
+										<h3>Your mobile is already verified!</h3>
+									) : (
+										renderOTPOptions()
+									)}
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</>
+			<SuccessModal
+				show={isEmailVerified || isMobileVerified}
+				message={
+					isEmailVerified
+						? "Your Email is verified successfully!"
+						: "Your Mobile is verified successfully!"
+				}
+				onHide={() =>
+					resetInvestorFlags(
+						isEmailVerified ? "isEmailVerified" : "isMobileVerified"
+					)
+				}
+			/>
+		</LoadingOverlay>
 	);
 };
 
-export default Investor;
+const mapStateToProps = (state) => {
+	return {
+		loading: state.investor.loading,
+		error: state.investor.error,
+		token: state.user.token,
+		investorData: state.investor.investorData,
+		isEmailVerified: state.investor.isEmailVerified,
+		isMobileVerified: state.investor.isMobileVerified,
+	};
+};
+
+const mapDispatchToProps = (dispatch) =>
+	bindActionCreators(
+		{
+			getExchangeInvestorData,
+			verifyInvestorEmail,
+			verifyInvestorMobile,
+			resetInvestorFlags,
+		},
+		dispatch
+	);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Investor);
