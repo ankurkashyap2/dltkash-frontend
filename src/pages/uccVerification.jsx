@@ -119,7 +119,7 @@ const UCCVerification = ({
 				</span>
 				<h3>UCC Verificaiton</h3>
 				<Row className="add_user">
-					<Col sm={7}>
+					<Col className="col-lg-7 col-md-12">
 						{error && <Alert variant="danger">{error}!</Alert>}
 						<Formik
 							initialValues={getInitialValues()}
@@ -141,7 +141,7 @@ const UCCVerification = ({
 										<Row>
 											<Col>
 												<Row className="mb-3">
-													<Form.Group as={Col} md="6" controlId="validationCustom01">
+													<Form.Group className="col-lg-6 col-md-12" controlId="validationCustom01">
 														<Form.Label className="mb-0 text-bold">Request ID</Form.Label>
 														<Form.Control
 															type="text"
@@ -155,7 +155,7 @@ const UCCVerification = ({
 															<p className="error-text">{errors.uccRequestId}</p>
 														)}
 													</Form.Group>
-													<Form.Group as={Col} md="6" controlId="validationCustom02">
+													<Form.Group className="col-lg-6 col-md-12" controlId="validationCustom02">
 														<Form.Label className="mb-0 text-bold">Mobile No</Form.Label>
 														<Form.Control
 															type="text"
@@ -171,7 +171,7 @@ const UCCVerification = ({
 													</Form.Group>
 												</Row>
 												<Row className="mb-3">
-													<Form.Group as={Col} md="6" controlId="validationCustom01">
+													<Form.Group className="col-lg-6 col-md-12" controlId="validationCustom01">
 														<Form.Label className="mb-0 text-bold">TM Name</Form.Label>
 														<Form.Control
 															required
@@ -186,7 +186,7 @@ const UCCVerification = ({
 															<p className="error-text">{errors.uccTmName}</p>
 														)}
 													</Form.Group>
-													<Form.Group as={Col} md="6" controlId="validationCustom02">
+													<Form.Group className="col-lg-6 col-md-12" controlId="validationCustom02">
 														<Form.Label className="mb-0 text-bold">TM ID</Form.Label>
 														<Form.Control
 															required
@@ -203,7 +203,7 @@ const UCCVerification = ({
 													</Form.Group>
 												</Row>
 												<Row className="mb-3">
-													<Form.Group as={Col} md="6" controlId="validationCustom02">
+													<Form.Group className="col-lg-6 col-md-12" controlId="validationCustom02">
 														<Form.Label className="mb-0 text-bold">DP ID</Form.Label>
 														<Form.Control
 															required
@@ -218,7 +218,7 @@ const UCCVerification = ({
 															<p className="error-text">{errors.uccDpId}</p>
 														)}
 													</Form.Group>
-													<Form.Group as={Col} md="6" controlId="validationCustom01">
+													<Form.Group className="col-lg-6 col-md-12" controlId="validationCustom01">
 														<Form.Label className="mb-0 text-bold">Country</Form.Label>
 														<Form.Control
 															as="select"
@@ -244,7 +244,7 @@ const UCCVerification = ({
 													</Form.Group>
 												</Row>
 												<Row className="mb-3">
-													<Form.Group as={Col} md="6" controlId="validationCustom01">
+													<Form.Group className="col-lg-6 col-md-12" controlId="validationCustom01">
 														<Form.Label className="mb-0 text-bold">Client ID</Form.Label>
 														<Form.Control
 															required
@@ -259,7 +259,7 @@ const UCCVerification = ({
 															<p className="error-text">{errors.uccClientId}</p>
 														)}
 													</Form.Group>
-													<Form.Group as={Col} md="6" controlId="validationCustom02">
+													<Form.Group className="col-lg-6 col-md-12" controlId="validationCustom02">
 														<Form.Label className="mb-0 text-bold">Investor Code</Form.Label>
 														<Form.Control
 															required
@@ -276,7 +276,7 @@ const UCCVerification = ({
 													</Form.Group>
 												</Row>
 												<Row className="mb-3">
-													<Form.Group as={Col} md="6" controlId="validationCustom02">
+													<Form.Group className="col-lg-6 col-md-12" controlId="validationCustom02">
 														<Form.Label className="mb-0 text-bold">PAN No</Form.Label>
 														<Form.Control
 															required
@@ -291,7 +291,7 @@ const UCCVerification = ({
 															<p className="error-text">{errors.uccPanNo}</p>
 														)}
 													</Form.Group>
-													<Form.Group as={Col} md="6" controlId="validationCustom02">
+													<Form.Group className="col-lg-6 col-md-12 mt-3"  controlId="validationCustom02">
 														<Form.Check
 															type="switch"
 															id="custom-switch switch-ucc"
@@ -307,7 +307,7 @@ const UCCVerification = ({
 													</Form.Group>
 												</Row>
 												<Row className="mb-3">
-													<Form.Group as={Col} md="6" controlId="validationCustom01">
+													<Form.Group className="col-lg-6 col-md-12" controlId="validationCustom01">
 														<Form.Label className="mb-0 text-bold">Email ID</Form.Label>
 														<Form.Control
 															required
@@ -322,7 +322,7 @@ const UCCVerification = ({
 															<p className="error-text">{errors.uccEmailId}</p>
 														)}
 													</Form.Group>
-													<Form.Group as={Col} md="6" controlId="validationCustom02">
+													<Form.Group className="col-lg-6 col-md-12 mt-3"  controlId="validationCustom02">
 														<Form.Check
 															type="switch"
 															id="custom-switch switch-ucc"
@@ -338,7 +338,7 @@ const UCCVerification = ({
 													</Form.Group>
 												</Row>
 												<Row className="mb-3">
-													<Form.Group as={Col} md="6" controlId="validationCustom01">
+													<Form.Group className="col-lg-6 col-md-12" controlId="validationCustom01">
 														<Form.Label className="mb-0 text-bold">Request Type</Form.Label>
 														<Form.Control
 															as="select"
@@ -363,7 +363,7 @@ const UCCVerification = ({
 															<p className="error-text">{errors.uccRequestType}</p>
 														)}
 													</Form.Group>
-													<Form.Group as={Col} md="6" controlId="validationCustom02">
+													<Form.Group as={Col} md="6" className="col-lg-6 col-md-12 mt-3" controlId="validationCustom02">
 														<Form.Check
 															type="switch"
 															id="custom-switch switch-ucc"
@@ -379,7 +379,7 @@ const UCCVerification = ({
 													</Form.Group>
 												</Row>
 												<Row className="mb-3">
-													<Form.Group as={Col} md="6" controlId="validationCustom02">
+													<Form.Group as={Col} md="6" className="col-lg-6 col-md-12 mt-3" controlId="validationCustom02">
 														<Form.Check
 															type="switch"
 															id="custom-switch switch-ucc"
@@ -393,7 +393,7 @@ const UCCVerification = ({
 															<p className="error-text">{errors.uccPanStatus}</p>
 														)}
 													</Form.Group>
-													<Form.Group as={Col} md="6" controlId="validationCustom02">
+													<Form.Group as={Col} md="6" className="col-lg-6 col-md-12 mt-3" controlId="validationCustom02">
 														<Form.Check
 															type="switch"
 															id="custom-switch switch-ucc"
