@@ -323,6 +323,12 @@ input#custom-switch\ switch-ucc {
 	background-color: #4fadea !important;
 	border-color: #3896d2 !important;
 }
+.add_user select {
+	color: #667085;
+}
+.add_user .form-control::placeholder {
+	color: #667085;
+}
 @media only screen and (max-width: 768px) {
 	.content {
 		margin-left: 0;
