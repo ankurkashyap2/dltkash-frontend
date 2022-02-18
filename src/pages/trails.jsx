@@ -1,29 +1,15 @@
 import React from "react";
-import Navbar from "../components/navbar";
+
 import {
 	Form,
 	FormControl,
 	Button,
 	Row,
 	Col,
-	InputGroup,
 	Pagination,
-	Tabs,
-	Tab,
-	Nav,
 } from "react-bootstrap";
-import { ReactComponent as Dashboard1 } from "../components/icons/Dashboard1.svg";
-import { ReactComponent as User } from "../components/icons/User.svg";
-import { ReactComponent as Varification } from "../components/icons/Varification.svg";
-import { ReactComponent as Logout } from "../components/icons/Logout.svg";
-import { ReactComponent as Down } from "../components/icons/down.svg";
-import { ReactComponent as UserEdit } from "../components/icons/UserEdit.svg";
-import { ReactComponent as Up } from "../components/icons/up.svg";
 import { ReactComponent as Download } from "../components/icons/download.svg";
 import { ReactComponent as Filter } from "../components/icons/filter.svg";
-import { ReactComponent as PlusCircleFill } from "../components/icons/PlusCircleFill.svg";
-import { ReactComponent as CloudUploadFill } from "../components/icons/CloudUploadFill.svg";
-import { ReactComponent as BorderStyle } from "../components/icons/BorderStyle.svg";
 import AppLayout from "../layouts/appLayout";
 import "../styles/dashboard.css";
 import Sidebar from "../components/navbar/sidebar";
@@ -39,7 +25,7 @@ const Trails = ({ loading }) => {
 				</span>
 				{/* <Tab.Content>
 							<Tab.Pane eventKey="first"> */}
-				<h3>Trails</h3>
+				{/* <h3>Trails</h3> */}
 				<div className="filter-section">
 					<Row>
 						<Col sm={3}>

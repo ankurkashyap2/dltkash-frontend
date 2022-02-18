@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DropdownButton, Dropdown, Nav } from "react-bootstrap";
+import { Dropdown, Nav } from "react-bootstrap";
+import { userLogout } from "../../redux/user/actions";
 import "../../styles/navbar.css";
 
-const Navbar = ({ page, token, user }) => {
+const Navbar = ({ page, token, user, userLogout }) => {
 	const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 		<div
 			className="icon-user"
@@ -19,6 +20,12 @@ const Navbar = ({ page, token, user }) => {
 		</div>
 	));
 
+	const handleDropdown = (key) => {
+		console.log(key === 3);
+		if (key === "3") {
+			userLogout();
+		}
+	};
 	return (
 		<Nav className="customnavbar-container">
 			<Nav.Item>
@@ -30,44 +37,21 @@ const Navbar = ({ page, token, user }) => {
 			<Nav.Item>
 				{token ? (
 					<>
-						<Dropdown>
+						<Dropdown onSelect={handleDropdown}>
 							<Dropdown.Toggle
 								id="dropdown-button-dark-example1"
 								className="login-link"
 								as={CustomToggle}
 							>
-								{/* <div className="icon-user"> */}
 								<img src={"/assets/images/dltkashlogo.png"} alt="logo" />
 								<span style={{ marginRight: "5px" }}>{user && user.userName}</span>
-
-								{/* </div> */}
 							</Dropdown.Toggle>
-							<Dropdown.Menu variant="light">
-								<Dropdown.Item>{user && user.userName}</Dropdown.Item>
-								<Dropdown.Item>Another action</Dropdown.Item>
-								<Dropdown.Item>Logout</Dropdown.Item>
+							<Dropdown.Menu variant="light" className="list-login">
+								<Dropdown.Item eventKey={1}>{user && user.userName}</Dropdown.Item>
+								<Dropdown.Item eventKey={2}>Another action</Dropdown.Item>
+								<Dropdown.Item eventKey={3}>Logout</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
-						{/* <Nav.Link href="/">
-							<div className="icon-user">
-								<img src={"/assets/images/dltkashlogo.png"} alt="logo" />
-							</div>
-						</Nav.Link> */}
-						{/* <DropdownButton
-							className="login-link"
-							title={
-								<div className="icon-user">
-									<img src={"/assets/images/dltkashlogo.png"} alt="logo" />
-									<p>{user && user.userName}</p>
-								</div>
-							}
-						>
-							<div className="list-login">
-								<Dropdown.Item>{user && user.userName}</Dropdown.Item>
-								<Dropdown.Item>Another action</Dropdown.Item>
-								<Dropdown.Item>Logout</Dropdown.Item>
-							</div>
-						</DropdownButton> */}
 					</>
 				) : (
 					<Nav.Link
@@ -91,6 +75,7 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch) =>
+	bindActionCreators({ userLogout }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

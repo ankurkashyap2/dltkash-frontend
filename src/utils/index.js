@@ -1,4 +1,4 @@
-import { USER_TOKEN_KEY, USER_KEY, USER_REMEMBER_KEY } from "../configs";
+import { USER_TOKEN_KEY, USER_KEY } from "../configs";
 
 export const getToken = () => {
 	return sessionStorage.getItem(USER_TOKEN_KEY) || null;

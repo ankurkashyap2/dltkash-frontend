@@ -1,5 +1,4 @@
 import { takeEvery, put, call } from "redux-saga/effects";
-import { push } from "react-router-redux";
 import {
 	USER_REGISTER,
 	USER_LOGIN,

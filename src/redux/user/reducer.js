@@ -33,7 +33,7 @@ const initState = {
 	loading: false,
 	error: null,
 	profile: null,
-	token: "",
+	token: null,
 	isOTPSent: false,
 	receivedOTP: "",
 	isEmailVerified: false,
@@ -214,7 +214,7 @@ const userReducer = (state = initState, action) => {
 				loading: false,
 				profile: null,
 				error: null,
-				token: "",
+				token: null,
 			};
 		}
 		case USER_LOGOUT_ERROR: {

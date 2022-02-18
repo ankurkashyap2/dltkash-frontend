@@ -122,7 +122,7 @@ const UCCVerification = ({
 				<span className="side-panel-toggle">
 					<i className="fa fa-bars"></i>
 				</span>
-				<h3>UCC Verificaiton</h3>
+				{/* <h3>UCC Verificaiton</h3> */}
 				<Row className="add_user">
 					<Col className="col-lg-7 col-md-12">
 						{error && <Alert variant="danger">{error}!</Alert>}
@@ -137,7 +137,7 @@ const UCCVerification = ({
 									<Form className="form-align" noValidate onSubmit={handleSubmit}>
 										<Row className="mb-4">
 											<Col>
-												<Form.Label className="text-bold">Verificaiton send via</Form.Label>
+												<Form.Label className="text-bold">Verification send via</Form.Label>
 												<Form.Select defaultValue="Choose..." className="select-custom">
 													<option>SMS and Email</option>
 												</Form.Select>

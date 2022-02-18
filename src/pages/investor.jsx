@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import {
 	Form,
 	Button,
@@ -35,7 +35,7 @@ const Investor = ({
 }) => {
 	let { token, uccRequestId } = useParams();
 	let location = useLocation();
-	let navigate = useNavigate();
+
 	const [otpType, setOtpType] = useState(
 		location && location.pathname.includes("email-verification")
 			? "email"
@@ -71,11 +71,11 @@ const Investor = ({
 	};
 
 	const handleToggle = (val) => {
-		const newUrl =
-			val === "email"
-				? location && location.pathname.replace("mobile", "email")
-				: location && location.pathname.replace("email", "mobile");
-		navigate(newUrl);
+		// const newUrl =
+		// 	val === "email"
+		// 		? location && location.pathname.replace("mobile", "email")
+		// 		: location && location.pathname.replace("email", "mobile");
+		// navigate(newUrl);
 		setOtpType(val);
 		setOtp(generateOTP());
 	};
@@ -185,17 +185,23 @@ const Investor = ({
 							<div className="col-md-6 bg-white p-5">
 								<div className="form-login">
 									<h3>
-										{otpType === "email"
-											? investorData &&
-											  (investorData.uccEmailStatus === "VERIFIED" ||
-													investorData.uccEmailStatus === "REJECTED")
-												? "Your email is verified!"
-												: "Please Verify your Account"
-											: investorData &&
-											  (investorData.uccMobileStatus === "VERIFIED" ||
-													investorData.uccMobileStatus === "REJECTED")
-											? "Your mobile is verified!"
-											: "Please Verify your Account"}
+										{location && location.pathname.includes("email-verification")
+											? otpType === "email"
+												? investorData &&
+												  (investorData.uccEmailStatus === "VERIFIED" ||
+														investorData.uccEmailStatus === "REJECTED")
+													? "Your email is verified!"
+													: "Please Verify your Account"
+												: "Verification Link is already sent to you mobile number!"
+											: location.pathname.includes("mobile-verification")
+											? otpType === "mobile"
+												? investorData &&
+												  (investorData.uccMobileStatus === "VERIFIED" ||
+														investorData.uccMobileStatus === "REJECTED")
+													? "Your mobile is verified!"
+													: "Please Verify your Account"
+												: "Verification Link is already sent to you email Id!"
+											: null}
 									</h3>
 
 									<div className="otp-radio-btn">
@@ -226,17 +232,22 @@ const Investor = ({
 											</ToggleButton>
 										</ToggleButtonGroup>
 									</div>
-									{otpType === "email"
+									{location &&
+									location.pathname.includes("email-verification") &&
+									otpType === "email"
 										? investorData &&
 										  (investorData.uccEmailStatus === "VERIFIED" ||
 												investorData.uccEmailStatus === "REJECTED")
 											? null
 											: renderOTPOptions()
-										: investorData &&
+										: location.pathname.includes("mobile-verification") &&
+										  otpType === "mobile"
+										? investorData &&
 										  (investorData.uccMobileStatus === "VERIFIED" ||
 												investorData.uccMobileStatus === "REJECTED")
-										? null
-										: renderOTPOptions()}
+											? null
+											: renderOTPOptions()
+										: null}
 								</div>
 							</div>
 						</div>

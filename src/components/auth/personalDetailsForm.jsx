@@ -43,13 +43,13 @@ const PersonalDetailsForm = ({
 	const navigate = useNavigate();
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-	const [mobileOtp, setMobileOtp] = useState("");
+	// const [mobileOtp, setMobileOtp] = useState("");
 	const [emailOtp, setEmailOtp] = useState("");
 	const [emailOtpText, setEmailOtpText] = useState("Send OTP");
 	const [successModal, setSuccessModal] = useState("");
 	const [otpError, setOtpError] = useState(false);
 	const [isEmailVerified, setIsEmailVerified] = useState(false);
-	const [expirationTime, setExpirationTime] = useState(Date.now());
+	// const [expirationTime, setExpirationTime] = useState(Date.now());
 
 	useEffect(() => {
 		if (receivedOTP) {
@@ -168,7 +168,6 @@ const PersonalDetailsForm = ({
 			);
 		}
 	};
-	console.log("*********", expirationTime + 30000, Date.now() + 30000);
 	return (
 		<>
 			{(error || otpError) && (

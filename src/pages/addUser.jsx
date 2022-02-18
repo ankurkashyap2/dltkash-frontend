@@ -1,29 +1,5 @@
 import React from "react";
-import Navbar from "../components/navbar";
-import {
-	Form,
-	FormControl,
-	Button,
-	Row,
-	Col,
-	InputGroup,
-	Pagination,
-	Tabs,
-	Tab,
-	Nav,
-} from "react-bootstrap";
-import { ReactComponent as Dashboard1 } from "../components/icons/Dashboard1.svg";
-import { ReactComponent as User } from "../components/icons/User.svg";
-import { ReactComponent as Varification } from "../components/icons/Varification.svg";
-import { ReactComponent as Logout } from "../components/icons/Logout.svg";
-import { ReactComponent as Down } from "../components/icons/down.svg";
-import { ReactComponent as UserEdit } from "../components/icons/UserEdit.svg";
-import { ReactComponent as Up } from "../components/icons/up.svg";
-import { ReactComponent as Download } from "../components/icons/download.svg";
-import { ReactComponent as Filter } from "../components/icons/filter.svg";
-import { ReactComponent as PlusCircleFill } from "../components/icons/PlusCircleFill.svg";
-import { ReactComponent as CloudUploadFill } from "../components/icons/CloudUploadFill.svg";
-import { ReactComponent as BorderStyle } from "../components/icons/BorderStyle.svg";
+import { Form, Button, Row, Col, Tabs, Tab } from "react-bootstrap";
 import AppLayout from "../layouts/appLayout";
 import "../styles/dashboard.css";
 import Sidebar from "../components/navbar/sidebar";
@@ -37,7 +13,7 @@ const AddUser = ({ loading }) => {
 				<span className="side-panel-toggle">
 					<i className="fa fa-bars"></i>
 				</span>
-				<h3>Add User</h3>
+				{/* <h3>Add User</h3> */}
 				<Row className="add_user">
 					<Col sm={8}>
 						<Tabs

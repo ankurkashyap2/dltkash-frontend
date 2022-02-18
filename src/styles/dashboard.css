@@ -48,66 +48,6 @@ ul.pagination .page-item a {
 }
 
 /* Demo nav_dashboardigation */
-.nav_dashboard {
-	list-style: none;
-	padding: 0 10px;
-	margin-top: 24px;
-}
-
-.nav-item a {
-	padding: 0;
-}
-
-.nav-pills .nav-link.active {
-	color: #fff;
-	background: transparent !important;
-}
-.nav_dashboard li {
-	margin-top: 10px;
-}
-
-.nav_dashboard li a {
-	position: relative;
-	display: block;
-	padding: 12px 12px 12px 18px;
-	font-size: 14px;
-	color: #fff !important;
-	text-decoration: none;
-}
-
-.nav_dashboard li a:before {
-	font: 14px fontawesome;
-	position: absolute;
-	top: 14px;
-	left: 20px;
-}
-
-.nav_dashboard li a:hover {
-	background: #3896d2;
-	border-radius: 8px;
-	border: none;
-	text-decoration: none;
-}
-
-.nav_dashboard li a.active {
-	background: #3896d2;
-	border-radius: 8px;
-	border: none;
-	text-decoration: none;
-}
-
-.icon-dashboard {
-	margin-right: 6px;
-}
-
-.down-arrow {
-	margin-top: 5px;
-	margin-left: -7px;
-}
-
-.up-arrow {
-	margin-bottom: 9px;
-}
 /* table stying*/
 
 .dashboard-table {

@@ -9,7 +9,7 @@ import { setSelectedDrawerItem, userLogout } from "../../redux/user/actions";
 import { ReactComponent as User } from "../icons/User.svg";
 import { ReactComponent as Varification } from "../icons/Varification.svg";
 import { ReactComponent as BorderStyle } from "../icons/BorderStyle.svg";
-
+import "../../styles/sidebar.css";
 const Sidebar = ({
 	setSelectedDrawerItem,
 	selectedDrawerTab,
@@ -26,52 +26,46 @@ const Sidebar = ({
 				<ul className="nav_dashboard">
 					<Nav variant="pills" className="flex-column">
 						<Nav.Item>
-							<Nav.Link eventKey="first" href="/">
-								<li>
-									<a className={location.pathname === "/" ? "active" : ""}>
-										<Dashboard1 className="icon-dashboard" alt="dashboard" />
-										Dashboard
-									</a>
-								</li>
+							<Nav.Link
+								eventKey="first"
+								href="/"
+								className={location.pathname === "/" ? "active" : ""}
+							>
+								<Dashboard1 className="icon-dashboard" alt="dashboard" />
+								Dashboard
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link eventKey="second" href="/add-user">
-								<li>
-									<a className={location.pathname === "/add-user" ? "active" : ""}>
-										<User alt="user" className="icon-dashboard" /> Add User
-									</a>
-								</li>
+							<Nav.Link
+								eventKey="second"
+								href="/add-user"
+								className={location.pathname === "/add-user" ? "active" : ""}
+							>
+								<User alt="user" className="icon-dashboard" /> Add User
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link eventKey="Third" href="/ucc-verification">
-								<li>
-									<a
-										className={location.pathname === "/ucc-verification" ? "active" : ""}
-									>
-										<Varification alt="Verification" className="icon-dashboard" /> UCC
-										Verification
-									</a>
-								</li>
+							<Nav.Link
+								eventKey="Third"
+								href="/ucc-verification"
+								className={location.pathname === "/ucc-verification" ? "active" : ""}
+							>
+								<Varification alt="Verification" className="icon-dashboard" /> UCC
+								Verification
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link eventKey="Fourth" href="/trails">
-								<li>
-									<a className={location.pathname === "/trails" ? "active" : ""}>
-										<BorderStyle alt="trails" className="icon-dashboard" /> Trails
-									</a>
-								</li>
+							<Nav.Link
+								eventKey="Fourth"
+								href="/trails"
+								className={location.pathname === "/trails" ? "active" : ""}
+							>
+								<BorderStyle alt="trails" className="icon-dashboard" /> Trails
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link eventKey="Fourth">
-								<li>
-									<a>
-										<Logout alt="Logout" className="icon-dashboard" /> Logout
-									</a>
-								</li>
+							<Nav.Link eventKey="Fourth" onClick={() => userLogout()}>
+								<Logout alt="Logout" className="icon-dashboard" /> Logout
 							</Nav.Link>
 						</Nav.Item>
 					</Nav>
