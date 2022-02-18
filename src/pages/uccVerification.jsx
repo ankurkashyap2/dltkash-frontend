@@ -30,7 +30,12 @@ const UCCVerification = ({
 			uccPanExempt: Yup.boolean().required("* PAN EXempt is required"),
 			uccPanNo: Yup.string().required("* PAN Number is required"),
 			uccCountry: Yup.string().required("* Country is required"),
-			uccMobileNo: Yup.string().required("* Mobile Number is required"),
+			uccMobileNo: Yup.string()
+				.required("* Mobile Number is required")
+				.matches(
+					/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+					"* Invalid Mobile Number"
+				),
 			uccEmailId: Yup.string().required("* Email Id is required"),
 			uccMobileNoModified: Yup.boolean().required(
 				"* Mobile Number modified is required"

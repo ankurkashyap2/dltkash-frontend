@@ -129,6 +129,8 @@ const userReducer = (state = initState, action) => {
 				...state,
 				loading: true,
 				error: null,
+				receivedOTP: "",
+				isOTPSent: false,
 			};
 		}
 		case EMAIL_VERIFICATION_SUCCESS: {

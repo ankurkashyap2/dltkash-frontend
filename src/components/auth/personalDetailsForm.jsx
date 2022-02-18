@@ -49,6 +49,7 @@ const PersonalDetailsForm = ({
 	const [successModal, setSuccessModal] = useState("");
 	const [otpError, setOtpError] = useState(false);
 	const [isEmailVerified, setIsEmailVerified] = useState(false);
+	const [expirationTime, setExpirationTime] = useState(Date.now());
 
 	useEffect(() => {
 		if (receivedOTP) {
@@ -59,7 +60,12 @@ const PersonalDetailsForm = ({
 	const validationSchema = () => {
 		return Yup.object().shape({
 			userName: Yup.string().required("*User Name is required"),
-			phoneNo: Yup.string().required("* Mobile Number is required"),
+			phoneNo: Yup.string()
+				.required("* Mobile Number is required")
+				.matches(
+					/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+					"* Invalid Mobile Number"
+				),
 			email: Yup.string()
 				.required("* Email is required")
 				.email("* Please enter valid format"),
@@ -140,13 +146,16 @@ const PersonalDetailsForm = ({
 		}
 	};
 
-	const renderer = ({ hours, minutes, seconds, completed }, values) => {
+	const renderer = ({ formatted, completed, api }, values) => {
 		if (completed) {
 			return (
 				<Button
 					className="text-verify"
 					variant="link"
-					onClick={() => handleEmailVerification(values)}
+					onClick={() => {
+						handleEmailVerification(values);
+						api.start();
+					}}
 				>
 					{emailOtpText}
 				</Button>
@@ -154,12 +163,12 @@ const PersonalDetailsForm = ({
 		} else {
 			return (
 				<span className="text-verify" style={{ bottom: "13px", right: "9px" }}>
-					0{minutes}:{seconds}
+					{formatted.minutes}:{formatted.seconds}
 				</span>
 			);
 		}
 	};
-
+	console.log("*********", expirationTime + 30000, Date.now() + 30000);
 	return (
 		<>
 			{(error || otpError) && (
