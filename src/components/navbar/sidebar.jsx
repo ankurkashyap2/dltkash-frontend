@@ -71,6 +71,11 @@ const Sidebar = ({
 					</Nav>
 				</ul>
 			</div>
+			<div className="content content-is-open">
+				<span className="side-panel-toggle">
+					<i className="fa fa-bars"></i>
+				</span>
+			</div>
 		</div>
 	);
 };

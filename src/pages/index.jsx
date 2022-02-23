@@ -35,17 +35,17 @@ const AppRoutes = (props) => {
 				<Route
 					path="/add-user"
 					element={
-						// <SecuredRoute>
-						<AddUser {...props} />
-						// </SecuredRoute>
+						<SecuredRoute>
+							<AddUser {...props} />
+						</SecuredRoute>
 					}
 				/>
 				<Route
 					path="/ucc-verification"
 					element={
-						// <SecuredRoute>
-						<UCCVerification {...props} />
-						// </SecuredRoute>
+						<SecuredRoute>
+							<UCCVerification {...props} />
+						</SecuredRoute>
 					}
 				/>
 				<Route
@@ -59,9 +59,9 @@ const AppRoutes = (props) => {
 				<Route
 					path="/"
 					element={
-						// <SecuredRoute>
-						<Dashboard {...props} />
-						// </SecuredRoute>
+						<SecuredRoute>
+							<Dashboard {...props} />
+						</SecuredRoute>
 					}
 				/>
 			</Routes>
