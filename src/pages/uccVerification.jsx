@@ -152,6 +152,41 @@ const UCCVerification = ({
 										<Row>
 											<Col>
 												<div className="box-line">
+												<Row className="mb-3">
+														<Form.Group
+															className="col-lg-12 col-md-12"
+															controlId="validationCustom01"
+														>
+															<Form.Label className="mb-0 text-bold">Request Type</Form.Label>
+															<Form.Control
+																as="select"
+																custom
+																className="field-size"
+																name="uccRequestType"
+																value={values.uccRequestType}
+																onChange={handleChange}
+															>
+																<option
+																	key="blankChoice"
+																	hidden
+																	value
+																	className="select-placeholder"
+																>
+																	Choose...
+																</option>
+
+																<option key="new" value="New">
+																	New
+																</option>
+																<option key="existing" value="Existing">
+																	Existing
+																</option>
+															</Form.Control>
+															{!!touched.uccRequestType && !!errors.uccRequestType && (
+																<p className="error-text">{errors.uccRequestType}</p>
+															)}
+														</Form.Group>
+													</Row>
 													<Row className="mb-3">
 														<Form.Group
 															className="col-lg-6 col-md-12"
@@ -361,13 +396,13 @@ const UCCVerification = ({
 															<Form.Group
 															as={Col}
 															md="6"
-															className="col-lg-6 col-md-12 mt-3"
+															className="col-lg-6 col-md-12"
 															controlId="validationCustom02"
 														>
 															<Form.Check
 																type="switch"
 																id="custom-switch switch-ucc"
-																label="Is your Mobile No modified?"
+																label="Is your PAN modified?"
 																name="uccEmailStatus"
 																onChange={handleChange}
 																value={values.uccEmailStatus}
@@ -380,41 +415,6 @@ const UCCVerification = ({
 														</Row>
 												</div>
 												<div className="box-line">
-													<Row className="mb-3">
-														<Form.Group
-															className="col-lg-12 col-md-12"
-															controlId="validationCustom01"
-														>
-															<Form.Label className="mb-0 text-bold">Request Type</Form.Label>
-															<Form.Control
-																as="select"
-																custom
-																className="field-size"
-																name="uccRequestType"
-																value={values.uccRequestType}
-																onChange={handleChange}
-															>
-																<option
-																	key="blankChoice"
-																	hidden
-																	value
-																	className="select-placeholder"
-																>
-																	Choose...
-																</option>
-
-																<option key="new" value="New">
-																	New
-																</option>
-																<option key="existing" value="Existing">
-																	Existing
-																</option>
-															</Form.Control>
-															{!!touched.uccRequestType && !!errors.uccRequestType && (
-																<p className="error-text">{errors.uccRequestType}</p>
-															)}
-														</Form.Group>
-													</Row>
 													<Row className="mb-3">
 														<Form.Group
 															className="col-lg-6 col-md-12"
