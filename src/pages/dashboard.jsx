@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-	Form,
-	FormControl,
-	Button,
-	Row,
-	Col,
-	Pagination,
-} from "react-bootstrap";
+import { Form, FormControl, Button, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ReactComponent as Down } from "../components/icons/down.svg";
@@ -19,18 +12,53 @@ import AppLayout from "../layouts/appLayout";
 import "../styles/dashboard.css";
 import Sidebar from "../components/navbar/sidebar";
 import { getAllInvestors } from "../redux/investor/actions";
+import Pagination from "../components/pagination";
 
 const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 	const [search, setSearch] = useState("");
+	const [pageLimit] = useState(15);
+	const [localPageLimit, setLocalPageLimit] = useState(5);
+	const [pageNumber, setPageNumber] = useState(1);
+	const [totalPage, setTotalPage] = useState(0);
+	const [investorsList, setInvestorsList] = useState([]);
 
 	useEffect(() => {
-		if (token) getAllInvestors({ page: 1, limit: 5 }, token);
+		if (token) getAllInvestors({ page: 1, limit: pageLimit }, token);
 	}, [getAllInvestors, token]);
+
+	useEffect(() => {
+		const startIndex = (pageNumber - 1) * localPageLimit;
+		const endIndex = pageNumber * localPageLimit;
+		if (investors && investors.records > 0)
+			setInvestorsList(investors.results.slice(startIndex, endIndex));
+	}, [investors, localPageLimit, pageNumber]);
 
 	const handleSearch = (text) => {
 		setSearch(text);
 		getAllInvestors({ panNumber: text }, token);
 	};
+
+	const handlePageChange = (page) => {
+		const startIndex = (page - 1) * localPageLimit;
+		const endIndex = page * localPageLimit;
+		// if (pageLimit <= endIndex) {
+		setPageNumber(page);
+		// console.log(startIndex, endIndex);
+		if (investors && investors.records > 0)
+			setInvestorsList(investors.results.slice(startIndex, endIndex));
+		// } else {
+		// 	getAllInvestors(
+		// 		{ page: investors && investors.key + 1, limit: pageLimit },
+		// 		token
+		// 	);
+		// }
+		// const localPageLimit=5
+		// const totalPage = investors ? Math.round(investors.records / localPageLimit) : 0
+		// if(totalPage * localPageLimit<=investors.records){
+		// getAllInvestors({ page, limit: pageLimit }, token);
+		// }
+	};
+
 	return (
 		<AppLayout page="Dashboard" loading={loading}>
 			<Sidebar />
@@ -90,7 +118,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 						<Col>
 							<Button
 								className="btn-position btn-filled custom-refresh"
-								onClick={() => getAllInvestors({}, token)}
+								onClick={() => getAllInvestors({ page: 1, limit: pageLimit }, token)}
 							>
 								<Refresh alt="refresh" className="btn-size" /> Refresh
 							</Button>
@@ -125,8 +153,8 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 								</tr>
 							</thead>
 							<tbody>
-								{investors && investors.results.length > 0 ? (
-									investors.results.map((item, index) => {
+								{investorsList && investorsList.length > 0 ? (
+									investorsList.map((item, index) => {
 										return (
 											<tr>
 												<td>{index + 1}</td>
@@ -158,22 +186,25 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 				</div>
 				<Row className="pt-3">
 					<Col sm={8}>
-						<p className="left">
-							Showing 1 to 10 of {investors && investors.results.length} results
-						</p>
+						{/* <p className="left">
+							Showing 1 to 10 of {investors && investors.records} results
+						</p> */}
 					</Col>
 					<Col sm={4}>
-						<Pagination>
-							<Pagination.Prev />
-							<Pagination.Item active>{1}</Pagination.Item>
-							<Pagination.Item>{2}</Pagination.Item>
-							<Pagination.Item>{3}</Pagination.Item>
-							<Pagination.Ellipsis />
-							<Pagination.Item>{8}</Pagination.Item>
-							<Pagination.Item>{9}</Pagination.Item>
-							<Pagination.Item>{10}</Pagination.Item>
-							<Pagination.Next />
-						</Pagination>
+						{/* <Pagination
+							page={investors && investors.key}
+							totalPage={
+								investors ? Math.round(investors.records / investors.limit) : 0
+							}
+							handleChange={handlePageChange}
+						/> */}
+						<Pagination
+							page={pageNumber}
+							totalPage={
+								investors ? Math.round(investors.records / localPageLimit) : 0
+							}
+							handleChange={handlePageChange}
+						/>
 					</Col>
 				</Row>
 				{/* </Tab.Pane> */}

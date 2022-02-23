@@ -68,11 +68,11 @@ table.table.table-hover.dashboard-table {
 	display: block;
 }
 .field-text {
-    display: block;
-    width: 120px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	display: block;
+	width: 120px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .dataTables_filter {
 	float: right;
@@ -259,9 +259,8 @@ select.select-custom.form-select {
 }
 
 input#custom-switch\ switch-ucc {
-	margin-top: 25px;
 	width: 3em !important;
-	height: 25px;
+	height: 22px;
 }
 .form-check-input:checked {
 	background-color: #4fadea !important;

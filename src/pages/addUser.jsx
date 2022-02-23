@@ -191,7 +191,7 @@ const AddUser = ({
 				</span>
 				{/* <h3>Add User</h3> */}
 				<Row className="add_user">
-					<Col sm={8}>
+					<Col className="col-lg-10 col-md-12">
 						<Tabs
 							transition={false}
 							id="noanim-tab-example"
