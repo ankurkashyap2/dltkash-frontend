@@ -66,10 +66,14 @@ ul.pagination .page-item a {
 }
 table.table.table-hover.dashboard-table {
 	display: block;
-	overflow-x: auto;
-	white-space: nowrap;
 }
-
+.field-text {
+    display: block;
+    width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 .dataTables_filter {
 	float: right;
 }

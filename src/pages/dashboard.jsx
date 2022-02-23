@@ -132,7 +132,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 											<td>{index + 1}</td>
 											<td>{item.uccTmId}</td>
 											<td>{item.uccPanNo}</td>
-											<td>{item.uccEmailId}</td>
+											<td className="field-text">{item.uccEmailId}</td>
 											<td>{item.uccMobileNo}</td>
 											<td className="verfied-pill">
 												<span>{item.uccPanStatus}</span>
