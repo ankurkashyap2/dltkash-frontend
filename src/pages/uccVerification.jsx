@@ -354,9 +354,30 @@ const UCCVerification = ({
 																{!!touched.uccPanNo && !!errors.uccPanNo && (
 																	<p className="error-text">{errors.uccPanNo}</p>
 																)}
-															</Form.Group>
+															</Form.Group>	
 														</Row>
 													)}
+													<Row>
+															<Form.Group
+															as={Col}
+															md="6"
+															className="col-lg-6 col-md-12 mt-3"
+															controlId="validationCustom02"
+														>
+															<Form.Check
+																type="switch"
+																id="custom-switch switch-ucc"
+																label="Is your Mobile No modified?"
+																name="uccEmailStatus"
+																onChange={handleChange}
+																value={values.uccEmailStatus}
+																className="switch-label"
+															/>
+															{!!touched.uccEmailStatus && !!errors.uccEmailStatus && (
+																<p className="error-text">{errors.uccEmailStatus}</p>
+															)}
+														</Form.Group>
+														</Row>
 												</div>
 												<div className="box-line">
 													<Row className="mb-3">
@@ -430,43 +451,43 @@ const UCCVerification = ({
 																<p className="error-text">{errors.uccMobileNo}</p>
 															)}
 														</Form.Group>
-														{/* <Form.Group
-														className="col-lg-6 col-md-12 mt-3"
-														controlId="validationCustom02"
-													>
-														<Form.Check
-															type="switch"
-															id="custom-switch switch-ucc"
-															label="Email ID Modified"
-															name="uccEmailIdModified"
-															onChange={handleChange}
-															value={values.uccEmailIdModified}
-															className="switch-label"
-														/>
-														{!!touched.uccEmailIdModified && !!errors.uccEmailIdModified && (
-															<p className="error-text">{errors.uccEmailIdModified}</p>
-														)}
-													</Form.Group> */}
+														<Form.Group
+															className="col-lg-6 col-md-12 mt-3"
+															controlId="validationCustom02"
+														>
+															<Form.Check
+																type="switch"
+																id="custom-switch switch-ucc"
+																label="Is your Email ID modified?"
+																name="uccEmailIdModified"
+																onChange={handleChange}
+																value={values.uccEmailIdModified}
+																className="switch-label"
+															/>
+															{!!touched.uccEmailIdModified && !!errors.uccEmailIdModified && (
+																<p className="error-text">{errors.uccEmailIdModified}</p>
+															)}
+														</Form.Group>
 
-														{/* <Form.Group
-														as={Col}
-														md="6"
-														className="col-lg-6 col-md-12 mt-3"
-														controlId="validationCustom02"
-													>
-														<Form.Check
-															type="switch"
-															id="custom-switch switch-ucc"
-															label="Email Status"
-															name="uccEmailStatus"
-															onChange={handleChange}
-															value={values.uccEmailStatus}
-															className="switch-label"
-														/>
-														{!!touched.uccEmailStatus && !!errors.uccEmailStatus && (
-															<p className="error-text">{errors.uccEmailStatus}</p>
-														)}
-													</Form.Group> */}
+														<Form.Group
+															as={Col}
+															md="6"
+															className="col-lg-6 col-md-12 mt-3"
+															controlId="validationCustom02"
+														>
+															<Form.Check
+																type="switch"
+																id="custom-switch switch-ucc"
+																label="Is your Mobile No modified?"
+																name="uccEmailStatus"
+																onChange={handleChange}
+																value={values.uccEmailStatus}
+																className="switch-label"
+															/>
+															{!!touched.uccEmailStatus && !!errors.uccEmailStatus && (
+																<p className="error-text">{errors.uccEmailStatus}</p>
+															)}
+														</Form.Group>
 													</Row>
 												</div>
 												{/* <Row className="mb-3">
@@ -511,8 +532,7 @@ const UCCVerification = ({
 												</Row> */}
 												<Row className="mt-5">
 													<Col>
-														<Button className="btn-outlined">Cancel</Button>
-														<Button className="btn-position btn-filled" type="submit">
+														<Button className="btn-filled" type="submit">
 															Submit
 														</Button>
 													</Col>
