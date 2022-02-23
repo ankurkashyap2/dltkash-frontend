@@ -7,12 +7,14 @@ import {
 	emailVerification,
 	mobileVerification,
 	userLogout,
+	addUser,
 } from "./user/saga";
 import {
 	addInvestor,
 	getInvestorData,
 	verifyInvestorEmail,
 	verifyInvestorMobile,
+	getAllInvestors,
 } from "./investor/saga";
 
 export function* rootSaga() {
@@ -28,5 +30,7 @@ export function* rootSaga() {
 		fork(getInvestorData),
 		fork(verifyInvestorEmail),
 		fork(verifyInvestorMobile),
+		fork(getAllInvestors),
+		fork(addUser),
 	]);
 }

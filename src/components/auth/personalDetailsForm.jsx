@@ -20,6 +20,7 @@ import {
 	emailVerification,
 	otpVerification,
 	resetUserFlags,
+	mobileVerification,
 } from "../../redux/user/actions";
 import { ReactComponent as RightArrow } from "../icons/rightarrow.svg";
 import { ReactComponent as TickIcon } from "../icons/tick.svg";
@@ -34,28 +35,37 @@ const PersonalDetailsForm = ({
 	entityDetails,
 	userRegister,
 	emailVerification,
+	mobileVerification,
 	otpVerification,
 	error,
-	isOTPSent,
-	receivedOTP,
+	isEmailOTPSent,
+	receivedEmailOTP,
+	isMobileOTPSent,
+	receivedMobileOTP,
 	resetUserFlags,
 }) => {
 	const navigate = useNavigate();
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-	// const [mobileOtp, setMobileOtp] = useState("");
+	const [mobileOtp, setMobileOtp] = useState("");
+	const [mobileOtpText, setMobileOtpText] = useState("Send OTP");
+	const [isMobileVerified, setIsMobileVerified] = useState(false);
 	const [emailOtp, setEmailOtp] = useState("");
 	const [emailOtpText, setEmailOtpText] = useState("Send OTP");
 	const [successModal, setSuccessModal] = useState("");
 	const [otpError, setOtpError] = useState(false);
 	const [isEmailVerified, setIsEmailVerified] = useState(false);
+
 	// const [expirationTime, setExpirationTime] = useState(Date.now());
 
 	useEffect(() => {
-		if (receivedOTP) {
+		if (receivedEmailOTP) {
 			setEmailOtpText("Resend OTP");
 		}
-	}, [receivedOTP]);
+		if (receivedMobileOTP) {
+			setMobileOtpText("Resend OTP");
+		}
+	}, [receivedEmailOTP, receivedMobileOTP]);
 
 	const validationSchema = () => {
 		return Yup.object().shape({
@@ -133,31 +143,48 @@ const PersonalDetailsForm = ({
 		emailVerification(values.email);
 	};
 
+	const handleMobileVerification = (values) => {
+		mobileVerification(values.phoneNo);
+	};
+
 	const handleOTPVerification = (values, type) => {
-		const passphrase = "DLTkash@";
-		const bytes = CryptoJS.AES.decrypt(receivedOTP, passphrase);
-		const originalText = bytes.toString(CryptoJS.enc.Utf8);
-		console.log(originalText === emailOtp);
-		if (originalText === emailOtp) {
-			setSuccessModal("emailVerified");
-			setIsEmailVerified(true);
+		if (type === "EMAIL") {
+			const passphrase = "DLTkash@";
+			const bytes = CryptoJS.AES.decrypt(receivedEmailOTP, passphrase);
+			const originalText = bytes.toString(CryptoJS.enc.Utf8);
+			if (originalText === emailOtp) {
+				setSuccessModal("emailVerified");
+				setIsEmailVerified(true);
+			} else {
+				setOtpError(true);
+			}
 		} else {
-			setOtpError(true);
+			const passphrase = "DLTkash@";
+			const bytes = CryptoJS.AES.decrypt(receivedMobileOTP, passphrase);
+			const originalText = bytes.toString(CryptoJS.enc.Utf8);
+			if (originalText === mobileOtp) {
+				setSuccessModal("mobileVerified");
+				setIsMobileVerified(true);
+			} else {
+				setOtpError(true);
+			}
 		}
 	};
 
-	const renderer = ({ formatted, completed, api }, values) => {
+	const renderer = ({ formatted, completed, api }, values, type) => {
 		if (completed) {
 			return (
 				<Button
 					className="text-verify"
 					variant="link"
 					onClick={() => {
-						handleEmailVerification(values);
+						type === "MOBILE"
+							? handleMobileVerification(values)
+							: handleEmailVerification(values);
 						api.start();
 					}}
 				>
-					{emailOtpText}
+					{type === "MOBILE" ? mobileOtpText : emailOtpText}
 				</Button>
 			);
 		} else {
@@ -215,21 +242,30 @@ const PersonalDetailsForm = ({
 									<Form.Label className="text-bottom">Mobile Number</Form.Label>
 									<div style={{ position: "relative" }}>
 										<Form.Control
-											type="phone"
+											type="text"
 											placeholder="Enter Mobile Number"
 											className="field-size"
 											name="phoneNo"
 											required
 											onChange={handleChange}
 											value={values.phoneNo}
+											disabled={isMobileVerified}
 										/>
-										<Button
-											className="text-verify"
-											variant="link"
-											// onClick={() => handleEmailVerification(values)}
-										>
-											Send OTP
-										</Button>
+										{isMobileVerified ? null : receivedMobileOTP ? (
+											<Countdown
+												date={Date.now() + 30000}
+												renderer={(props) => renderer(props, values, "MOBILE")}
+											/>
+										) : (
+											<Button
+												className="text-verify"
+												variant="link"
+												disabled={!values.phoneNo && !!errors.phoneNo}
+												onClick={() => handleMobileVerification(values)}
+											>
+												{mobileOtpText}
+											</Button>
+										)}
 									</div>
 									{!!touched.phoneNo && !!errors.phoneNo && (
 										<p className="error-text">{errors.phoneNo}</p>
@@ -246,16 +282,24 @@ const PersonalDetailsForm = ({
 									<div style={{ position: "relative" }}>
 										<Form.Control
 											type="text"
-											placeholder="Enter OTP "
+											placeholder="Enter OTP"
 											className="field-size"
+											onChange={(e) => {
+												setMobileOtp(e.target.value);
+												setOtpError(false);
+											}}
+											disabled={isMobileVerified}
 										/>
-										<Button
-											className="text-verify"
-											variant="link"
-											// onClick={() => handleEmailVerification(values)}
-										>
-											Verify
-										</Button>
+										{isMobileVerified ? null : (
+											<Button
+												className="text-verify"
+												variant="link"
+												disabled={!mobileOtp}
+												onClick={() => handleOTPVerification(values, "MOBILE")}
+											>
+												Verify
+											</Button>
+										)}
 									</div>
 								</Form.Group>
 							</Row>
@@ -277,11 +321,12 @@ const PersonalDetailsForm = ({
 											required
 											onChange={handleChange}
 											value={values.email}
+											disabled={isEmailVerified}
 										/>
-										{receivedOTP ? (
+										{isEmailVerified ? null : receivedEmailOTP ? (
 											<Countdown
 												date={Date.now() + 30000}
-												renderer={(props) => renderer(props, values)}
+												renderer={(props) => renderer(props, values, "EMAIL")}
 											/>
 										) : (
 											<Button
@@ -315,15 +360,18 @@ const PersonalDetailsForm = ({
 												setEmailOtp(e.target.value);
 												setOtpError(false);
 											}}
+											disabled={isEmailVerified}
 										/>
-										<Button
-											className="text-verify"
-											variant="link"
-											disabled={!emailOtp}
-											onClick={() => handleOTPVerification(values, "EMAIL")}
-										>
-											Verify
-										</Button>
+										{isEmailVerified ? null : (
+											<Button
+												className="text-verify"
+												variant="link"
+												disabled={!emailOtp}
+												onClick={() => handleOTPVerification(values, "EMAIL")}
+											>
+												Verify
+											</Button>
+										)}
 									</div>
 								</Form.Group>
 							</Row>
@@ -410,7 +458,7 @@ const PersonalDetailsForm = ({
 							<Button
 								className="btn-position btn-filled w-custom"
 								type="submit"
-								disabled={!isEmailVerified}
+								disabled={!isEmailVerified && !isMobileVerified}
 							>
 								<TickIcon className="icon-login" />
 								Register
@@ -421,14 +469,27 @@ const PersonalDetailsForm = ({
 			/>
 
 			<SuccessModal
-				show={successModal === "emailVerified" || isOTPSent}
+				show={
+					successModal === "emailVerified" ||
+					successModal === "mobileVerified" ||
+					isEmailOTPSent ||
+					isMobileOTPSent
+				}
 				message={
-					isOTPSent
+					isEmailOTPSent
 						? "An OTP is sent to your Email. Please verify it first to get yourself register."
-						: "Email is verified Successfully!"
+						: isMobileOTPSent
+						? "An OTP is sent to your Mobile number. Please verify it first to get yourself register."
+						: successModal === "emailVerified"
+						? "Email is verified Successfully!"
+						: "Mobile is verified Successfully!"
 				}
 				onHide={() =>
-					isOTPSent ? resetUserFlags("isOTPSent") : setSuccessModal("")
+					isEmailOTPSent
+						? resetUserFlags("isEmailOTPSent")
+						: isMobileOTPSent
+						? resetUserFlags("isMobileOTPSent")
+						: setSuccessModal("")
 				}
 			/>
 		</>
@@ -440,14 +501,22 @@ const mapStateToProps = (state) => {
 		profile: state.user.profile,
 		token: state.user.token,
 		error: state.user.error,
-		isOTPSent: state.user.isOTPSent,
-		receivedOTP: state.user.receivedOTP,
+		isEmailOTPSent: state.user.isEmailOTPSent,
+		receivedEmailOTP: state.user.receivedEmailOTP,
+		isMobileOTPSent: state.user.isMobileOTPSent,
+		receivedMobileOTP: state.user.receivedMobileOTP,
 	};
 };
 
 const mapDispatchToProps = (dispatch) =>
 	bindActionCreators(
-		{ userRegister, emailVerification, otpVerification, resetUserFlags },
+		{
+			userRegister,
+			emailVerification,
+			otpVerification,
+			resetUserFlags,
+			mobileVerification,
+		},
 		dispatch
 	);
 

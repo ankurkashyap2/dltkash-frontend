@@ -81,6 +81,7 @@ const Investor = ({
 	};
 
 	const handleOTPSubmit = () => {
+		console.log(otp === enteredOtp, otpStatus === "reject");
 		if (otp === enteredOtp || otpStatus === "reject") {
 			setOtpError(false);
 			otpType === "email"
@@ -192,7 +193,12 @@ const Investor = ({
 														investorData.uccEmailStatus === "REJECTED")
 													? "Your email is verified!"
 													: "Please Verify your Account"
-												: "Verification Link is already sent to you mobile number!"
+												: investorData.uccMobileStatus === "VERIFIED" ||
+												  investorData.uccMobileStatus === "REJECTED"
+												? "Your mobile is verified!"
+												: investorData.uccMobileStatus === "SENT"
+												? "Verification Link is already sent to you mobile number!"
+												: "Please Verify your Account"
 											: location.pathname.includes("mobile-verification")
 											? otpType === "mobile"
 												? investorData &&
@@ -200,7 +206,12 @@ const Investor = ({
 														investorData.uccMobileStatus === "REJECTED")
 													? "Your mobile is verified!"
 													: "Please Verify your Account"
-												: "Verification Link is already sent to you email Id!"
+												: investorData.uccEmailStatus === "VERIFIED" ||
+												  investorData.uccEmailStatus === "REJECTED"
+												? "Your mobile is verified!"
+												: investorData.uccEmailStatus === "SENT"
+												? "Verification Link is already sent to you Email id!"
+												: "Please Verify your Account"
 											: null}
 									</h3>
 

@@ -4,6 +4,7 @@ import {
 	GET_EXCHANGE_INVESTOR_DATA,
 	VERIFY_INVESTOR_EMAIL,
 	VERIFY_INVESTOR_MOBILE,
+	GET_ALL_INVESTORS,
 } from "../actionTypes";
 import {
 	addSingleInvestorSuccess,
@@ -14,6 +15,8 @@ import {
 	verifyInvestorEmailError,
 	verifyInvestorMobileSuccess,
 	verifyInvestorMobileError,
+	getAllInvestorsSuccess,
+	getAllInvestorsError,
 } from "./actions";
 import { INVESTOR_API } from "../../services/investorApi";
 
@@ -87,6 +90,21 @@ export function* verifyInvestorMobile() {
 			}
 		} catch (ex) {
 			yield put(verifyInvestorMobileError("Error while verifying mobile"));
+		}
+	});
+}
+
+export function* getAllInvestors() {
+	yield takeEvery(GET_ALL_INVESTORS, function* ({ payload, token }) {
+		try {
+			const response = yield call(INVESTOR_API.getAllInvestors, payload, token);
+			if (response.status === 200) {
+				yield put(getAllInvestorsSuccess(response.data.data));
+			} else {
+				yield put(getAllInvestorsError(response.error.error.message));
+			}
+		} catch (ex) {
+			yield put(getAllInvestorsError("Error while fetching investors"));
 		}
 	});
 }

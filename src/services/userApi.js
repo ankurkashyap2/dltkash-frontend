@@ -59,7 +59,6 @@ export const USER_API = {
 	},
 
 	async resetPassword(payload) {
-		console.log("pay", payload);
 		const response = await request(`${API_URL}/auth/reset-password`, {
 			method: "POST",
 			headers: {
@@ -82,7 +81,7 @@ export const USER_API = {
 
 	async mobileVerification(payload) {
 		const response = await request(
-			`${API_URL}/auth/mobile-verification?email=${payload.email}`,
+			`${API_URL}/auth/mobile-verification?mobile=${payload}`,
 			{
 				method: "GET",
 			}
@@ -92,6 +91,14 @@ export const USER_API = {
 
 	async otpVerification(payload) {
 		const response = await request(`${API_URL}/auth/otp-verify`, {
+			method: "POST",
+			body: payload,
+		});
+		return response;
+	},
+
+	async addUser(payload) {
+		const response = await request(`${API_URL}/auth/register-admin`, {
 			method: "POST",
 			body: payload,
 		});

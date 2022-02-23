@@ -20,6 +20,9 @@ import {
 	OTP_VERIFICATION,
 	OTP_VERIFICATION_SUCCESS,
 	OTP_VERIFICATION_ERROR,
+	ADD_USER,
+	ADD_USER_SUCCESS,
+	ADD_USER_ERROR,
 	SET_TOKEN,
 	SET_PROFILE,
 	USER_LOGOUT,
@@ -34,8 +37,10 @@ const initState = {
 	error: null,
 	profile: null,
 	token: null,
-	isOTPSent: false,
-	receivedOTP: "",
+	isEmailOTPSent: false,
+	isMobileOTPSent: false,
+	receivedEmailOTP: "",
+	receivedMobileOTP: "",
 	isEmailVerified: false,
 	isLinkSent: false,
 	selectedDrawerTab: "dashboard",
@@ -129,16 +134,16 @@ const userReducer = (state = initState, action) => {
 				...state,
 				loading: true,
 				error: null,
-				receivedOTP: "",
-				isOTPSent: false,
+				receivedEmailOTP: "",
+				isEmailOTPSent: false,
 			};
 		}
 		case EMAIL_VERIFICATION_SUCCESS: {
 			return {
 				...state,
 				loading: false,
-				isOTPSent: true,
-				receivedOTP: action.response.enc,
+				isEmailOTPSent: true,
+				receivedEmailOTP: action.response.enc,
 			};
 		}
 		case EMAIL_VERIFICATION_ERROR: {
@@ -153,12 +158,16 @@ const userReducer = (state = initState, action) => {
 				...state,
 				loading: true,
 				error: null,
+				receivedMobileOTP: "",
+				isMobileOTPSent: false,
 			};
 		}
 		case MOBILE_VERIFICATION_SUCCESS: {
 			return {
 				...state,
 				loading: false,
+				receivedMobileOTP: action.response.data.verification,
+				isMobileOTPSent: true,
 			};
 		}
 		case MOBILE_VERIFICATION_ERROR: {
@@ -183,6 +192,27 @@ const userReducer = (state = initState, action) => {
 			};
 		}
 		case OTP_VERIFICATION_ERROR: {
+			return {
+				...state,
+				loading: false,
+				error: action.error,
+			};
+		}
+		case ADD_USER: {
+			return {
+				...state,
+				loading: true,
+				error: null,
+			};
+		}
+		case ADD_USER_SUCCESS: {
+			return {
+				...state,
+				loading: false,
+				// isEmailVerified: true,
+			};
+		}
+		case ADD_USER_ERROR: {
 			return {
 				...state,
 				loading: false,

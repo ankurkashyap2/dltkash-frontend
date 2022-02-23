@@ -12,6 +12,9 @@ import {
 	VERIFY_INVESTOR_MOBILE_SUCCESS,
 	VERIFY_INVESTOR_MOBILE_ERROR,
 	RESET_INVESTOR_FLAGS,
+	GET_ALL_INVESTORS,
+	GET_ALL_INVESTORS_SUCCESS,
+	GET_ALL_INVESTORS_ERROR,
 } from "../actionTypes";
 
 const initState = {
@@ -21,6 +24,7 @@ const initState = {
 	investorData: null,
 	isEmailVerified: false,
 	isMobileVerified: false,
+	investors: null,
 };
 
 const investorReducer = (state = initState, action) => {
@@ -94,6 +98,25 @@ const investorReducer = (state = initState, action) => {
 				investorData: action.response,
 			};
 		case VERIFY_INVESTOR_MOBILE_ERROR:
+			return {
+				...state,
+				loading: false,
+				error: action.error,
+			};
+		case GET_ALL_INVESTORS:
+			return {
+				...state,
+				loading: true,
+				error: null,
+			};
+		case GET_ALL_INVESTORS_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				isMobileVerified: true,
+				investors: action.response,
+			};
+		case GET_ALL_INVESTORS_ERROR:
 			return {
 				...state,
 				loading: false,

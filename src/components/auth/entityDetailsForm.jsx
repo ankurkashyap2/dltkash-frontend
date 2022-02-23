@@ -226,7 +226,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									className="mb-3"
 									controlId="validationFormik01"
 								>
-									<Form.Label className="text-bottom">Legal Entity</Form.Label>
+									<Form.Label className="text-bottom">
+										Legal Entity<span className="error-text">*</span>
+									</Form.Label>
 									<Form.Control
 										type="text"
 										name="legalEntityName"

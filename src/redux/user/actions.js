@@ -20,6 +20,9 @@ import {
 	OTP_VERIFICATION,
 	OTP_VERIFICATION_SUCCESS,
 	OTP_VERIFICATION_ERROR,
+	ADD_USER,
+	ADD_USER_SUCCESS,
+	ADD_USER_ERROR,
 	SET_TOKEN,
 	SET_PROFILE,
 	USER_LOGOUT,
@@ -91,6 +94,15 @@ export const otpVerificationSuccess = (response) => {
 };
 export const otpVerificationError = (error) => {
 	return { type: OTP_VERIFICATION_ERROR, error };
+};
+export const addUser = (payload) => {
+	return { type: ADD_USER, payload };
+};
+export const addUserSuccess = (response) => {
+	return { type: ADD_USER_SUCCESS, response };
+};
+export const addUserError = (error) => {
+	return { type: ADD_USER_ERROR, error };
 };
 export const setToken = (token) => {
 	return { type: SET_TOKEN, token };

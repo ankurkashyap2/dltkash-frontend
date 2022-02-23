@@ -59,4 +59,19 @@ export const INVESTOR_API = {
 		);
 		return response;
 	},
+
+	async getAllInvestors(payload, token) {
+		const response = await request(
+			`${API_URL}/exchange/search`,
+			{
+				method: "POST",
+				body: payload,
+				headers: {
+					Authorization: token,
+				},
+			},
+			true
+		);
+		return response;
+	},
 };

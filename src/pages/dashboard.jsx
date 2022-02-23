@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
 	Form,
 	FormControl,
@@ -7,6 +7,8 @@ import {
 	Col,
 	Pagination,
 } from "react-bootstrap";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { ReactComponent as Down } from "../components/icons/down.svg";
 import { ReactComponent as UserEdit } from "../components/icons/UserEdit.svg";
 import { ReactComponent as Up } from "../components/icons/up.svg";
@@ -15,8 +17,19 @@ import { ReactComponent as Filter } from "../components/icons/filter.svg";
 import AppLayout from "../layouts/appLayout";
 import "../styles/dashboard.css";
 import Sidebar from "../components/navbar/sidebar";
+import { getAllInvestors } from "../redux/investor/actions";
 
-const Dashboard = ({ loading }) => {
+const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
+	const [search, setSearch] = useState("");
+
+	useEffect(() => {
+		if (token) getAllInvestors({}, token);
+	}, [getAllInvestors, token]);
+
+	const handleSearch = (text) => {
+		setSearch(text);
+		getAllInvestors({ panNumber: text }, token);
+	};
 	return (
 		<AppLayout page="Dashboard" loading={loading}>
 			<Sidebar />
@@ -30,7 +43,7 @@ const Dashboard = ({ loading }) => {
 				{/* <h3>Dashboard</h3> */}
 				<div className="filter-section">
 					<Row>
-						<Col sm={3}>
+						{/* <Col sm={3}>
 							<Form.Group as={Col} controlId="formGridEmail">
 								<Form.Label className="text-bottom"></Form.Label>
 								<FormControl
@@ -38,6 +51,8 @@ const Dashboard = ({ loading }) => {
 									placeholder="Search"
 									className="me-2 field-size"
 									aria-label="Search"
+									value={search}
+									onChange={(e) => handleSearch(e.target.value)}
 								/>
 							</Form.Group>
 						</Col>
@@ -70,6 +85,14 @@ const Dashboard = ({ loading }) => {
 								<Download alt="Export" className="icon-dashboard" /> Export
 							</Button>
 							<Filter alt="filter" className="icon-dashboard btn-position mt-4" />
+						</Col> */}
+						<Col>
+							<Button
+								className="btn-position btn-filled"
+								onClick={() => getAllInvestors({}, token)}
+							>
+								Refresh
+							</Button>
 						</Col>
 					</Row>
 					<div className="table-responsive">
@@ -97,124 +120,37 @@ const Dashboard = ({ loading }) => {
 										Mobile Status <Up alt="down" className="up-arrow" />
 										<Down alt="down" className="down-arrow" />
 									</th>
-									<th className="col-md-1">Action</th>
+									{/* <th className="col-md-1">Action</th> */}
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>1.</td>
-									<td>155236</td>
-									<td>ABC12345XZ</td>
-									<td>username@xyz.com</td>
-									<td>+1 987654 3210</td>
-									<td className="verfied-pill">
-										<span>Verified</span>
-									</td>
-									<td className="not-verfied-pill">
-										<span>Not Verified</span>
-									</td>
-									<td className="verfied-pill">
-										<span>Verified</span>
-									</td>
-									<td>
-										<UserEdit alt="edit" />
-									</td>
-								</tr>
-								<tr>
-									<td>1.</td>
-									<td>155236</td>
-									<td>ABC12345XZ</td>
-									<td>username@xyz.com</td>
-									<td>+1 987654 3210</td>
-									<td className="verfied-pill">
-										<span>Verified</span>
-									</td>
-									<td className="not-verfied-pill">
-										<span>Not Verified</span>
-									</td>
-									<td className="verfied-pill">
-										<span>Verified</span>
-									</td>
-									<td>
-										<UserEdit alt="edit" />
-									</td>
-								</tr>
-								<tr>
-									<td>1.</td>
-									<td>155236</td>
-									<td>ABC12345XZ</td>
-									<td>username@xyz.com</td>
-									<td>+1 987654 3210</td>
-									<td className="verfied-pill">
-										<span>Verified</span>
-									</td>
-									<td className="not-verfied-pill">
-										<span>Not Verified</span>
-									</td>
-									<td className="verfied-pill">
-										<span>Verified</span>
-									</td>
-									<td>
-										<UserEdit alt="edit" />
-									</td>
-								</tr>
-								<tr>
-									<td>1.</td>
-									<td>155236</td>
-									<td>ABC12345XZ</td>
-									<td>username@xyz.com</td>
-									<td>+1 987654 3210</td>
-									<td className="verfied-pill">
-										<span>Verified</span>
-									</td>
-									<td className="not-verfied-pill">
-										<span>Not Verified</span>
-									</td>
-									<td className="verfied-pill">
-										<span>Verified</span>
-									</td>
-									<td>
-										<UserEdit alt="edit" />
-									</td>
-								</tr>
-								<tr>
-									<td>1.</td>
-									<td>155236</td>
-									<td>ABC12345XZ</td>
-									<td>username@xyz.com</td>
-									<td>+1 987654 3210</td>
-									<td className="verfied-pill">
-										<span>Verified</span>
-									</td>
-									<td className="not-verfied-pill">
-										<span>Not Verified</span>
-									</td>
-									<td className="verfied-pill">
-										<span>Verified</span>
-									</td>
-									<td>
-										<UserEdit alt="edit" />
-									</td>
-								</tr>
-								<tr>
-									<td>1.</td>
-									<td>155236</td>
-									<td>ABC12345XZ</td>
-									<td>username@xyz.com</td>
-									<td>+1 987654 3210</td>
-									<td className="verfied-pill">
-										<span>Verified</span>
-									</td>
-									<td className="not-verfied-pill">
-										<span>Not Verified</span>
-									</td>
-									<td className="verfied-pill">
-										<span>Verified</span>
-									</td>
-									<td>
-										<UserEdit alt="edit" />
-									</td>
-								</tr>
+								{investors && investors.results.length > 0 ? (
+									investors.results.map((item, index) => {
+										return (
+											<tr>
+												<td>{index + 1}</td>
+												<td>{item.uccTmId}</td>
+												<td>{item.uccPanNo}</td>
+												<td>{item.uccEmailId}</td>
+												<td>{item.uccMobileNo}</td>
+												<td className="verfied-pill">
+													<span>{item.uccPanStatus}</span>
+												</td>
+												<td className="not-verfied-pill">
+													<span>{item.uccEmailStatus}</span>
+												</td>
+												<td className="verfied-pill">
+													<span>{item.uccMobileStatus}</span>
+												</td>
+												{/* <td>
+													<UserEdit alt="edit" />
+												</td> */}
+											</tr>
+										);
+									})
+								) : (
+									<tr>No data!</tr>
+								)}
 							</tbody>
 						</table>
 					</div>
@@ -243,4 +179,16 @@ const Dashboard = ({ loading }) => {
 	);
 };
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+	return {
+		error: state.investor.error,
+		loading: state.investor.loading,
+		investors: state.investor.investors,
+		token: state.user.token,
+	};
+};
+
+const mapDispatchToProps = (dispatch) =>
+	bindActionCreators({ getAllInvestors }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

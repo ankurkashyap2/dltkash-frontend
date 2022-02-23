@@ -11,6 +11,9 @@ import {
 	VERIFY_INVESTOR_MOBILE,
 	VERIFY_INVESTOR_MOBILE_SUCCESS,
 	VERIFY_INVESTOR_MOBILE_ERROR,
+	GET_ALL_INVESTORS,
+	GET_ALL_INVESTORS_SUCCESS,
+	GET_ALL_INVESTORS_ERROR,
 	RESET_INVESTOR_FLAGS,
 } from "../actionTypes";
 
@@ -49,6 +52,15 @@ export const verifyInvestorMobileSuccess = (response) => {
 };
 export const verifyInvestorMobileError = (error) => {
 	return { type: VERIFY_INVESTOR_MOBILE_ERROR, error };
+};
+export const getAllInvestors = (payload, token) => {
+	return { type: GET_ALL_INVESTORS, payload, token };
+};
+export const getAllInvestorsSuccess = (response) => {
+	return { type: GET_ALL_INVESTORS_SUCCESS, response };
+};
+export const getAllInvestorsError = (error) => {
+	return { type: GET_ALL_INVESTORS_ERROR, error };
 };
 export const resetInvestorFlags = (flagName) => {
 	return { type: RESET_INVESTOR_FLAGS, flagName };

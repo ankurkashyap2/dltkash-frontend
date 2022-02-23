@@ -54,7 +54,7 @@ const Sidebar = ({
 								Verification
 							</Nav.Link>
 						</Nav.Item>
-						<Nav.Item>
+						{/* <Nav.Item>
 							<Nav.Link
 								eventKey="Fourth"
 								href="/trails"
@@ -67,7 +67,7 @@ const Sidebar = ({
 							<Nav.Link eventKey="Fourth" onClick={() => userLogout()}>
 								<Logout alt="Logout" className="icon-dashboard" /> Logout
 							</Nav.Link>
-						</Nav.Item>
+						</Nav.Item> */}
 					</Nav>
 				</ul>
 			</div>
