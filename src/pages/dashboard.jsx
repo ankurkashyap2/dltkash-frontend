@@ -14,6 +14,7 @@ import { ReactComponent as UserEdit } from "../components/icons/UserEdit.svg";
 import { ReactComponent as Up } from "../components/icons/up.svg";
 import { ReactComponent as Download } from "../components/icons/download.svg";
 import { ReactComponent as Filter } from "../components/icons/filter.svg";
+import { ReactComponent as Refresh } from "../components/icons/Refresh.svg";
 import AppLayout from "../layouts/appLayout";
 import "../styles/dashboard.css";
 import Sidebar from "../components/navbar/sidebar";
@@ -88,10 +89,10 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 						</Col> */}
 						<Col>
 							<Button
-								className="btn-position btn-filled"
+								className="btn-position btn-filled custom-refresh"
 								onClick={() => getAllInvestors({}, token)}
 							>
-								Refresh
+								<Refresh alt="refresh" className="btn-size"/> Refresh
 							</Button>
 						</Col>
 					</Row>

@@ -145,6 +145,7 @@ const UCCVerification = ({
 										</Row>
 										<Row>
 											<Col>
+											<div className="box-line">
 												<Row className="mb-3">
 													<Form.Group
 														className="col-lg-6 col-md-12"
@@ -267,7 +268,8 @@ const UCCVerification = ({
 														)}
 													</Form.Group>
 												</Row>
-												<hr className="border-c"/>
+												</div>
+												<div className="box-line">
 												<Row className="mb-3">
 												<Form.Group
 													className="col-lg-6 col-md-12 mb-3"
@@ -349,7 +351,8 @@ const UCCVerification = ({
 														</Form.Group>
 													</Row>
 												)}
-												<hr className="border-c"/>
+												</div>
+												<div className="box-line">
 												<Row className="mb-3">
 													<Form.Group
 														className="col-lg-12 col-md-12"
@@ -459,6 +462,7 @@ const UCCVerification = ({
 														)}
 													</Form.Group> */}
 												</Row>
+												</div>
 												{/* <Row className="mb-3">
 													<Form.Group
 														as={Col}

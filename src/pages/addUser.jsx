@@ -71,7 +71,7 @@ const AddUser = ({ loading, error }) => {
 		return initialValues;
 	};
 
-	const handleSubmit = (values) => {};
+	const handleSubmit = (values) => { };
 
 	const renderForm = (errors, handleChange, handleSubmit, values, touched) => {
 		return (
