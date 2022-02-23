@@ -19,42 +19,39 @@ const Sidebar = ({
 }) => {
 	let location = useLocation();
 
-	return (
-		<div className="wrapper">
-			{/* <Tab.Container id="left-tabs-example" defaultActiveKey="first"> */}
-			<div className="sidebar">
-				<ul className="nav_dashboard">
-					<Nav variant="pills" className="flex-column">
-						<Nav.Item>
-							<Nav.Link
-								eventKey="first"
-								href="/"
-								className={location.pathname === "/" ? "active" : ""}
-							>
-								<Dashboard1 className="icon-dashboard" alt="dashboard" />
-								Dashboard
-							</Nav.Link>
-						</Nav.Item>
-						<Nav.Item>
-							<Nav.Link
-								eventKey="second"
-								href="/add-user"
-								className={location.pathname === "/add-user" ? "active" : ""}
-							>
-								<User alt="user" className="icon-dashboard" /> Add User
-							</Nav.Link>
-						</Nav.Item>
-						<Nav.Item>
-							<Nav.Link
-								eventKey="Third"
-								href="/ucc-verification"
-								className={location.pathname === "/ucc-verification" ? "active" : ""}
-							>
-								<Varification alt="Verification" className="icon-dashboard" /> UCC
-								Verification
-							</Nav.Link>
-						</Nav.Item>
-						{/* <Nav.Item>
+	const renderWeb = () => {
+		return (
+			<Nav variant="pills" className="flex-column">
+				<Nav.Item>
+					<Nav.Link
+						eventKey="first"
+						href="/"
+						className={location.pathname === "/" ? "active" : ""}
+					>
+						<Dashboard1 className="icon-dashboard" alt="dashboard" />
+						Dashboard
+					</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
+					<Nav.Link
+						eventKey="second"
+						href="/add-user"
+						className={location.pathname === "/add-user" ? "active" : ""}
+					>
+						<User alt="user" className="icon-dashboard" /> Add User
+					</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
+					<Nav.Link
+						eventKey="Third"
+						href="/ucc-verification"
+						className={location.pathname === "/ucc-verification" ? "active" : ""}
+					>
+						<Varification alt="Verification" className="icon-dashboard" /> UCC
+						Verification
+					</Nav.Link>
+				</Nav.Item>
+				{/* <Nav.Item>
 							<Nav.Link
 								eventKey="Fourth"
 								href="/trails"
@@ -68,14 +65,20 @@ const Sidebar = ({
 								<Logout alt="Logout" className="icon-dashboard" /> Logout
 							</Nav.Link>
 						</Nav.Item> */}
-					</Nav>
-				</ul>
+			</Nav>
+		);
+	};
+	return (
+		<div className="wrapper">
+			{/* <Tab.Container id="left-tabs-example" defaultActiveKey="first"> */}
+			<div className="sidebar">
+				<ul className="nav_dashboard">{renderWeb()}</ul>
 			</div>
-			<div className="content content-is-open">
+			{/* <div className="content content-is-open">
 				<span className="side-panel-toggle">
 					<i className="fa fa-bars"></i>
 				</span>
-			</div>
+			</div> */}
 		</div>
 	);
 };

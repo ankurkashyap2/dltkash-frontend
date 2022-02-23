@@ -167,9 +167,9 @@ export function* otpVerification() {
 }
 
 export function* addUser() {
-	yield takeEvery(ADD_USER, function* ({ payload }) {
+	yield takeEvery(ADD_USER, function* ({ payload, token }) {
 		try {
-			const response = yield call(USER_API.addUser, payload);
+			const response = yield call(USER_API.addUser, payload, token);
 			if (response.status === 200) {
 				yield put(addUserSuccess(response));
 			} else {

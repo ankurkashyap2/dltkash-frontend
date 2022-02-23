@@ -9,9 +9,20 @@ import "../styles/dashboard.css";
 import Sidebar from "../components/navbar/sidebar";
 import { ReactComponent as EyeIcon } from "../components/icons/eye.svg";
 import { ReactComponent as EyeHiddenIcon } from "../components/icons/eye-hidden.svg";
+import { addUser, resetUserFlags } from "../redux/user/actions";
+import SuccessModal from "../components/successModal";
 
-const AddUser = ({ loading, error }) => {
+const AddUser = ({
+	loading,
+	error,
+	addUser,
+	profile,
+	token,
+	isUserAdded,
+	resetUserFlags,
+}) => {
 	const [showPassword, setShowPassword] = useState(false);
+	const [activeTab, setActiveTab] = useState("admin");
 
 	const validationSchema = () => {
 		return Yup.object().shape({
@@ -71,7 +82,16 @@ const AddUser = ({ loading, error }) => {
 		return initialValues;
 	};
 
-	const handleSubmit = (values) => {};
+	const handleSubmit = (values) => {
+		addUser(
+			{
+				...values,
+				role: activeTab === "admin" ? "ADMIN" : "OPERATIONAL",
+				exchangeId: profile && profile.exchangeId,
+			},
+			token
+		);
+	};
 
 	const renderForm = (errors, handleChange, handleSubmit, values, touched) => {
 		return (
@@ -148,18 +168,7 @@ const AddUser = ({ loading, error }) => {
 						)}
 					</Form.Group>
 				</Row>
-				{/* <Row className="mb-3">
-										<Form.Group as={Col} controlId="formGridEmail">
-											<Form.Label className="text-bottom text-bold">
-												Legel Entity
-											</Form.Label>
-											<Form.Control type="text" className="field-size" />
-										</Form.Group>
-										<Form.Group as={Col} controlId="formGridEmail">
-											<Form.Label className="text-bottom text-bold">CIN No</Form.Label>
-											<Form.Control type="email" className="field-size" />
-										</Form.Group>
-									</Row> */}
+
 				<Row className="mb-3">
 					<Form.Group as={Col} controlId="formGridEmail"></Form.Group>
 					<Form.Group as={Col} controlId="formGridEmail">
@@ -184,12 +193,14 @@ const AddUser = ({ loading, error }) => {
 				<Row className="add_user">
 					<Col sm={8}>
 						<Tabs
-							defaultActiveKey="home"
 							transition={false}
 							id="noanim-tab-example"
 							className="mb-3 add-user-tab"
+							defaultActiveKey={activeTab}
+							activeKey={activeTab}
+							onSelect={(k) => setActiveTab(k)}
 						>
-							<Tab eventKey="home" title="Add Admin">
+							<Tab eventKey="admin" title="Add Admin">
 								{error && <Alert variant="danger">{error}!</Alert>}
 								<Formik
 									initialValues={getInitialValues()}
@@ -207,13 +218,36 @@ const AddUser = ({ loading, error }) => {
 									}}
 								/>
 							</Tab>
-							<Tab eventKey="profile" title="Add Operation Manager">
-								hello
+							<Tab eventKey="operation" title="Add Operation Manager">
+								{error && <Alert variant="danger">{error}!</Alert>}
+								<Formik
+									initialValues={getInitialValues()}
+									validate={validate(validationSchema)}
+									onSubmit={handleSubmit}
+									enableReinitialize={true}
+									render={({ errors, handleChange, handleSubmit, values, touched }) => {
+										return renderForm(
+											errors,
+											handleChange,
+											handleSubmit,
+											values,
+											touched
+										);
+									}}
+								/>
 							</Tab>
 						</Tabs>
 					</Col>
 				</Row>
 			</div>
+			<SuccessModal
+				show={isUserAdded}
+				message={"User is added successfully!"}
+				onHide={() => {
+					getInitialValues();
+					resetUserFlags("isUserAdded");
+				}}
+			/>
 		</AppLayout>
 	);
 };
@@ -222,11 +256,13 @@ const mapStateToProps = (state) => {
 	return {
 		error: state.user.error,
 		loading: state.user.loading,
+		profile: state.user.profile,
+		token: state.user.token,
+		isUserAdded: state.user.isUserAdded,
 	};
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch) =>
+	bindActionCreators({ addUser, resetUserFlags }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddUser);
-
-// * in label

@@ -62,10 +62,9 @@ export const INVESTOR_API = {
 
 	async getAllInvestors(payload, token) {
 		const response = await request(
-			`${API_URL}/exchange/search`,
+			`${API_URL}/exchange/search?page=${payload.page}&limit=${payload.limit}`,
 			{
-				method: "POST",
-				body: payload,
+				method: "GET",
 				headers: {
 					Authorization: token,
 				},

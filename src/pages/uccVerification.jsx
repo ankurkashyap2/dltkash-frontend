@@ -37,20 +37,26 @@ const UCCVerification = ({
 					"* Invalid Mobile Number"
 				),
 			uccEmailId: Yup.string().required("* Email Id is required"),
-			uccMobileNoModified: Yup.boolean().required(
-				"* Mobile Number modified is required"
-			),
-			uccEmailIdModified: Yup.boolean().required(
-				"* Email Id modified is required"
-			),
-			uccDpId: Yup.string().required("* DP Id is required"),
-			uccClientId: Yup.string().required("* Client Id is required"),
+			// uccMobileNoModified: Yup.boolean().required(
+			// 	"* Mobile Number modified is required"
+			// ),
+			// uccEmailIdModified: Yup.boolean().required(
+			// 	"* Email Id modified is required"
+			// ),
+			uccDpId: Yup.string().when("uccPanExempt", {
+				is: true,
+				then: Yup.string().required("* DP Id is required"),
+			}),
+			uccClientId: Yup.string().when("uccPanExempt", {
+				is: true,
+				then: Yup.string().required("* Client Id is required"),
+			}),
 			uccInvestorCode: Yup.string().required("* Investor Code is required"),
 			uccRequestType: Yup.string().required("* Request Type is required"),
 			uccNodeStatus: Yup.string().required("* Node Status is required"),
-			uccEmailStatus: Yup.boolean().required("* Email Status is required"),
-			uccMobileStatus: Yup.boolean().required("* Mobile Status is required"),
-			uccPanStatus: Yup.boolean().required("* PAN Status is required"),
+			// uccEmailStatus: Yup.boolean().required("* Email Status is required"),
+			// uccMobileStatus: Yup.boolean().required("* Mobile Status is required"),
+			// uccPanStatus: Yup.boolean().required("* PAN Status is required"),
 		});
 	};
 	console.log("country", CountryList);
@@ -86,16 +92,16 @@ const UCCVerification = ({
 			uccCountry: "",
 			uccMobileNo: "",
 			uccEmailId: "",
-			uccMobileNoModified: false,
-			uccEmailIdModified: false,
+			// uccMobileNoModified: false,
+			// uccEmailIdModified: false,
 			uccDpId: "",
 			uccClientId: "",
 			uccInvestorCode: "",
 			uccRequestType: "",
 			uccNodeStatus: "01",
-			uccEmailStatus: false,
-			uccMobileStatus: false,
-			uccPanStatus: false,
+			// uccEmailStatus: false,
+			// uccMobileStatus: false,
+			// uccPanStatus: false,
 		};
 		return initialValues;
 	};
@@ -104,12 +110,12 @@ const UCCVerification = ({
 		let payload = values;
 		payload = {
 			...payload,
-			uccEmailIdModified: values.uccEmailIdModified.toString(),
+			// uccEmailIdModified: values.uccEmailIdModified.toString(),
 			uccPanExempt: values.uccPanExempt.toString(),
-			uccMobileNoModified: values.uccMobileNoModified.toString(),
-			uccEmailStatus: values.uccEmailStatus ? "VERIFIED" : "NOT VERIFIED",
-			uccMobileStatus: values.uccMobileStatus ? "VERIFIED" : "NOT VERIFIED",
-			uccPanStatus: values.uccPanStatus ? "VERIFIED" : "NOT VERIFIED",
+			// uccMobileNoModified: values.uccMobileNoModified.toString(),
+			// uccEmailStatus: values.uccEmailStatus ? "VERIFIED" : "NOT VERIFIED",
+			// uccMobileStatus: values.uccMobileStatus ? "VERIFIED" : "NOT VERIFIED",
+			// uccPanStatus: values.uccPanStatus ? "VERIFIED" : "NOT VERIFIED",
 		};
 
 		addSingleInvestor(payload, token);
@@ -267,25 +273,25 @@ const UCCVerification = ({
 														)}
 													</Form.Group>
 												</Row>
-												<hr className="border-c"/>
+												<hr className="border-c" />
 												<Row className="mb-3">
-												<Form.Group
-													className="col-lg-6 col-md-12 mb-3"
-													controlId="validationCustom02"
-												>
-													<Form.Check
-														type="switch"
-														id="custom-switch switch-ucc"
-														label="PAN Exempt"
-														name="uccPanExempt"
-														className="switch-label"
-														onChange={handleChange}
-														value={values.uccPanExempt}
-													/>
-													{!!touched.uccPanExempt && !!errors.uccPanExempt && (
-														<p className="error-text">{errors.uccPanExempt}</p>
-													)}
-												</Form.Group>
+													<Form.Group
+														className="col-lg-6 col-md-12 mb-3"
+														controlId="validationCustom02"
+													>
+														<Form.Check
+															type="switch"
+															id="custom-switch switch-ucc"
+															label="PAN Exempt"
+															name="uccPanExempt"
+															className="switch-label"
+															onChange={handleChange}
+															value={values.uccPanExempt}
+														/>
+														{!!touched.uccPanExempt && !!errors.uccPanExempt && (
+															<p className="error-text">{errors.uccPanExempt}</p>
+														)}
+													</Form.Group>
 												</Row>
 												{values.uccPanExempt ? (
 													<Row className="mb-3">
@@ -349,7 +355,7 @@ const UCCVerification = ({
 														</Form.Group>
 													</Row>
 												)}
-												<hr className="border-c"/>
+												<hr className="border-c" />
 												<Row className="mb-3">
 													<Form.Group
 														className="col-lg-12 col-md-12"
@@ -384,44 +390,44 @@ const UCCVerification = ({
 															<p className="error-text">{errors.uccRequestType}</p>
 														)}
 													</Form.Group>
-													</Row>
-													<Row className="mb-3">
-														<Form.Group
-															className="col-lg-6 col-md-12"
-															controlId="validationCustom01"
-														>
-															<Form.Label className="mb-0 text-bold">Email ID</Form.Label>
-															<Form.Control
-																required
-																type="email"
-																placeholder="Enter Email ID"
-																className="field-size"
-																name="uccEmailId"
-																onChange={handleChange}
-																value={values.uccEmailId}
-															/>
-															{!!touched.uccEmailId && !!errors.uccEmailId && (
-																<p className="error-text">{errors.uccEmailId}</p>
-															)}
-														</Form.Group>
-														<Form.Group
-															className="col-lg-6 col-md-12"
-															controlId="validationCustom02"
-														>
-															<Form.Label className="mb-0 text-bold">Mobile No</Form.Label>
-															<Form.Control
-																type="text"
-																placeholder="Enter Mobile No"
-																className="field-size"
-																name="uccMobileNo"
-																onChange={handleChange}
-																value={values.uccMobileNo}
-															/>
-															{!!touched.uccMobileNo && !!errors.uccMobileNo && (
-																<p className="error-text">{errors.uccMobileNo}</p>
-															)}
-														</Form.Group>
-														{/* <Form.Group
+												</Row>
+												<Row className="mb-3">
+													<Form.Group
+														className="col-lg-6 col-md-12"
+														controlId="validationCustom01"
+													>
+														<Form.Label className="mb-0 text-bold">Email ID</Form.Label>
+														<Form.Control
+															required
+															type="email"
+															placeholder="Enter Email ID"
+															className="field-size"
+															name="uccEmailId"
+															onChange={handleChange}
+															value={values.uccEmailId}
+														/>
+														{!!touched.uccEmailId && !!errors.uccEmailId && (
+															<p className="error-text">{errors.uccEmailId}</p>
+														)}
+													</Form.Group>
+													<Form.Group
+														className="col-lg-6 col-md-12"
+														controlId="validationCustom02"
+													>
+														<Form.Label className="mb-0 text-bold">Mobile No</Form.Label>
+														<Form.Control
+															type="text"
+															placeholder="Enter Mobile No"
+															className="field-size"
+															name="uccMobileNo"
+															onChange={handleChange}
+															value={values.uccMobileNo}
+														/>
+														{!!touched.uccMobileNo && !!errors.uccMobileNo && (
+															<p className="error-text">{errors.uccMobileNo}</p>
+														)}
+													</Form.Group>
+													{/* <Form.Group
 														className="col-lg-6 col-md-12 mt-3"
 														controlId="validationCustom02"
 													>
@@ -438,7 +444,7 @@ const UCCVerification = ({
 															<p className="error-text">{errors.uccEmailIdModified}</p>
 														)}
 													</Form.Group> */}
-													
+
 													{/* <Form.Group
 														as={Col}
 														md="6"

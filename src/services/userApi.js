@@ -97,10 +97,13 @@ export const USER_API = {
 		return response;
 	},
 
-	async addUser(payload) {
+	async addUser(payload, token) {
 		const response = await request(`${API_URL}/auth/register-admin`, {
 			method: "POST",
 			body: payload,
+			headers: {
+				Authorization: token,
+			},
 		});
 		return response;
 	},

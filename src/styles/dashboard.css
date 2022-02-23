@@ -207,7 +207,7 @@ thead {
 }
 
 .add-user-tab li button {
-	width:100%;
+	width: 100%;
 	font-size: 14px;
 	font-weight: 400;
 	color: #969696;
@@ -270,8 +270,8 @@ input#custom-switch\ switch-ucc {
 	color: #667085;
 }
 hr.border-c {
-    color: #5a5a5a6b;
-    margin: 35px 0 20px;
+	color: #5a5a5a6b;
+	margin: 35px 0 20px;
 }
 @media only screen and (max-width: 768px) {
 	.content {

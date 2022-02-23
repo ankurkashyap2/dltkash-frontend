@@ -95,8 +95,8 @@ export const otpVerificationSuccess = (response) => {
 export const otpVerificationError = (error) => {
 	return { type: OTP_VERIFICATION_ERROR, error };
 };
-export const addUser = (payload) => {
-	return { type: ADD_USER, payload };
+export const addUser = (payload, token) => {
+	return { type: ADD_USER, payload, token };
 };
 export const addUserSuccess = (response) => {
 	return { type: ADD_USER_SUCCESS, response };

@@ -44,6 +44,7 @@ const initState = {
 	isEmailVerified: false,
 	isLinkSent: false,
 	selectedDrawerTab: "dashboard",
+	isUserAdded: false,
 };
 
 const userReducer = (state = initState, action) => {
@@ -209,7 +210,7 @@ const userReducer = (state = initState, action) => {
 			return {
 				...state,
 				loading: false,
-				// isEmailVerified: true,
+				isUserAdded: true,
 			};
 		}
 		case ADD_USER_ERROR: {
