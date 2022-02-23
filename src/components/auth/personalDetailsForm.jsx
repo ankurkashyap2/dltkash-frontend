@@ -43,6 +43,7 @@ const PersonalDetailsForm = ({
 	isMobileOTPSent,
 	receivedMobileOTP,
 	resetUserFlags,
+	isUserRegistered,
 }) => {
 	const navigate = useNavigate();
 	const [showPassword, setShowPassword] = useState(false);
@@ -216,7 +217,9 @@ const PersonalDetailsForm = ({
 									controlId="formGridEmail"
 									className="mb-3"
 								>
-									<Form.Label className="text-bottom">User Name</Form.Label>
+									<Form.Label className="text-bottom">
+										User Name<span className="asterick">*</span>
+									</Form.Label>
 									<Form.Control
 										type="text"
 										placeholder="Enter User Name"
@@ -239,7 +242,9 @@ const PersonalDetailsForm = ({
 									controlId="formGridEmail"
 									className="mb-3"
 								>
-									<Form.Label className="text-bottom">Mobile Number</Form.Label>
+									<Form.Label className="text-bottom">
+										Mobile Number<span className="asterick">*</span>
+									</Form.Label>
 									<div style={{ position: "relative" }}>
 										<Form.Control
 											type="text"
@@ -278,7 +283,9 @@ const PersonalDetailsForm = ({
 									controlId="formGridEmail"
 									className="mb-3"
 								>
-									<Form.Label className="text-bottom">Enter Mobile OTP </Form.Label>
+									<Form.Label className="text-bottom">
+										Enter Mobile OTP<span className="asterick">*</span>
+									</Form.Label>
 									<div style={{ position: "relative" }}>
 										<Form.Control
 											type="text"
@@ -311,7 +318,9 @@ const PersonalDetailsForm = ({
 									controlId="formGridEmail"
 									className="mb-3"
 								>
-									<Form.Label className="text-bottom">Email Address</Form.Label>
+									<Form.Label className="text-bottom">
+										Email Address<span className="asterick">*</span>
+									</Form.Label>
 									<div style={{ position: "relative" }}>
 										<Form.Control
 											type="text"
@@ -350,7 +359,9 @@ const PersonalDetailsForm = ({
 									controlId="formGridEmail"
 									className="mb-3"
 								>
-									<Form.Label className="text-bottom">Enter Email OTP </Form.Label>
+									<Form.Label className="text-bottom">
+										Enter Email OTP<span className="asterick">*</span>
+									</Form.Label>
 									<div style={{ position: "relative" }}>
 										<Form.Control
 											type="text"
@@ -383,7 +394,9 @@ const PersonalDetailsForm = ({
 									controlId="formGridPassword"
 									className="mb-3"
 								>
-									<Form.Label className="text-bottom">Password</Form.Label>
+									<Form.Label className="text-bottom">
+										Password<span className="asterick">*</span>
+									</Form.Label>
 									<OverlayTrigger
 										overlay={
 											<Tooltip>
@@ -425,7 +438,9 @@ const PersonalDetailsForm = ({
 									controlId="formGridPassword"
 									className="mb-3"
 								>
-									<Form.Label className="text-bottom">Confirm Password</Form.Label>
+									<Form.Label className="text-bottom">
+										Confirm Password<span className="asterick">*</span>
+									</Form.Label>
 									<Form.Control
 										type={showConfirmPassword ? "text" : "password"}
 										placeholder="Confirm Password"
@@ -467,30 +482,35 @@ const PersonalDetailsForm = ({
 					);
 				}}
 			/>
-
 			<SuccessModal
-				show={
-					successModal === "emailVerified" ||
-					successModal === "mobileVerified" ||
-					isEmailOTPSent ||
-					isMobileOTPSent
+				show={successModal === "emailVerified" || successModal === "mobileVerified"}
+				message={
+					successModal === "emailVerified"
+						? "Email is verified Successfully!"
+						: "Mobile is verified Successfully!"
 				}
+				onHide={() => setSuccessModal("")}
+			/>
+			<SuccessModal
+				show={isEmailOTPSent || isMobileOTPSent}
 				message={
 					isEmailOTPSent
 						? "An OTP is sent to your Email. Please verify it first to get yourself register."
-						: isMobileOTPSent
-						? "An OTP is sent to your Mobile number. Please verify it first to get yourself register."
-						: successModal === "emailVerified"
-						? "Email is verified Successfully!"
-						: "Mobile is verified Successfully!"
+						: "An OTP is sent to your Mobile number. Please verify it first to get yourself register."
 				}
 				onHide={() =>
 					isEmailOTPSent
 						? resetUserFlags("isEmailOTPSent")
-						: isMobileOTPSent
-						? resetUserFlags("isMobileOTPSent")
-						: setSuccessModal("")
+						: resetUserFlags("isMobileOTPSent")
 				}
+			/>
+			<SuccessModal
+				show={isUserRegistered}
+				message={"You are registered Successfully!"}
+				onHide={() => {
+					resetUserFlags("isUserRegistered");
+					navigate("/login");
+				}}
 			/>
 		</>
 	);
@@ -505,6 +525,7 @@ const mapStateToProps = (state) => {
 		receivedEmailOTP: state.user.receivedEmailOTP,
 		isMobileOTPSent: state.user.isMobileOTPSent,
 		receivedMobileOTP: state.user.receivedMobileOTP,
+		isUserRegistered: state.user.isUserRegistered,
 	};
 };
 

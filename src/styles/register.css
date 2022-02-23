@@ -295,6 +295,11 @@ ul.btn-tab {
 	text-align: left;
 	margin-bottom: 0;
 }
+.Register-box .asterick {
+	font-size: 16px !important;
+	color: #dc3545;
+	text-align: left;
+}
 .text-verify-1 {
 	float: right;
 	margin-top: -32px;
@@ -304,7 +309,8 @@ ul.btn-tab {
 	font-size: 12px !important;
 }
 .tooltip_icon {
-	margin-left: 10px;
+	margin-left: 3px;
+	height: 16px;
 }
 .tooltip-bg {
 	background: #d7d7d7;

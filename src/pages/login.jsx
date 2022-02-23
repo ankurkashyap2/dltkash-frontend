@@ -65,7 +65,7 @@ const Login = ({ userLogin, error, loading }) => {
 			<div className="main-content-login">
 				<div className="outer-box">
 					<div className="login-box">
-						<h3>Login</h3>
+						{/* <h3>Login</h3> */}
 						<p>Enter the following details to login</p>
 						{error && <Alert variant="danger">{error}!</Alert>}
 						<Formik

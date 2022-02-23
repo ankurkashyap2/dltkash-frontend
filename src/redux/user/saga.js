@@ -44,7 +44,7 @@ export function* userSignup() {
 			const response = yield call(USER_API.userRegister, entity);
 			if (response.status === 200) {
 				yield put(userRegisterSuccess());
-				navigation("/login");
+				// navigation("/login");
 			} else {
 				yield put(userRegisterError(response.error.error.message));
 			}

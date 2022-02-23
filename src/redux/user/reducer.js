@@ -45,6 +45,7 @@ const initState = {
 	isLinkSent: false,
 	selectedDrawerTab: "dashboard",
 	isUserAdded: false,
+	isUserRegistered: false,
 };
 
 const userReducer = (state = initState, action) => {
@@ -59,6 +60,7 @@ const userReducer = (state = initState, action) => {
 			return {
 				...state,
 				loading: false,
+				isUserRegistered: true,
 			};
 		case USER_REGISTER_ERROR:
 			return {

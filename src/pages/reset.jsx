@@ -75,7 +75,7 @@ const Reset = ({ loading, error, resetPassword }) => {
 			<div className="main-content">
 				<div className="outer-box">
 					<div className="login-box">
-						<h3>Reset Password</h3>
+						{/* <h3>Reset Password</h3> */}
 						<p>Enter the details below to reset the password</p>
 						{error && <Alert variant="danger">{error}!</Alert>}
 						<Formik

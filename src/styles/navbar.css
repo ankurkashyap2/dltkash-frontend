@@ -1,3 +1,13 @@
+.top-link {
+	border: 1px solid #4fadea;
+	color: #fff;
+	background-color: #4fadea;
+	font-size: 14px;
+	text-transform: capitalize;
+	font-weight: 500;
+	padding: 5px 30px !important;
+	border-radius: 6px;
+}
 .customnavbar-container {
 	display: flex;
 	justify-content: space-between;
@@ -25,9 +35,9 @@
 	cursor: pointer;
 }
 .icon-user span {
-    font-weight: 500;
-    color: #3896d2;
-    margin-right: 13px !important;
+	font-weight: 500;
+	color: #3896d2;
+	margin-right: 13px !important;
 }
 .icon-user img {
 	width: 40px;
@@ -48,5 +58,6 @@ p {
 	color: #000;
 }
 .text-link {
-	color: #4fadea;
+	color: #fff;
+	margin-bottom: 6px;
 }

@@ -63,7 +63,7 @@ const Forgot = ({
 			<div className="main-content">
 				<div className="outer-box">
 					<div className="login-box">
-						<h3>Forgot Password</h3>
+						{/* <h3>Forgot Password</h3> */}
 						<p>Enter the details below to retrieve the password</p>
 						{error && <Alert variant="danger">{error}!</Alert>}
 						<Formik

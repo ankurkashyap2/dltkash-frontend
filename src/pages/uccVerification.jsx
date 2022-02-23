@@ -113,9 +113,9 @@ const UCCVerification = ({
 			// uccEmailIdModified: values.uccEmailIdModified.toString(),
 			uccPanExempt: values.uccPanExempt.toString(),
 			// uccMobileNoModified: values.uccMobileNoModified.toString(),
-			// uccEmailStatus: values.uccEmailStatus ? "VERIFIED" : "NOT VERIFIED",
-			// uccMobileStatus: values.uccMobileStatus ? "VERIFIED" : "NOT VERIFIED",
-			// uccPanStatus: values.uccPanStatus ? "VERIFIED" : "NOT VERIFIED",
+			uccEmailStatus: "NOT VERIFIED",
+			uccMobileStatus: "NOT VERIFIED",
+			uccPanStatus: "NOT VERIFIED",
 		};
 
 		addSingleInvestor(payload, token);

@@ -55,6 +55,7 @@ const Navbar = ({ page, token, user, userLogout }) => {
 					</>
 				) : (
 					<Nav.Link
+						className="top-link"
 						eventKey="link-2"
 						href={page === "Registration" ? "/login" : "/register"}
 					>

@@ -27,11 +27,18 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 	const validationSchema = () => {
 		return Yup.object().shape({
 			legalEntityName: Yup.string().required("* Legal Entity Name is required"),
-			sebiCertificateNumber: Yup.string().required(
-				"* SEBI Certificate Number is required"
-			),
-			cinNumber: Yup.string().required("* CIN Number is required"),
-			panNumber: Yup.string().required("* PAN Number is required"),
+			sebiCertificateNumber: Yup.string()
+				.required("* SEBI Certificate Number is required")
+				.min(4, "* Invalid SEBI Certificate Number")
+				.max(10, "* Invalid SEBI Certificate Number"),
+			cinNumber: Yup.string()
+				.required("* CIN Number is required")
+				.min(4, "* Invalid CIN Number")
+				.max(22, "* Invalid CIN Number"),
+			panNumber: Yup.string()
+				.required("* PAN Number is required")
+				.min(4, "* Invalid PAN Number")
+				.max(10, "* Invalid PAN Number"),
 		});
 	};
 
@@ -227,7 +234,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									controlId="validationFormik01"
 								>
 									<Form.Label className="text-bottom">
-										Legal Entity<span className="error-text">*</span>
+										Legal Entity<span className="asterick">*</span>
 									</Form.Label>
 									<Form.Control
 										type="text"
@@ -251,7 +258,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									controlId="formGridEmail"
 									className="mb-3"
 								>
-									<Form.Label className="text-bottom">SEBI Certificate</Form.Label>
+									<Form.Label className="text-bottom">
+										SEBI Certificate<span className="asterick">*</span>
+									</Form.Label>
 									<Form.Control
 										type="text"
 										name="sebiCertificateNumber"
@@ -272,7 +281,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									className="mb-3"
 								>
 									<Form.Label className="text-bottom">
-										Upload SEBI Certificate
+										Upload SEBI Certificate<span className="asterick">*</span>
 									</Form.Label>
 									<OverlayTrigger overlay={<Tooltip>Upload SEBI Certificate</Tooltip>}>
 										<Question className="tooltip_icon" />
@@ -332,7 +341,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									controlId="formGridEmail"
 									className="mb-3"
 								>
-									<Form.Label className="text-bottom">CIN</Form.Label>
+									<Form.Label className="text-bottom">
+										CIN<span className="asterick">*</span>
+									</Form.Label>
 									<Form.Control
 										type="text"
 										name="cinNumber"
@@ -352,7 +363,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									controlId="formGridEmail"
 									className="mb-3"
 								>
-									<Form.Label className="text-bottom">Upload CIN </Form.Label>
+									<Form.Label className="text-bottom">
+										Upload CIN<span className="asterick">*</span>
+									</Form.Label>
 									<OverlayTrigger overlay={<Tooltip>Upload CIN </Tooltip>}>
 										<Question className="tooltip_icon" />
 									</OverlayTrigger>
@@ -411,7 +424,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									controlId="formGridEmail"
 									className="mb-3"
 								>
-									<Form.Label className="text-bottom">PAN</Form.Label>
+									<Form.Label className="text-bottom">
+										PAN<span className="asterick">*</span>
+									</Form.Label>
 									<Form.Control
 										type="text"
 										name="panNumber"
@@ -431,7 +446,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									controlId="formGridPassword"
 									className="mb-3"
 								>
-									<Form.Label className="text-bottom">Upload PAN</Form.Label>
+									<Form.Label className="text-bottom">
+										Upload PAN<span className="asterick">*</span>
+									</Form.Label>
 									<OverlayTrigger overlay={<Tooltip>Upload PAN</Tooltip>}>
 										<Question className="tooltip_icon" />
 									</OverlayTrigger>
