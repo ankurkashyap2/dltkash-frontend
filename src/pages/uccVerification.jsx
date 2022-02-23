@@ -151,52 +151,53 @@ const UCCVerification = ({
 										</Row>
 										<Row>
 											<Col>
-												<Row className="mb-3">
-													<Form.Group
-														className="col-lg-6 col-md-12"
-														controlId="validationCustom01"
-													>
-														<Form.Label className="mb-0 text-bold">Request ID</Form.Label>
-														<Form.Control
-															type="text"
-															placeholder="Enter Request Id"
-															className="field-size"
-															name="uccRequestId"
-															onChange={handleChange}
-															value={values.uccRequestId}
-														/>
-														{!!touched.uccRequestId && !!errors.uccRequestId && (
-															<p className="error-text">{errors.uccRequestId}</p>
-														)}
-													</Form.Group>
-													<Form.Group
-														className="col-lg-6 col-md-12"
-														controlId="validationCustom01"
-													>
-														<Form.Label className="mb-0 text-bold">Country</Form.Label>
-														<Form.Control
-															as="select"
-															custom
-															className="field-size"
-															name="uccCountry"
-															value={values.uccCountry}
-															onChange={handleChange}
+												<div className="box-line">
+													<Row className="mb-3">
+														<Form.Group
+															className="col-lg-6 col-md-12"
+															controlId="validationCustom01"
 														>
-															<option key="blankChoice" hidden value>
-																Choose...
-															</option>
-															{CountryList &&
-																CountryList.records.map((item) => (
-																	<option key={item.id} value={item.country}>
-																		{item.country}
-																	</option>
-																))}
-														</Form.Control>
-														{!!touched.uccCountry && !!errors.uccCountry && (
-															<p className="error-text">{errors.uccCountry}</p>
-														)}
-													</Form.Group>
-													{/* <Form.Group
+															<Form.Label className="mb-0 text-bold">Request ID</Form.Label>
+															<Form.Control
+																type="text"
+																placeholder="Enter Request Id"
+																className="field-size"
+																name="uccRequestId"
+																onChange={handleChange}
+																value={values.uccRequestId}
+															/>
+															{!!touched.uccRequestId && !!errors.uccRequestId && (
+																<p className="error-text">{errors.uccRequestId}</p>
+															)}
+														</Form.Group>
+														<Form.Group
+															className="col-lg-6 col-md-12"
+															controlId="validationCustom01"
+														>
+															<Form.Label className="mb-0 text-bold">Country</Form.Label>
+															<Form.Control
+																as="select"
+																custom
+																className="field-size"
+																name="uccCountry"
+																value={values.uccCountry}
+																onChange={handleChange}
+															>
+																<option key="blankChoice" hidden value>
+																	Choose...
+																</option>
+																{CountryList &&
+																	CountryList.records.map((item) => (
+																		<option key={item.id} value={item.country}>
+																			{item.country}
+																		</option>
+																	))}
+															</Form.Control>
+															{!!touched.uccCountry && !!errors.uccCountry && (
+																<p className="error-text">{errors.uccCountry}</p>
+															)}
+														</Form.Group>
+														{/* <Form.Group
 														className="col-lg-6 col-md-12"
 														controlId="validationCustom02"
 													>
@@ -213,221 +214,223 @@ const UCCVerification = ({
 															<p className="error-text">{errors.uccMobileNo}</p>
 														)}
 													</Form.Group> */}
-												</Row>
+													</Row>
 
-												<Row className="mb-3">
-													<Form.Group
-														className="col-lg-6 col-md-12"
-														controlId="validationCustom01"
-													>
-														<Form.Label className="mb-0 text-bold">TM Name</Form.Label>
-														<Form.Control
-															required
-															type="text"
-															placeholder="Enter TM Name"
-															className="field-size"
-															name="uccTmName"
-															onChange={handleChange}
-															value={values.uccTmName}
-														/>
-														{!!touched.uccTmName && !!errors.uccTmName && (
-															<p className="error-text">{errors.uccTmName}</p>
-														)}
-													</Form.Group>
-													<Form.Group
-														className="col-lg-6 col-md-12"
-														controlId="validationCustom02"
-													>
-														<Form.Label className="mb-0 text-bold">TM ID</Form.Label>
-														<Form.Control
-															required
-															type="text"
-															placeholder="Enter TM ID"
-															className="field-size"
-															name="uccTmId"
-															onChange={handleChange}
-															value={values.uccTmId}
-														/>
-														{!!touched.uccTmId && !!errors.uccTmId && (
-															<p className="error-text">{errors.uccTmId}</p>
-														)}
-													</Form.Group>
-												</Row>
-												<Row>
-													<Form.Group
-														className="col-lg-12 col-md-12"
-														controlId="validationCustom02"
-													>
-														<Form.Label className="mb-0 text-bold">Investor Code</Form.Label>
-														<Form.Control
-															required
-															type="text"
-															placeholder="Enter Investor Code"
-															className="field-size"
-															name="uccInvestorCode"
-															onChange={handleChange}
-															value={values.uccInvestorCode}
-														/>
-														{!!touched.uccInvestorCode && !!errors.uccInvestorCode && (
-															<p className="error-text">{errors.uccInvestorCode}</p>
-														)}
-													</Form.Group>
-												</Row>
-												<hr className="border-c" />
-												<Row className="mb-3">
-													<Form.Group
-														className="col-lg-6 col-md-12 mb-3"
-														controlId="validationCustom02"
-													>
-														<Form.Check
-															type="switch"
-															id="custom-switch switch-ucc"
-															label="PAN Exempt"
-															name="uccPanExempt"
-															className="switch-label"
-															onChange={handleChange}
-															value={values.uccPanExempt}
-														/>
-														{!!touched.uccPanExempt && !!errors.uccPanExempt && (
-															<p className="error-text">{errors.uccPanExempt}</p>
-														)}
-													</Form.Group>
-												</Row>
-												{values.uccPanExempt ? (
 													<Row className="mb-3">
-														<Form.Group
-															className="col-lg-6 col-md-12"
-															controlId="validationCustom02"
-														>
-															<Form.Label className="mb-0 text-bold">DP ID</Form.Label>
-															<Form.Control
-																required
-																type="text"
-																placeholder="Enter DP ID"
-																className="field-size"
-																name="uccDpId"
-																onChange={handleChange}
-																value={values.uccDpId}
-															/>
-															{!!touched.uccDpId && !!errors.uccDpId && (
-																<p className="error-text">{errors.uccDpId}</p>
-															)}
-														</Form.Group>
-
 														<Form.Group
 															className="col-lg-6 col-md-12"
 															controlId="validationCustom01"
 														>
-															<Form.Label className="mb-0 text-bold">Client ID</Form.Label>
+															<Form.Label className="mb-0 text-bold">TM Name</Form.Label>
 															<Form.Control
 																required
 																type="text"
-																placeholder="Enter Client ID"
+																placeholder="Enter TM Name"
 																className="field-size"
-																name="uccClientId"
+																name="uccTmName"
 																onChange={handleChange}
-																value={values.uccClientId}
+																value={values.uccTmName}
 															/>
-															{!!touched.uccClientId && !!errors.uccClientId && (
-																<p className="error-text">{errors.uccClientId}</p>
+															{!!touched.uccTmName && !!errors.uccTmName && (
+																<p className="error-text">{errors.uccTmName}</p>
 															)}
 														</Form.Group>
-													</Row>
-												) : (
-													<Row className="mb-3">
 														<Form.Group
 															className="col-lg-6 col-md-12"
 															controlId="validationCustom02"
 														>
-															<Form.Label className="mb-0 text-bold">PAN No</Form.Label>
+															<Form.Label className="mb-0 text-bold">TM ID</Form.Label>
 															<Form.Control
 																required
 																type="text"
-																placeholder="Enter PAN No"
+																placeholder="Enter TM ID"
 																className="field-size"
-																name="uccPanNo"
+																name="uccTmId"
 																onChange={handleChange}
-																value={values.uccPanNo}
+																value={values.uccTmId}
 															/>
-															{!!touched.uccPanNo && !!errors.uccPanNo && (
-																<p className="error-text">{errors.uccPanNo}</p>
+															{!!touched.uccTmId && !!errors.uccTmId && (
+																<p className="error-text">{errors.uccTmId}</p>
 															)}
 														</Form.Group>
 													</Row>
-												)}
-												<hr className="border-c" />
-												<Row className="mb-3">
-													<Form.Group
-														className="col-lg-12 col-md-12"
-														controlId="validationCustom01"
-													>
-														<Form.Label className="mb-0 text-bold">Request Type</Form.Label>
-														<Form.Control
-															as="select"
-															custom
-															className="field-size"
-															name="uccRequestType"
-															value={values.uccRequestType}
-															onChange={handleChange}
+													<Row>
+														<Form.Group
+															className="col-lg-12 col-md-12"
+															controlId="validationCustom02"
 														>
-															<option
-																key="blankChoice"
-																hidden
-																value
-																className="select-placeholder"
+															<Form.Label className="mb-0 text-bold">Investor Code</Form.Label>
+															<Form.Control
+																required
+																type="text"
+																placeholder="Enter Investor Code"
+																className="field-size"
+																name="uccInvestorCode"
+																onChange={handleChange}
+																value={values.uccInvestorCode}
+															/>
+															{!!touched.uccInvestorCode && !!errors.uccInvestorCode && (
+																<p className="error-text">{errors.uccInvestorCode}</p>
+															)}
+														</Form.Group>
+													</Row>
+												</div>
+												<div className="box-line">
+													<Row className="mb-3">
+														<Form.Group
+															className="col-lg-6 col-md-12 mb-3"
+															controlId="validationCustom02"
+														>
+															<Form.Check
+																type="switch"
+																id="custom-switch switch-ucc"
+																label="PAN Exempt"
+																name="uccPanExempt"
+																className="switch-label"
+																onChange={handleChange}
+																value={values.uccPanExempt}
+															/>
+															{!!touched.uccPanExempt && !!errors.uccPanExempt && (
+																<p className="error-text">{errors.uccPanExempt}</p>
+															)}
+														</Form.Group>
+													</Row>
+													{values.uccPanExempt ? (
+														<Row className="mb-3">
+															<Form.Group
+																className="col-lg-6 col-md-12"
+																controlId="validationCustom02"
 															>
-																Choose...
-															</option>
+																<Form.Label className="mb-0 text-bold">DP ID</Form.Label>
+																<Form.Control
+																	required
+																	type="text"
+																	placeholder="Enter DP ID"
+																	className="field-size"
+																	name="uccDpId"
+																	onChange={handleChange}
+																	value={values.uccDpId}
+																/>
+																{!!touched.uccDpId && !!errors.uccDpId && (
+																	<p className="error-text">{errors.uccDpId}</p>
+																)}
+															</Form.Group>
 
-															<option key="new" value="New">
-																New
-															</option>
-															<option key="existing" value="Existing">
-																Existing
-															</option>
-														</Form.Control>
-														{!!touched.uccRequestType && !!errors.uccRequestType && (
-															<p className="error-text">{errors.uccRequestType}</p>
-														)}
-													</Form.Group>
-												</Row>
-												<Row className="mb-3">
-													<Form.Group
-														className="col-lg-6 col-md-12"
-														controlId="validationCustom01"
-													>
-														<Form.Label className="mb-0 text-bold">Email ID</Form.Label>
-														<Form.Control
-															required
-															type="email"
-															placeholder="Enter Email ID"
-															className="field-size"
-															name="uccEmailId"
-															onChange={handleChange}
-															value={values.uccEmailId}
-														/>
-														{!!touched.uccEmailId && !!errors.uccEmailId && (
-															<p className="error-text">{errors.uccEmailId}</p>
-														)}
-													</Form.Group>
-													<Form.Group
-														className="col-lg-6 col-md-12"
-														controlId="validationCustom02"
-													>
-														<Form.Label className="mb-0 text-bold">Mobile No</Form.Label>
-														<Form.Control
-															type="text"
-															placeholder="Enter Mobile No"
-															className="field-size"
-															name="uccMobileNo"
-															onChange={handleChange}
-															value={values.uccMobileNo}
-														/>
-														{!!touched.uccMobileNo && !!errors.uccMobileNo && (
-															<p className="error-text">{errors.uccMobileNo}</p>
-														)}
-													</Form.Group>
-													{/* <Form.Group
+															<Form.Group
+																className="col-lg-6 col-md-12"
+																controlId="validationCustom01"
+															>
+																<Form.Label className="mb-0 text-bold">Client ID</Form.Label>
+																<Form.Control
+																	required
+																	type="text"
+																	placeholder="Enter Client ID"
+																	className="field-size"
+																	name="uccClientId"
+																	onChange={handleChange}
+																	value={values.uccClientId}
+																/>
+																{!!touched.uccClientId && !!errors.uccClientId && (
+																	<p className="error-text">{errors.uccClientId}</p>
+																)}
+															</Form.Group>
+														</Row>
+													) : (
+														<Row className="mb-3">
+															<Form.Group
+																className="col-lg-6 col-md-12"
+																controlId="validationCustom02"
+															>
+																<Form.Label className="mb-0 text-bold">PAN No</Form.Label>
+																<Form.Control
+																	required
+																	type="text"
+																	placeholder="Enter PAN No"
+																	className="field-size"
+																	name="uccPanNo"
+																	onChange={handleChange}
+																	value={values.uccPanNo}
+																/>
+																{!!touched.uccPanNo && !!errors.uccPanNo && (
+																	<p className="error-text">{errors.uccPanNo}</p>
+																)}
+															</Form.Group>
+														</Row>
+													)}
+												</div>
+												<div className="box-line">
+													<Row className="mb-3">
+														<Form.Group
+															className="col-lg-12 col-md-12"
+															controlId="validationCustom01"
+														>
+															<Form.Label className="mb-0 text-bold">Request Type</Form.Label>
+															<Form.Control
+																as="select"
+																custom
+																className="field-size"
+																name="uccRequestType"
+																value={values.uccRequestType}
+																onChange={handleChange}
+															>
+																<option
+																	key="blankChoice"
+																	hidden
+																	value
+																	className="select-placeholder"
+																>
+																	Choose...
+																</option>
+
+																<option key="new" value="New">
+																	New
+																</option>
+																<option key="existing" value="Existing">
+																	Existing
+																</option>
+															</Form.Control>
+															{!!touched.uccRequestType && !!errors.uccRequestType && (
+																<p className="error-text">{errors.uccRequestType}</p>
+															)}
+														</Form.Group>
+													</Row>
+													<Row className="mb-3">
+														<Form.Group
+															className="col-lg-6 col-md-12"
+															controlId="validationCustom01"
+														>
+															<Form.Label className="mb-0 text-bold">Email ID</Form.Label>
+															<Form.Control
+																required
+																type="email"
+																placeholder="Enter Email ID"
+																className="field-size"
+																name="uccEmailId"
+																onChange={handleChange}
+																value={values.uccEmailId}
+															/>
+															{!!touched.uccEmailId && !!errors.uccEmailId && (
+																<p className="error-text">{errors.uccEmailId}</p>
+															)}
+														</Form.Group>
+														<Form.Group
+															className="col-lg-6 col-md-12"
+															controlId="validationCustom02"
+														>
+															<Form.Label className="mb-0 text-bold">Mobile No</Form.Label>
+															<Form.Control
+																type="text"
+																placeholder="Enter Mobile No"
+																className="field-size"
+																name="uccMobileNo"
+																onChange={handleChange}
+																value={values.uccMobileNo}
+															/>
+															{!!touched.uccMobileNo && !!errors.uccMobileNo && (
+																<p className="error-text">{errors.uccMobileNo}</p>
+															)}
+														</Form.Group>
+														{/* <Form.Group
 														className="col-lg-6 col-md-12 mt-3"
 														controlId="validationCustom02"
 													>
@@ -445,7 +448,7 @@ const UCCVerification = ({
 														)}
 													</Form.Group> */}
 
-													{/* <Form.Group
+														{/* <Form.Group
 														as={Col}
 														md="6"
 														className="col-lg-6 col-md-12 mt-3"
@@ -464,7 +467,8 @@ const UCCVerification = ({
 															<p className="error-text">{errors.uccEmailStatus}</p>
 														)}
 													</Form.Group> */}
-												</Row>
+													</Row>
+												</div>
 												{/* <Row className="mb-3">
 													<Form.Group
 														as={Col}

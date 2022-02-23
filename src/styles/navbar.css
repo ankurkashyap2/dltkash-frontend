@@ -24,6 +24,11 @@
 	align-items: center;
 	cursor: pointer;
 }
+.icon-user span {
+    font-weight: 500;
+    color: #3896d2;
+    margin-right: 13px !important;
+}
 .icon-user img {
 	width: 40px;
 	height: 40px;
