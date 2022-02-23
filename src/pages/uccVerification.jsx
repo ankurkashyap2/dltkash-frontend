@@ -208,6 +208,7 @@ const UCCVerification = ({
 														)}
 													</Form.Group> */}
 												</Row>
+
 												<Row className="mb-3">
 													<Form.Group
 														className="col-lg-6 col-md-12"
@@ -246,26 +247,30 @@ const UCCVerification = ({
 														)}
 													</Form.Group>
 												</Row>
+												<Row>
+													<Form.Group
+														className="col-lg-12 col-md-12"
+														controlId="validationCustom02"
+													>
+														<Form.Label className="mb-0 text-bold">Investor Code</Form.Label>
+														<Form.Control
+															required
+															type="text"
+															placeholder="Enter Investor Code"
+															className="field-size"
+															name="uccInvestorCode"
+															onChange={handleChange}
+															value={values.uccInvestorCode}
+														/>
+														{!!touched.uccInvestorCode && !!errors.uccInvestorCode && (
+															<p className="error-text">{errors.uccInvestorCode}</p>
+														)}
+													</Form.Group>
+												</Row>
+												<hr className="border-c"/>
+												<Row className="mb-3">
 												<Form.Group
-													className="col-lg-6 col-md-12"
-													controlId="validationCustom02"
-												>
-													<Form.Label className="mb-0 text-bold">Investor Code</Form.Label>
-													<Form.Control
-														required
-														type="text"
-														placeholder="Enter Investor Code"
-														className="field-size"
-														name="uccInvestorCode"
-														onChange={handleChange}
-														value={values.uccInvestorCode}
-													/>
-													{!!touched.uccInvestorCode && !!errors.uccInvestorCode && (
-														<p className="error-text">{errors.uccInvestorCode}</p>
-													)}
-												</Form.Group>
-												<Form.Group
-													className="col-lg-6 col-md-12 mt-3"
+													className="col-lg-6 col-md-12 mb-3"
 													controlId="validationCustom02"
 												>
 													<Form.Check
@@ -281,6 +286,7 @@ const UCCVerification = ({
 														<p className="error-text">{errors.uccPanExempt}</p>
 													)}
 												</Form.Group>
+												</Row>
 												{values.uccPanExempt ? (
 													<Row className="mb-3">
 														<Form.Group
@@ -343,10 +349,10 @@ const UCCVerification = ({
 														</Form.Group>
 													</Row>
 												)}
-
+												<hr className="border-c"/>
 												<Row className="mb-3">
 													<Form.Group
-														className="col-lg-6 col-md-12"
+														className="col-lg-12 col-md-12"
 														controlId="validationCustom01"
 													>
 														<Form.Label className="mb-0 text-bold">Request Type</Form.Label>
@@ -378,6 +384,7 @@ const UCCVerification = ({
 															<p className="error-text">{errors.uccRequestType}</p>
 														)}
 													</Form.Group>
+													</Row>
 													<Row className="mb-3">
 														<Form.Group
 															className="col-lg-6 col-md-12"
@@ -431,7 +438,7 @@ const UCCVerification = ({
 															<p className="error-text">{errors.uccEmailIdModified}</p>
 														)}
 													</Form.Group> */}
-													</Row>
+													
 													{/* <Form.Group
 														as={Col}
 														md="6"
