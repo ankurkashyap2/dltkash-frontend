@@ -25,11 +25,11 @@ const AddUser = ({ loading }) => {
 							<Tab eventKey="home" title="Add Admin">
 								<Form>
 									<Row className="mb-3">
-										<Form.Group as={Col} controlId="formGridEmail">
+										<Form.Group className="col-lg-6 col-md-12" controlId="formGridEmail">
 											<Form.Label className="text-bottom text-bold">Username</Form.Label>
 											<Form.Control type="text" className="field-size" />
 										</Form.Group>
-										<Form.Group as={Col} controlId="formGridEmail">
+										<Form.Group className="col-lg-6 col-md-12" controlId="formGridEmail">
 											<Form.Label className="text-bottom text-bold">
 												Email Address
 											</Form.Label>
@@ -37,30 +37,30 @@ const AddUser = ({ loading }) => {
 										</Form.Group>
 									</Row>
 									<Row className="mb-3">
-										<Form.Group as={Col} controlId="formGridEmail">
+										<Form.Group className="col-lg-6 col-md-12" controlId="formGridEmail">
 											<Form.Label className="text-bottom text-bold">Mobile No</Form.Label>
 											<Form.Control type="text" className="field-size" />
 										</Form.Group>
-										<Form.Group as={Col} controlId="formGridEmail">
+										<Form.Group className="col-lg-6 col-md-12" controlId="formGridEmail">
 											<Form.Label className="text-bottom text-bold">Pan No</Form.Label>
 											<Form.Control type="email" className="field-size" />
 										</Form.Group>
 									</Row>
 									<Row className="mb-3">
-										<Form.Group as={Col} controlId="formGridEmail">
+										<Form.Group className="col-lg-6 col-md-12" controlId="formGridEmail">
 											<Form.Label className="text-bottom text-bold">
 												Legel Entity
 											</Form.Label>
 											<Form.Control type="text" className="field-size" />
 										</Form.Group>
-										<Form.Group as={Col} controlId="formGridEmail">
+										<Form.Group className="col-lg-6 col-md-12" controlId="formGridEmail">
 											<Form.Label className="text-bottom text-bold">CIN No</Form.Label>
 											<Form.Control type="email" className="field-size" />
 										</Form.Group>
 									</Row>
 									<Row className="mb-3">
-										<Form.Group as={Col} controlId="formGridEmail"></Form.Group>
-										<Form.Group as={Col} controlId="formGridEmail">
+										<Form.Group className="col-lg-6 col-md-12" controlId="formGridEmail"></Form.Group>
+										<Form.Group className="col-lg-6 col-md-12" controlId="formGridEmail">
 											<Button type="submit" className="btn-filled w-100">
 												Submit
 											</Button>
