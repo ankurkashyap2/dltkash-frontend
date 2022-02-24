@@ -58,7 +58,7 @@ const Investor = ({
 	// 	// }
 	// }, []);
 
-	const renderer = ({ formatted, completed, api }, values) => {
+	const renderer = ({ formatted, completed, api }) => {
 		if (completed) {
 			setOtp(generateOTP());
 			api.start();
@@ -97,6 +97,11 @@ const Investor = ({
 			setOtpError(true);
 		}
 	};
+
+	const CountdownWrapper = () => {
+		return <Countdown date={Date.now() + 60000} renderer={renderer} />;
+	};
+	const MemoCountdown = React.memo(CountdownWrapper);
 
 	const renderOTPOptions = () => {
 		return (
@@ -138,7 +143,8 @@ const Investor = ({
 						<p className="text-otp p-3">
 							Your OTP is <span>{otp}</span>
 						</p>
-						<Countdown date={Date.now() + 60000} renderer={renderer} />
+						{/* <Countdown date={Date.now() + 60000} renderer={renderer} /> */}
+						<MemoCountdown />
 					</>
 				) : null}
 				<Button
@@ -193,6 +199,33 @@ const Investor = ({
 														investorData.uccEmailStatus === "REJECTED")
 													? "Your email is verified!"
 													: "Please Verify your Account"
+												: investorData &&
+												  (investorData.uccMobileStatus === "VERIFIED" ||
+														investorData.uccMobileStatus === "REJECTED")
+												? "Your mobile is verified!"
+												: investorData && investorData.uccMobileStatus === "SENT"
+												? "Verification Link is already sent to you mobile number!"
+												: "Please Verify your Account"
+											: otpType === "mobile"
+											? investorData &&
+											  (investorData.uccMobileStatus === "VERIFIED" ||
+													investorData.uccMobileStatus === "REJECTED")
+												? "Your mobile is verified!"
+												: "Please Verify your Account"
+											: investorData &&
+											  (investorData.uccEmailStatus === "VERIFIED" ||
+													investorData.uccEmailStatus === "REJECTED")
+											? "Your email is verified!"
+											: investorData && investorData.uccEmailStatus === "SENT"
+											? "Verification Link is already sent to you Email Id!"
+											: "Please Verify your Account"}
+										{/* {location && location.pathname.includes("email-verification")
+											? otpType === "email"
+												? investorData &&
+												  (investorData.uccEmailStatus === "VERIFIED" ||
+														investorData.uccEmailStatus === "REJECTED")
+													? "Your email is verified!"
+													: "Please Verify your Account"
 												: investorData.uccMobileStatus === "VERIFIED" ||
 												  investorData.uccMobileStatus === "REJECTED"
 												? "Your mobile is verified!"
@@ -206,13 +239,13 @@ const Investor = ({
 														investorData.uccMobileStatus === "REJECTED")
 													? "Your mobile is verified!"
 													: "Please Verify your Account"
-												: investorData.uccEmailStatus === "VERIFIED" ||
-												  investorData.uccEmailStatus === "REJECTED"
+												: (investorData && investorData.uccEmailStatus === "VERIFIED") ||
+												  (investorData && investorData.uccEmailStatus === "REJECTED")
 												? "Your mobile is verified!"
-												: investorData.uccEmailStatus === "SENT"
+												: investorData && investorData.uccEmailStatus === "SENT"
 												? "Verification Link is already sent to you Email id!"
 												: "Please Verify your Account"
-											: null}
+											: null} */}
 									</h3>
 
 									<div className="otp-radio-btn">

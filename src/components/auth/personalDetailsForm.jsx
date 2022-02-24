@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
 	Form,
 	Button,
@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
-import Countdown from "react-countdown";
+import Countdown from "react-countdown-now";
 import {
 	userRegister,
 	emailVerification,
@@ -46,6 +46,7 @@ const PersonalDetailsForm = ({
 	isUserRegistered,
 }) => {
 	const navigate = useNavigate();
+	const formikRef = useRef();
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 	const [mobileOtp, setMobileOtp] = useState("");
@@ -196,12 +197,30 @@ const PersonalDetailsForm = ({
 			);
 		}
 	};
+	const MobileCountdownWrapper = () => {
+		return (
+			<Countdown
+				date={Date.now() + 30000}
+				renderer={(props) => renderer(props, formikRef.current?.values, "MOBILE")}
+			/>
+		);
+	};
+	const MemoMobileCountdown = React.memo(MobileCountdownWrapper);
+	const EmailCountdownWrapper = () => (
+		<Countdown
+			date={Date.now() + 30000}
+			renderer={(props) => renderer(props, formikRef.current?.values, "EMAIL")}
+		/>
+	);
+	const MemoEmailCountdown = React.memo(EmailCountdownWrapper);
+
 	return (
 		<>
 			{(error || otpError) && (
 				<Alert variant="danger">{error ? error : "Wrong OTP"}!</Alert>
 			)}
 			<Formik
+				innerRef={formikRef}
 				initialValues={getInitialValues()}
 				validate={validate(validationSchema)}
 				onSubmit={handleSubmit}
@@ -257,10 +276,11 @@ const PersonalDetailsForm = ({
 											disabled={isMobileVerified}
 										/>
 										{isMobileVerified ? null : receivedMobileOTP ? (
-											<Countdown
-												date={Date.now() + 30000}
-												renderer={(props) => renderer(props, values, "MOBILE")}
-											/>
+											// <Countdown
+											// 	date={Date.now() + 30000}
+											// 	renderer={(props) => renderer(props, values, "MOBILE")}
+											// />
+											<MemoMobileCountdown />
 										) : (
 											<Button
 												className="text-verify"
@@ -333,10 +353,11 @@ const PersonalDetailsForm = ({
 											disabled={isEmailVerified}
 										/>
 										{isEmailVerified ? null : receivedEmailOTP ? (
-											<Countdown
-												date={Date.now() + 30000}
-												renderer={(props) => renderer(props, values, "EMAIL")}
-											/>
+											// <Countdown
+											// 	date={Date.now() + 30000}
+											// 	renderer={(props) => renderer(props, values, "EMAIL")}
+											// />
+											<MemoEmailCountdown />
 										) : (
 											<Button
 												className="text-verify"

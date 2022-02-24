@@ -13,7 +13,7 @@ const Otp = () => {
 			<div className="main-content">
 				<div className="outer-box">
 					<div className="login-box">
-						<h3>Send OTP</h3>
+						{/* <h3>Send OTP</h3> */}
 						<p>Enter the OTP </p>
 						<form noValidate autoComplete="off" className="form-align">
 							<Form className="form-align">

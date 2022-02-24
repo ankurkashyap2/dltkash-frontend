@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { connect } from "react-redux";
@@ -23,7 +23,7 @@ const AddUser = ({
 }) => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [activeTab, setActiveTab] = useState("admin");
-
+	const formikRef = useRef();
 	const validationSchema = () => {
 		return Yup.object().shape({
 			userName: Yup.string().required("*User Name is required"),
@@ -203,6 +203,7 @@ const AddUser = ({
 							<Tab eventKey="admin" title="Add Admin">
 								{error && <Alert variant="danger">{error}!</Alert>}
 								<Formik
+									innerRef={formikRef}
 									initialValues={getInitialValues()}
 									validate={validate(validationSchema)}
 									onSubmit={handleSubmit}
@@ -244,7 +245,7 @@ const AddUser = ({
 				show={isUserAdded}
 				message={"User is added successfully!"}
 				onHide={() => {
-					getInitialValues();
+					formikRef.current?.resetForm();
 					resetUserFlags("isUserAdded");
 				}}
 			/>

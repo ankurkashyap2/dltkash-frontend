@@ -16,22 +16,34 @@ import Pagination from "../components/pagination";
 
 const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 	const [search, setSearch] = useState("");
-	const [pageLimit] = useState(15);
-	const [localPageLimit, setLocalPageLimit] = useState(5);
+	const [pageLimit] = useState(10);
+	const [localPageLimit, setLocalPageLimit] = useState(10);
 	const [pageNumber, setPageNumber] = useState(1);
 	const [totalPage, setTotalPage] = useState(0);
 	const [investorsList, setInvestorsList] = useState([]);
+	const [localStartIndex, setLocalStartIndex] = useState(
+		(pageNumber - 1) * localPageLimit
+	);
+	const [localEndIndex, setLocalEndIndex] = useState(
+		pageNumber * localPageLimit
+	);
 
 	useEffect(() => {
 		if (token) getAllInvestors({ page: 1, limit: pageLimit }, token);
 	}, [getAllInvestors, token]);
 
 	useEffect(() => {
+		getInvestorsList();
+	}, [investors, localPageLimit, pageNumber]);
+
+	const getInvestorsList = () => {
 		const startIndex = (pageNumber - 1) * localPageLimit;
 		const endIndex = pageNumber * localPageLimit;
+		setLocalStartIndex(startIndex);
+		setLocalEndIndex(endIndex);
 		if (investors && investors.records > 0)
 			setInvestorsList(investors.results.slice(startIndex, endIndex));
-	}, [investors, localPageLimit, pageNumber]);
+	};
 
 	const handleSearch = (text) => {
 		setSearch(text);
@@ -41,17 +53,24 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 	const handlePageChange = (page) => {
 		const startIndex = (page - 1) * localPageLimit;
 		const endIndex = page * localPageLimit;
-		// if (pageLimit <= endIndex) {
 		setPageNumber(page);
-		// console.log(startIndex, endIndex);
-		if (investors && investors.records > 0)
-			setInvestorsList(investors.results.slice(startIndex, endIndex));
-		// } else {
-		// 	getAllInvestors(
-		// 		{ page: investors && investors.key + 1, limit: pageLimit },
-		// 		token
-		// 	);
-		// }
+		setLocalStartIndex(startIndex);
+		setLocalEndIndex(endIndex);
+		console.log(
+			investorsList,
+			investors && investors.results.length,
+			localPageLimit * page <= investors && investors.results.length
+		);
+		if (localPageLimit * page <= investors && investors.results.length) {
+			// console.log(startIndex, endIndex);
+			if (investors && investors.records > 0)
+				setInvestorsList(investors.results.slice(startIndex, endIndex));
+		} else {
+			getAllInvestors(
+				{ page: investors && investors.key + 1, limit: pageLimit },
+				token
+			);
+		}
 		// const localPageLimit=5
 		// const totalPage = investors ? Math.round(investors.records / localPageLimit) : 0
 		// if(totalPage * localPageLimit<=investors.records){
@@ -118,7 +137,11 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 						<Col>
 							<Button
 								className="btn-position btn-filled custom-refresh"
-								onClick={() => getAllInvestors({ page: 1, limit: pageLimit }, token)}
+								onClick={() => {
+									setPageNumber(1);
+									getInvestorsList();
+									getAllInvestors({ page: 1, limit: pageLimit }, token);
+								}}
 							>
 								<Refresh alt="refresh" className="btn-size" /> Refresh
 							</Button>
@@ -132,7 +155,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 						>
 							<thead>
 								<tr>
-									<th className="col-md-1">S.No.</th>
+									{/* <th className="col-md-1">S.No.</th> */}
 									<th className="col-md-1">TM ID</th>
 									<th className="col-md-1">PAN</th>
 									<th className="col-md-1">Email ID</th>
@@ -157,7 +180,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 									investorsList.map((item, index) => {
 										return (
 											<tr>
-												<td>{index + 1}</td>
+												{/* <td>{index + 1}</td> */}
 												<td>{item.uccTmId}</td>
 												<td>{item.uccPanNo}</td>
 												<td>{item.uccEmailId}</td>
@@ -186,9 +209,19 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 				</div>
 				<Row className="pt-3">
 					<Col sm={8}>
-						{/* <p className="left">
-							Showing 1 to 10 of {investors && investors.records} results
-						</p> */}
+						<p className="left">
+							{investors
+								? `Showing ${localStartIndex + 1} to 
+							${
+								investors
+									? localEndIndex > investors.records
+										? investors.records
+										: localEndIndex
+									: localEndIndex
+							}
+							of ${investors && investors.records} results`
+								: "No Results Found"}
+						</p>
 					</Col>
 					<Col sm={4}>
 						{/* <Pagination

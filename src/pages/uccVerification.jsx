@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Form, Button, Row, Col, Alert } from "react-bootstrap";
@@ -22,6 +22,7 @@ const UCCVerification = ({
 	isInvestorCreated,
 	resetInvestorFlags,
 }) => {
+	const formikRef = useRef();
 	const validationSchema = () => {
 		return Yup.object().shape({
 			uccRequestId: Yup.string().required("* Request Id is required"),
@@ -61,7 +62,7 @@ const UCCVerification = ({
 			uccPanStatus: Yup.boolean().required("* PAN Status is required"),
 		});
 	};
-	console.log("country", CountryList);
+
 	const validate = (getValidationSchema) => {
 		return (values) => {
 			const validationSchema = getValidationSchema(values);
@@ -103,7 +104,7 @@ const UCCVerification = ({
 			uccNodeStatus: "01",
 			uccEmailStatus: false,
 			uccMobileStatus: false,
-			uccPanStatus: false,
+			uccPanStatus: true,
 		};
 		return initialValues;
 	};
@@ -136,12 +137,19 @@ const UCCVerification = ({
 					<Col className="col-lg-10 col-md-12">
 						{error && <Alert variant="danger">{error}!</Alert>}
 						<Formik
+							innerRef={formikRef}
 							initialValues={getInitialValues()}
 							validate={validate(validationSchema)}
 							onSubmit={handleSubmit}
 							enableReinitialize={true}
-							render={({ errors, handleChange, handleSubmit, values, touched }) => {
-								console.log(values);
+							render={({
+								errors,
+								handleChange,
+								handleSubmit,
+								values,
+								touched,
+								resetForm,
+							}) => {
 								return (
 									<Form className="form-align" noValidate onSubmit={handleSubmit}>
 										<Row className="mb-4">
@@ -404,6 +412,7 @@ const UCCVerification = ({
 																		className="switch-label"
 																		onChange={handleChange}
 																		value={values.uccPanStatus}
+																		defaultChecked
 																	/>
 																</Col>
 															</Row>
@@ -538,7 +547,7 @@ const UCCVerification = ({
 				show={isInvestorCreated}
 				message={"Your Request queued successfully!"}
 				onHide={() => {
-					getInitialValues();
+					formikRef.current?.resetForm();
 					resetInvestorFlags("isInvestorCreated");
 				}}
 			/>

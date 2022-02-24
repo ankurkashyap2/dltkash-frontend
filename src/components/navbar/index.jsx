@@ -47,8 +47,8 @@ const Navbar = ({ page, token, user, userLogout }) => {
 								<span style={{ marginRight: "5px" }}>{user && user.userName}</span>
 							</Dropdown.Toggle>
 							<Dropdown.Menu variant="light" className="list-login">
-								<Dropdown.Item eventKey={1}>{user && user.userName}</Dropdown.Item>
-								<Dropdown.Item eventKey={2}>Another action</Dropdown.Item>
+								{/* <Dropdown.Item eventKey={1}>{user && user.userName}</Dropdown.Item>
+								<Dropdown.Item eventKey={2}>Another action</Dropdown.Item> */}
 								<Dropdown.Item eventKey={3}>Logout</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>

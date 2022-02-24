@@ -17,6 +17,7 @@ ul.pagination .page-item a {
 	display: flex;
 	min-height: 100%;
 	overflow-x: hidden;
+	margin-top: 90px;
 }
 
 .sidebar {

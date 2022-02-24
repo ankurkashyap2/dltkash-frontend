@@ -3,7 +3,8 @@
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	min-height: calc(100vh - 102px);
+	min-height: 100vh;
+	/* calc(100vh - 102px); */
 	background-image: url(/public/assets/images/loginbg.png);
 	background-repeat: no-repeat;
 	background-position: center;
@@ -21,7 +22,7 @@
 	border-radius: 8px;
 	width: 100%;
 	min-width: 492px;
-	margin-top: -150px;
+	/* margin-top: -150px; */
 }
 .login-box h3,
 p {
@@ -85,10 +86,10 @@ form.form-align {
 }
 
 .img-size {
-    background: #f5f5f5;
-    padding: 10px;
-    margin: 30px 0;
-    border-radius: 40px;
+	background: #f5f5f5;
+	padding: 10px;
+	margin: 30px 0;
+	border-radius: 40px;
 }
 
 @media screen and (max-width: 468px) {
