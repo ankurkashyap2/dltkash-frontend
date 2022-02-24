@@ -110,17 +110,17 @@ const investorReducer = (state = initState, action) => {
 				error: null,
 			};
 		case GET_ALL_INVESTORS_SUCCESS:
-			// const records = {
-			// 	...action.response,
-			// 	results: state.investors
-			// 		? [...state.investors.results, ...action.response.results]
-			// 		: action.response.results,
-			// };
+			const records = {
+				...action.response,
+				results: state.investors
+					? [...state.investors.results, ...action.response.results]
+					: action.response.results,
+			};
 			return {
 				...state,
 				loading: false,
 				isMobileVerified: true,
-				investors: action.response,
+				investors: records,
 			};
 		case GET_ALL_INVESTORS_ERROR:
 			return {
