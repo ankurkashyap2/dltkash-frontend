@@ -33,16 +33,16 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 	}, [getAllInvestors, token]);
 
 	useEffect(() => {
-		getInvestorsList();
-	}, [investors, localPageLimit, pageNumber]);
+		if (investors && investors.records > 0) getInvestorsList();
+	}, [investors]);
 
 	const getInvestorsList = () => {
 		const startIndex = (pageNumber - 1) * localPageLimit;
 		const endIndex = pageNumber * localPageLimit;
 		setLocalStartIndex(startIndex);
 		setLocalEndIndex(endIndex);
-		if (investors && investors.records > 0)
-			setInvestorsList(investors.results.slice(startIndex, endIndex));
+
+		setInvestorsList(investors.results.slice(startIndex, endIndex));
 	};
 
 	const handleSearch = (text) => {
@@ -66,10 +66,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			if (investors && investors.records > 0)
 				setInvestorsList(investors.results.slice(startIndex, endIndex));
 		} else {
-			getAllInvestors(
-				{ page: investors && investors.key + 1, limit: pageLimit },
-				token
-			);
+			getAllInvestors({ page: page, limit: pageLimit }, token);
 		}
 		// const localPageLimit=5
 		// const totalPage = investors ? Math.round(investors.records / localPageLimit) : 0

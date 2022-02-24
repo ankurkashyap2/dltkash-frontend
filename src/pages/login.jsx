@@ -77,10 +77,10 @@ const Login = ({ userLogin, error, loading }) => {
 								return (
 									<Form className="form-align" noValidate onSubmit={handleSubmit}>
 										<Form.Group controlId="exampleForm.ControlInput1" className="mb-3">
-											<Form.Label className="text-bottom">Email</Form.Label>
+											<Form.Label className="text-bottom">Email/ Username</Form.Label>
 											<Form.Control
 												type="email"
-												placeholder="Enter Email"
+												placeholder="Enter Email or Username"
 												className="field-size"
 												name="email"
 												required
