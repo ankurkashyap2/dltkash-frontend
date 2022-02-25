@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
-import Countdown from "react-countdown-now";
+import Countdown from "react-countdown";
 import {
 	userRegister,
 	emailVerification,
@@ -200,7 +200,7 @@ const PersonalDetailsForm = ({
 	const MobileCountdownWrapper = () => {
 		return (
 			<Countdown
-				date={Date.now() + 30000}
+				date={Date.now() + 60000}
 				renderer={(props) => renderer(props, formikRef.current?.values, "MOBILE")}
 			/>
 		);
@@ -208,7 +208,7 @@ const PersonalDetailsForm = ({
 	const MemoMobileCountdown = React.memo(MobileCountdownWrapper);
 	const EmailCountdownWrapper = () => (
 		<Countdown
-			date={Date.now() + 30000}
+			date={Date.now() + 60000}
 			renderer={(props) => renderer(props, formikRef.current?.values, "EMAIL")}
 		/>
 	);

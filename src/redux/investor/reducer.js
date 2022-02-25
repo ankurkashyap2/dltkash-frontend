@@ -116,11 +116,12 @@ const investorReducer = (state = initState, action) => {
 					? [...state.investors.results, ...action.response.results]
 					: action.response.results,
 			};
+			console.log(action.typekey);
 			return {
 				...state,
 				loading: false,
 				isMobileVerified: true,
-				investors: records,
+				investors: action.typekey === "search" ? action.response : records,
 			};
 		case GET_ALL_INVESTORS_ERROR:
 			return {

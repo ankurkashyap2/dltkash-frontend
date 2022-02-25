@@ -61,8 +61,18 @@ export const INVESTOR_API = {
 	},
 
 	async getAllInvestors(payload, token) {
+		let queryString = "";
+
+		for (const key in payload) {
+			queryString = payload[key]
+				? queryString.concat(key + "=" + payload[key] + "&")
+				: queryString;
+		}
+		let url = queryString
+			? `${API_URL}/exchange/search?${queryString}`
+			: `${API_URL}/exchange/search`;
 		const response = await request(
-			`${API_URL}/exchange/search?page=${payload.page}&limit=${payload.limit}`,
+			url,
 			{
 				method: "GET",
 				headers: {

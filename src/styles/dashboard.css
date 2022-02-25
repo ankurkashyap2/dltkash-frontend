@@ -83,24 +83,34 @@ table.table.table-hover.dashboard-table {
 	background-color: lighten(cyan, 40%);
 }
 
-.verfied-pill span {
+.verfied-pill {
 	color: #039855;
-	background: #ecfdf3;
+	/* background: #ecfdf3; */
 	padding: 4px 10px;
 	border-radius: 30px;
 	font-size: 13px;
 	font-weight: 600;
 }
 
-.not-verfied-pill span {
+.not-verfied-pill {
 	color: #f04438;
-	background: #fef3f2;
+	/* background: #fef3f2; */
 	padding: 4px 10px;
 	border-radius: 30px;
 	font-size: 13px;
 	font-weight: 600;
 }
-
+.sent-pill {
+	color: #f09a38;
+	/* background: #fef3f2; */
+	padding: 4px 10px;
+	border-radius: 30px;
+	font-size: 13px;
+	font-weight: 600;
+}
+.filter-section {
+	width: 100%;
+}
 .table {
 	@media only screen and (min-width: 768px) {
 		table-layout: fixed;
@@ -285,6 +295,59 @@ input#custom-switch\ switch-ucc {
 }
 .custom-refresh {
 	padding: 0px 15px !important;
+}
+input.investor-search.form-control {
+	width: 50%;
+	float: left;
+	padding: 6px 12px;
+	line-height: 0;
+	margin-right: 10px;
+	font-size: 14px;
+}
+.action-btns {
+	text-align: right;
+}
+.action-btns .btn-filled {
+	border: 1px solid #4fadea !important;
+	color: #fff !important;
+	background-color: #4fadea !important;
+	font-size: 14px !important;
+	text-transform: capitalize !important;
+	font-weight: 500 !important;
+	padding: 6px 11px !important;
+	border-radius: 4px !important;
+	margin-top: 20px;
+}
+.action-btns .btn-filled svg.icon-dashboard {
+	width: 17px;
+	margin: 0;
+	line-height: 0;
+	position: relative;
+	bottom: 2px;
+}
+.action-btns button.btn-filled.custom-refresh.icon-dashboard.btn.btn-primary {
+	padding: 4px 10px !important;
+	line-height: 1.6;
+	position: relative;
+	bottom: 2px;
+}
+.action-btns
+	button.btn-filled.custom-refresh.icon-dashboard.btn.btn-primary
+	svg.btn-size {
+	width: 14px;
+	margin: 0;
+}
+
+select.search-select.form-select {
+	background-color: #4fadea !important;
+	color: #fff;
+	background-image: none;
+	-webkit-appearance: auto;
+	appearance: auto;
+	padding: 5px 12px;
+	font-size: 14px;
+	width: 30%;
+	margin-left: 12px;
 }
 @media only screen and (max-width: 768px) {
 	.content {

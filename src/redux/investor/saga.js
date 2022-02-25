@@ -95,11 +95,11 @@ export function* verifyInvestorMobile() {
 }
 
 export function* getAllInvestors() {
-	yield takeEvery(GET_ALL_INVESTORS, function* ({ payload, token }) {
+	yield takeEvery(GET_ALL_INVESTORS, function* ({ payload, token, typekey }) {
 		try {
 			const response = yield call(INVESTOR_API.getAllInvestors, payload, token);
 			if (response.status === 200) {
-				yield put(getAllInvestorsSuccess(response.data.data));
+				yield put(getAllInvestorsSuccess(response.data.data, typekey));
 			} else {
 				yield put(getAllInvestorsError(response.error.error.message));
 			}

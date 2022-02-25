@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert, FormControl } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { connect } from "react-redux";
@@ -75,10 +75,15 @@ const Login = ({ userLogin, error, loading }) => {
 							enableReinitialize={true}
 							render={({ errors, handleChange, handleSubmit, values, touched }) => {
 								return (
-									<Form className="form-align" noValidate onSubmit={handleSubmit}>
+									<Form
+										className="form-align"
+										noValidate
+										onSubmit={handleSubmit}
+										autoComplete="off"
+									>
 										<Form.Group controlId="exampleForm.ControlInput1" className="mb-3">
 											<Form.Label className="text-bottom">Email/ Username</Form.Label>
-											<Form.Control
+											<FormControl
 												type="email"
 												placeholder="Enter Email or Username"
 												className="field-size"
@@ -86,6 +91,7 @@ const Login = ({ userLogin, error, loading }) => {
 												required
 												onChange={handleChange}
 												value={values.email}
+												autoComplete="off"
 											/>
 											{!!touched.email && !!errors.email && (
 												<p className="error-text">{errors.email}</p>
@@ -96,7 +102,7 @@ const Login = ({ userLogin, error, loading }) => {
 											<a href="/forgot-password" className="text-forgot-pwd">
 												Forgot Password?
 											</a>
-											<Form.Control
+											<FormControl
 												type={showPassword ? "text" : "password"}
 												placeholder="Enter Password"
 												className="field-size"
@@ -104,6 +110,7 @@ const Login = ({ userLogin, error, loading }) => {
 												required
 												onChange={handleChange}
 												value={values.password}
+												autocomplete="nope"
 											/>
 											{showPassword ? (
 												<EyeIcon

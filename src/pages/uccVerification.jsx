@@ -413,6 +413,7 @@ const UCCVerification = ({
 																		onChange={handleChange}
 																		value={values.uccPanStatus}
 																		defaultChecked
+																		disabled
 																	/>
 																</Col>
 															</Row>

@@ -62,3 +62,6 @@ p {
 	color: #fff;
 	margin-bottom: 6px;
 }
+.show.dropdown {
+	color: #4fadea;
+}
