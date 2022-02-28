@@ -65,3 +65,12 @@ p {
 .show.dropdown {
 	color: #4fadea;
 }
+.left-logo {
+	height: 70px;
+	width: 70px;
+	background-position: center !important;
+	border-radius: 10px;
+	background-repeat: no-repeat !important;
+	background-size: contain !important;
+	/* border: 1px solid #4fadea; */
+}

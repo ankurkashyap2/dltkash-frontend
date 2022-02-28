@@ -100,7 +100,7 @@ const UCCVerification = ({
 			uccDpId: "",
 			uccClientId: "",
 			uccInvestorCode: "",
-			uccRequestType: "",
+			uccRequestType: "New",
 			uccNodeStatus: "01",
 			uccEmailStatus: false,
 			uccMobileStatus: false,
@@ -118,7 +118,7 @@ const UCCVerification = ({
 			uccMobileNoModified: values.uccMobileNoModified.toString(),
 			uccEmailStatus: "NOT VERIFIED",
 			uccMobileStatus: "NOT VERIFIED",
-			uccPanStatus: values.uccPanStatus ? "VERIFIED" : "NOT VERIFIED",
+			uccPanStatus: !values.uccPanExempt ? "VERIFIED" : "NOT VERIFIED",
 		};
 
 		addSingleInvestor(payload, token);
@@ -397,39 +397,41 @@ const UCCVerification = ({
 															</Form.Group>
 														</Row>
 													)}
-													<Row>
-														<Form.Group
-															as={Col}
-															md="6"
-															className="col-lg-6 col-md-12"
-															controlId="validationCustom02"
-														>
-															<Row>
-																<Col>
-																	<Form.Label className="mb-0">
-																		Is the PAN number already verified?
-																	</Form.Label>
-																</Col>
-																<Col>
-																	<Form.Check
-																		type="switch"
-																		id="custom-switch switch-ucc"
-																		// label="PAN Exempt"
-																		name="uccPanStatus"
-																		className="switch-label"
-																		onChange={handleChange}
-																		value={values.uccPanStatus}
-																		defaultChecked
-																		disabled
-																	/>
-																</Col>
-															</Row>
+													{values.uccPanExempt ? null : (
+														<Row>
+															<Form.Group
+																as={Col}
+																md="6"
+																className="col-lg-6 col-md-12"
+																controlId="validationCustom02"
+															>
+																<Row>
+																	<Col>
+																		<Form.Label className="mb-0">
+																			Is the PAN number already verified?
+																		</Form.Label>
+																	</Col>
+																	<Col>
+																		<Form.Check
+																			type="switch"
+																			id="custom-switch switch-ucc"
+																			// label="PAN Exempt"
+																			name="uccPanStatus"
+																			className="switch-label"
+																			onChange={handleChange}
+																			value={values.uccPanStatus}
+																			defaultChecked
+																			disabled
+																		/>
+																	</Col>
+																</Row>
 
-															{!!touched.uccPanStatus && !!errors.uccPanStatus && (
-																<p className="error-text">{errors.uccPanStatus}</p>
-															)}
-														</Form.Group>
-													</Row>
+																{!!touched.uccPanStatus && !!errors.uccPanStatus && (
+																	<p className="error-text">{errors.uccPanStatus}</p>
+																)}
+															</Form.Group>
+														</Row>
+													)}
 												</div>
 												<div className="box-line">
 													<Row className="mb-3">

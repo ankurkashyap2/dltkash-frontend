@@ -438,7 +438,7 @@ const PersonalDetailsForm = ({
 										required
 										onChange={handleChange}
 										value={values.password}
-										autoComplete="off"
+										autoComplete="new-password"
 									/>
 									{showPassword ? (
 										<EyeIcon
@@ -473,7 +473,7 @@ const PersonalDetailsForm = ({
 										required
 										onChange={handleChange}
 										value={values.confirmPassword}
-										autoComplete="off"
+										autoComplete="new-password"
 									/>
 									{showConfirmPassword ? (
 										<EyeIcon
