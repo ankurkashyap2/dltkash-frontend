@@ -165,47 +165,6 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 					</Col>
 				</Row>
 			</div>
-			// <>
-			// 	<Form.Select
-			// 		className="field-size"
-			// 		name="uccRequestType"
-			// 		// value={searchKey}
-			// 		onChange={(e) => setSearchKey(e.target.value)}
-			// 	>
-			// 		<option key="blankChoice" hidden value className="select-placeholder">
-			// 			Choose...
-			// 		</option>
-
-			// 		<option key="TmName" value="TmName">
-			// 			TM Name
-			// 		</option>
-			// 		<option key="mobileNumber" value="mobileNumber">
-			// 			Mobile Number
-			// 		</option>
-			// 		<option key="panNumber" value="panNumber">
-			// 			PAN Number
-			// 		</option>
-			// 		<option key="notificationKey" value="notificationKey">
-			// 			Notification Key
-			// 		</option>
-			// 	</Form.Select>
-			// 	<Form.Group controlId="formGridEmail">
-			// 		<Form.Label className="text-bottom"></Form.Label>
-			// 		<FormControl
-			// 			type="search"
-			// 			placeholder="Search"
-			// 			className="me-2 field-size"
-			// 			aria-label="Search"
-			// 			value={search}
-			// 			onChange={(e) => handleSearch(e.target.value, searchKey)}
-			// 		/>
-			// 	</Form.Group>
-			// </>
-			// <FilterComponent
-			// 	onFilter={(e) => setFilterText(e.target.value)}
-			// 	onClear={handleClear}
-			// 	filterText={filterText}
-			// />
 		);
 	}, [search, searchKey, getAllInvestors, pageLimit, token, investorsList]);
 
@@ -220,7 +179,11 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			const endIndex = page * localPageLimit;
 			setInvestorsList(investors.results.slice(startIndex, endIndex));
 		} else {
-			setPageNumber(pageNumber + 1);
+			if (page - localPageNumber > 1) {
+				getAllInvestors({ page: 1, limit: totalRows }, token, "search");
+			} else {
+				setPageNumber(pageNumber + 1);
+			}
 		}
 	};
 
@@ -229,6 +192,11 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 	};
 
 	const columns = [
+		{
+			name: "S. No.",
+			selector: (row) => row.seqId + 1,
+			sortable: true,
+		},
 		{
 			name: "Investor Code",
 			selector: (row) => row.uccInvestorCode,
@@ -276,6 +244,12 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			selector: (row) => row.uccEmailId,
 			sortable: true,
 		},
+
+		{
+			name: "Mobile No.",
+			selector: (row) => row.uccMobileNo,
+			sortable: true,
+		},
 		{
 			name: "Email Status",
 			selector: (row) => row.uccEmailStatus,
@@ -295,11 +269,6 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 					classNames: ["not-verfied-pill"],
 				},
 			],
-		},
-		{
-			name: "Mobile No.",
-			selector: (row) => row.uccMobileNo,
-			sortable: true,
 		},
 		{
 			name: "Mobile Status",
@@ -352,6 +321,9 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			style: {
 				paddingLeft: "12px", // override the cell padding for head cells
 				paddingRight: "12px",
+				fontSize: "15px",
+				fontWeight: 700,
+				backgroundColor: "#dee0e1",
 			},
 		},
 		cells: {
