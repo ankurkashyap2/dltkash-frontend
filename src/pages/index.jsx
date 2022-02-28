@@ -10,6 +10,7 @@ import Investor from "./investor";
 import AddUser from "./addUser";
 import UCCVerification from "./uccVerification";
 import Trails from "./trails";
+import NotFound from "./notFound";
 
 const AppRoutes = (props) => {
 	return (
@@ -62,6 +63,7 @@ const AppRoutes = (props) => {
 						</SecuredRoute>
 					}
 				/>
+				<Route path="*" element={<NotFound {...props} />} />
 			</Routes>
 		</Router>
 	);

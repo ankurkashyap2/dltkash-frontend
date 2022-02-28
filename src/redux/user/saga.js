@@ -39,7 +39,17 @@ export function* userSignup() {
 			const entity = new FormData();
 
 			for (const key in payload) {
-				entity.append(key, payload[key]);
+				if (key === "logo") {
+					entity.append(key, payload[key][0]);
+				} else if (key === "sebiCertificate") {
+					entity.append(key, payload[key][0]);
+				} else if (key === "cinCertificate") {
+					entity.append(key, payload[key][0]);
+				} else if (key === "pan") {
+					entity.append(key, payload[key][0]);
+				} else {
+					entity.append(key, payload[key]);
+				}
 			}
 			const response = yield call(USER_API.userRegister, entity);
 			if (response.status === 200) {

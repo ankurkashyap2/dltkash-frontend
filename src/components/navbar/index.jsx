@@ -26,10 +26,29 @@ const Navbar = ({ page, token, user, userLogout }) => {
 			userLogout();
 		}
 	};
+
 	return (
 		<Nav className="customnavbar-container">
 			<Nav.Item>
-				<img src={"/assets/images/dltkashlogo.png"} alt="logo" />
+				<div
+					style={{
+						background: user
+							? `url(${user.documentLinks && user.documentLinks.logo})`
+							: "url(/assets/images/dltkashlogo.png)",
+						height: 70,
+						width: 70,
+						backgroundPosition: "center",
+						borderRadius: "10px",
+					}}
+				/>
+				{/* <img
+					src={
+						user
+							? user.documentLinks && user.documentLinks.logo
+							: "/assets/images/dltkashlogo.png"
+					}
+					alt="logo"
+				/> */}
 			</Nav.Item>
 			<Nav.Item>
 				<h3 className="text-dark">{page}</h3>
@@ -43,7 +62,19 @@ const Navbar = ({ page, token, user, userLogout }) => {
 								className="login-link"
 								as={CustomToggle}
 							>
-								<img src={"/assets/images/dltkashlogo.png"} alt="logo" />
+								<div
+									style={{
+										background: user
+											? `url(${user.documentLinks && user.documentLinks.logo})`
+											: "url(/assets/images/dltkashlogo.png)",
+										height: 50,
+										width: 50,
+										backgroundPosition: "center",
+										borderRadius: "50%",
+										marginRight: "5px",
+									}}
+								/>
+								{/* <img src={"/assets/images/dltkashlogo.png"} alt="logo" /> */}
 								<span style={{ marginRight: "5px" }}>{user && user.userName}</span>
 							</Dropdown.Toggle>
 							<Dropdown.Menu variant="light" className="list-login">
