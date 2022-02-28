@@ -58,7 +58,12 @@ const PersonalDetailsForm = ({
 	const [otpError, setOtpError] = useState(false);
 	const [isEmailVerified, setIsEmailVerified] = useState(false);
 
-	// const [expirationTime, setExpirationTime] = useState(Date.now());
+	const [expirationMobileTime, setExpirationMobileTime] = useState(
+		Date.now() + 60000
+	);
+	const [expirationEmailTime, setExpirationEmailTime] = useState(
+		Date.now() + 60000
+	);
 
 	useEffect(() => {
 		if (receivedEmailOTP) {
@@ -183,7 +188,6 @@ const PersonalDetailsForm = ({
 						type === "MOBILE"
 							? handleMobileVerification(values)
 							: handleEmailVerification(values);
-						api.start();
 					}}
 				>
 					{type === "MOBILE" ? mobileOtpText : emailOtpText}
@@ -200,7 +204,8 @@ const PersonalDetailsForm = ({
 	const MobileCountdownWrapper = () => {
 		return (
 			<Countdown
-				date={Date.now() + 60000}
+				date={expirationMobileTime}
+				key={expirationMobileTime}
 				renderer={(props) => renderer(props, formikRef.current?.values, "MOBILE")}
 			/>
 		);
@@ -208,7 +213,7 @@ const PersonalDetailsForm = ({
 	const MemoMobileCountdown = React.memo(MobileCountdownWrapper);
 	const EmailCountdownWrapper = () => (
 		<Countdown
-			date={Date.now() + 60000}
+			date={expirationEmailTime}
 			renderer={(props) => renderer(props, formikRef.current?.values, "EMAIL")}
 		/>
 	);
@@ -224,7 +229,7 @@ const PersonalDetailsForm = ({
 				initialValues={getInitialValues()}
 				validate={validate(validationSchema)}
 				onSubmit={handleSubmit}
-				enableReinitialize={true}
+				// enableReinitialize={true}
 				render={({ errors, handleChange, handleSubmit, values, touched }) => {
 					return (
 						<Form className="form-align" noValidate onSubmit={handleSubmit}>
@@ -247,6 +252,7 @@ const PersonalDetailsForm = ({
 										required
 										onChange={handleChange}
 										value={values.userName}
+										autoComplete="off"
 									/>
 									{!!touched.userName && !!errors.userName && (
 										<p className="error-text">{errors.userName}</p>
@@ -274,12 +280,9 @@ const PersonalDetailsForm = ({
 											onChange={handleChange}
 											value={values.phoneNo}
 											disabled={isMobileVerified}
+											autoComplete="off"
 										/>
 										{isMobileVerified ? null : receivedMobileOTP ? (
-											// <Countdown
-											// 	date={Date.now() + 30000}
-											// 	renderer={(props) => renderer(props, values, "MOBILE")}
-											// />
 											<MemoMobileCountdown />
 										) : (
 											<Button
@@ -316,6 +319,7 @@ const PersonalDetailsForm = ({
 												setOtpError(false);
 											}}
 											disabled={isMobileVerified}
+											autoComplete="off"
 										/>
 										{isMobileVerified ? null : (
 											<Button
@@ -351,12 +355,9 @@ const PersonalDetailsForm = ({
 											onChange={handleChange}
 											value={values.email}
 											disabled={isEmailVerified}
+											autoComplete="off"
 										/>
 										{isEmailVerified ? null : receivedEmailOTP ? (
-											// <Countdown
-											// 	date={Date.now() + 30000}
-											// 	renderer={(props) => renderer(props, values, "EMAIL")}
-											// />
 											<MemoEmailCountdown />
 										) : (
 											<Button
@@ -393,6 +394,7 @@ const PersonalDetailsForm = ({
 												setOtpError(false);
 											}}
 											disabled={isEmailVerified}
+											autoComplete="off"
 										/>
 										{isEmailVerified ? null : (
 											<Button
@@ -436,6 +438,7 @@ const PersonalDetailsForm = ({
 										required
 										onChange={handleChange}
 										value={values.password}
+										autoComplete="off"
 									/>
 									{showPassword ? (
 										<EyeIcon
@@ -470,6 +473,7 @@ const PersonalDetailsForm = ({
 										required
 										onChange={handleChange}
 										value={values.confirmPassword}
+										autoComplete="off"
 									/>
 									{showConfirmPassword ? (
 										<EyeIcon
@@ -494,7 +498,7 @@ const PersonalDetailsForm = ({
 							<Button
 								className="btn-position btn-filled w-custom"
 								type="submit"
-								disabled={!isEmailVerified && !isMobileVerified}
+								disabled={!isEmailVerified || !isMobileVerified}
 							>
 								<TickIcon className="icon-login" />
 								Register
@@ -519,11 +523,15 @@ const PersonalDetailsForm = ({
 						? "An OTP is sent to your Email. Please verify it first to get yourself register."
 						: "An OTP is sent to your Mobile number. Please verify it first to get yourself register."
 				}
-				onHide={() =>
-					isEmailOTPSent
-						? resetUserFlags("isEmailOTPSent")
-						: resetUserFlags("isMobileOTPSent")
-				}
+				onHide={() => {
+					if (isEmailOTPSent) {
+						resetUserFlags("isEmailOTPSent");
+						setExpirationEmailTime(Date.now() + 60000);
+					} else {
+						resetUserFlags("isMobileOTPSent");
+						setExpirationMobileTime(Date.now() + 60000);
+					}
+				}}
 			/>
 			<SuccessModal
 				show={isUserRegistered}

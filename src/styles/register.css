@@ -321,6 +321,10 @@ ul.btn-tab {
 	outline: 0;
 	box-shadow: none !important;
 }
+.file-type {
+	color: #344054;
+	font-size: 12px;
+}
 @media screen and (max-width: 468px) {
 	.Register-box {
 		max-width: 320px;

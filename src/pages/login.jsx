@@ -75,13 +75,8 @@ const Login = ({ userLogin, error, loading }) => {
 							enableReinitialize={true}
 							render={({ errors, handleChange, handleSubmit, values, touched }) => {
 								return (
-									<Form
-										className="form-align"
-										noValidate
-										onSubmit={handleSubmit}
-										autoComplete="off"
-									>
-										<Form.Group controlId="exampleForm.ControlInput1" className="mb-3">
+									<Form className="form-align" noValidate onSubmit={handleSubmit}>
+										<Form.Group controlId="email" className="mb-3">
 											<Form.Label className="text-bottom">Email/ Username</Form.Label>
 											<FormControl
 												type="email"
@@ -97,7 +92,7 @@ const Login = ({ userLogin, error, loading }) => {
 												<p className="error-text">{errors.email}</p>
 											)}
 										</Form.Group>
-										<Form.Group controlId="exampleForm.ControlInput1" className="mb-3">
+										<Form.Group controlId="password" className="mb-3">
 											<Form.Label className="text-bottom">Password</Form.Label>
 											<a href="/forgot-password" className="text-forgot-pwd">
 												Forgot Password?
@@ -110,7 +105,7 @@ const Login = ({ userLogin, error, loading }) => {
 												required
 												onChange={handleChange}
 												value={values.password}
-												autocomplete="nope"
+												autoComplete="new-password"
 											/>
 											{showPassword ? (
 												<EyeIcon

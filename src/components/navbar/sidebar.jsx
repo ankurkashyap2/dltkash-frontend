@@ -3,12 +3,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Nav } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import { ReactComponent as Logout } from "../icons/Logout.svg";
 import { ReactComponent as Dashboard1 } from "../icons/Dashboard1.svg";
 import { setSelectedDrawerItem, userLogout } from "../../redux/user/actions";
 import { ReactComponent as User } from "../icons/User.svg";
 import { ReactComponent as Varification } from "../icons/Varification.svg";
-import { ReactComponent as BorderStyle } from "../icons/BorderStyle.svg";
+// import { ReactComponent as BorderStyle } from "../icons/BorderStyle.svg";
 import "../../styles/sidebar.css";
 const Sidebar = ({
 	setSelectedDrawerItem,

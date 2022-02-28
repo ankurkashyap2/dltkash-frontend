@@ -84,6 +84,7 @@ const Forgot = ({
 												required
 												onChange={handleChange}
 												value={values.email}
+												autoComplete="off"
 											/>
 											{!!touched.email && !!errors.email && (
 												<p className="error-text">{errors.email}</p>

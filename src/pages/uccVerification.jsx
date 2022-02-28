@@ -210,6 +210,7 @@ const UCCVerification = ({
 																name="uccRequestId"
 																onChange={handleChange}
 																value={values.uccRequestId}
+																autoComplete="off"
 															/>
 															{!!touched.uccRequestId && !!errors.uccRequestId && (
 																<p className="error-text">{errors.uccRequestId}</p>
@@ -256,6 +257,7 @@ const UCCVerification = ({
 																name="uccTmName"
 																onChange={handleChange}
 																value={values.uccTmName}
+																autoComplete="off"
 															/>
 															{!!touched.uccTmName && !!errors.uccTmName && (
 																<p className="error-text">{errors.uccTmName}</p>
@@ -274,6 +276,7 @@ const UCCVerification = ({
 																name="uccTmId"
 																onChange={handleChange}
 																value={values.uccTmId}
+																autoComplete="off"
 															/>
 															{!!touched.uccTmId && !!errors.uccTmId && (
 																<p className="error-text">{errors.uccTmId}</p>
@@ -294,6 +297,7 @@ const UCCVerification = ({
 																name="uccInvestorCode"
 																onChange={handleChange}
 																value={values.uccInvestorCode}
+																autoComplete="off"
 															/>
 															{!!touched.uccInvestorCode && !!errors.uccInvestorCode && (
 																<p className="error-text">{errors.uccInvestorCode}</p>
@@ -343,6 +347,7 @@ const UCCVerification = ({
 																	name="uccDpId"
 																	onChange={handleChange}
 																	value={values.uccDpId}
+																	autoComplete="off"
 																/>
 																{!!touched.uccDpId && !!errors.uccDpId && (
 																	<p className="error-text">{errors.uccDpId}</p>
@@ -362,6 +367,7 @@ const UCCVerification = ({
 																	name="uccClientId"
 																	onChange={handleChange}
 																	value={values.uccClientId}
+																	autoComplete="off"
 																/>
 																{!!touched.uccClientId && !!errors.uccClientId && (
 																	<p className="error-text">{errors.uccClientId}</p>
@@ -383,6 +389,7 @@ const UCCVerification = ({
 																	name="uccPanNo"
 																	onChange={handleChange}
 																	value={values.uccPanNo}
+																	autoComplete="off"
 																/>
 																{!!touched.uccPanNo && !!errors.uccPanNo && (
 																	<p className="error-text">{errors.uccPanNo}</p>
@@ -439,6 +446,7 @@ const UCCVerification = ({
 																name="uccEmailId"
 																onChange={handleChange}
 																value={values.uccEmailId}
+																autoComplete="off"
 															/>
 															{!!touched.uccEmailId && !!errors.uccEmailId && (
 																<p className="error-text">{errors.uccEmailId}</p>
@@ -456,6 +464,7 @@ const UCCVerification = ({
 																name="uccMobileNo"
 																onChange={handleChange}
 																value={values.uccMobileNo}
+																autoComplete="off"
 															/>
 															{!!touched.uccMobileNo && !!errors.uccMobileNo && (
 																<p className="error-text">{errors.uccMobileNo}</p>

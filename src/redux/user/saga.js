@@ -34,17 +34,16 @@ import { USER_API } from "../../services/userApi";
 import { setProfile, setToken } from "../../utils";
 
 export function* userSignup() {
-	yield takeEvery(USER_REGISTER, function* ({ payload, navigation }) {
+	yield takeEvery(USER_REGISTER, function* ({ payload }) {
 		try {
 			const entity = new FormData();
-			console.log(payload);
+
 			for (const key in payload) {
 				entity.append(key, payload[key]);
 			}
 			const response = yield call(USER_API.userRegister, entity);
 			if (response.status === 200) {
 				yield put(userRegisterSuccess());
-				// navigation("/login");
 			} else {
 				yield put(userRegisterError(response.error.error.message));
 			}
@@ -106,12 +105,11 @@ export function* forgotPassword() {
 }
 
 export function* resetPassword() {
-	yield takeEvery(RESET_PASSWORD, function* ({ payload, navigation }) {
+	yield takeEvery(RESET_PASSWORD, function* ({ payload }) {
 		try {
 			const response = yield call(USER_API.resetPassword, payload);
 			if (response.status === 200) {
 				yield put(resetPasswordSuccess(response));
-				navigation("/login");
 			} else {
 				yield put(resetPasswordError(response.error.error.message));
 			}

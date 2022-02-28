@@ -32,8 +32,8 @@ import {
 	SET_SELECTED_DRAWER_ITEM,
 } from "../actionTypes";
 
-export const userRegister = (payload, navigation) => {
-	return { type: USER_REGISTER, payload, navigation };
+export const userRegister = (payload) => {
+	return { type: USER_REGISTER, payload };
 };
 export const userRegisterSuccess = (response) => {
 	return { type: USER_REGISTER_SUCCESS, response };
@@ -59,8 +59,8 @@ export const forgotPasswordSuccess = (response) => {
 export const forgotPasswordError = (error) => {
 	return { type: FORGOT_PASSWORD_ERROR, error };
 };
-export const resetPassword = (payload, navigation) => {
-	return { type: RESET_PASSWORD, payload, navigation };
+export const resetPassword = (payload) => {
+	return { type: RESET_PASSWORD, payload };
 };
 export const resetPasswordSuccess = (response) => {
 	return { type: RESET_PASSWORD_SUCCESS, response };

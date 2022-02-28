@@ -10,11 +10,17 @@ import { ReactComponent as TickIcon } from "../components/icons/tick.svg";
 import { ReactComponent as EyeIcon } from "../components/icons/eye.svg";
 import { ReactComponent as EyeHiddenIcon } from "../components/icons/eye-hidden.svg";
 import AppLayout from "../layouts/appLayout";
-import { resetPassword } from "../redux/user/actions";
-
+import { resetPassword, resetUserFlags } from "../redux/user/actions";
+import SuccessModal from "../components/successModal";
 import "../styles/login.css";
 
-const Reset = ({ loading, error, resetPassword }) => {
+const Reset = ({
+	loading,
+	error,
+	resetPassword,
+	isPasswordReset,
+	resetUserFlags,
+}) => {
 	const navigate = useNavigate();
 	let { token } = useParams();
 	const [showPassword, setShowPassword] = useState(false);
@@ -68,14 +74,13 @@ const Reset = ({ loading, error, resetPassword }) => {
 	};
 
 	const handleSubmit = (values) => {
-		resetPassword({ password: values.password, token }, navigate);
+		resetPassword({ password: values.password, token });
 	};
 	return (
 		<AppLayout page="Reset Password" loading={loading}>
 			<div className="main-content">
 				<div className="outer-box">
 					<div className="login-box">
-						{/* <h3>Reset Password</h3> */}
 						<p>Enter the details below to reset the password</p>
 						{error && <Alert variant="danger">{error}!</Alert>}
 						<Formik
@@ -96,6 +101,7 @@ const Reset = ({ loading, error, resetPassword }) => {
 												required
 												onChange={handleChange}
 												value={values.password}
+												autoComplete="off"
 											/>
 											{showPassword ? (
 												<EyeIcon
@@ -122,6 +128,7 @@ const Reset = ({ loading, error, resetPassword }) => {
 												required
 												onChange={handleChange}
 												value={values.confirmPassword}
+												autoComplete="off"
 											/>
 											{showConfirmPassword ? (
 												<EyeIcon
@@ -153,6 +160,14 @@ const Reset = ({ loading, error, resetPassword }) => {
 					</div>
 				</div>
 			</div>
+			<SuccessModal
+				show={isPasswordReset}
+				message={"Password reset successfully!"}
+				onHide={() => {
+					resetUserFlags(isPasswordReset);
+					navigate("/login");
+				}}
+			/>
 		</AppLayout>
 	);
 };
@@ -161,10 +176,11 @@ const mapStateToProps = (state) => {
 	return {
 		error: state.user.error,
 		loading: state.user.loading,
+		isPasswordReset: state.user.isPasswordReset,
 	};
 };
 
 const mapDispatchToProps = (dispatch) =>
-	bindActionCreators({ resetPassword }, dispatch);
+	bindActionCreators({ resetPassword, resetUserFlags }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Reset);

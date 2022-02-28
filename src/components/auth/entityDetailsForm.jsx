@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
 	Form,
 	Button,
@@ -15,15 +15,6 @@ import Dropzone from "react-dropzone";
 import "../../styles/register.css";
 
 const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
-	const [sebiCertificate, setSebiCertificate] = useState([]);
-	const [sebiCertificateError, setSebiCertificateError] = useState("");
-	const [cinCertificate, setCinCertificate] = useState([]);
-	const [cinCertificateError, setCinCertificateError] = useState("");
-	const [pan, setPan] = useState([]);
-	const [panError, setPanError] = useState("");
-	const [logo, setLogo] = useState([]);
-	const [logoError, setLogoError] = useState("");
-
 	const validationSchema = () => {
 		return Yup.object().shape({
 			legalEntityName: Yup.string().required("* Legal Entity Name is required"),
@@ -39,6 +30,10 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 				.required("* PAN Number is required")
 				.min(4, "* Invalid PAN Number")
 				.max(10, "* Invalid PAN Number"),
+			logo: Yup.mixed().required("* Logo is required"),
+			sebiCertificate: Yup.mixed().required("* SEBI Certificate is required"),
+			cinCertificate: Yup.mixed().required("* CIN Certificate is required"),
+			pan: Yup.mixed().required("* PAN is required"),
 		});
 	};
 
@@ -49,31 +44,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 				validationSchema.validateSync(values, { abortEarly: false });
 				return {};
 			} catch (error) {
-				validateExtras();
 				return getErrorsFromValidationError(error);
 			}
 		};
-	};
-
-	const validateExtras = () => {
-		let update = true;
-		if (sebiCertificate.length === 0) {
-			setSebiCertificateError("* SEBI Certificate is required");
-			update = false;
-		}
-		if (cinCertificate.length === 0) {
-			setCinCertificateError("* CIN Certificate is required");
-			update = false;
-		}
-		if (pan.length === 0) {
-			setPanError("* PAN is required");
-			update = false;
-		}
-		if (logo.length === 0) {
-			setLogoError("* Logo is required");
-			update = false;
-		}
-		return update;
 	};
 
 	const getErrorsFromValidationError = (validationError) => {
@@ -92,67 +65,29 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 			sebiCertificateNumber: "",
 			cinNumber: "",
 			panNumber: "",
+			logo: null,
+			sebiCertificate: null,
+			cinCertificate: null,
+			pan: null,
 		};
 		return initialValues;
 	};
 
-	const handleFileUpload = (type, acceptedFiles) => {
-		if (type === "sebi") {
-			setSebiCertificateError("");
-			setSebiCertificate(
-				acceptedFiles.map((file) =>
-					Object.assign(file, {
-						preview: URL.createObjectURL(file),
-					})
-				)
-			);
-		} else if (type === "cin") {
-			setCinCertificateError("");
-			setCinCertificate(
-				acceptedFiles.map((file) =>
-					Object.assign(file, {
-						preview: URL.createObjectURL(file),
-					})
-				)
-			);
-		} else if (type === "logo") {
-			setLogoError("");
-			setLogo(
-				acceptedFiles.map((file) =>
-					Object.assign(file, {
-						preview: URL.createObjectURL(file),
-					})
-				)
-			);
-		} else {
-			setPanError("");
-			setPan(
-				acceptedFiles.map((file) =>
-					Object.assign(file, {
-						preview: URL.createObjectURL(file),
-					})
-				)
-			);
-		}
-	};
-
-	const handleDropReject = (type, rejected) => {
-		if (type === "sebi") {
-			setSebiCertificateError("* SEBI Certificate is required");
-		} else if (type === "cin") {
-			setCinCertificateError("* CIN Certificate is required");
-		} else if (type === "logo") {
-			setLogoError("* Logo is required");
-		} else {
-			setPanError("* PAN is required");
-		}
-	};
+	// const handleDropReject = (type, rejected) => {
+	// 	if (type === "sebi") {
+	// 		setSebiCertificateError("* SEBI Certificate is required");
+	// 	} else if (type === "cin") {
+	// 		setCinCertificateError("* CIN Certificate is required");
+	// 	} else if (type === "logo") {
+	// 		setLogoError("* Logo is required");
+	// 	} else {
+	// 		setPanError("* PAN is required");
+	// 	}
+	// };
 
 	const handleSubmit = (values) => {
-		if (validateExtras()) {
-			setEntityDetails({ ...values, sebiCertificate, cinCertificate, pan, logo });
-			setActiveTab("personalDetails");
-		}
+		setEntityDetails(values);
+		setActiveTab("personalDetails");
 	};
 
 	return (
@@ -162,7 +97,15 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 				validate={validate(validationSchema)}
 				onSubmit={handleSubmit}
 				enableReinitialize={true}
-				render={({ errors, handleChange, handleSubmit, values, touched }) => {
+				render={({
+					errors,
+					handleChange,
+					handleSubmit,
+					values,
+					touched,
+					setFieldValue,
+				}) => {
+					console.log(values, errors);
 					return (
 						<Form className="form-align" noValidate onSubmit={handleSubmit}>
 							<Row>
@@ -177,17 +120,26 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										<div className="box-body box-profile">
 											<Dropzone
 												// maxSize={512000}
-												onDrop={(acceptedFiles) => handleFileUpload("logo", acceptedFiles)}
-												onDropRejected={(rejected) => handleDropReject("logo", rejected)}
+												onDrop={(acceptedFiles) => {
+													setFieldValue(
+														"logo",
+														acceptedFiles.map((file) =>
+															Object.assign(file, {
+																preview: URL.createObjectURL(file),
+															})
+														)
+													);
+												}}
+												// onDropRejected={(rejected) => handleDropReject("logo", rejected)}
 												multiple={false}
 												accept=".png, .jpg, .jpeg"
 											>
 												{({ getRootProps, getInputProps }) => (
 													<div>
-														{logo.length && logo.length > 0 ? (
+														{values.logo && values.logo.length > 0 ? (
 															<section>
 																<div className="avatar-preview">
-																	{logo.map((file, index) => {
+																	{values.logo.map((file, index) => {
 																		return (
 																			<img
 																				src={file.preview}
@@ -224,7 +176,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											</Dropzone>
 										</div>
 									</div>
-									{logoError && <p className="error-text">{logoError}</p>}
+									{!!touched.logo && !!errors.logo && (
+										<p className="error-text">{errors.logo}</p>
+									)}
 								</Form.Group>
 								<Form.Group
 									as={Col}
@@ -244,6 +198,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										className="field-size"
 										onChange={handleChange}
 										value={values.legalEntityName}
+										autoComplete="off"
 									/>
 									{!!touched.legalEntityName && !!errors.legalEntityName && (
 										<p className="error-text">{errors.legalEntityName}</p>
@@ -268,6 +223,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										className="field-size"
 										onChange={handleChange}
 										value={values.sebiCertificateNumber}
+										autoComplete="off"
 									/>
 									{!!touched.sebiCertificateNumber && !!errors.sebiCertificateNumber && (
 										<p className="error-text">{errors.sebiCertificateNumber}</p>
@@ -281,23 +237,33 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									className="mb-3"
 								>
 									<Form.Label className="text-bottom">
-										Upload SEBI Certificate<span className="asterick">*</span>
+										Upload SEBI Certificate <span className="file-type">(.pdf)</span>
+										<span className="asterick">*</span>
 									</Form.Label>
 									<OverlayTrigger overlay={<Tooltip>Upload SEBI Certificate</Tooltip>}>
 										<Question className="tooltip_icon" />
 									</OverlayTrigger>
 									<Dropzone
 										// maxSize={512000}
-										onDrop={(acceptedFiles) => handleFileUpload("sebi", acceptedFiles)}
-										onDropRejected={(rejected) => handleDropReject("sebi", rejected)}
+										onDrop={(acceptedFiles) =>
+											setFieldValue(
+												"sebiCertificate",
+												acceptedFiles.map((file) =>
+													Object.assign(file, {
+														preview: URL.createObjectURL(file),
+													})
+												)
+											)
+										}
+										// onDropRejected={(rejected) => handleDropReject("sebi", rejected)}
 										multiple={false}
 										accept=".pdf"
 									>
 										{({ getRootProps, getInputProps }) => (
 											<div>
-												{sebiCertificate.length && sebiCertificate.length > 0 ? (
+												{values.sebiCertificate && values.sebiCertificate.length > 0 ? (
 													<section className="file file--upload">
-														{sebiCertificate.map((file, index) => {
+														{values.sebiCertificate.map((file, index) => {
 															return (
 																<div>
 																	<input {...getInputProps()} />
@@ -328,8 +294,8 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											</div>
 										)}
 									</Dropzone>
-									{sebiCertificateError && (
-										<p className="error-text">{sebiCertificateError}</p>
+									{!!touched.sebiCertificate && !!errors.sebiCertificate && (
+										<p className="error-text">{errors.sebiCertificate}</p>
 									)}
 								</Form.Group>
 							</Row>
@@ -351,6 +317,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										className="field-size"
 										onChange={handleChange}
 										value={values.cinNumber}
+										autoComplete="off"
 									/>
 									{!!touched.cinNumber && !!errors.cinNumber && (
 										<p className="error-text">{errors.cinNumber}</p>
@@ -364,23 +331,33 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									className="mb-3"
 								>
 									<Form.Label className="text-bottom">
-										Upload CIN<span className="asterick">*</span>
+										Upload CIN <span className="file-type">(.pdf)</span>
+										<span className="asterick">*</span>
 									</Form.Label>
 									<OverlayTrigger overlay={<Tooltip>Upload CIN </Tooltip>}>
 										<Question className="tooltip_icon" />
 									</OverlayTrigger>
 									<Dropzone
 										// maxSize={512000}
-										onDrop={(acceptedFiles) => handleFileUpload("cin", acceptedFiles)}
-										onDropRejected={(rejected) => handleDropReject("cin", rejected)}
+										onDrop={(acceptedFiles) =>
+											setFieldValue(
+												"cinCertificate",
+												acceptedFiles.map((file) =>
+													Object.assign(file, {
+														preview: URL.createObjectURL(file),
+													})
+												)
+											)
+										}
+										// onDropRejected={(rejected) => handleDropReject("cin", rejected)}
 										multiple={false}
 										accept=".pdf"
 									>
 										{({ getRootProps, getInputProps }) => (
 											<div>
-												{cinCertificate.length && cinCertificate.length > 0 ? (
+												{values.cinCertificate && values.cinCertificate.length > 0 ? (
 													<section className="file file--upload">
-														{cinCertificate.map((file, index) => {
+														{values.cinCertificate.map((file, index) => {
 															return (
 																<div>
 																	<input {...getInputProps()} />
@@ -411,8 +388,8 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											</div>
 										)}
 									</Dropzone>
-									{cinCertificateError && (
-										<p className="error-text">{cinCertificateError}</p>
+									{!!touched.cinCertificate && !!errors.cinCertificate && (
+										<p className="error-text">{errors.cinCertificate}</p>
 									)}
 								</Form.Group>
 							</Row>
@@ -434,6 +411,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										className="field-size"
 										onChange={handleChange}
 										value={values.panNumber}
+										autoComplete="off"
 									/>
 									{!!touched.panNumber && !!errors.panNumber && (
 										<p className="error-text">{errors.panNumber}</p>
@@ -447,23 +425,33 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									className="mb-3"
 								>
 									<Form.Label className="text-bottom">
-										Upload PAN<span className="asterick">*</span>
+										Upload PAN <span className="file-type">(.pdf)</span>
+										<span className="asterick">*</span>
 									</Form.Label>
 									<OverlayTrigger overlay={<Tooltip>Upload PAN</Tooltip>}>
 										<Question className="tooltip_icon" />
 									</OverlayTrigger>
 									<Dropzone
 										// maxSize={512000}
-										onDrop={(acceptedFiles) => handleFileUpload("pan", acceptedFiles)}
-										onDropRejected={(rejected) => handleDropReject("pan", rejected)}
+										onDrop={(acceptedFiles) =>
+											setFieldValue(
+												"pan",
+												acceptedFiles.map((file) =>
+													Object.assign(file, {
+														preview: URL.createObjectURL(file),
+													})
+												)
+											)
+										}
+										// onDropRejected={(rejected) => handleDropReject("pan", rejected)}
 										multiple={false}
 										accept=".pdf"
 									>
 										{({ getRootProps, getInputProps }) => (
 											<div>
-												{pan.length && pan.length > 0 ? (
+												{values.pan && values.pan.length > 0 ? (
 													<section className="file file--upload">
-														{pan.map((file, index) => {
+														{values.pan.map((file, index) => {
 															return (
 																<div>
 																	<input {...getInputProps()} />
@@ -494,7 +482,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											</div>
 										)}
 									</Dropzone>
-									{panError && <p className="error-text">{panError}</p>}
+									{!!touched.pan && !!errors.pan && (
+										<p className="error-text">{errors.pan}</p>
+									)}
 								</Form.Group>
 							</Row>
 							<Button className="btn-position btn-filled w-custom" type="submit">

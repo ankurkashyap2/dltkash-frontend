@@ -45,23 +45,17 @@ const Investor = ({
 	const [enteredOtp, setEnteredOtp] = useState("");
 	const [otpError, setOtpError] = useState(false);
 	const [otp, setOtp] = useState(generateOTP());
-
+	const [expirationTime, setExpirationTime] = useState(Date.now() + 60000);
 	useEffect(() => {
 		if (uccRequestId) {
 			getExchangeInvestorData({ uccRequestId }, token);
 		}
 	}, [uccRequestId, token, getExchangeInvestorData]);
 
-	// useEffect(() => {
-	// 	// if (receivedOTP) {
-	// 	setOtp(generateOTP());
-	// 	// }
-	// }, []);
-
 	const renderer = ({ formatted, completed, api }) => {
 		if (completed) {
 			setOtp(generateOTP());
-			api.start();
+			setExpirationTime(Date.now() + 60000);
 		}
 		return (
 			<p className="timer">
@@ -71,17 +65,11 @@ const Investor = ({
 	};
 
 	const handleToggle = (val) => {
-		// const newUrl =
-		// 	val === "email"
-		// 		? location && location.pathname.replace("mobile", "email")
-		// 		: location && location.pathname.replace("email", "mobile");
-		// navigate(newUrl);
 		setOtpType(val);
 		setOtp(generateOTP());
 	};
 
 	const handleOTPSubmit = () => {
-		console.log(otp === enteredOtp, otpStatus === "reject");
 		if (otp === enteredOtp || otpStatus === "reject") {
 			setOtpError(false);
 			otpType === "email"
@@ -99,7 +87,7 @@ const Investor = ({
 	};
 
 	const CountdownWrapper = () => {
-		return <Countdown date={Date.now() + 60000} renderer={renderer} />;
+		return <Countdown date={expirationTime} renderer={renderer} />;
 	};
 	const MemoCountdown = React.memo(CountdownWrapper);
 
@@ -138,12 +126,13 @@ const Investor = ({
 								placeholder="Please Enter OTP here"
 								className="field-size mt-4"
 								onChange={(e) => setEnteredOtp(parseInt(e.target.value))}
+								autoComplete="off"
 							/>
 						</Form.Group>
 						<p className="text-otp p-3">
 							Your OTP is <span>{otp}</span>
 						</p>
-						{/* <Countdown date={Date.now() + 60000} renderer={renderer} /> */}
+
 						<MemoCountdown />
 					</>
 				) : null}
@@ -219,33 +208,6 @@ const Investor = ({
 											: investorData && investorData.uccEmailStatus === "SENT"
 											? "Verification Link is already sent to you Email Id!"
 											: "Please Verify your Account"}
-										{/* {location && location.pathname.includes("email-verification")
-											? otpType === "email"
-												? investorData &&
-												  (investorData.uccEmailStatus === "VERIFIED" ||
-														investorData.uccEmailStatus === "REJECTED")
-													? "Your email is verified!"
-													: "Please Verify your Account"
-												: investorData.uccMobileStatus === "VERIFIED" ||
-												  investorData.uccMobileStatus === "REJECTED"
-												? "Your mobile is verified!"
-												: investorData.uccMobileStatus === "SENT"
-												? "Verification Link is already sent to you mobile number!"
-												: "Please Verify your Account"
-											: location.pathname.includes("mobile-verification")
-											? otpType === "mobile"
-												? investorData &&
-												  (investorData.uccMobileStatus === "VERIFIED" ||
-														investorData.uccMobileStatus === "REJECTED")
-													? "Your mobile is verified!"
-													: "Please Verify your Account"
-												: (investorData && investorData.uccEmailStatus === "VERIFIED") ||
-												  (investorData && investorData.uccEmailStatus === "REJECTED")
-												? "Your mobile is verified!"
-												: investorData && investorData.uccEmailStatus === "SENT"
-												? "Verification Link is already sent to you Email id!"
-												: "Please Verify your Account"
-											: null} */}
 									</h3>
 
 									<div className="otp-radio-btn">

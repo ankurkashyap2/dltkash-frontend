@@ -46,6 +46,7 @@ const initState = {
 	selectedDrawerTab: "dashboard",
 	isUserAdded: false,
 	isUserRegistered: false,
+	isPasswordReset: false,
 };
 
 const userReducer = (state = initState, action) => {
@@ -122,7 +123,7 @@ const userReducer = (state = initState, action) => {
 			return {
 				...state,
 				loading: false,
-				// profile: action.response.user,
+				isPasswordReset: true,
 			};
 		}
 		case RESET_PASSWORD_ERROR: {

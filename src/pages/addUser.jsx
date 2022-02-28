@@ -107,6 +107,7 @@ const AddUser = ({
 							required
 							onChange={handleChange}
 							value={values.userName}
+							autoComplete="off"
 						/>
 						{!!touched.userName && !!errors.userName && (
 							<p className="error-text">{errors.userName}</p>
@@ -122,6 +123,7 @@ const AddUser = ({
 							required
 							onChange={handleChange}
 							value={values.email}
+							autoComplete="off"
 						/>
 						{!!touched.email && !!errors.email && (
 							<p className="error-text">{errors.email}</p>
@@ -139,6 +141,7 @@ const AddUser = ({
 							required
 							onChange={handleChange}
 							value={values.phoneNo}
+							autoComplete="off"
 						/>
 						{!!touched.phoneNo && !!errors.phoneNo && (
 							<p className="error-text">{errors.phoneNo}</p>
@@ -154,6 +157,7 @@ const AddUser = ({
 							required
 							onChange={handleChange}
 							value={values.password}
+							autoComplete="off"
 						/>
 						{showPassword ? (
 							<EyeIcon className="eye-icon" onClick={() => setShowPassword(false)} />
