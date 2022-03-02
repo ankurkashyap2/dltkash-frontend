@@ -86,6 +86,8 @@ const AddUser = ({
 		addUser(
 			{
 				...values,
+				email: values.email.toLowerCase(),
+				userName: values.userName.toLowerCase(),
 				role: activeTab === "admin" ? "ADMIN" : "OPERATIONAL",
 				exchangeId: profile && profile.exchangeId,
 			},
@@ -190,10 +192,6 @@ const AddUser = ({
 			<Sidebar />
 
 			<div className="content content-is-open">
-				<span className="side-panel-toggle">
-					<i className="fa fa-bars"></i>
-				</span>
-				{/* <h3>Add User</h3> */}
 				<Row className="add_user">
 					<Col className="col-lg-10 col-md-12">
 						<Tabs

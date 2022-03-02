@@ -56,3 +56,26 @@
 .up-arrow {
 	margin-bottom: 9px;
 }
+.offcanvas {
+	width: 220px !important;
+	background-color: #4fadea !important;
+}
+.navbar-light .navbar-toggler {
+	background: #4fadea;
+	color: #fff;
+	border: none;
+}
+.sidebar-web {
+	display: block;
+}
+.sidebar-mobile {
+	display: none;
+}
+@media screen and (max-width: 769px) {
+	.sidebar-web {
+		display: none;
+	}
+	.sidebar-mobile {
+		display: block;
+	}
+}

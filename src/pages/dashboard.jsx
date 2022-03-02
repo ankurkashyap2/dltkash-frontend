@@ -339,9 +339,9 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			<Sidebar />
 
 			<div className="content content-is-open">
-				<span className="side-panel-toggle">
+				{/* <span className="side-panel-toggle">
 					<i className="fa fa-bars"></i>
-				</span>
+				</span> */}
 				{/* <Tab.Content>
 							<Tab.Pane eventKey="first"> */}
 				{/* <h3>Dashboard</h3> */}

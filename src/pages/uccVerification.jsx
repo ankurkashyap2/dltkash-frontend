@@ -113,6 +113,7 @@ const UCCVerification = ({
 		let payload = values;
 		payload = {
 			...payload,
+			email: values.uccEmailId.toLowerCase(),
 			uccEmailIdModified: values.uccEmailIdModified.toString(),
 			uccPanExempt: values.uccPanExempt.toString(),
 			uccMobileNoModified: values.uccMobileNoModified.toString(),
@@ -127,12 +128,7 @@ const UCCVerification = ({
 	return (
 		<AppLayout page="UCC Verification" loading={loading}>
 			<Sidebar />
-
 			<div className="content content-is-open">
-				<span className="side-panel-toggle">
-					<i className="fa fa-bars"></i>
-				</span>
-				{/* <h3>UCC Verificaiton</h3> */}
 				<Row className="add_user">
 					<Col className="col-lg-10 col-md-12">
 						{error && <Alert variant="danger">{error}!</Alert>}

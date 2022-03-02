@@ -140,6 +140,8 @@ const PersonalDetailsForm = ({
 			{
 				...entityDetails,
 				...values,
+				email: values.email.toLowerCase(),
+				userName: values.userName.toLowerCase(),
 				isFirstExchangeAdmin: true,
 			},
 			navigate
