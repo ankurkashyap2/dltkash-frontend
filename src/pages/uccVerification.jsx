@@ -29,7 +29,10 @@ const UCCVerification = ({
 			uccTmId: Yup.string().required("* TM Id is required"),
 			uccTmName: Yup.string().required("* TM Name is required"),
 			uccPanExempt: Yup.boolean().required("* PAN EXempt is required"),
-			uccPanNo: Yup.string().required("* PAN Number is required"),
+			uccPanNo: Yup.string().when("uccPanExempt", {
+				is: false,
+				then: Yup.string().required("* PAN Number is required"),
+			}),
 			uccCountry: Yup.string().required("* Country is required"),
 			uccMobileNo: Yup.string()
 				.required("* Mobile Number is required")
@@ -121,7 +124,12 @@ const UCCVerification = ({
 			uccMobileStatus: "NOT VERIFIED",
 			uccPanStatus: !values.uccPanExempt ? "VERIFIED" : "NOT VERIFIED",
 		};
-
+		if (values.uccPanExempt) {
+			payload.uccPanNo = "";
+		} else {
+			payload.uccDpId = "";
+			payload.uccClientId = "";
+		}
 		addSingleInvestor(payload, token);
 	};
 

@@ -149,7 +149,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 							onClick={() => {
 								setSearch("");
 								setSearchKey("");
-								getAllInvestors({ page: 1, limit: pageLimit }, token);
+								getAllInvestors({ page: 1, limit: pageLimit }, token, "search");
 							}}
 						>
 							<Refresh alt="refresh" className="btn-size" />

@@ -150,10 +150,12 @@ const PersonalDetailsForm = ({
 
 	const handleEmailVerification = (values) => {
 		emailVerification(values.email);
+		setExpirationEmailTime(Date.now() + 60000);
 	};
 
 	const handleMobileVerification = (values) => {
 		mobileVerification(values.phoneNo);
+		setExpirationMobileTime(Date.now() + 60000);
 	};
 
 	const handleOTPVerification = (values, type) => {
@@ -528,10 +530,8 @@ const PersonalDetailsForm = ({
 				onHide={() => {
 					if (isEmailOTPSent) {
 						resetUserFlags("isEmailOTPSent");
-						setExpirationEmailTime(Date.now() + 60000);
 					} else {
 						resetUserFlags("isMobileOTPSent");
-						setExpirationMobileTime(Date.now() + 60000);
 					}
 				}}
 			/>

@@ -183,28 +183,28 @@ const Investor = ({
 									<h3>
 										{location && location.pathname.includes("email-verification")
 											? otpType === "email"
-												? investorData &&
-												  (investorData.uccEmailStatus === "VERIFIED" ||
-														investorData.uccEmailStatus === "REJECTED")
+												? investorData && investorData.uccEmailStatus === "VERIFIED"
 													? "Your email is verified!"
+													: investorData && investorData.uccEmailStatus === "REJECTED"
+													? "Your email request has been rejected"
 													: "Please Verify your Account"
-												: investorData &&
-												  (investorData.uccMobileStatus === "VERIFIED" ||
-														investorData.uccMobileStatus === "REJECTED")
+												: investorData && investorData.uccMobileStatus === "VERIFIED"
 												? "Your mobile is verified!"
+												: investorData && investorData.uccMobileStatus === "REJECTED"
+												? "Your mobile request has been rejected"
 												: investorData && investorData.uccMobileStatus === "SENT"
 												? "Verification Link is already sent to you mobile number!"
 												: "Please Verify your Account"
 											: otpType === "mobile"
-											? investorData &&
-											  (investorData.uccMobileStatus === "VERIFIED" ||
-													investorData.uccMobileStatus === "REJECTED")
+											? investorData && investorData.uccMobileStatus === "VERIFIED"
 												? "Your mobile is verified!"
+												: investorData && investorData.uccMobileStatus === "REJECTED"
+												? "Your mobile request has been rejected"
 												: "Please Verify your Account"
-											: investorData &&
-											  (investorData.uccEmailStatus === "VERIFIED" ||
-													investorData.uccEmailStatus === "REJECTED")
+											: investorData && investorData.uccEmailStatus === "VERIFIED"
 											? "Your email is verified!"
+											: investorData && investorData.uccEmailStatus === "REJECTED"
+											? "Your email request has been rejected"
 											: investorData && investorData.uccEmailStatus === "SENT"
 											? "Verification Link is already sent to you Email Id!"
 											: "Please Verify your Account"}
