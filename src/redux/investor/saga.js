@@ -5,6 +5,7 @@ import {
 	VERIFY_INVESTOR_EMAIL,
 	VERIFY_INVESTOR_MOBILE,
 	GET_ALL_INVESTORS,
+	MOBILE_REDIRECTION,
 } from "../actionTypes";
 import {
 	addSingleInvestorSuccess,
@@ -17,6 +18,8 @@ import {
 	verifyInvestorMobileError,
 	getAllInvestorsSuccess,
 	getAllInvestorsError,
+	mobileRedirectionSuccess,
+	mobileRedirectionError,
 } from "./actions";
 import { INVESTOR_API } from "../../services/investorApi";
 
@@ -105,6 +108,21 @@ export function* getAllInvestors() {
 			}
 		} catch (ex) {
 			yield put(getAllInvestorsError("Error while fetching investors"));
+		}
+	});
+}
+
+export function* mobileRedirection() {
+	yield takeEvery(MOBILE_REDIRECTION, function* ({ payload }) {
+		try {
+			const response = yield call(INVESTOR_API.mobileRedirection, payload);
+			if (response.status === 200) {
+				yield put(mobileRedirectionSuccess(response.data));
+			} else {
+				yield put(mobileRedirectionError(response.error.error.message));
+			}
+		} catch (ex) {
+			yield put(mobileRedirectionError("Error while redirecting"));
 		}
 	});
 }

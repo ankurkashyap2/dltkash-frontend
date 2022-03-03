@@ -83,4 +83,11 @@ export const INVESTOR_API = {
 		);
 		return response;
 	},
+
+	async mobileRedirection(payload) {
+		const response = await request("https://uat.dltkash.com" + payload, {
+			method: "GET",
+		});
+		return response;
+	},
 };

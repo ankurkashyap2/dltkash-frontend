@@ -11,6 +11,7 @@ import AddUser from "./addUser";
 import UCCVerification from "./uccVerification";
 import Trails from "./trails";
 import NotFound from "./notFound";
+import MobileRedirect from "./mobileRedirect";
 
 const AppRoutes = (props) => {
 	return (
@@ -26,6 +27,10 @@ const AppRoutes = (props) => {
 				<Route
 					path="/investor/email-verification/:uccRequestId/:token"
 					element={<Investor {...props} />}
+				/>
+				<Route
+					path="/mobile/:uccRequestId"
+					element={<MobileRedirect {...props} />}
 				/>
 				<Route
 					path="/investor/mobile-verification/:uccRequestId/:token"

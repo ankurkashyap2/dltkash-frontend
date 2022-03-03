@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	Form,
 	Button,
@@ -15,6 +15,11 @@ import Dropzone from "react-dropzone";
 import "../../styles/register.css";
 
 const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
+	const [sebiCertificateError, setSebiCertificateError] = useState(false);
+	const [cinCertificateError, setCinCertificateError] = useState(false);
+	const [panError, setPanError] = useState(false);
+	const [logoError, setLogoError] = useState(false);
+
 	const validationSchema = () => {
 		return Yup.object().shape({
 			legalEntityName: Yup.string().required("* Legal Entity Name is required"),
@@ -73,17 +78,17 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 		return initialValues;
 	};
 
-	// const handleDropReject = (type, rejected) => {
-	// 	if (type === "sebi") {
-	// 		setSebiCertificateError("* SEBI Certificate is required");
-	// 	} else if (type === "cin") {
-	// 		setCinCertificateError("* CIN Certificate is required");
-	// 	} else if (type === "logo") {
-	// 		setLogoError("* Logo is required");
-	// 	} else {
-	// 		setPanError("* PAN is required");
-	// 	}
-	// };
+	const handleDropReject = (type, rejected) => {
+		if (type === "sebi") {
+			setSebiCertificateError("* SEBI Certificate is required");
+		} else if (type === "cin") {
+			setCinCertificateError("* CIN Certificate is required");
+		} else if (type === "logo") {
+			setLogoError("* Logo is required");
+		} else {
+			setPanError("* PAN is required");
+		}
+	};
 
 	const handleSubmit = (values) => {
 		setEntityDetails(values);
@@ -119,7 +124,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									<div className="box box-primary">
 										<div className="box-body box-profile">
 											<Dropzone
-												// maxSize={512000}
+												maxSize={5 * 1024 * 1024}
 												onDrop={(acceptedFiles) => {
 													setFieldValue(
 														"logo",
@@ -176,7 +181,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											</Dropzone>
 										</div>
 									</div>
-									{!!touched.logo && !!errors.logo && (
+									{((!!touched.logo && !!errors.logo) || logoError) && (
 										<p className="error-text">{errors.logo}</p>
 									)}
 								</Form.Group>
@@ -244,7 +249,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										<Question className="tooltip_icon" />
 									</OverlayTrigger>
 									<Dropzone
-										// maxSize={512000}
+										maxSize={5 * 1024 * 1024}
 										onDrop={(acceptedFiles) =>
 											setFieldValue(
 												"sebiCertificate",
@@ -255,7 +260,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 												)
 											)
 										}
-										// onDropRejected={(rejected) => handleDropReject("sebi", rejected)}
+										onDropRejected={(rejected) => handleDropReject("sebi", rejected)}
 										multiple={false}
 										accept=".pdf"
 									>
@@ -294,8 +299,11 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											</div>
 										)}
 									</Dropzone>
-									{!!touched.sebiCertificate && !!errors.sebiCertificate && (
-										<p className="error-text">{errors.sebiCertificate}</p>
+									{((!!touched.sebiCertificate && !!errors.sebiCertificate) ||
+										sebiCertificateError) && (
+										<p className="error-text">
+											{errors.sebiCertificate || "*File size should be less than 5mb"}
+										</p>
 									)}
 								</Form.Group>
 							</Row>
@@ -338,7 +346,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										<Question className="tooltip_icon" />
 									</OverlayTrigger>
 									<Dropzone
-										// maxSize={512000}
+										maxSize={5 * 1024 * 1024}
 										onDrop={(acceptedFiles) =>
 											setFieldValue(
 												"cinCertificate",
@@ -349,7 +357,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 												)
 											)
 										}
-										// onDropRejected={(rejected) => handleDropReject("cin", rejected)}
+										onDropRejected={(rejected) => handleDropReject("cin", rejected)}
 										multiple={false}
 										accept=".pdf"
 									>
@@ -388,8 +396,11 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											</div>
 										)}
 									</Dropzone>
-									{!!touched.cinCertificate && !!errors.cinCertificate && (
-										<p className="error-text">{errors.cinCertificate}</p>
+									{((!!touched.cinCertificate && !!errors.cinCertificate) ||
+										cinCertificateError) && (
+										<p className="error-text">
+											{errors.cinCertificate || "*File size should be less than 5mb"}
+										</p>
 									)}
 								</Form.Group>
 							</Row>
@@ -432,7 +443,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										<Question className="tooltip_icon" />
 									</OverlayTrigger>
 									<Dropzone
-										// maxSize={512000}
+										maxSize={5 * 1024 * 1024}
 										onDrop={(acceptedFiles) =>
 											setFieldValue(
 												"pan",
@@ -443,7 +454,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 												)
 											)
 										}
-										// onDropRejected={(rejected) => handleDropReject("pan", rejected)}
+										onDropRejected={(rejected) => handleDropReject("pan", rejected)}
 										multiple={false}
 										accept=".pdf"
 									>
@@ -482,8 +493,10 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 											</div>
 										)}
 									</Dropzone>
-									{!!touched.pan && !!errors.pan && (
-										<p className="error-text">{errors.pan}</p>
+									{((!!touched.pan && !!errors.pan) || panError) && (
+										<p className="error-text">
+											{errors.pan || "*File size should be less than 5mb"}
+										</p>
 									)}
 								</Form.Group>
 							</Row>

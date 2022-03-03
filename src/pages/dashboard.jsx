@@ -261,7 +261,8 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 					classNames: ["verfied-pill"],
 				},
 				{
-					when: (row) => row.uccEmailStatus === "SENT",
+					when: (row) =>
+						row.uccEmailStatus === "SENT" || row.uccEmailStatus === "REJECTED",
 					classNames: ["sent-pill"],
 				},
 				{
@@ -281,7 +282,8 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 					classNames: ["verfied-pill"],
 				},
 				{
-					when: (row) => row.uccMobileStatus === "SENT",
+					when: (row) =>
+						row.uccMobileStatus === "SENT" || row.uccMobileStatus === "REJECTED",
 					classNames: ["sent-pill"],
 				},
 				{
@@ -300,7 +302,8 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 					classNames: ["verfied-pill"],
 				},
 				{
-					when: (row) => row.uccPanStatus === "SENT",
+					when: (row) =>
+						row.uccPanStatus === "SENT" || row.uccPanStatus === "REJECTED",
 					classNames: ["sent-pill"],
 				},
 				{

@@ -14,6 +14,9 @@ import {
 	GET_ALL_INVESTORS,
 	GET_ALL_INVESTORS_SUCCESS,
 	GET_ALL_INVESTORS_ERROR,
+	MOBILE_REDIRECTION,
+	MOBILE_REDIRECTION_SUCCESS,
+	MOBILE_REDIRECTION_ERROR,
 	RESET_INVESTOR_FLAGS,
 } from "../actionTypes";
 
@@ -61,6 +64,15 @@ export const getAllInvestorsSuccess = (response, typekey) => {
 };
 export const getAllInvestorsError = (error) => {
 	return { type: GET_ALL_INVESTORS_ERROR, error };
+};
+export const mobileRedirection = (payload) => {
+	return { type: MOBILE_REDIRECTION, payload };
+};
+export const mobileRedirectionSuccess = (response) => {
+	return { type: MOBILE_REDIRECTION_SUCCESS, response };
+};
+export const mobileRedirectionError = (error) => {
+	return { type: MOBILE_REDIRECTION_ERROR, error };
 };
 export const resetInvestorFlags = (flagName) => {
 	return { type: RESET_INVESTOR_FLAGS, flagName };

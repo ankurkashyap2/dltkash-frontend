@@ -15,6 +15,9 @@ import {
 	GET_ALL_INVESTORS,
 	GET_ALL_INVESTORS_SUCCESS,
 	GET_ALL_INVESTORS_ERROR,
+	MOBILE_REDIRECTION,
+	MOBILE_REDIRECTION_SUCCESS,
+	MOBILE_REDIRECTION_ERROR,
 } from "../actionTypes";
 
 const initState = {
@@ -25,6 +28,7 @@ const initState = {
 	isEmailVerified: false,
 	isMobileVerified: false,
 	investors: null,
+	redirectionUrl: "",
 };
 
 const investorReducer = (state = initState, action) => {
@@ -116,7 +120,7 @@ const investorReducer = (state = initState, action) => {
 					? [...state.investors.results, ...action.response.results]
 					: action.response.results,
 			};
-			console.log(action.typekey);
+
 			return {
 				...state,
 				loading: false,
@@ -124,6 +128,25 @@ const investorReducer = (state = initState, action) => {
 				investors: action.typekey === "search" ? action.response : records,
 			};
 		case GET_ALL_INVESTORS_ERROR:
+			return {
+				...state,
+				loading: false,
+				error: action.error,
+			};
+		case MOBILE_REDIRECTION:
+			return {
+				...state,
+				loading: true,
+				error: null,
+				redirectionUrl: "",
+			};
+		case MOBILE_REDIRECTION_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				redirectionUrl: action.response.data,
+			};
+		case MOBILE_REDIRECTION_ERROR:
 			return {
 				...state,
 				loading: false,
