@@ -13,6 +13,7 @@
 
 .outer-box {
 	position: relative;
+	/* z-index: 99; */
 }
 
 .Register-box {

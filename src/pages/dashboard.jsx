@@ -8,7 +8,7 @@ import { CSVLink } from "react-csv";
 // import { ReactComponent as UserEdit } from "../components/icons/UserEdit.svg";
 // import { ReactComponent as Up } from "../components/icons/up.svg";
 import { ReactComponent as Download } from "../components/icons/download.svg";
-// import { ReactComponent as Filter } from "../components/icons/filter.svg";
+import { ReactComponent as Search } from "../components/icons/search.svg";
 import { ReactComponent as Refresh } from "../components/icons/Refresh.svg";
 import AppLayout from "../layouts/appLayout";
 import "../styles/dashboard.css";
@@ -38,6 +38,8 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			const startIndex = (localPageNumber - 1) * localPageLimit;
 			const endIndex = localPageNumber * localPageLimit;
 			setInvestorsList(investors.results.slice(startIndex, endIndex));
+		} else {
+			setInvestorsList([]);
 		}
 	}, [investors, localPageLimit, localPageNumber]);
 
@@ -64,42 +66,36 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			filename: "Investors_Report.csv",
 		};
 
-		const handleSearch = (text) => {
-			setSearch(text);
-			if (text.length > 2) {
-				getAllInvestors(
-					{ page: 1, limit: pageLimit, [searchKey]: text },
-					token,
-					"search"
-				);
-			} else {
-				getAllInvestors({ page: 1, limit: pageLimit, [searchKey]: text }, token);
-			}
+		const handleSearch = () => {
+			getAllInvestors(
+				{ page: 1, limit: pageLimit, [searchKey]: search },
+				token,
+				"search"
+			);
 		};
-
+		console.log(search, searchKey);
 		return (
 			<div className="filter-section">
 				<Row style={{ alignItems: "center", justifyContent: "space-between" }}>
-					<Col sm={6}>
-						<FormControl
-							type="search"
-							placeholder="Search"
-							className="investor-search"
-							aria-label="Search"
-							value={search}
-							onChange={(e) => handleSearch(e.target.value)}
-							disabled={!searchKey}
-						/>
+					<Col sm={6} className="d-flex">
 						<Form.Select
 							className="search-select"
 							name="uccRequestType"
 							// value={searchKey}
-							onChange={(e) => setSearchKey(e.target.value)}
+							onChange={(e) => {
+								if (e.target.value === "all") {
+									getAllInvestors({ page: 1, limit: pageLimit }, token);
+								}
+								setSearchKey(e.target.value);
+								setSearch("");
+							}}
 						>
 							<option key="blankChoice" hidden value className="select-placeholder">
 								Select Search Key
 							</option>
-
+							<option key="all" value="all">
+								All
+							</option>
 							<option key="TmName" value="TmName">
 								TM Name
 							</option>
@@ -113,6 +109,23 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 								Notification Key
 							</option>
 						</Form.Select>
+						<FormControl
+							type="search"
+							placeholder="Search"
+							className="investor-search"
+							aria-label="Search"
+							value={search}
+							onChange={(e) => setSearch(e.target.value)}
+							disabled={!searchKey}
+						/>
+						<Button
+							className="btn-filled custom-refresh icon-dashboard"
+							style={{ marginTop: "0px", marginLeft: "5px" }}
+							onClick={handleSearch}
+							disabled={!searchKey || !search}
+						>
+							<Search alt="search-icon" className="search-size" />
+						</Button>
 					</Col>
 					{/* <Col sm={3}>
 						
@@ -196,65 +209,74 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			name: "S. No.",
 			selector: (row) => row.seqId + 1,
 			sortable: true,
+			// width: 40,
 		},
 		{
 			name: "Investor Code",
 			selector: (row) => row.uccInvestorCode,
 			sortable: true,
-			minWidth: 40,
+			// minWidth: "140px",
 		},
 		{
 			name: "TM ID",
 			selector: (row) => row.uccTmId,
 			sortable: true,
+			// minWidth: 40,
 		},
 		{
 			name: "TM Name",
 			selector: (row) => row.uccTmName,
 			sortable: true,
+			// minWidth: 40,
 		},
 		{
 			name: "Country",
 			selector: (row) => row.uccCountry,
 			sortable: true,
+			// minWidth: 40,
 		},
 		{
 			name: "PAN Exempt",
 			selector: (row) => row.uccPanExempt,
 			sortable: true,
-			minWidth: 40,
+			// minWidth: 40,
 		},
 		{
 			name: "PAN",
 			selector: (row) => row.uccPanNo,
 			sortable: true,
+			// minWidth: 40,
 		},
 		{
 			name: "DP ID",
 			selector: (row) => row.uccDpId,
 			sortable: true,
+			// minWidth: 40,
 		},
 		{
 			name: "Client Id",
 			selector: (row) => row.uccClientId,
 			sortable: true,
+			// minWidth: 40,
 		},
 		{
 			name: "Email ID",
 			selector: (row) => row.uccEmailId,
 			sortable: true,
+			// minWidth: 40,
 		},
 
 		{
 			name: "Mobile No.",
 			selector: (row) => row.uccMobileNo,
 			sortable: true,
+			// minWidth: 40,
 		},
 		{
 			name: "Email Status",
 			selector: (row) => row.uccEmailStatus,
 			sortable: true,
-			minWidth: 40,
+			// minWidth: 40,
 			conditionalCellStyles: [
 				{
 					when: (row) => row.uccEmailStatus === "VERIFIED",
@@ -275,7 +297,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			name: "Mobile Status",
 			selector: (row) => row.uccMobileStatus,
 			sortable: true,
-			minWidth: 40,
+			// minWidth: 40,
 			conditionalCellStyles: [
 				{
 					when: (row) => row.uccMobileStatus === "VERIFIED",
@@ -296,6 +318,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			name: "PAN Status",
 			selector: (row) => row.uccPanStatus,
 			sortable: true,
+			// minWidth: 40,
 			conditionalCellStyles: [
 				{
 					when: (row) => row.uccPanStatus === "VERIFIED",

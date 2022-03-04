@@ -293,6 +293,9 @@ input#custom-switch\ switch-ucc {
 	width: 20px;
 	margin-right: 6px;
 }
+.search-size {
+	width: 16px;
+}
 .custom-refresh {
 	padding: 0px 15px !important;
 }
@@ -301,7 +304,7 @@ input.investor-search.form-control {
 	float: left;
 	padding: 6px 12px;
 	line-height: 0;
-	margin-right: 10px;
+	margin-left: 10px;
 	font-size: 14px;
 }
 .action-btns {
