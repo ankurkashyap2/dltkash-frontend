@@ -60,7 +60,11 @@
 	width: 220px !important;
 	background-color: #4fadea !important;
 }
+button.navbar-toggler.collapsed img {
+    width: 16px !important;
+}
 .navbar-light .navbar-toggler {
+	padding: 1px 8px 4px;
 	background: #4fadea;
 	color: #fff;
 	border: none;
