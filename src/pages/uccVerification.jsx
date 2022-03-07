@@ -103,7 +103,7 @@ const UCCVerification = ({
 			uccDpId: "",
 			uccClientId: "",
 			uccInvestorCode: "",
-			uccRequestType: "New",
+			uccRequestType: "NEW",
 			uccNodeStatus: "01",
 			uccEmailStatus: false,
 			uccMobileStatus: false,
@@ -188,10 +188,10 @@ const UCCVerification = ({
 																	Choose...
 																</option>
 
-																<option key="new" value="New">
+																<option key="NEW" value="NEW">
 																	New
 																</option>
-																<option key="existing" value="Existing">
+																<option key="EXISTING" value="EXISTING">
 																	Existing
 																</option>
 															</Form.Select>
@@ -476,7 +476,7 @@ const UCCVerification = ({
 																<p className="error-text">{errors.uccMobileNo}</p>
 															)}
 														</Form.Group>
-														{values.uccRequestType === "New" ? null : (
+														{values.uccRequestType === "NEW" ? null : (
 															<Form.Group
 																className="col-lg-6 col-md-12 mt-3"
 																controlId="validationCustom02"
@@ -507,7 +507,7 @@ const UCCVerification = ({
 																	)}
 															</Form.Group>
 														)}
-														{values.uccRequestType === "New" ? null : (
+														{values.uccRequestType === "NEW" ? null : (
 															<Form.Group
 																as={Col}
 																md="6"

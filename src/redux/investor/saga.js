@@ -46,10 +46,11 @@ export function* getInvestorData() {
 				payload,
 				token
 			);
+
 			if (response.status === 200) {
 				yield put(getExchangeInvestorDataSuccess(response.data.data));
 			} else {
-				yield put(getExchangeInvestorDataError(response.error.error.message));
+				yield put(getExchangeInvestorDataError(response.error.error.data.message));
 			}
 		} catch (ex) {
 			yield put(
