@@ -20,7 +20,7 @@ const AppLayout = ({ loading, children, page }) => {
 					}),
 					overlay: (base) => ({
 						...base,
-						zIndex: 9999,
+						zIndex: 99,
 						color: "#919191",
 						backgroundColor: "rgba(255,255,255,.5)",
 						height: "100%",

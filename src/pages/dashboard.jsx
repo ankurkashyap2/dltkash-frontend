@@ -205,21 +205,23 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 	};
 
 	const columns = [
-		{
-			name: "S. No.",
-			selector: (row) => row.seqId + 1,
-			sortable: true,
+		// {
+		// 	name: "S. No.",
+		// 	selector: (row) =>
+		// 		investors &&
+		// 		investors.results.length &&
+		// 		investors.results.map((item, i) => row.seqId === item.seqId && i + 1),
 
-		},
+		// 	sortable: true,
+		// },
 		{
 			name: "Investor Code",
 			selector: (row) => row.uccInvestorCode,
 			sortable: true,
 			minWidth: "140px",
-			// allowOverflow:true
-			style:{
+			style: {
 				minWidth: "140px",
-			}
+			},
 		},
 		{
 			name: "TM ID",
@@ -231,7 +233,10 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			name: "TM Name",
 			selector: (row) => row.uccTmName,
 			sortable: true,
-			// minWidth: 40,
+			minWidth: "140px",
+			style: {
+				minWidth: "140px",
+			},
 		},
 		{
 			name: "Country",
@@ -244,15 +249,18 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			selector: (row) => row.uccPanExempt,
 			sortable: true,
 			minWidth: "140px",
-			style:{
+			style: {
 				minWidth: "140px",
-			}
+			},
 		},
 		{
 			name: "PAN",
 			selector: (row) => row.uccPanNo,
 			sortable: true,
-			// minWidth: 40,
+			minWidth: "120px",
+			style: {
+				minWidth: "120px",
+			},
 		},
 		{
 			name: "DP ID",
@@ -270,7 +278,10 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			name: "Email ID",
 			selector: (row) => row.uccEmailId,
 			sortable: true,
-			// minWidth: "140px",
+			minWidth: "200px",
+			style: {
+				minWidth: "200px",
+			},
 		},
 
 		{
@@ -278,16 +289,16 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			selector: (row) => row.uccMobileNo,
 			sortable: true,
 			minWidth: "140px",
-			style:{
+			style: {
 				minWidth: "140px",
-			}
+			},
 		},
 		{
 			name: "Email Status",
 			selector: (row) => row.uccEmailStatus,
 			sortable: true,
 			minWidth: "140px",
-			style:{
+			style: {
 				minWidth: "140px",
 			},
 			conditionalCellStyles: [
@@ -311,7 +322,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			selector: (row) => row.uccMobileStatus,
 			sortable: true,
 			minWidth: "140px",
-			style:{
+			style: {
 				minWidth: "140px",
 			},
 			conditionalCellStyles: [
@@ -335,7 +346,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			selector: (row) => row.uccPanStatus,
 			sortable: true,
 			minWidth: "140px",
-			style:{
+			style: {
 				minWidth: "140px",
 			},
 			conditionalCellStyles: [
@@ -373,7 +384,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 		},
 		cells: {
 			style: {
-				paddingLeft: "20px", // override the cell padding for data cells
+				// paddingLeft: "20px", // override the cell padding for data cells
 				paddingRight: "20px",
 			},
 		},
