@@ -59,10 +59,10 @@ ul.pagination .page-item a {
 .dashboard-table tr {
 	border-bottom: 1px solid #d7d7d78c !important;
 }
-.sc-egiyK.lnndaO {
+/* .sc-egiyK.lnndaO {
     width: 90px !important;
     overflow: unset;
-}
+} */
 .dashboard-table td {
 	padding: 20px 14px !important;
 	font-weight: 500;

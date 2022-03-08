@@ -17,7 +17,6 @@
 }
 
 .Register-box {
-	padding-bottom: 60px;
 	position: relative;
 	display: block;
 	background: #ffffff;
@@ -30,6 +29,7 @@
 
 .Register-box .tab-content {
 	padding: 0 25px 25px;
+	min-height: 475px !important;
 }
 
 .Register-box h3,

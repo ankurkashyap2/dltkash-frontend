@@ -209,13 +209,17 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			name: "S. No.",
 			selector: (row) => row.seqId + 1,
 			sortable: true,
-			// width: 40,
+
 		},
 		{
 			name: "Investor Code",
 			selector: (row) => row.uccInvestorCode,
 			sortable: true,
-			// minWidth: "140px",
+			minWidth: "140px",
+			// allowOverflow:true
+			style:{
+				minWidth: "140px",
+			}
 		},
 		{
 			name: "TM ID",
@@ -239,7 +243,10 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			name: "PAN Exempt",
 			selector: (row) => row.uccPanExempt,
 			sortable: true,
-			// minWidth: 40,
+			minWidth: "140px",
+			style:{
+				minWidth: "140px",
+			}
 		},
 		{
 			name: "PAN",
@@ -263,20 +270,26 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			name: "Email ID",
 			selector: (row) => row.uccEmailId,
 			sortable: true,
-			// minWidth: 40,
+			// minWidth: "140px",
 		},
 
 		{
 			name: "Mobile No.",
 			selector: (row) => row.uccMobileNo,
 			sortable: true,
-			// minWidth: 40,
+			minWidth: "140px",
+			style:{
+				minWidth: "140px",
+			}
 		},
 		{
 			name: "Email Status",
 			selector: (row) => row.uccEmailStatus,
 			sortable: true,
-			// minWidth: 40,
+			minWidth: "140px",
+			style:{
+				minWidth: "140px",
+			},
 			conditionalCellStyles: [
 				{
 					when: (row) => row.uccEmailStatus === "VERIFIED",
@@ -297,7 +310,10 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			name: "Mobile Status",
 			selector: (row) => row.uccMobileStatus,
 			sortable: true,
-			// minWidth: 40,
+			minWidth: "140px",
+			style:{
+				minWidth: "140px",
+			},
 			conditionalCellStyles: [
 				{
 					when: (row) => row.uccMobileStatus === "VERIFIED",
@@ -318,7 +334,10 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			name: "PAN Status",
 			selector: (row) => row.uccPanStatus,
 			sortable: true,
-			// minWidth: 40,
+			minWidth: "140px",
+			style:{
+				minWidth: "140px",
+			},
 			conditionalCellStyles: [
 				{
 					when: (row) => row.uccPanStatus === "VERIFIED",
