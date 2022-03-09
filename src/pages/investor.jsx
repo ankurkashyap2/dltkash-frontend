@@ -44,8 +44,8 @@ const Investor = ({
 	const [otpStatus, setOtpStatus] = useState("");
 	const [enteredOtp, setEnteredOtp] = useState("");
 	const [otpError, setOtpError] = useState(false);
-	const [otp, setOtp] = useState(generateOTP());
-	const [expirationTime, setExpirationTime] = useState(Date.now() + 60000);
+	const [otp, setOtp] = useState("");
+	const [expirationTime, setExpirationTime] = useState("");
 	useEffect(() => {
 		if (uccRequestId) {
 			getExchangeInvestorData({ uccRequestId }, token);
@@ -66,7 +66,15 @@ const Investor = ({
 
 	const handleToggle = (val) => {
 		setOtpType(val);
+		setOtpStatus("");
+		// setOtp(generateOTP());
+		// setExpirationTime(Date.now() + 60000);
+	};
+
+	const handleOTPStatus = (val) => {
+		setOtpStatus(val);
 		setOtp(generateOTP());
+		setExpirationTime(Date.now() + 60000);
 	};
 
 	const handleOTPSubmit = () => {
@@ -105,7 +113,7 @@ const Investor = ({
 							type="radio"
 							id="reject"
 							value="reject"
-							onChange={(e) => setOtpStatus(e.target.value)}
+							onChange={(e) => handleOTPStatus(e.target.value)}
 						/>
 						<Form.Check
 							label="Generate OTP"
@@ -113,7 +121,7 @@ const Investor = ({
 							type="radio"
 							id="generate"
 							value="generate"
-							onChange={(e) => setOtpStatus(e.target.value)}
+							onChange={(e) => handleOTPStatus(e.target.value)}
 						/>
 					</Form>
 				</div>

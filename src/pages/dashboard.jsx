@@ -73,7 +73,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 				"search"
 			);
 		};
-		console.log(search, searchKey);
+
 		return (
 			<div className="filter-section">
 				<Row style={{ alignItems: "center", justifyContent: "space-between" }}>
@@ -84,7 +84,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 							// value={searchKey}
 							onChange={(e) => {
 								if (e.target.value === "all") {
-									getAllInvestors({ page: 1, limit: pageLimit }, token);
+									getAllInvestors({ page: 1, limit: pageLimit }, token, "search");
 								}
 								setSearchKey(e.target.value);
 								setSearch("");
@@ -105,9 +105,9 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 							<option key="panNumber" value="panNumber">
 								PAN Number
 							</option>
-							<option key="notificationKey" value="notificationKey">
+							{/* <option key="notificationKey" value="notificationKey">
 								Notification Key
-							</option>
+							</option> */}
 						</Form.Select>
 						<FormControl
 							type="search"
@@ -255,7 +255,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 		},
 		{
 			name: "PAN",
-			selector: (row) => row.uccPanNo,
+			selector: (row) => (row.uccPanNo ? row.uccPanNo : "-"),
 			sortable: true,
 			minWidth: "120px",
 			style: {
@@ -264,13 +264,13 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 		},
 		{
 			name: "DP ID",
-			selector: (row) => row.uccDpId,
+			selector: (row) => (row.uccDpId ? row.uccDpId : "-"),
 			sortable: true,
 			// minWidth: 40,
 		},
 		{
 			name: "Client Id",
-			selector: (row) => row.uccClientId,
+			selector: (row) => (row.uccClientId ? row.uccClientId : "-"),
 			sortable: true,
 			// minWidth: 40,
 		},
