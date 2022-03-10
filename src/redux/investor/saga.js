@@ -26,21 +26,21 @@ import { INVESTOR_API } from "../../services/investorApi";
 export function* addInvestor() {
 	yield takeEvery(ADD_SINGLE_INVESTOR, function* ({ payload, token }) {
 		try {
-			// const requestIdResponse = yield call(
-			// 	INVESTOR_API.getExchangeInvestorData,
-			// 	{ uccRequestId: payload.uccRequestId },
-			// 	token
-			// );
-			// if (requestIdResponse.status !== 200) {
-			const response = yield call(INVESTOR_API.addSingleInvestor, payload, token);
-			if (response.status === 200) {
-				yield put(addSingleInvestorSuccess());
+			const requestIdResponse = yield call(
+				INVESTOR_API.getExchangeInvestorData,
+				{ uccRequestId: payload.uccRequestId },
+				token
+			);
+			if (requestIdResponse.status !== 200) {
+				const response = yield call(INVESTOR_API.addSingleInvestor, payload, token);
+				if (response.status === 200) {
+					yield put(addSingleInvestorSuccess());
+				} else {
+					yield put(addSingleInvestorError(response.error.error.message));
+				}
 			} else {
-				yield put(addSingleInvestorError(response.error.error.message));
+				yield put(getExchangeInvestorDataError("Request Id already exist"));
 			}
-			// } else {
-			// 	yield put(getExchangeInvestorDataError("Request Id already exist"));
-			// }
 		} catch (ex) {
 			yield put(addSingleInvestorError("Error while adding Investor"));
 		}

@@ -24,17 +24,17 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 		return Yup.object().shape({
 			legalEntityName: Yup.string().required("* Legal Entity Name is required"),
 			sebiCertificateNumber: Yup.string()
-				.required("* SEBI Certificate Number is required")
 				.min(4, "* Invalid SEBI Certificate Number")
-				.max(10, "* Invalid SEBI Certificate Number"),
+				.max(10, "* Invalid SEBI Certificate Number")
+				.required("* SEBI Certificate Number is required"),
 			cinNumber: Yup.string()
-				.required("* CIN Number is required")
 				.min(4, "* Invalid CIN Number")
-				.max(22, "* Invalid CIN Number"),
+				.max(22, "* Invalid CIN Number")
+				.required("* CIN Number is required"),
 			panNumber: Yup.string()
-				.required("* PAN Number is required")
 				.min(4, "* Invalid PAN Number")
-				.max(10, "* Invalid PAN Number"),
+				.max(10, "* Invalid PAN Number")
+				.required("* PAN Number is required"),
 			logo: Yup.mixed().required("* Logo is required"),
 			sebiCertificate: Yup.mixed().required("* SEBI Certificate is required"),
 			cinCertificate: Yup.mixed().required("* CIN Certificate is required"),
@@ -250,7 +250,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									</OverlayTrigger>
 									<Dropzone
 										maxSize={5 * 1024 * 1024}
-										onDrop={(acceptedFiles) =>
+										onDrop={(acceptedFiles) => {
 											setFieldValue(
 												"sebiCertificate",
 												acceptedFiles.map((file) =>
@@ -258,8 +258,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 														preview: URL.createObjectURL(file),
 													})
 												)
-											)
-										}
+											);
+											setSebiCertificateError("");
+										}}
 										onDropRejected={(rejected) => handleDropReject("sebi", rejected)}
 										multiple={false}
 										accept=".pdf"
@@ -302,7 +303,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									{((!!touched.sebiCertificate && !!errors.sebiCertificate) ||
 										sebiCertificateError) && (
 										<p className="error-text">
-											{errors.sebiCertificate || "*File size should be less than 5mb"}
+											{errors.sebiCertificate || "* File size should be less than 5mb"}
 										</p>
 									)}
 								</Form.Group>
@@ -347,7 +348,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									</OverlayTrigger>
 									<Dropzone
 										maxSize={5 * 1024 * 1024}
-										onDrop={(acceptedFiles) =>
+										onDrop={(acceptedFiles) => {
 											setFieldValue(
 												"cinCertificate",
 												acceptedFiles.map((file) =>
@@ -355,8 +356,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 														preview: URL.createObjectURL(file),
 													})
 												)
-											)
-										}
+											);
+											setCinCertificateError("");
+										}}
 										onDropRejected={(rejected) => handleDropReject("cin", rejected)}
 										multiple={false}
 										accept=".pdf"
@@ -399,7 +401,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									{((!!touched.cinCertificate && !!errors.cinCertificate) ||
 										cinCertificateError) && (
 										<p className="error-text">
-											{errors.cinCertificate || "*File size should be less than 5mb"}
+											{errors.cinCertificate || "* File size should be less than 5mb"}
 										</p>
 									)}
 								</Form.Group>
@@ -444,7 +446,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									</OverlayTrigger>
 									<Dropzone
 										maxSize={5 * 1024 * 1024}
-										onDrop={(acceptedFiles) =>
+										onDrop={(acceptedFiles) => {
 											setFieldValue(
 												"pan",
 												acceptedFiles.map((file) =>
@@ -452,8 +454,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 														preview: URL.createObjectURL(file),
 													})
 												)
-											)
-										}
+											);
+											setPanError("");
+										}}
 										onDropRejected={(rejected) => handleDropReject("pan", rejected)}
 										multiple={false}
 										accept=".pdf"
@@ -495,7 +498,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									</Dropzone>
 									{((!!touched.pan && !!errors.pan) || panError) && (
 										<p className="error-text">
-											{errors.pan || "*File size should be less than 5mb"}
+											{errors.pan || "* File size should be less than 5mb"}
 										</p>
 									)}
 								</Form.Group>
