@@ -327,6 +327,10 @@ ul.btn-tab {
 	color: #344054;
 	font-size: 12px;
 }
+.btn-register {
+    display: flex;
+    justify-content: flex-end;
+}
 @media screen and (max-width: 468px) {
 	.Register-box {
 		max-width: 320px !important;

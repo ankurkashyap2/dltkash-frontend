@@ -503,7 +503,8 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									)}
 								</Form.Group>
 							</Row>
-							<Button className="btn-position btn-filled w-custom" type="submit">
+							<div className="btn-register">
+							<Button className="btn-filled w-custom" type="submit">
 								Next Step{" "}
 								<img
 									src={"/assets/images/arrowblue.png"}
@@ -511,6 +512,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									className="icon-login-left"
 								/>
 							</Button>
+							</div>
 						</Form>
 					);
 				}}
