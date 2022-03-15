@@ -4,9 +4,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DataTable from "react-data-table-component";
 import { CSVLink } from "react-csv";
-// import { ReactComponent as Down } from "../components/icons/down.svg";
-// import { ReactComponent as UserEdit } from "../components/icons/UserEdit.svg";
-// import { ReactComponent as Up } from "../components/icons/up.svg";
 import { ReactComponent as Download } from "../components/icons/download.svg";
 import { ReactComponent as Search } from "../components/icons/search.svg";
 import { ReactComponent as Refresh } from "../components/icons/Refresh.svg";
@@ -14,7 +11,6 @@ import AppLayout from "../layouts/appLayout";
 import "../styles/dashboard.css";
 import Sidebar from "../components/navbar/sidebar";
 import { getAllInvestors } from "../redux/investor/actions";
-// import Pagination from "../components/pagination";
 
 const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 	const [search, setSearch] = useState("");

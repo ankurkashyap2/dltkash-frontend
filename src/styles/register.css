@@ -290,7 +290,7 @@ ul.btn-tab {
 	margin-right: 6px;
 	cursor: pointer;
 	height: 16px;
-	z-index: 9999;
+	z-index: 99;
 	position: relative;
 }
 .Register-box .error-text {
@@ -328,8 +328,8 @@ ul.btn-tab {
 	font-size: 12px;
 }
 .btn-register {
-    display: flex;
-    justify-content: flex-end;
+	display: flex;
+	justify-content: flex-end;
 }
 @media screen and (max-width: 468px) {
 	.Register-box {

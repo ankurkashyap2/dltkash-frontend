@@ -30,6 +30,7 @@ import {
 	addUserSuccess,
 	addUserError,
 } from "./actions";
+import { resetOnLogout } from "../investor/actions";
 import { USER_API } from "../../services/userApi";
 import { setProfile, setToken } from "../../utils";
 
@@ -193,6 +194,7 @@ export function* userLogout() {
 	yield takeEvery(USER_LOGOUT, function* () {
 		try {
 			yield put(userLogoutSuccess());
+			yield put(resetOnLogout());
 			yield call(setProfile, null);
 			yield call(setToken, null);
 		} catch (ex) {

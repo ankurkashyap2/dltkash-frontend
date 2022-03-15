@@ -18,6 +18,7 @@ import {
 	MOBILE_REDIRECTION,
 	MOBILE_REDIRECTION_SUCCESS,
 	MOBILE_REDIRECTION_ERROR,
+	RESET_ON_LOGOUT,
 } from "../actionTypes";
 
 const initState = {
@@ -156,6 +157,10 @@ const investorReducer = (state = initState, action) => {
 			return {
 				...state,
 				[action.flagName]: false,
+			};
+		case RESET_ON_LOGOUT:
+			return {
+				...initState,
 			};
 		default:
 			return state;
