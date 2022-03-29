@@ -15,6 +15,7 @@ import SuccessModal from "../components/successModal";
 const AddUser = ({
 	loading,
 	error,
+	operationUserError,
 	addUser,
 	profile,
 	token,
@@ -24,6 +25,7 @@ const AddUser = ({
 	const [showPassword, setShowPassword] = useState(false);
 	const [activeTab, setActiveTab] = useState("admin");
 	const formikRef = useRef();
+	const formikRef1 = useRef();
 	const validationSchema = () => {
 		return Yup.object().shape({
 			userName: Yup.string().required("*User Name is required"),
@@ -222,8 +224,11 @@ const AddUser = ({
 								/>
 							</Tab>
 							<Tab eventKey="operation" title="Add Operation Manager">
-								{error && <Alert variant="danger">{error}!</Alert>}
+								{operationUserError && (
+									<Alert variant="danger">{operationUserError}!</Alert>
+								)}
 								<Formik
+									innerRef={formikRef1}
 									initialValues={getInitialValues()}
 									validate={validate(validationSchema)}
 									onSubmit={handleSubmit}
@@ -247,7 +252,9 @@ const AddUser = ({
 				show={isUserAdded}
 				message={"User is added successfully!"}
 				onHide={() => {
-					formikRef.current?.resetForm();
+					activeTab === "admin"
+						? formikRef.current?.resetForm()
+						: formikRef1.current?.resetForm();
 					resetUserFlags("isUserAdded");
 				}}
 			/>
@@ -258,6 +265,7 @@ const AddUser = ({
 const mapStateToProps = (state) => {
 	return {
 		error: state.user.error,
+		operationUserError: state.user.operationUserError,
 		loading: state.user.loading,
 		profile: state.user.profile,
 		token: state.user.token,

@@ -101,8 +101,8 @@ export const addUser = (payload, token) => {
 export const addUserSuccess = (response) => {
 	return { type: ADD_USER_SUCCESS, response };
 };
-export const addUserError = (error) => {
-	return { type: ADD_USER_ERROR, error };
+export const addUserError = (error, role) => {
+	return { type: ADD_USER_ERROR, error, role };
 };
 export const setToken = (token) => {
 	return { type: SET_TOKEN, token };

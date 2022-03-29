@@ -182,10 +182,10 @@ export function* addUser() {
 			if (response.status === 200) {
 				yield put(addUserSuccess(response));
 			} else {
-				yield put(addUserError(response.error.error.message));
+				yield put(addUserError(response.error.error.message, payload.role));
 			}
 		} catch (ex) {
-			yield put(addUserError("Error while adding user"));
+			yield put(addUserError("Error while adding user", payload.role));
 		}
 	});
 }

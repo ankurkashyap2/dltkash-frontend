@@ -47,6 +47,7 @@ const initState = {
 	isUserAdded: false,
 	isUserRegistered: false,
 	isPasswordReset: false,
+	operationUserError: null,
 };
 
 const userReducer = (state = initState, action) => {
@@ -206,7 +207,9 @@ const userReducer = (state = initState, action) => {
 			return {
 				...state,
 				loading: true,
-				error: null,
+				error: action.payload.role === "ADMIN" ? null : state.error,
+				operationUserError:
+					action.payload.role === "OPERATIONAL" ? null : state.operationUserError,
 			};
 		}
 		case ADD_USER_SUCCESS: {
@@ -220,7 +223,9 @@ const userReducer = (state = initState, action) => {
 			return {
 				...state,
 				loading: false,
-				error: action.error,
+				error: action.role === "ADMIN" ? action.error : state.error,
+				operationUserError:
+					action.role === "OPERATIONAL" ? action.error : state.operationUserError,
 			};
 		}
 		case SET_TOKEN: {
