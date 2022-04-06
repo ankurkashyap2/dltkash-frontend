@@ -107,4 +107,15 @@ export const USER_API = {
 		});
 		return response;
 	},
+
+	async changeSettings(payload, token) {
+		const response = await request(`${API_URL}/exchange/update-attempts`, {
+			method: "POST",
+			body: payload,
+			headers: {
+				Authorization: token,
+			},
+		});
+		return response;
+	},
 };

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { Form, Button, Row, Col, Alert } from "react-bootstrap";
+import { Form, Button, Row, Col, Alert, Modal } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AppLayout from "../layouts/appLayout";
@@ -9,6 +9,7 @@ import Sidebar from "../components/navbar/sidebar";
 import {
 	addSingleInvestor,
 	resetInvestorFlags,
+	resetExchangeData,
 } from "../redux/investor/actions";
 import SuccessModal from "../components/successModal";
 import CountryList from "../configs/countries.json";
@@ -21,6 +22,8 @@ const UCCVerification = ({
 	token,
 	isInvestorCreated,
 	resetInvestorFlags,
+	investorData,
+	resetExchangeData,
 }) => {
 	const formikRef = useRef();
 	const validationSchema = () => {
@@ -567,6 +570,50 @@ const UCCVerification = ({
 					resetInvestorFlags("isInvestorCreated");
 				}}
 			/>
+			<Modal
+				show={investorData}
+				size="lg"
+				aria-labelledby="contained-modal-title-vcenter"
+				centered
+				// style={{ textAlign: "left" }}
+				onHide={() => resetExchangeData()}
+			>
+				<Modal.Body className="p-5">
+					<h5>Request Id already exist with following data</h5>
+					<Row>
+						<Col className="col-6 investor-popup">
+							<p>Request Type: {investorData && investorData.uccRequestType}</p>
+							<p>TM Name: {investorData && investorData.uccTmName}</p>
+							<p>Country: {investorData && investorData.uccCountry}</p>
+							<p>PAN Exempt: {investorData && investorData.uccPanExempt}</p>
+							{investorData && !investorData.uccPanExempt ? (
+								<p>DP Id: {investorData && investorData.uccDpId}</p>
+							) : null}
+							<p>Email Id: {investorData && investorData.uccEmailId}</p>
+						</Col>
+						<Col className="col-6 investor-popup">
+							<p>Request Id: {investorData && investorData.uccRequestId}</p>
+							<p>TM Id: {investorData && investorData.uccTmId}</p>
+							<p>Investor Code: {investorData && investorData.uccInvestorCode}</p>
+							{investorData && investorData.uccPanExempt ? (
+								<p>PAN Number: {investorData && investorData.uccPanNo}</p>
+							) : null}
+							{investorData && !investorData.uccPanExempt ? (
+								<p>Client Id: {investorData && investorData.uccClientId}</p>
+							) : null}
+							<p>Mobile Number: {investorData && investorData.uccMobileNo}</p>
+						</Col>
+					</Row>
+
+					<Button
+						className="btn-filled"
+						style={{ float: "right !important" }}
+						onClick={() => resetExchangeData()}
+					>
+						Okay
+					</Button>
+				</Modal.Body>
+			</Modal>
 		</AppLayout>
 	);
 };
@@ -577,10 +624,14 @@ const mapStateToProps = (state) => {
 		error: state.investor.error,
 		token: state.user.token,
 		isInvestorCreated: state.investor.isInvestorCreated,
+		investorData: state.investor.investorData,
 	};
 };
 
 const mapDispatchToProps = (dispatch) =>
-	bindActionCreators({ addSingleInvestor, resetInvestorFlags }, dispatch);
+	bindActionCreators(
+		{ addSingleInvestor, resetInvestorFlags, resetExchangeData },
+		dispatch
+	);
 
 export default connect(mapStateToProps, mapDispatchToProps)(UCCVerification);

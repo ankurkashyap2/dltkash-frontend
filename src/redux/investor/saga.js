@@ -39,7 +39,7 @@ export function* addInvestor() {
 					yield put(addSingleInvestorError(response.error.error.message));
 				}
 			} else {
-				yield put(getExchangeInvestorDataError("Request Id already exist"));
+				yield put(getExchangeInvestorDataSuccess(requestIdResponse.data.data[0]));
 			}
 		} catch (ex) {
 			yield put(addSingleInvestorError("Error while adding Investor"));

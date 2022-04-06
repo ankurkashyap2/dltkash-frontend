@@ -30,6 +30,9 @@ import {
 	USER_LOGOUT_ERROR,
 	RESET_USER_FLAGS,
 	SET_SELECTED_DRAWER_ITEM,
+	CHANGE_SETTINGS,
+	CHANGE_SETTINGS_SUCCESS,
+	CHANGE_SETTINGS_ERROR,
 } from "../actionTypes";
 
 export const userRegister = (payload) => {
@@ -124,4 +127,13 @@ export const resetUserFlags = (flagName) => {
 };
 export const setSelectedDrawerItem = (drawerTab) => {
 	return { type: SET_SELECTED_DRAWER_ITEM, drawerTab };
+};
+export const changeSettings = (payload, token) => {
+	return { type: CHANGE_SETTINGS, payload, token };
+};
+export const changeSettingsSuccess = (response) => {
+	return { type: CHANGE_SETTINGS_SUCCESS, response };
+};
+export const changeSettingsError = (error) => {
+	return { type: CHANGE_SETTINGS_ERROR, error };
 };

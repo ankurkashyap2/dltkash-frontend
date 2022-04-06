@@ -30,6 +30,9 @@ import {
 	USER_LOGOUT_ERROR,
 	RESET_USER_FLAGS,
 	SET_SELECTED_DRAWER_ITEM,
+	CHANGE_SETTINGS,
+	CHANGE_SETTINGS_SUCCESS,
+	CHANGE_SETTINGS_ERROR,
 } from "../actionTypes";
 
 const initState = {
@@ -48,6 +51,7 @@ const initState = {
 	isUserRegistered: false,
 	isPasswordReset: false,
 	operationUserError: null,
+	isSettingChanged: false,
 };
 
 const userReducer = (state = initState, action) => {
@@ -275,6 +279,25 @@ const userReducer = (state = initState, action) => {
 				selectedDrawerTab: action.drawerTab,
 			};
 		}
+		case CHANGE_SETTINGS:
+			return {
+				...state,
+				loading: true,
+				error: null,
+			};
+		case CHANGE_SETTINGS_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				isSettingChanged: true,
+				profile: { ...state.profile, ...action.response },
+			};
+		case CHANGE_SETTINGS_ERROR:
+			return {
+				...state,
+				loading: false,
+				error: action.error,
+			};
 		default:
 			return state;
 	}

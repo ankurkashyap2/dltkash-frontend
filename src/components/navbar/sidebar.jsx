@@ -7,6 +7,7 @@ import { ReactComponent as Dashboard1 } from "../icons/Dashboard1.svg";
 import { setSelectedDrawerItem, userLogout } from "../../redux/user/actions";
 import { ReactComponent as User } from "../icons/User.svg";
 import { ReactComponent as Varification } from "../icons/Varification.svg";
+import { ReactComponent as Settings } from "../icons/gears-solid.svg";
 import "../../styles/sidebar.css";
 
 const Sidebar = ({
@@ -49,6 +50,15 @@ const Sidebar = ({
 						>
 							<Varification alt="Verification" className="icon-dashboard" /> UCC
 							Verification
+						</Nav.Link>
+					</Nav.Item>
+					<Nav.Item>
+						<Nav.Link
+							eventKey="fourth"
+							href="/settings"
+							className={location.pathname === "/settings" ? "active" : ""}
+						>
+							<Settings alt="Settings" className="icon-dashboard" /> Settings
 						</Nav.Link>
 					</Nav.Item>
 					{/* <Nav.Item>
@@ -119,6 +129,16 @@ const Sidebar = ({
 								>
 									<Varification alt="Verification" className="icon-dashboard" /> UCC
 									Verification
+								</Nav.Link>
+							</Nav.Item>
+							<Nav.Item>
+								<Nav.Link
+									eventKey="fourth"
+									href="/settings"
+									className={location.pathname === "/settings" ? "active" : ""}
+								>
+									<Settings alt="Settings" className="icon-dashboard" />
+									Settings
 								</Nav.Link>
 							</Nav.Item>
 							{/* <Nav.Item>

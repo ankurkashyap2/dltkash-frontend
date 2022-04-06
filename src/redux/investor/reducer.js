@@ -19,6 +19,10 @@ import {
 	MOBILE_REDIRECTION_SUCCESS,
 	MOBILE_REDIRECTION_ERROR,
 	RESET_ON_LOGOUT,
+	RESET_EXCHANGE_DATA,
+	CHANGE_SETTINGS,
+	CHANGE_SETTINGS_SUCCESS,
+	CHANGE_SETTINGS_ERROR,
 } from "../actionTypes";
 
 const initState = {
@@ -162,6 +166,12 @@ const investorReducer = (state = initState, action) => {
 			return {
 				...initState,
 			};
+		case RESET_EXCHANGE_DATA:
+			return {
+				...state,
+				investorData: null,
+			};
+
 		default:
 			return state;
 	}

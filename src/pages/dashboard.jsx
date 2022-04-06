@@ -95,9 +95,9 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 							<option key="TmName" value="TmName">
 								TM Name
 							</option>
-							<option key="mobileNumber" value="mobileNumber">
+							{/* <option key="mobileNumber" value="mobileNumber">
 								Mobile Number
-							</option>
+							</option> */}
 							<option key="panNumber" value="panNumber">
 								PAN Number
 							</option>

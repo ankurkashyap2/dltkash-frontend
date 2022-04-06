@@ -9,6 +9,7 @@ import {
 	MOBILE_VERIFICATION,
 	OTP_VERIFICATION,
 	ADD_USER,
+	CHANGE_SETTINGS,
 } from "../actionTypes";
 import {
 	userRegisterSuccess,
@@ -29,10 +30,12 @@ import {
 	otpVerificationError,
 	addUserSuccess,
 	addUserError,
+	changeSettingsSuccess,
+	changeSettingsError,
 } from "./actions";
 import { resetOnLogout } from "../investor/actions";
 import { USER_API } from "../../services/userApi";
-import { setProfile, setToken } from "../../utils";
+import { setProfile, setToken, getProfile } from "../../utils";
 
 export function* userSignup() {
 	yield takeEvery(USER_REGISTER, function* ({ payload }) {
@@ -186,6 +189,31 @@ export function* addUser() {
 			}
 		} catch (ex) {
 			yield put(addUserError("Error while adding user", payload.role));
+		}
+	});
+}
+
+export function* changeSettings() {
+	yield takeEvery(CHANGE_SETTINGS, function* ({ payload, token }) {
+		try {
+			const response = yield call(USER_API.changeSettings, payload, token);
+			if (response.status === 200) {
+				const exchangeDetailsResponse = yield call(
+					USER_API.getExchangeDetails,
+					payload.exchangeId,
+					token
+				);
+				if (exchangeDetailsResponse.status === 200) {
+					const exchange = exchangeDetailsResponse.data.data;
+
+					yield call(setProfile, { ...getProfile(), ...exchange });
+					yield put(changeSettingsSuccess(exchange));
+				}
+			} else {
+				yield put(changeSettingsError(response.error.error.message));
+			}
+		} catch (ex) {
+			yield put(changeSettingsError("Error while updating settings"));
 		}
 	});
 }

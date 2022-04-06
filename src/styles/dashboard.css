@@ -356,6 +356,14 @@ select.search-select.form-select {
 	width: 30%;
 	margin-left: 12px;
 }
+
+.investor-popup p{
+	text-align: left;
+}
+
+.date-picker-custom{
+	padding: 10px;
+}
 @media only screen and (max-width: 768px) {
 	.content {
 		margin-left: 0;

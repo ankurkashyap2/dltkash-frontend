@@ -19,6 +19,7 @@ import {
 	MOBILE_REDIRECTION_ERROR,
 	RESET_INVESTOR_FLAGS,
 	RESET_ON_LOGOUT,
+	RESET_EXCHANGE_DATA,
 } from "../actionTypes";
 
 export const addSingleInvestor = (payload, token) => {
@@ -80,4 +81,7 @@ export const resetInvestorFlags = (flagName) => {
 };
 export const resetOnLogout = () => {
 	return { type: RESET_ON_LOGOUT };
+};
+export const resetExchangeData = () => {
+	return { type: RESET_EXCHANGE_DATA };
 };

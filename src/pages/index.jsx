@@ -9,6 +9,7 @@ import ResetPassword from "./reset";
 import Investor from "./investor";
 import AddUser from "./addUser";
 import UCCVerification from "./uccVerification";
+import Settings from "./settings";
 import Trails from "./trails";
 import NotFound from "./notFound";
 import MobileRedirect from "./mobileRedirect";
@@ -49,6 +50,14 @@ const AppRoutes = (props) => {
 					element={
 						<SecuredRoute>
 							<UCCVerification {...props} />
+						</SecuredRoute>
+					}
+				/>
+				<Route
+					path="/settings"
+					element={
+						<SecuredRoute>
+							<Settings {...props} />
 						</SecuredRoute>
 					}
 				/>

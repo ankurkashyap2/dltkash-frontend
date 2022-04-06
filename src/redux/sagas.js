@@ -8,6 +8,7 @@ import {
 	mobileVerification,
 	userLogout,
 	addUser,
+	changeSettings,
 } from "./user/saga";
 import {
 	addInvestor,
@@ -34,5 +35,6 @@ export function* rootSaga() {
 		fork(getAllInvestors),
 		fork(mobileRedirection),
 		fork(addUser),
+		fork(changeSettings),
 	]);
 }
