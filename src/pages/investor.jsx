@@ -270,7 +270,17 @@ const Investor = ({
 			</div>
 			<SuccessModal
 				show={isEmailVerified || isMobileVerified}
-				message={(isEmailVerified || isMobileVerified) && "Verified successfully!"}
+				message={
+					isEmailVerified
+						? investorData && investorData.uccEmailStatus === "REJECTED"
+							? "You Email has been Rejected!"
+							: "Verified successfully!"
+						: isMobileVerified
+						? investorData && investorData.uccMobileStatus === "REJECTED"
+							? "You Mobile Number has been Rejected!"
+							: "Verified successfully!"
+						: ""
+				}
 				onHide={() =>
 					resetInvestorFlags(
 						isEmailVerified ? "isEmailVerified" : "isMobileVerified"
