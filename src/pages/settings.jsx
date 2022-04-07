@@ -24,8 +24,10 @@ const Settings = ({
 	isSettingChanged,
 }) => {
 	const formikRef = useRef();
-	const [startDate, setStartDate] = useState();
-	const [existingType, setExistingType] = useState("");
+	const [startDate, setStartDate] = useState(
+		user && user.existingDate ? new Date(user.existingDate) : ""
+	);
+	const [existingType, setExistingType] = useState();
 	const [existingDateErr, setExistingDateErr] = useState("");
 
 	const validationSchema = () => {
@@ -76,7 +78,7 @@ const Settings = ({
 		const initialValues = {
 			uccRequestType: "NEW",
 			newAttempts: (user && user.newAttempts) || "",
-			existingDate: "",
+			// existingDate: "",
 			existingAttempts: (user && user.existingAttempts) || "",
 		};
 		return initialValues;
@@ -84,7 +86,11 @@ const Settings = ({
 
 	const handleSubmit = (values) => {
 		let payload = values;
-		payload = { ...payload, exchangeId: user.exchangeId };
+		payload = {
+			...payload,
+			exchangeId: user.exchangeId,
+			existingDate: startDate,
+		};
 		if (values.uccRequestType === "NEW") {
 			delete payload.existingAttempts;
 			delete payload.existingDate;
@@ -99,7 +105,7 @@ const Settings = ({
 		}
 		changeSettings(payload, token);
 	};
-	console.log(user);
+	console.log("usr********", new Date(user && user.existingDate));
 	return (
 		<AppLayout page="Settings" loading={loading}>
 			<Sidebar />
@@ -231,6 +237,19 @@ const Settings = ({
 																>
 																	<Form.Label className="mb-0 text-bold">Due Date</Form.Label>
 																	<DatePicker
+																		selected={startDate}
+																		onChange={(d) => setStartDate(d)}
+																		// onChange={(date) =>
+																		// 	handleChange(moment(date).format("MM/DD/YYYY"))
+																		// }
+																		name="existingDate"
+																		className="field-size form-control"
+																		minDate={new Date()}
+																	/>
+																	{!startDate && (
+																		<p className="error-text">{errors.existingDate}</p>
+																	)}
+																	{/* <DatePicker
 																		selected={values.existingDate}
 																		onChange={handleChange}
 																		// onChange={(date) =>
@@ -242,7 +261,7 @@ const Settings = ({
 																	/>
 																	{!!touched.existingDate && !!errors.existingDate && (
 																		<p className="error-text">{errors.existingDate}</p>
-																	)}
+																	)} */}
 																</Form.Group>
 															) : null}
 														</>

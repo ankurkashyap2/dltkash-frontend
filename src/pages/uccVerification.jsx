@@ -607,7 +607,7 @@ const UCCVerification = ({
 
 					<Button
 						className="btn-filled"
-						style={{ float: "right !important" }}
+						style={{ float: "right" }}
 						onClick={() => resetExchangeData()}
 					>
 						Okay
