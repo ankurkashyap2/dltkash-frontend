@@ -105,7 +105,7 @@ const Settings = ({
 		}
 		changeSettings(payload, token);
 	};
-	console.log("usr********", new Date(user && user.existingDate));
+	console.log("usr********", user && user.existingDate, startDate);
 	return (
 		<AppLayout page="Settings" loading={loading}>
 			<Sidebar />
@@ -130,12 +130,15 @@ const Settings = ({
 								console.log(values);
 								return (
 									<Form className="form-align" noValidate onSubmit={handleSubmit}>
+										<Form.Label className="text-bold">
+											No. of Days/ Till Due Date investors will get notifications.
+										</Form.Label>
 										<Row>
 											<Col>
 												<div className="box-line">
 													<Row className="mb-3">
 														<Form.Group
-															className="col-lg-12 col-md-12"
+															className="col-lg-6 col-md-12"
 															controlId="validationCustom01"
 														>
 															<Form.Label className="mb-0 text-bold">Request Type</Form.Label>

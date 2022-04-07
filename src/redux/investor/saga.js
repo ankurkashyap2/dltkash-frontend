@@ -57,7 +57,7 @@ export function* getInvestorData() {
 			);
 
 			if (response.status === 200) {
-				yield put(getExchangeInvestorDataSuccess(response.data.data));
+				yield put(getExchangeInvestorDataSuccess(response.data.data[0]));
 			} else {
 				yield put(getExchangeInvestorDataError(response.error.error.data.message));
 			}
