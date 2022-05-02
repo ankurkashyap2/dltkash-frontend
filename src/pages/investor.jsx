@@ -82,11 +82,17 @@ const Investor = ({
 			setOtpError(false);
 			otpType === "email"
 				? verifyInvestorEmail(
-						otpStatus === "reject" ? "REJECTED" : "VERIFIED",
+						{
+							uccRequestId,
+							uccEmailStatus: otpStatus === "reject" ? "REJECTED" : "VERIFIED",
+						},
 						token
 				  )
 				: verifyInvestorMobile(
-						otpStatus === "reject" ? "REJECTED" : "VERIFIED",
+						{
+							uccRequestId,
+							uccMobileStatus: otpStatus === "reject" ? "REJECTED" : "VERIFIED",
+						},
 						token
 				  );
 		} else {

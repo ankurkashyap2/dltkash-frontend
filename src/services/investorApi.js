@@ -34,9 +34,10 @@ export const INVESTOR_API = {
 
 	async verifyInvestorEmail(payload, token) {
 		const response = await request(
-			`${API_URL}/investors/verify/email?status=${payload}`,
+			`${API_URL}/investors/verify/email`,
 			{
-				method: "GET",
+				method: "POST",
+				body: payload,
 				headers: {
 					Authorization: token,
 				},
@@ -48,9 +49,10 @@ export const INVESTOR_API = {
 
 	async verifyInvestorMobile(payload, token) {
 		const response = await request(
-			`${API_URL}/investors/verify/mobile?status=${payload}`,
+			`${API_URL}/investors/verify/mobile`,
 			{
-				method: "GET",
+				method: "POST",
+				body: payload,
 				headers: {
 					Authorization: token,
 				},
@@ -60,21 +62,47 @@ export const INVESTOR_API = {
 		return response;
 	},
 
-	async getAllInvestors(payload, token) {
-		let queryString = "";
+	// async getAllInvestors(payload, token) {
+	// 	let queryString = "";
 
-		for (const key in payload) {
-			queryString = payload[key]
-				? queryString.concat(key + "=" + payload[key] + "&")
-				: queryString;
-		}
-		let url = queryString
-			? `${API_URL}/exchange/search?${queryString}`
-			: `${API_URL}/exchange/search`;
+	// 	for (const key in payload) {
+	// 		queryString = payload[key]
+	// 			? queryString.concat(key + "=" + payload[key] + "&")
+	// 			: queryString;
+	// 	}
+	// 	let url = queryString
+	// 		? `${API_URL}/exchange/search?${queryString}`
+	// 		: `${API_URL}/exchange/search`;
+	// 	const response = await request(
+	// 		url,
+	// 		{
+	// 			method: "GET",
+	// 			headers: {
+	// 				Authorization: token,
+	// 			},
+	// 		},
+	// 		true
+	// 	);
+	// 	return response;
+	// },
+
+	async getAllInvestors(payload, token) {
+		// let queryString = "";
+
+		// for (const key in payload) {
+		// 	queryString = payload[key]
+		// 		? queryString.concat(key + "=" + payload[key] + "&")
+		// 		: queryString;
+		// }
+		// let url = queryString
+		// 	? `${API_URL}/exchange/search?${queryString}`
+		// 	: `${API_URL}/exchange/search`;
+		console.log(payload, token);
 		const response = await request(
-			url,
+			`${API_URL}/investors/get-data`,
 			{
-				method: "GET",
+				method: "POST",
+				body: payload,
 				headers: {
 					Authorization: token,
 				},

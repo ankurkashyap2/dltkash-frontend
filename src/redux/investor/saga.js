@@ -26,21 +26,21 @@ import { INVESTOR_API } from "../../services/investorApi";
 export function* addInvestor() {
 	yield takeEvery(ADD_SINGLE_INVESTOR, function* ({ payload, token }) {
 		try {
-			const requestIdResponse = yield call(
-				INVESTOR_API.getExchangeInvestorData,
-				{ uccRequestId: payload.uccRequestId },
-				token
-			);
-			if (requestIdResponse.status !== 200) {
-				const response = yield call(INVESTOR_API.addSingleInvestor, payload, token);
-				if (response.status === 200) {
-					yield put(addSingleInvestorSuccess());
-				} else {
-					yield put(addSingleInvestorError(response.error.error.message));
-				}
+			// const requestIdResponse = yield call(
+			// 	INVESTOR_API.getExchangeInvestorData,
+			// 	{ uccRequestId: payload.uccRequestId },
+			// 	token
+			// );
+			// if (requestIdResponse.status !== 200) {
+			const response = yield call(INVESTOR_API.addSingleInvestor, payload, token);
+			if (response.status === 200) {
+				yield put(addSingleInvestorSuccess());
 			} else {
-				yield put(getExchangeInvestorDataSuccess(requestIdResponse.data.data[0]));
+				yield put(addSingleInvestorError(response.error.error.message));
 			}
+			// } else {
+			// 	yield put(getExchangeInvestorDataSuccess(requestIdResponse.data.data[0]));
+			// }
 		} catch (ex) {
 			yield put(addSingleInvestorError("Error while adding Investor"));
 		}
@@ -55,9 +55,11 @@ export function* getInvestorData() {
 				payload,
 				token
 			);
-
+			console.log(response);
 			if (response.status === 200) {
-				yield put(getExchangeInvestorDataSuccess(response.data.data[0]));
+				yield put(
+					getExchangeInvestorDataSuccess(response.data.data.results[0].Record)
+				);
 			} else {
 				yield put(getExchangeInvestorDataError(response.error.error.data.message));
 			}
