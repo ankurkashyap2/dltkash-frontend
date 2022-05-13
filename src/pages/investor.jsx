@@ -78,23 +78,30 @@ const Investor = ({
 	};
 
 	const handleOTPSubmit = () => {
+		let payload = {
+			uccRequestId,
+			uccUpdatedAt:
+				investorData && investorData.updatedAt ? investorData.updatedAt : "",
+		};
+		if (otpType === "email") {
+			payload = {
+				...payload,
+				uccEmailStatus: otpStatus === "reject" ? "REJECTED" : "VERIFIED",
+			};
+		} else {
+			payload = {
+				...payload,
+				uccMobileStatus: otpStatus === "reject" ? "REJECTED" : "VERIFIED",
+			};
+		}
+		if (payload.uccUpdatedAt === "") {
+			delete payload.uccUpdatedAt;
+		}
 		if (otp === enteredOtp || otpStatus === "reject") {
 			setOtpError(false);
 			otpType === "email"
-				? verifyInvestorEmail(
-						{
-							uccRequestId,
-							uccEmailStatus: otpStatus === "reject" ? "REJECTED" : "VERIFIED",
-						},
-						token
-				  )
-				: verifyInvestorMobile(
-						{
-							uccRequestId,
-							uccMobileStatus: otpStatus === "reject" ? "REJECTED" : "VERIFIED",
-						},
-						token
-				  );
+				? verifyInvestorEmail(payload, token)
+				: verifyInvestorMobile(payload, token);
 		} else {
 			setOtpError(true);
 		}
