@@ -364,6 +364,15 @@ select.search-select.form-select {
 .date-picker-custom{
 	padding: 10px;
 }
+.arrows{
+	float: right;
+}
+
+.arrows img {
+    padding-right: 16px;
+    max-width: 35px;
+    padding-top: 18px;
+}
 @media only screen and (max-width: 768px) {
 	.content {
 		margin-left: 0;

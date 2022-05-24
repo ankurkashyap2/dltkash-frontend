@@ -12,32 +12,40 @@ import "../styles/dashboard.css";
 import Sidebar from "../components/navbar/sidebar";
 import { getAllInvestors } from "../redux/investor/actions";
 
-const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
+const Dashboard = ({
+	loading,
+	getAllInvestors,
+	token,
+	investors,
+	previousBookmark,
+	newBookmark,
+}) => {
 	const [search, setSearch] = useState("");
 	const [searchKey, setSearchKey] = useState("");
-	const [pageLimit] = useState(500);
-	const [localPageLimit, setLocalPageLimit] = useState(10);
-	const [pageNumber, setPageNumber] = useState(1);
-	const [localPageNumber, setLocalPageNumber] = useState(1);
+	const [pageLimit] = useState(10);
 	const [investorsList, setInvestorsList] = useState([]);
 
 	useEffect(() => {
 		if (token) {
-			getAllInvestors({ page: pageNumber, limit: pageLimit }, token);
+			getAllInvestors({ pageSize: pageLimit, bookmark: "" }, token);
 			setSearch("");
 			setSearchKey("");
 		}
-	}, [getAllInvestors, token, pageLimit, pageNumber]);
+	}, [getAllInvestors, token, pageLimit]);
 
 	useEffect(() => {
-		if (investors && investors.records > 0) {
-			const startIndex = (localPageNumber - 1) * localPageLimit;
-			const endIndex = localPageNumber * localPageLimit;
-			setInvestorsList(investors.results.slice(startIndex, endIndex));
+		if (investors && investors.length > 0) {
+			const list = [];
+			investors.map((item) =>
+				item.bookmark === newBookmark
+					? item.results.map((item1) => list.push(item1.Record))
+					: null
+			);
+			setInvestorsList(list);
 		} else {
 			setInvestorsList([]);
 		}
-	}, [investors, localPageLimit, localPageNumber]);
+	}, [investors, newBookmark]);
 
 	const subHeaderComponentMemo = useMemo(() => {
 		const headers = [
@@ -64,7 +72,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 
 		const handleSearch = () => {
 			getAllInvestors(
-				{ page: 1, limit: pageLimit, [searchKey]: search },
+				{ pageSize: pageLimit, bookmark: "", [searchKey]: search },
 				token,
 				"search"
 			);
@@ -77,10 +85,13 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 						<Form.Select
 							className="search-select"
 							name="uccRequestType"
-							// value={searchKey}
 							onChange={(e) => {
 								if (e.target.value === "all") {
-									getAllInvestors({ page: 1, limit: pageLimit }, token, "search");
+									getAllInvestors(
+										{ pageSize: pageLimit, bookmark: "" },
+										token,
+										"search"
+									);
 								}
 								setSearchKey(e.target.value);
 								setSearch("");
@@ -92,18 +103,25 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 							<option key="all" value="all">
 								All
 							</option>
-							<option key="TmName" value="TmName">
+							<option key="uccTmName" value="uccTmName">
 								TM Name
 							</option>
-							{/* <option key="mobileNumber" value="mobileNumber">
-								Mobile Number
-							</option> */}
-							<option key="panNumber" value="panNumber">
+
+							<option key="uccPanNo" value="uccPanNo">
 								PAN Number
 							</option>
-							{/* <option key="notificationKey" value="notificationKey">
-								Notification Key
-							</option> */}
+							<option key="uccMobileNo" value="uccMobileNo">
+								Mobile Number
+							</option>
+							<option key="uccEmailId" value="uccEmailId">
+								Email Id
+							</option>
+							<option key="exchangeId" value="exchangeId">
+								Exchange Id
+							</option>
+							<option key="fileName" value="fileName">
+								File Name
+							</option>
 						</Form.Select>
 						<FormControl
 							type="search"
@@ -123,33 +141,6 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 							<Search alt="search-icon" className="search-size" />
 						</Button>
 					</Col>
-					{/* <Col sm={3}>
-						
-					</Col> */}
-					{/* <Col sm={2}>
-						<Form.Group controlId="formGridEmail">
-							<Form action="/action_page.php"></Form>
-							<Form.Label className="text-bottom">From: </Form.Label>
-							<Form.Control
-								type="date"
-								name="datefrom"
-								placeholder="From"
-								className="field-size"
-							/>
-						</Form.Group>
-					</Col>
-					<Col sm={2}>
-						<Form.Group controlId="formGridEmail">
-							<Form action="/action_page.php"></Form>
-							<Form.Label className="text-bottom">To: </Form.Label>
-							<Form.Control
-								type="date"
-								name="datefrom"
-								placeholder="From"
-								className="field-size"
-							/>
-						</Form.Group>
-					</Col> */}
 
 					<Col sm={6} className="action-btns">
 						<Button
@@ -158,7 +149,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 							onClick={() => {
 								setSearch("");
 								setSearchKey("");
-								getAllInvestors({ page: 1, limit: pageLimit }, token, "search");
+								getAllInvestors({ pageSize: pageLimit, bookmark: "" }, token, "search");
 							}}
 						>
 							<Refresh alt="refresh" className="btn-size" />
@@ -170,35 +161,11 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 						>
 							<Download alt="Export" className="icon-dashboard" /> Export
 						</CSVLink>
-						{/* <csvlink {...csvreport}>Export to CSV</csvlink> */}
 					</Col>
 				</Row>
 			</div>
 		);
 	}, [search, searchKey, getAllInvestors, pageLimit, token, investorsList]);
-
-	const handlePageChange = (page, totalRows) => {
-		setLocalPageNumber(page);
-		let tempLimit = page * localPageLimit;
-		if (tempLimit > totalRows) {
-			tempLimit = totalRows;
-		}
-		if (tempLimit <= (investors && investors.results.length)) {
-			const startIndex = (page - 1) * localPageLimit;
-			const endIndex = page * localPageLimit;
-			setInvestorsList(investors.results.slice(startIndex, endIndex));
-		} else {
-			if (page - localPageNumber > 1) {
-				getAllInvestors({ page: 1, limit: totalRows }, token, "search");
-			} else {
-				setPageNumber(pageNumber + 1);
-			}
-		}
-	};
-
-	const handlePerRowsChange = (newPerPage) => {
-		setLocalPageLimit(newPerPage);
-	};
 
 	const columns = [
 		// {
@@ -223,7 +190,6 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			name: "TM ID",
 			selector: (row) => row.uccTmId,
 			sortable: true,
-			// minWidth: 40,
 		},
 		{
 			name: "TM Name",
@@ -238,7 +204,6 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			name: "Country",
 			selector: (row) => row.uccCountry,
 			sortable: true,
-			// minWidth: 40,
 		},
 		{
 			name: "PAN Exempt",
@@ -262,13 +227,11 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			name: "DP ID",
 			selector: (row) => (row.uccDpId ? row.uccDpId : "-"),
 			sortable: true,
-			// minWidth: 40,
 		},
 		{
 			name: "Client Id",
 			selector: (row) => (row.uccClientId ? row.uccClientId : "-"),
 			sortable: true,
-			// minWidth: 40,
 		},
 		{
 			name: "Email ID",
@@ -308,7 +271,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 					classNames: ["sent-pill"],
 				},
 				{
-					when: (row) => row.uccEmailStatus === "NOT VERIFIED",
+					when: (row) => row.uccEmailStatus === "NOT_VERIFIED",
 					classNames: ["not-verfied-pill"],
 				},
 			],
@@ -332,7 +295,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 					classNames: ["sent-pill"],
 				},
 				{
-					when: (row) => row.uccMobileStatus === "NOT VERIFIED",
+					when: (row) => row.uccMobileStatus === "NOT_VERIFIED",
 					classNames: ["not-verfied-pill"],
 				},
 			],
@@ -356,7 +319,7 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 					classNames: ["sent-pill"],
 				},
 				{
-					when: (row) => row.uccPanStatus === "NOT VERIFIED",
+					when: (row) => row.uccPanStatus === "NOT_VERIFIED",
 					classNames: ["not-verfied-pill"],
 				},
 			],
@@ -380,10 +343,25 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 		},
 		cells: {
 			style: {
-				// paddingLeft: "20px", // override the cell padding for data cells
 				paddingRight: "20px",
 			},
 		},
+	};
+
+	const handleNextPage = () => {
+		getAllInvestors({ pageSize: pageLimit, bookmark: newBookmark }, token);
+		setSearch("");
+		setSearchKey("");
+	};
+
+	const handlePreviousPage = () => {
+		getAllInvestors(
+			{ pageSize: pageLimit, bookmark: previousBookmark },
+			token,
+			"prev"
+		);
+		setSearch("");
+		setSearchKey("");
 	};
 
 	return (
@@ -391,200 +369,44 @@ const Dashboard = ({ loading, getAllInvestors, token, investors }) => {
 			<Sidebar />
 
 			<div className="content content-is-open">
-				{/* <span className="side-panel-toggle">
-					<i className="fa fa-bars"></i>
-				</span> */}
-				{/* <Tab.Content>
-							<Tab.Pane eventKey="first"> */}
-				{/* <h3>Dashboard</h3> */}
-				{/* <div className="filter-section">
-					<Row>
-						<Col sm={3}>
-							<Form.Group as={Col} controlId="formGridEmail">
-								<Form.Label className="text-bottom"></Form.Label>
-								<FormControl
-									type="search"
-									placeholder="Search"
-									className="me-2 field-size"
-									aria-label="Search"
-									value={search}
-									onChange={(e) => handleSearch(e.target.value)}
-								/>
-							</Form.Group>
-						</Col>
-						<Col sm={2}>
-							<Form.Group controlId="formGridEmail">
-								<Form action="/action_page.php"></Form>
-								<Form.Label className="text-bottom">From: </Form.Label>
-								<Form.Control
-									type="date"
-									name="datefrom"
-									placeholder="From"
-									className="field-size"
-								/>
-							</Form.Group>
-						</Col>
-						<Col sm={2}>
-							<Form.Group controlId="formGridEmail">
-								<Form action="/action_page.php"></Form>
-								<Form.Label className="text-bottom">To: </Form.Label>
-								<Form.Control
-									type="date"
-									name="datefrom"
-									placeholder="From"
-									className="field-size"
-								/>
-							</Form.Group>
-						</Col>
-						<Col sm={5}>
-							<Button className="btn-position btn-filled">
-								<Download alt="Export" className="icon-dashboard" /> Export
-							</Button>
-							<Filter alt="filter" className="icon-dashboard btn-position mt-4" />
-						</Col>
-						<Col>
-							<Button
-								className="btn-position btn-filled custom-refresh"
-								onClick={() => {
-									setPageNumber(1);
-									getInvestorsList();
-									getAllInvestors({ page: 1, limit: pageLimit }, token);
-								}}
-							>
-								<Refresh alt="refresh" className="btn-size" /> Refresh
-							</Button>
-						</Col>
-					</Row>
-					<div className="table-responsive">
-						<table
-							className="table table-hover dashboard-table"
-							cellspacing="0"
-							width="100%"
-						>
-							<thead>
-								<tr>
-									<th className="col-md-1">S.No.</th>
-									<th className="col-md-1">TM ID</th>
-									<th className="col-md-1">PAN</th>
-									<th className="col-md-1">Email ID</th>
-									<th className="col-md-1">Mobile No.</th>
-									<th className="col-md-1">
-										PAN Status <Up alt="down" className="up-arrow" />
-										<Down alt="down" className="down-arrow" />
-									</th>
-									<th className="col-md-1">
-										Email Status <Up alt="down" className="up-arrow" />
-										<Down alt="down" className="down-arrow" />
-									</th>
-									<th className="col-md-1">
-										Mobile Status <Up alt="down" className="up-arrow" />
-										<Down alt="down" className="down-arrow" />
-									</th>
-									<th className="col-md-1">Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								{investorsList && investorsList.length > 0 ? (
-									investorsList.map((item, index) => {
-										return (
-											<tr>
-												<td>{index + 1}</td>
-												<td>{item.uccTmId}</td>
-												<td>{item.uccPanNo}</td>
-												<td>{item.uccEmailId}</td>
-												<td>{item.uccMobileNo}</td>
-												<td
-													className={
-														item.uccPanStatus === "VERIFIED"
-															? "verfied-pill"
-															: item.uccPanStatus === "SENT"
-															? "sent-pill"
-															: "not-verfied-pill"
-													}
-												>
-													<span>{item.uccPanStatus}</span>
-												</td>
-												<td
-													className={
-														item.uccEmailStatus === "VERIFIED"
-															? "verfied-pill"
-															: item.uccEmailStatus === "SENT"
-															? "sent-pill"
-															: "not-verfied-pill"
-													}
-												>
-													<span>{item.uccEmailStatus}</span>
-												</td>
-												<td
-													className={
-														item.uccMobileStatus === "VERIFIED"
-															? "verfied-pill"
-															: item.uccMobileStatus === "SENT"
-															? "sent-pill"
-															: "not-verfied-pill"
-													}
-												>
-													<span>{item.uccMobileStatus}</span>
-												</td>
-												<td>
-													<UserEdit alt="edit" />
-												</td>
-											</tr>
-										);
-									})
-								) : (
-									<tr>No data!</tr>
-								)}
-							</tbody>
-						</table>
-					</div>
-				</div> */}
-				{/* <Row className="pt-3">
-					<Col sm={8}>
-						<p className="left">
-							{investors
-								? `Showing ${localStartIndex + 1} to 
-							${
-								investors
-									? localEndIndex > investors.records
-										? investors.records
-										: localEndIndex
-									: localEndIndex
-							}
-							of ${investors && investors.records} results`
-								: "No Results Found"}
-						</p>
-					</Col>
-					<Col sm={4}>
-					
-						<Pagination
-							page={pageNumber}
-							totalPage={
-								investors ? Math.round(investors.records / localPageLimit) : 0
-							}
-							handleChange={handlePageChange}
-						/>
-					</Col>
-				</Row> */}
-				{/* </Tab.Pane> */}
 				<DataTable
 					columns={columns}
 					data={investorsList ? investorsList : []}
-					// pagination
 					fixedHeader
 					subHeader
 					subHeaderComponent={subHeaderComponentMemo}
 					pointerOnHover
 					highlightOnHover
 					customStyles={customStyles}
-					pagination
-					paginationServer
-					paginationTotalRows={investors && investors.records}
-					onChangeRowsPerPage={handlePerRowsChange}
-					onChangePage={handlePageChange}
 					progressPending={loading}
 					progressComponent={<Spinner animation="border" variant="info" />}
 				/>
+				<div className="arrows">
+					<img
+						src="/assets/images/left-arrow-grey.png"
+						alt="left arrow"
+						style={{ cursor: previousBookmark && "pointer" }}
+						onClick={previousBookmark ? handlePreviousPage : null}
+					/>
+					<img
+						src="/assets/images/right-arrow-grey.png"
+						alt="right arrow"
+						style={{
+							cursor:
+								investors &&
+								investors.length > 0 &&
+								investors[investors.length - 1].recordsCount === pageLimit &&
+								"pointer",
+						}}
+						onClick={
+							investors &&
+							investors.length > 0 &&
+							investors[investors.length - 1].recordsCount === pageLimit
+								? handleNextPage
+								: null
+						}
+					/>
+				</div>
 			</div>
 		</AppLayout>
 	);
@@ -595,6 +417,8 @@ const mapStateToProps = (state) => {
 		error: state.investor.error,
 		loading: state.investor.loading,
 		investors: state.investor.investors,
+		previousBookmark: state.investor.previousBookmark,
+		newBookmark: state.investor.newBookmark,
 		token: state.user.token,
 	};
 };

@@ -20,9 +20,6 @@ import {
 	MOBILE_REDIRECTION_ERROR,
 	RESET_ON_LOGOUT,
 	RESET_EXCHANGE_DATA,
-	CHANGE_SETTINGS,
-	CHANGE_SETTINGS_SUCCESS,
-	CHANGE_SETTINGS_ERROR,
 } from "../actionTypes";
 
 const initState = {
@@ -32,8 +29,10 @@ const initState = {
 	investorData: null,
 	isEmailVerified: false,
 	isMobileVerified: false,
-	investors: null,
+	investors: [],
 	redirectionUrl: "",
+	previousBookmark: "",
+	newBookmark: "",
 };
 
 const investorReducer = (state = initState, action) => {
@@ -117,20 +116,46 @@ const investorReducer = (state = initState, action) => {
 				...state,
 				loading: true,
 				error: null,
+				// previousBookmark:
+				// 	state.investors.length > 2
+				// 		? state.investors[state.investors.length - 1].bookmark
+				// 		: "",
 			};
 		case GET_ALL_INVESTORS_SUCCESS:
-			const records = {
-				...action.response,
-				results: state.investors
-					? [...state.investors.results, ...action.response.results]
-					: action.response.results,
-			};
-
+			let investors = state.investors;
+			if (action.typekey === "prev") {
+				investors.splice(investors.length - 1, 1);
+			} else if (action.typekey === "search") {
+				investors = [action.response];
+			} else {
+				investors = [...state.investors, action.response];
+			}
+			// investors =
+			// 	action.typekey === "prev"
+			// 		? investors.splice(investors.length - 1, 1)
+			// 		: action.typekey === "search"
+			// 		? [...action.response]
+			// 		: [...state.investors, action.response];
+			console.log("********", investors);
 			return {
 				...state,
 				loading: false,
 				isMobileVerified: true,
-				investors: action.typekey === "search" ? action.response : records,
+				// previousBookmark: state.investors ? state.investors.bookmark : "",
+				//action.response,
+				investors: investors,
+				// action.typekey === "search"
+				// 	? [...action.response]
+				// 	: action.typekey === "prev"
+				// 	? result
+				// 	: [...state.investors, action.response],
+				previousBookmark:
+					state.investors.length > 2
+						? state.investors[state.investors.length - 2].bookmark
+						: state.investors.length === 2
+						? state.investors[0].bookmark
+						: "",
+				newBookmark: action.response.bookmark,
 			};
 		case GET_ALL_INVESTORS_ERROR:
 			return {

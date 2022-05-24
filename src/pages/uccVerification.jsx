@@ -123,9 +123,9 @@ const UCCVerification = ({
 			uccEmailIdModified: values.uccEmailIdModified.toString(),
 			uccPanExempt: values.uccPanExempt.toString(),
 			uccMobileNoModified: values.uccMobileNoModified.toString(),
-			uccEmailStatus: "NOT VERIFIED",
-			uccMobileStatus: "NOT VERIFIED",
-			uccPanStatus: !values.uccPanExempt ? "VERIFIED" : "NOT VERIFIED",
+			uccEmailStatus: "NOT_VERIFIED",
+			uccMobileStatus: "NOT_VERIFIED",
+			uccPanStatus: !values.uccPanExempt ? "VERIFIED" : "NOT_VERIFIED",
 		};
 		if (values.uccPanExempt) {
 			payload.uccPanNo = "";

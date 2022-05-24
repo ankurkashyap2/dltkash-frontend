@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { Form, Button, Row, Col, Alert, Modal } from "react-bootstrap";
+import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AppLayout from "../layouts/appLayout";
@@ -9,7 +9,6 @@ import Sidebar from "../components/navbar/sidebar";
 import { changeSettings, resetUserFlags } from "../redux/user/actions";
 import SuccessModal from "../components/successModal";
 import DatePicker from "react-datepicker";
-import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles/dashboard.css";
 
@@ -27,8 +26,9 @@ const Settings = ({
 	const [startDate, setStartDate] = useState(
 		user && user.existingDate ? new Date(user.existingDate) : ""
 	);
-	const [existingType, setExistingType] = useState();
-	const [existingDateErr, setExistingDateErr] = useState("");
+	const [existingType, setExistingType] = useState(
+		user && user.isExisitngDateSelected ? "date" : "days"
+	);
 
 	const validationSchema = () => {
 		return Yup.object().shape({
@@ -43,6 +43,12 @@ const Settings = ({
 				// .required("* Number of days required")
 				.when("uccRequestType", {
 					is: "EXISTING",
+					then: Yup.string().required("* Number of days required"),
+				}),
+			modifiedAttempts: Yup.string()
+				// .required("* Number of days required")
+				.when("uccRequestType", {
+					is: "MODIFIED",
 					then: Yup.string().required("* Number of days required"),
 				}),
 			// existingDate: Yup.string().when("existingAttempts", {
@@ -78,8 +84,9 @@ const Settings = ({
 		const initialValues = {
 			uccRequestType: "NEW",
 			newAttempts: (user && user.newAttempts) || "",
-			// existingDate: "",
-			existingAttempts: (user && user.existingAttempts) || "",
+			modifiedAttempts: (user && user.modifiedAttempts) || "",
+			existingAttempts:
+				user && user.isExisitngDateSelected ? 0 : user && user.existingAttempts,
 		};
 		return initialValues;
 	};
@@ -94,10 +101,15 @@ const Settings = ({
 		if (values.uccRequestType === "NEW") {
 			delete payload.existingAttempts;
 			delete payload.existingDate;
+			delete payload.modifiedAttempts;
+		} else if (values.uccRequestType === "MODIFIED") {
+			delete payload.existingAttempts;
+			delete payload.existingDate;
+			delete payload.newAttempts;
 		} else {
 			delete payload.newAttempts;
+			delete payload.modifiedAttempts;
 			if (existingType === "date") {
-				// payload.existingAttempts === "";
 				delete payload.existingAttempts;
 			} else {
 				delete payload.existingDate;
@@ -105,7 +117,7 @@ const Settings = ({
 		}
 		changeSettings(payload, token);
 	};
-	console.log("usr********", user && user.existingDate, startDate);
+	console.log("usr********", user);
 	return (
 		<AppLayout page="Settings" loading={loading}>
 			<Sidebar />
@@ -163,6 +175,9 @@ const Settings = ({
 																<option key="EXISTING" value="EXISTING">
 																	Existing
 																</option>
+																<option key="MODIFIED" value="MODIFIED">
+																	Modified
+																</option>
 															</Form.Select>
 
 															{!!touched.uccRequestType && !!errors.uccRequestType && (
@@ -170,28 +185,10 @@ const Settings = ({
 															)}
 														</Form.Group>
 													</Row>
-													{values.uccRequestType === "NEW" ? (
-														<Form.Group
-															className="col-lg-6 col-md-12"
-															controlId="validationCustom02"
-														>
-															<Form.Label className="mb-0 text-bold">
-																Number of Days
-															</Form.Label>
-															<Form.Control
-																type="number"
-																min={1}
-																placeholder="Enter Number of days"
-																className="field-size"
-																name="newAttempts"
-																onChange={handleChange}
-																value={values.newAttempts}
-															/>
-															{!!touched.newAttempts && !!errors.newAttempts && (
-																<p className="error-text">{errors.newAttempts}</p>
-															)}
-														</Form.Group>
-													) : (
+													<Form.Label className="mb-0 text-bold">
+														Number of days till the link will be valid
+													</Form.Label>
+													{values.uccRequestType === "EXISTING" ? (
 														<>
 															<Form.Check
 																label="Due Date"
@@ -268,6 +265,38 @@ const Settings = ({
 																</Form.Group>
 															) : null}
 														</>
+													) : (
+														<Form.Group
+															className="col-lg-6 col-md-12"
+															controlId="validationCustom02"
+														>
+															<Form.Label className="mb-0 text-bold">
+																Number of Days
+															</Form.Label>
+															<Form.Control
+																type="number"
+																min={1}
+																placeholder="Enter Number of days"
+																className="field-size"
+																name={
+																	values.uccRequestType === "NEW"
+																		? "newAttempts"
+																		: "modifiedAttempts"
+																}
+																onChange={handleChange}
+																value={
+																	values.uccRequestType === "NEW"
+																		? values.newAttempts
+																		: values.modifiedAttempts
+																}
+															/>
+															{!!touched.newAttempts && !!errors.newAttempts && (
+																<p className="error-text">{errors.newAttempts}</p>
+															)}
+															{!!touched.modifiedAttempts && !!errors.modifiedAttempts && (
+																<p className="error-text">{errors.modifiedAttempts}</p>
+															)}
+														</Form.Group>
 													)}
 												</div>
 
