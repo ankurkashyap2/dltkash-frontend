@@ -135,7 +135,6 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 														)
 													);
 												}}
-												// onDropRejected={(rejected) => handleDropReject("logo", rejected)}
 												multiple={false}
 												accept=".png, .jpg, .jpeg"
 											>
@@ -504,14 +503,14 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 								</Form.Group>
 							</Row>
 							<div className="btn-register">
-							<Button className="btn-filled w-custom" type="submit">
-								Next Step{" "}
-								<img
-									src={"/assets/images/arrowblue.png"}
-									alt="next"
-									className="icon-login-left"
-								/>
-							</Button>
+								<Button className="btn-filled w-custom" type="submit">
+									Next Step{" "}
+									<img
+										src={"/assets/images/arrowblue.png"}
+										alt="next"
+										className="icon-login-left"
+									/>
+								</Button>
 							</div>
 						</Form>
 					);

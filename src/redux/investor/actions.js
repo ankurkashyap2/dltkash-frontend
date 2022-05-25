@@ -20,6 +20,7 @@ import {
 	RESET_INVESTOR_FLAGS,
 	RESET_ON_LOGOUT,
 	RESET_EXCHANGE_DATA,
+	SET_PREVIOUS_BOOKMARK,
 } from "../actionTypes";
 
 export const addSingleInvestor = (payload, token) => {
@@ -84,4 +85,7 @@ export const resetOnLogout = () => {
 };
 export const resetExchangeData = () => {
 	return { type: RESET_EXCHANGE_DATA };
+};
+export const setPreviousBookmark = () => {
+	return { type: SET_PREVIOUS_BOOKMARK };
 };

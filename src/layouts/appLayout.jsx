@@ -1,7 +1,6 @@
 import React from "react";
 import { Spinner } from "react-bootstrap";
 import Header from "../components/navbar";
-// import Footer from "../components/layout/footer";
 import LoadingOverlay from "react-loading-overlay";
 
 const AppLayout = ({ loading, children, page }) => {
@@ -28,7 +27,6 @@ const AppLayout = ({ loading, children, page }) => {
 				}}
 			>
 				{children}
-				{/* <Footer /> */}
 			</LoadingOverlay>
 		</>
 	);

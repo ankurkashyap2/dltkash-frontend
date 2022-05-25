@@ -48,8 +48,6 @@ ul.pagination .page-item a {
 	border: 2px solid #a1a0a021 !important;
 }
 
-/* Demo nav_dashboardigation */
-/* table stying*/
 
 .dashboard-table {
 	border: 1px solid #d7d7d785;
@@ -59,10 +57,7 @@ ul.pagination .page-item a {
 .dashboard-table tr {
 	border-bottom: 1px solid #d7d7d78c !important;
 }
-/* .sc-egiyK.lnndaO {
-    width: 90px !important;
-    overflow: unset;
-} */
+
 .dashboard-table td {
 	padding: 20px 14px !important;
 	font-weight: 500;
@@ -89,7 +84,7 @@ table.table.table-hover.dashboard-table {
 
 .verfied-pill {
 	color: #039855;
-	/* background: #ecfdf3; */
+	
 	padding: 4px 10px;
 	border-radius: 30px;
 	font-size: 13px;
@@ -98,7 +93,7 @@ table.table.table-hover.dashboard-table {
 
 .not-verfied-pill {
 	color: #f04438;
-	/* background: #fef3f2; */
+	
 	padding: 4px 10px;
 	border-radius: 30px;
 	font-size: 13px;
@@ -106,7 +101,7 @@ table.table.table-hover.dashboard-table {
 }
 .sent-pill {
 	color: #f09a38;
-	/* background: #fef3f2; */
+
 	padding: 4px 10px;
 	border-radius: 30px;
 	font-size: 13px;

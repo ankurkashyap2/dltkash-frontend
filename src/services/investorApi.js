@@ -62,42 +62,7 @@ export const INVESTOR_API = {
 		return response;
 	},
 
-	// async getAllInvestors(payload, token) {
-	// 	let queryString = "";
-
-	// 	for (const key in payload) {
-	// 		queryString = payload[key]
-	// 			? queryString.concat(key + "=" + payload[key] + "&")
-	// 			: queryString;
-	// 	}
-	// 	let url = queryString
-	// 		? `${API_URL}/exchange/search?${queryString}`
-	// 		: `${API_URL}/exchange/search`;
-	// 	const response = await request(
-	// 		url,
-	// 		{
-	// 			method: "GET",
-	// 			headers: {
-	// 				Authorization: token,
-	// 			},
-	// 		},
-	// 		true
-	// 	);
-	// 	return response;
-	// },
-
 	async getAllInvestors(payload, token) {
-		// let queryString = "";
-
-		// for (const key in payload) {
-		// 	queryString = payload[key]
-		// 		? queryString.concat(key + "=" + payload[key] + "&")
-		// 		: queryString;
-		// }
-		// let url = queryString
-		// 	? `${API_URL}/exchange/search?${queryString}`
-		// 	: `${API_URL}/exchange/search`;
-		console.log(payload, token);
 		const response = await request(
 			`${API_URL}/investors/get-data`,
 			{

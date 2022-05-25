@@ -231,17 +231,7 @@ ul.btn-tab {
 	border-radius: 40px;
 	margin-bottom: 10px;
 }
-/* .avatar-upload {
-	position: relative;
-	max-width: 205px;
-	margin-bottom: 13px;
-} */
-/* .avatar-upload .avatar-edit {
-	position: absolute;
-	left: 53px;
-	z-index: 1;
-	top: 50px;
-} */
+
 .avatar-preview {
 	position: relative;
 }
@@ -251,18 +241,7 @@ ul.btn-tab {
 	left: 54px;
 	cursor: pointer;
 }
-/* .avatar-preview:after {
-	content: url("../components/icons/camera.svg");
-	font-family: "FontAwesome";
-	color: #337ab7;
-	position: absolute;
-	left: 53px;
-	bottom: 0;
-	text-align: center;
-	line-height: 26px;
-	margin: auto;
-	cursor: pointer;
-} */
+
 .tab-title-box {
 	display: flex;
 	align-items: center;

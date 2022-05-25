@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
 	Form,
 	FormControl,
@@ -23,9 +22,7 @@ const Trails = ({ loading }) => {
 				<span className="side-panel-toggle">
 					<i className="fa fa-bars"></i>
 				</span>
-				{/* <Tab.Content>
-							<Tab.Pane eventKey="first"> */}
-				{/* <h3>Trails</h3> */}
+
 				<div className="filter-section">
 					<Row>
 						<Col sm={3}>

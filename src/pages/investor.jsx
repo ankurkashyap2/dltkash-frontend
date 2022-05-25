@@ -67,8 +67,6 @@ const Investor = ({
 	const handleToggle = (val) => {
 		setOtpType(val);
 		setOtpStatus("");
-		// setOtp(generateOTP());
-		// setExpirationTime(Date.now() + 60000);
 	};
 
 	const handleOTPStatus = (val) => {

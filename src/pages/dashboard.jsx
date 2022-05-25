@@ -10,7 +10,10 @@ import { ReactComponent as Refresh } from "../components/icons/Refresh.svg";
 import AppLayout from "../layouts/appLayout";
 import "../styles/dashboard.css";
 import Sidebar from "../components/navbar/sidebar";
-import { getAllInvestors } from "../redux/investor/actions";
+import {
+	getAllInvestors,
+	setPreviousBookmark,
+} from "../redux/investor/actions";
 
 const Dashboard = ({
 	loading,
@@ -19,6 +22,7 @@ const Dashboard = ({
 	investors,
 	previousBookmark,
 	newBookmark,
+	setPreviousBookmark,
 }) => {
 	const [search, setSearch] = useState("");
 	const [searchKey, setSearchKey] = useState("");
@@ -355,11 +359,7 @@ const Dashboard = ({
 	};
 
 	const handlePreviousPage = () => {
-		getAllInvestors(
-			{ pageSize: pageLimit, bookmark: previousBookmark },
-			token,
-			"prev"
-		);
+		setPreviousBookmark();
 		setSearch("");
 		setSearchKey("");
 	};
@@ -424,6 +424,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) =>
-	bindActionCreators({ getAllInvestors }, dispatch);
+	bindActionCreators({ getAllInvestors, setPreviousBookmark }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

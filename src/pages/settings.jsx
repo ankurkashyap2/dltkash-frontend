@@ -33,28 +33,18 @@ const Settings = ({
 	const validationSchema = () => {
 		return Yup.object().shape({
 			uccRequestType: Yup.string().required("* Request Type is required"),
-			newAttempts: Yup.string()
-				// .required("* Number of days required")
-				.when("uccRequestType", {
-					is: "NEW",
-					then: Yup.string().required("* Number of days required"),
-				}),
-			existingAttempts: Yup.string()
-				// .required("* Number of days required")
-				.when("uccRequestType", {
-					is: "EXISTING",
-					then: Yup.string().required("* Number of days required"),
-				}),
-			modifiedAttempts: Yup.string()
-				// .required("* Number of days required")
-				.when("uccRequestType", {
-					is: "MODIFIED",
-					then: Yup.string().required("* Number of days required"),
-				}),
-			// existingDate: Yup.string().when("existingAttempts", {
-			// 	is: "",
-			// 	then: Yup.string().required("* Due date is required"),
-			// }),
+			newAttempts: Yup.string().when("uccRequestType", {
+				is: "NEW",
+				then: Yup.string().required("* Number of days required"),
+			}),
+			existingAttempts: Yup.string().when("uccRequestType", {
+				is: "EXISTING",
+				then: Yup.string().required("* Number of days required"),
+			}),
+			modifiedAttempts: Yup.string().when("uccRequestType", {
+				is: "MODIFIED",
+				then: Yup.string().required("* Number of days required"),
+			}),
 		});
 	};
 
@@ -117,7 +107,7 @@ const Settings = ({
 		}
 		changeSettings(payload, token);
 	};
-	console.log("usr********", user);
+
 	return (
 		<AppLayout page="Settings" loading={loading}>
 			<Sidebar />
@@ -239,9 +229,6 @@ const Settings = ({
 																	<DatePicker
 																		selected={startDate}
 																		onChange={(d) => setStartDate(d)}
-																		// onChange={(date) =>
-																		// 	handleChange(moment(date).format("MM/DD/YYYY"))
-																		// }
 																		name="existingDate"
 																		className="field-size form-control"
 																		minDate={new Date()}
@@ -249,19 +236,6 @@ const Settings = ({
 																	{!startDate && (
 																		<p className="error-text">{errors.existingDate}</p>
 																	)}
-																	{/* <DatePicker
-																		selected={values.existingDate}
-																		onChange={handleChange}
-																		// onChange={(date) =>
-																		// 	handleChange(moment(date).format("MM/DD/YYYY"))
-																		// }
-																		name="existingDate"
-																		className="field-size form-control"
-																		minDate={new Date()}
-																	/>
-																	{!!touched.existingDate && !!errors.existingDate && (
-																		<p className="error-text">{errors.existingDate}</p>
-																	)} */}
 																</Form.Group>
 															) : null}
 														</>

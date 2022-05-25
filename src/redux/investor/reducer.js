@@ -20,6 +20,7 @@ import {
 	MOBILE_REDIRECTION_ERROR,
 	RESET_ON_LOGOUT,
 	RESET_EXCHANGE_DATA,
+	SET_PREVIOUS_BOOKMARK,
 } from "../actionTypes";
 
 const initState = {
@@ -116,44 +117,22 @@ const investorReducer = (state = initState, action) => {
 				...state,
 				loading: true,
 				error: null,
-				// previousBookmark:
-				// 	state.investors.length > 2
-				// 		? state.investors[state.investors.length - 1].bookmark
-				// 		: "",
 			};
 		case GET_ALL_INVESTORS_SUCCESS:
 			let investors = state.investors;
-			if (action.typekey === "prev") {
-				investors.splice(investors.length - 1, 1);
-			} else if (action.typekey === "search") {
+			if (action.typekey === "search") {
 				investors = [action.response];
 			} else {
 				investors = [...state.investors, action.response];
 			}
-			// investors =
-			// 	action.typekey === "prev"
-			// 		? investors.splice(investors.length - 1, 1)
-			// 		: action.typekey === "search"
-			// 		? [...action.response]
-			// 		: [...state.investors, action.response];
-			console.log("********", investors);
 			return {
 				...state,
 				loading: false,
 				isMobileVerified: true,
-				// previousBookmark: state.investors ? state.investors.bookmark : "",
-				//action.response,
 				investors: investors,
-				// action.typekey === "search"
-				// 	? [...action.response]
-				// 	: action.typekey === "prev"
-				// 	? result
-				// 	: [...state.investors, action.response],
 				previousBookmark:
-					state.investors.length > 2
+					state.investors.length >= 2
 						? state.investors[state.investors.length - 2].bookmark
-						: state.investors.length === 2
-						? state.investors[0].bookmark
 						: "",
 				newBookmark: action.response.bookmark,
 			};
@@ -196,7 +175,18 @@ const investorReducer = (state = initState, action) => {
 				...state,
 				investorData: null,
 			};
-
+		case SET_PREVIOUS_BOOKMARK:
+			let temp = state.investors;
+			temp.splice(temp.length - 1, 1);
+			return {
+				...state,
+				investors: temp,
+				previousBookmark:
+					state.investors.length >= 2
+						? state.investors[state.investors.length - 2].bookmark
+						: "",
+				newBookmark: state.investors[state.investors.length - 1].bookmark,
+			};
 		default:
 			return state;
 	}

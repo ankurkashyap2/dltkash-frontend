@@ -326,7 +326,6 @@ const UCCVerification = ({
 																	<Form.Check
 																		type="switch"
 																		id="custom-switch switch-ucc"
-																		// label="PAN Exempt"
 																		name="uccPanExempt"
 																		className="switch-label"
 																		onChange={handleChange}
@@ -422,7 +421,6 @@ const UCCVerification = ({
 																		<Form.Check
 																			type="switch"
 																			id="custom-switch switch-ucc"
-																			// label="PAN Exempt"
 																			name="uccPanStatus"
 																			className="switch-label"
 																			onChange={handleChange}
@@ -494,8 +492,6 @@ const UCCVerification = ({
 																		<Form.Check
 																			type="switch"
 																			id="custom-switch switch-ucc"
-																			// label="PAN Exempt"
-
 																			className="switch-label"
 																			name="uccEmailIdModified"
 																			onChange={handleChange}
@@ -527,8 +523,6 @@ const UCCVerification = ({
 																		<Form.Check
 																			type="switch"
 																			id="custom-switch switch-ucc"
-																			// label="PAN Exempt"
-
 																			className="switch-label"
 																			name="uccMobileNoModified"
 																			onChange={handleChange}
@@ -575,7 +569,6 @@ const UCCVerification = ({
 				size="lg"
 				aria-labelledby="contained-modal-title-vcenter"
 				centered
-				// style={{ textAlign: "left" }}
 				onHide={() => resetExchangeData()}
 			>
 				<Modal.Body className="p-5">

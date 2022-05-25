@@ -233,7 +233,6 @@ const PersonalDetailsForm = ({
 				initialValues={getInitialValues()}
 				validate={validate(validationSchema)}
 				onSubmit={handleSubmit}
-				// enableReinitialize={true}
 				render={({ errors, handleChange, handleSubmit, values, touched }) => {
 					return (
 						<Form className="form-align" noValidate onSubmit={handleSubmit}>

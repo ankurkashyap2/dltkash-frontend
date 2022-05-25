@@ -61,20 +61,6 @@ const Sidebar = ({
 							<Settings alt="Settings" className="icon-dashboard" /> Settings
 						</Nav.Link>
 					</Nav.Item>
-					{/* <Nav.Item>
-							<Nav.Link
-								eventKey="Fourth"
-								href="/trails"
-								className={location.pathname === "/trails" ? "active" : ""}
-							>
-								<BorderStyle alt="trails" className="icon-dashboard" /> Trails
-							</Nav.Link>
-						</Nav.Item>
-						<Nav.Item>
-							<Nav.Link eventKey="Fourth" onClick={() => userLogout()}>
-								<Logout alt="Logout" className="icon-dashboard" /> Logout
-							</Nav.Link>
-						</Nav.Item> */}
 				</Nav>
 			</Navbar>
 		);
