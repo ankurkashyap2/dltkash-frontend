@@ -46,12 +46,6 @@ const UCCVerification = ({
 			uccEmailId: Yup.string()
 				.required("* Email Id is required")
 				.email("* Please enter valid format"),
-			uccMobileNoModified: Yup.boolean().required(
-				"* Mobile Number modified is required"
-			),
-			uccEmailIdModified: Yup.boolean().required(
-				"* Email Id modified is required"
-			),
 			uccDpId: Yup.string().when("uccPanExempt", {
 				is: true,
 				then: Yup.string().required("* DP Id is required"),
@@ -63,8 +57,6 @@ const UCCVerification = ({
 			uccInvestorCode: Yup.string().required("* Investor Code is required"),
 			uccRequestType: Yup.string().required("* Request Type is required"),
 			uccNodeStatus: Yup.string().required("* Node Status is required"),
-			uccEmailStatus: Yup.boolean().required("* Email Status is required"),
-			uccMobileStatus: Yup.boolean().required("* Mobile Status is required"),
 			uccPanStatus: Yup.boolean().required("* PAN Status is required"),
 		});
 	};
@@ -101,15 +93,11 @@ const UCCVerification = ({
 			uccCountry: "",
 			uccMobileNo: "",
 			uccEmailId: "",
-			uccMobileNoModified: false,
-			uccEmailIdModified: false,
 			uccDpId: "",
 			uccClientId: "",
 			uccInvestorCode: "",
 			uccRequestType: "NEW",
 			uccNodeStatus: "01",
-			uccEmailStatus: false,
-			uccMobileStatus: false,
 			uccPanStatus: true,
 		};
 		return initialValues;
@@ -120,18 +108,14 @@ const UCCVerification = ({
 		payload = {
 			...payload,
 			email: values.uccEmailId.toLowerCase(),
-			uccEmailIdModified: values.uccEmailIdModified.toString(),
 			uccPanExempt: values.uccPanExempt.toString(),
-			uccMobileNoModified: values.uccMobileNoModified.toString(),
-			uccEmailStatus: "NOT_VERIFIED",
-			uccMobileStatus: "NOT_VERIFIED",
 			uccPanStatus: !values.uccPanExempt ? "VERIFIED" : "NOT_VERIFIED",
 		};
 		if (values.uccPanExempt) {
-			payload.uccPanNo = "";
+			delete payload.uccPanNo;
 		} else {
-			payload.uccDpId = "";
-			payload.uccClientId = "";
+			delete payload.uccDpId;
+			delete payload.uccClientId;
 		}
 		addSingleInvestor(payload, token);
 	};
@@ -196,6 +180,9 @@ const UCCVerification = ({
 																</option>
 																<option key="EXISTING" value="EXISTING">
 																	Existing
+																</option>
+																<option key="MODIFIED" value="MODIFIED">
+																	Modified
 																</option>
 															</Form.Select>
 
@@ -477,66 +464,6 @@ const UCCVerification = ({
 																<p className="error-text">{errors.uccMobileNo}</p>
 															)}
 														</Form.Group>
-														{values.uccRequestType === "NEW" ? null : (
-															<Form.Group
-																className="col-lg-6 col-md-12 mt-3"
-																controlId="validationCustom02"
-															>
-																<Row>
-																	<Col>
-																		<Form.Label className="mb-0">
-																			Is your Email ID modified?
-																		</Form.Label>
-																	</Col>
-																	<Col>
-																		<Form.Check
-																			type="switch"
-																			id="custom-switch switch-ucc"
-																			className="switch-label"
-																			name="uccEmailIdModified"
-																			onChange={handleChange}
-																			value={values.uccEmailIdModified}
-																		/>
-																	</Col>
-																</Row>
-
-																{!!touched.uccEmailIdModified &&
-																	!!errors.uccEmailIdModified && (
-																		<p className="error-text">{errors.uccEmailIdModified}</p>
-																	)}
-															</Form.Group>
-														)}
-														{values.uccRequestType === "NEW" ? null : (
-															<Form.Group
-																as={Col}
-																md="6"
-																className="col-lg-6 col-md-12 mt-3"
-																controlId="validationCustom02"
-															>
-																<Row>
-																	<Col>
-																		<Form.Label className="mb-0">
-																			Is your Mobile No modified?
-																		</Form.Label>
-																	</Col>
-																	<Col>
-																		<Form.Check
-																			type="switch"
-																			id="custom-switch switch-ucc"
-																			className="switch-label"
-																			name="uccMobileNoModified"
-																			onChange={handleChange}
-																			value={values.uccMobileNoModified}
-																		/>
-																	</Col>
-																</Row>
-
-																{!!touched.uccMobileNoModified &&
-																	!!errors.uccMobileNoModified && (
-																		<p className="error-text">{errors.uccMobileNoModified}</p>
-																	)}
-															</Form.Group>
-														)}
 													</Row>
 												</div>
 

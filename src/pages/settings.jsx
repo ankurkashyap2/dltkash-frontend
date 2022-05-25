@@ -175,11 +175,12 @@ const Settings = ({
 															)}
 														</Form.Group>
 													</Row>
-													<Form.Label className="mb-0 text-bold">
-														Number of days till the link will be valid
-													</Form.Label>
+
 													{values.uccRequestType === "EXISTING" ? (
 														<>
+															<Form.Label className="mb-0 text-bold">
+																Number of days till the link will be valid
+															</Form.Label>
 															<Form.Check
 																label="Due Date"
 																name="group1"
