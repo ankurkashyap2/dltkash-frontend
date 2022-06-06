@@ -67,7 +67,9 @@ const Navbar = ({ page, token, user, userLogout }) => {
 									}}
 								/>
 
-								<span style={{ marginRight: "5px" }}>{user && user.userName}</span>
+								<span style={{ marginRight: "5px", textTransform: "capitalize" }}>
+									{user && user.userName}
+								</span>
 							</Dropdown.Toggle>
 							<Dropdown.Menu variant="light" className="list-login">
 								<Dropdown.Item eventKey={3}>Logout</Dropdown.Item>
