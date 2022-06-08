@@ -64,6 +64,9 @@
 	color: #4fadea;
 	font-size: 12px;
 }
+.pd-custom-investor {
+	padding: 50px;
+}
 @media screen and (max-width: 1200px) {
 	.form-login {
 		padding: 0px;
@@ -72,5 +75,14 @@
 @media screen and (max-width: 991px) {
 	.btn-otp-inner {
 		padding: 10px 30px !important;
+	}
+}
+@media screen (max-width: 468px) {
+	.pd-custom-investor {
+		padding: 30px 0;
+	}
+	.form-login {
+		padding: 0px;
+		margin: 0 -7px;
 	}
 }
