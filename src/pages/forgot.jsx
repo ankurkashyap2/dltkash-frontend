@@ -55,8 +55,9 @@ const Forgot = ({
 		return initialValues;
 	};
 
-	const handleSubmit = (values) => {
+	const handleSubmit = (values, { resetForm }) => {
 		forgotPassword({ ...values });
+		resetForm({});
 	};
 	return (
 		<AppLayout page="Forgot Password" loading={loading}>
