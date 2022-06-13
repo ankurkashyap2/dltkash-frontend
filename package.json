@@ -42,7 +42,7 @@
 		"eject": "react-scripts eject",
 		"serve": "webpack serve",
 		"build-dev": "webpack --mode=development",
-		"build": "webpack --mode=production"
+		"build": "react-scripts build"
 	},
 	"eslintConfig": {
 		"extends": [
