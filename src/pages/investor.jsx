@@ -197,7 +197,7 @@ const Investor = ({
 									className=""
 								/>
 							</div>
-							<div className="col-md-6 bg-white p-5">
+							<div className="col-md-6 bg-white pd-custom-investor">
 								<div className="form-login">
 									<h3>
 										{location && location.pathname.includes("email-verification")

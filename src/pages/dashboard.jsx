@@ -120,12 +120,12 @@ const Dashboard = ({
 							<option key="uccEmailId" value="uccEmailId">
 								Email Id
 							</option>
-							<option key="exchangeId" value="exchangeId">
+							{/* <option key="exchangeId" value="exchangeId">
 								Exchange Id
 							</option>
 							<option key="fileName" value="fileName">
 								File Name
-							</option>
+							</option> */}
 						</Form.Select>
 						<FormControl
 							type="search"
