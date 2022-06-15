@@ -79,7 +79,7 @@ const Investor = ({
 		let payload = {
 			uccRequestId,
 			uccUpdatedAt:
-				investorData && investorData.updatedAt ? investorData.updatedAt : "",
+				investorData && investorData.uccUpdatedAt ? investorData.uccUpdatedAt : "",
 		};
 		if (otpType === "email") {
 			payload = {
