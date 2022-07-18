@@ -35,6 +35,8 @@ const Navbar = ({ page, token, user, userLogout }) => {
 						background: user
 							? `url(${user.documentLinks && user.documentLinks.logo})`
 							: "url(/assets/images/dltkashlogo.png)",
+						height: user ? 70 : 90,
+						width: user ? 70 : 110,
 					}}
 					className="left-logo"
 				/>
@@ -56,8 +58,8 @@ const Navbar = ({ page, token, user, userLogout }) => {
 										background: user
 											? `url(${user.documentLinks && user.documentLinks.logo})`
 											: "url(/assets/images/dltkashlogo.png)",
-										height: 50,
-										width: 50,
+										height: 70,
+										width: 70,
 										backgroundPosition: "center center",
 										borderRadius: "50%",
 										marginRight: "5px",

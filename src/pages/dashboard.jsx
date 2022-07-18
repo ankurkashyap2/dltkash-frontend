@@ -171,6 +171,12 @@ const Dashboard = ({
 		);
 	}, [search, searchKey, getAllInvestors, pageLimit, token, investorsList]);
 
+	const getEncryptedPan = (panNumber) => {
+		const last4 = panNumber.substring(panNumber.length - 4);
+		const mask = panNumber.substring(6).replace(/\d/g, "X");
+		return mask + last4;
+	};
+
 	const columns = [
 		// {
 		// 	name: "S. No.",
@@ -220,7 +226,7 @@ const Dashboard = ({
 		},
 		{
 			name: "PAN",
-			selector: (row) => (row.uccPanNo ? row.uccPanNo : "-"),
+			selector: (row) => (row.uccPanNo ? getEncryptedPan(row.uccPanNo) : "-"),
 			sortable: true,
 			minWidth: "120px",
 			style: {
@@ -383,13 +389,23 @@ const Dashboard = ({
 				/>
 				<div className="arrows">
 					<img
-						src="/assets/images/left-arrow-grey.png"
+						src={
+							previousBookmark
+								? "/assets/images/left-arrow-dark.png"
+								: "/assets/images/left-arrow-grey.png"
+						}
 						alt="left arrow"
 						style={{ cursor: previousBookmark && "pointer" }}
 						onClick={previousBookmark ? handlePreviousPage : null}
 					/>
 					<img
-						src="/assets/images/right-arrow-grey.png"
+						src={
+							investors &&
+							investors.length > 0 &&
+							investors[investors.length - 1].recordsCount === pageLimit
+								? "/assets/images/right-arrow-dark.png"
+								: "/assets/images/right-arrow-grey.png"
+						}
 						alt="right arrow"
 						style={{
 							cursor:
