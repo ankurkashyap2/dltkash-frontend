@@ -173,7 +173,8 @@ const Dashboard = ({
 
 	const getEncryptedPan = (panNumber) => {
 		const last4 = panNumber.substring(panNumber.length - 4);
-		const mask = panNumber.substring(6).replace(/\d/g, "X");
+		const mask = panNumber.substring(0, 6).replace("XXXXXX");
+		console.log(mask + last4, mask);
 		return mask + last4;
 	};
 

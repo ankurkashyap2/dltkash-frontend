@@ -1,22 +1,16 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { createBrowserHistory } from 'history';
-import { connectRouter, routerMiddleware } from 'connected-react-router';
-import thunk from 'redux-thunk';
-import createSagaMiddleware from 'redux-saga';
-import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
-import logger from 'redux-logger';
-import { call } from 'redux-saga/effects';
-import * as reducers from './reducers';
-import { rootSaga } from './sagas';
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createBrowserHistory } from "history";
+import { connectRouter, routerMiddleware } from "connected-react-router";
+import thunk from "redux-thunk";
+import createSagaMiddleware from "redux-saga";
+import { composeWithDevTools } from "redux-devtools-extension/logOnlyInProduction";
+import { call } from "redux-saga/effects";
+import * as reducers from "./reducers";
+import { rootSaga } from "./sagas";
 
 const history = createBrowserHistory();
 const sagaMiddleware = createSagaMiddleware();
-const usedMiddleware = [
-	logger,
-	thunk,
-	sagaMiddleware,
-	routerMiddleware(history),
-];
+const usedMiddleware = [thunk, sagaMiddleware, routerMiddleware(history)];
 const routerReducer = connectRouter(history);
 const store = createStore(
 	combineReducers({

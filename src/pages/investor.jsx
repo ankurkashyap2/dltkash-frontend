@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Countdown from "react-countdown";
 import LoadingOverlay from "react-loading-overlay";
+import { useJwt } from "react-jwt";
 import {
 	getExchangeInvestorData,
 	verifyInvestorEmail,
@@ -46,11 +47,13 @@ const Investor = ({
 	const [otpError, setOtpError] = useState(false);
 	const [otp, setOtp] = useState("");
 	const [expirationTime, setExpirationTime] = useState("");
+	const { isExpired } = useJwt(token);
+	console.log("dec***", isExpired);
 	useEffect(() => {
-		if (uccRequestId) {
+		if (!isExpired && uccRequestId) {
 			getExchangeInvestorData({ uccRequestId }, token);
 		}
-	}, [uccRequestId, token, getExchangeInvestorData]);
+	}, [uccRequestId, token, getExchangeInvestorData, isExpired]);
 
 	const renderer = ({ formatted, completed, api }) => {
 		if (completed) {
@@ -169,7 +172,7 @@ const Investor = ({
 
 	return (
 		<LoadingOverlay
-			active={loading}
+			active={isExpired ? false : loading}
 			spinner={<Spinner animation="border" variant="info" />}
 			text=""
 			styles={{
@@ -198,82 +201,88 @@ const Investor = ({
 								/>
 							</div>
 							<div className="col-md-6 bg-white pd-custom-investor">
-								<div className="form-login">
-									<h3>
-										{location && location.pathname.includes("email-verification")
-											? otpType === "email"
-												? investorData && investorData.uccEmailStatus === "VERIFIED"
-													? "Your email is verified!"
-													: investorData && investorData.uccEmailStatus === "REJECTED"
-													? "Your email request has been rejected"
-													: "Please Verify your Account"
-												: investorData && investorData.uccMobileStatus === "VERIFIED"
-												? "Your mobile is verified!"
-												: investorData && investorData.uccMobileStatus === "REJECTED"
-												? "Your mobile request has been rejected"
-												: investorData && investorData.uccMobileStatus === "SENT"
-												? "Verification Link is already sent to you mobile number!"
-												: "Please Verify your Account"
-											: otpType === "mobile"
-											? investorData && investorData.uccMobileStatus === "VERIFIED"
-												? "Your mobile is verified!"
-												: investorData && investorData.uccMobileStatus === "REJECTED"
-												? "Your mobile request has been rejected"
-												: "Please Verify your Account"
-											: investorData && investorData.uccEmailStatus === "VERIFIED"
-											? "Your email is verified!"
-											: investorData && investorData.uccEmailStatus === "REJECTED"
-											? "Your email request has been rejected"
-											: investorData && investorData.uccEmailStatus === "SENT"
-											? "Verification Link is already sent to you Email Id!"
-											: "Please Verify your Account"}
-									</h3>
-
-									<div className="otp-radio-btn">
-										<ToggleButtonGroup
-											type="radio"
-											className="btn-otp mt-3"
-											name="options"
-											value={otpType}
-											onChange={(val) => handleToggle(val)}
-										>
-											<ToggleButton
-												id="tbg-btn-2"
-												className={
-													otpType === "email" ? "btn-otp-inner active" : "btn-otp-inner"
-												}
-												value="email"
-											>
-												Email
-											</ToggleButton>
-											<ToggleButton
-												id="tbg-btn-3"
-												className={
-													otpType === "mobile" ? "btn-otp-inner active" : "btn-otp-inner"
-												}
-												value="mobile"
-											>
-												Mobile
-											</ToggleButton>
-										</ToggleButtonGroup>
+								{isExpired ? (
+									<div className="form-login">
+										<h3>This Link is expired!</h3>
 									</div>
-									{location &&
-									location.pathname.includes("email-verification") &&
-									otpType === "email"
-										? investorData &&
-										  (investorData.uccEmailStatus === "VERIFIED" ||
-												investorData.uccEmailStatus === "REJECTED")
-											? null
-											: renderOTPOptions()
-										: location.pathname.includes("mobile-verification") &&
-										  otpType === "mobile"
-										? investorData &&
-										  (investorData.uccMobileStatus === "VERIFIED" ||
-												investorData.uccMobileStatus === "REJECTED")
-											? null
-											: renderOTPOptions()
-										: null}
-								</div>
+								) : (
+									<div className="form-login">
+										<h3>
+											{location && location.pathname.includes("email-verification")
+												? otpType === "email"
+													? investorData && investorData.uccEmailStatus === "VERIFIED"
+														? "Your email is verified!"
+														: investorData && investorData.uccEmailStatus === "REJECTED"
+														? "Your email request has been rejected"
+														: "Please Verify your Account"
+													: investorData && investorData.uccMobileStatus === "VERIFIED"
+													? "Your mobile is verified!"
+													: investorData && investorData.uccMobileStatus === "REJECTED"
+													? "Your mobile request has been rejected"
+													: investorData && investorData.uccMobileStatus === "SENT"
+													? "Verification Link is already sent to your mobile number!"
+													: "Please Verify your Account"
+												: otpType === "mobile"
+												? investorData && investorData.uccMobileStatus === "VERIFIED"
+													? "Your mobile is verified!"
+													: investorData && investorData.uccMobileStatus === "REJECTED"
+													? "Your mobile request has been rejected"
+													: "Please Verify your Account"
+												: investorData && investorData.uccEmailStatus === "VERIFIED"
+												? "Your email is verified!"
+												: investorData && investorData.uccEmailStatus === "REJECTED"
+												? "Your email request has been rejected"
+												: investorData && investorData.uccEmailStatus === "SENT"
+												? "Verification Link is already sent to your Email Id!"
+												: "Please Verify your Account"}
+										</h3>
+
+										<div className="otp-radio-btn">
+											<ToggleButtonGroup
+												type="radio"
+												className="btn-otp mt-3"
+												name="options"
+												value={otpType}
+												onChange={(val) => handleToggle(val)}
+											>
+												<ToggleButton
+													id="tbg-btn-2"
+													className={
+														otpType === "email" ? "btn-otp-inner active" : "btn-otp-inner"
+													}
+													value="email"
+												>
+													Email
+												</ToggleButton>
+												<ToggleButton
+													id="tbg-btn-3"
+													className={
+														otpType === "mobile" ? "btn-otp-inner active" : "btn-otp-inner"
+													}
+													value="mobile"
+												>
+													Mobile
+												</ToggleButton>
+											</ToggleButtonGroup>
+										</div>
+										{location &&
+										location.pathname.includes("email-verification") &&
+										otpType === "email"
+											? investorData &&
+											  (investorData.uccEmailStatus === "VERIFIED" ||
+													investorData.uccEmailStatus === "REJECTED")
+												? null
+												: renderOTPOptions()
+											: location.pathname.includes("mobile-verification") &&
+											  otpType === "mobile"
+											? investorData &&
+											  (investorData.uccMobileStatus === "VERIFIED" ||
+													investorData.uccMobileStatus === "REJECTED")
+												? null
+												: renderOTPOptions()
+											: null}
+									</div>
+								)}
 							</div>
 						</div>
 					</div>
@@ -284,11 +293,11 @@ const Investor = ({
 				message={
 					isEmailVerified
 						? investorData && investorData.uccEmailStatus === "REJECTED"
-							? "You Email has been Rejected!"
+							? "Your Email has been Rejected!"
 							: "Verified successfully!"
 						: isMobileVerified
 						? investorData && investorData.uccMobileStatus === "REJECTED"
-							? "You Mobile Number has been Rejected!"
+							? "Your Mobile Number has been Rejected!"
 							: "Verified successfully!"
 						: ""
 				}

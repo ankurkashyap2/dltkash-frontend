@@ -131,8 +131,8 @@ const investorReducer = (state = initState, action) => {
 				isMobileVerified: true,
 				investors: investors,
 				previousBookmark:
-					state.investors.length >= 2
-						? state.investors[state.investors.length - 2].bookmark
+					state.investors.length >= 1
+						? state.investors[state.investors.length - 1].bookmark
 						: "",
 				newBookmark: action.response.bookmark,
 			};
