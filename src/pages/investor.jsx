@@ -48,7 +48,7 @@ const Investor = ({
 	const [otp, setOtp] = useState("");
 	const [expirationTime, setExpirationTime] = useState("");
 	const { isExpired } = useJwt(token);
-	console.log("dec***", isExpired);
+
 	useEffect(() => {
 		if (!isExpired && uccRequestId) {
 			getExchangeInvestorData({ uccRequestId }, token);

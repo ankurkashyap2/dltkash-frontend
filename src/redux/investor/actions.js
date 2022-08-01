@@ -59,11 +59,16 @@ export const verifyInvestorMobileSuccess = (response) => {
 export const verifyInvestorMobileError = (error) => {
 	return { type: VERIFY_INVESTOR_MOBILE_ERROR, error };
 };
-export const getAllInvestors = (payload, token, typekey) => {
-	return { type: GET_ALL_INVESTORS, payload, token, typekey };
+export const getAllInvestors = (payload, token, typekey, isSearchContinue) => {
+	return { type: GET_ALL_INVESTORS, payload, token, typekey, isSearchContinue };
 };
-export const getAllInvestorsSuccess = (response, typekey) => {
-	return { type: GET_ALL_INVESTORS_SUCCESS, response, typekey };
+export const getAllInvestorsSuccess = (response, typekey, isSearchContinue) => {
+	return {
+		type: GET_ALL_INVESTORS_SUCCESS,
+		response,
+		typekey,
+		isSearchContinue,
+	};
 };
 export const getAllInvestorsError = (error) => {
 	return { type: GET_ALL_INVESTORS_ERROR, error };

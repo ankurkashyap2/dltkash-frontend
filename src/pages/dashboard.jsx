@@ -25,13 +25,13 @@ const Dashboard = ({
 	setPreviousBookmark,
 }) => {
 	const [search, setSearch] = useState("");
-	const [searchKey, setSearchKey] = useState("");
+	const [searchKey, setSearchKey] = useState("all");
 	const [pageLimit] = useState(10);
 	const [investorsList, setInvestorsList] = useState([]);
 
 	useEffect(() => {
 		if (token) {
-			getAllInvestors({ pageSize: pageLimit, bookmark: "" }, token);
+			getAllInvestors({ pageSize: pageLimit, bookmark: "" }, token, "", false);
 			setSearch("");
 			setSearchKey("");
 		}
@@ -78,7 +78,8 @@ const Dashboard = ({
 			getAllInvestors(
 				{ pageSize: pageLimit, bookmark: "", [searchKey]: search },
 				token,
-				"search"
+				"search",
+				false
 			);
 		};
 
@@ -90,20 +91,22 @@ const Dashboard = ({
 							className="search-select"
 							name="uccRequestType"
 							onChange={(e) => {
-								if (e.target.value === "all") {
+								if (e.target.value === "all" && search) {
 									getAllInvestors(
 										{ pageSize: pageLimit, bookmark: "" },
 										token,
-										"search"
+										"search",
+										false
 									);
 								}
 								setSearchKey(e.target.value);
 								setSearch("");
 							}}
+							value={searchKey}
 						>
-							<option key="blankChoice" hidden value className="select-placeholder">
+							{/* <option key="blankChoice" hidden value className="select-placeholder">
 								Select Search Key
-							</option>
+							</option> */}
 							<option key="all" value="all">
 								All
 							</option>
@@ -134,7 +137,7 @@ const Dashboard = ({
 							aria-label="Search"
 							value={search}
 							onChange={(e) => setSearch(e.target.value)}
-							disabled={!searchKey}
+							disabled={!searchKey || searchKey === "all"}
 						/>
 						<Button
 							className="btn-filled custom-refresh icon-dashboard"
@@ -153,7 +156,12 @@ const Dashboard = ({
 							onClick={() => {
 								setSearch("");
 								setSearchKey("");
-								getAllInvestors({ pageSize: pageLimit, bookmark: "" }, token, "search");
+								getAllInvestors(
+									{ pageSize: pageLimit, bookmark: "" },
+									token,
+									"search",
+									false
+								);
 							}}
 						>
 							<Refresh alt="refresh" className="btn-size" />
@@ -172,10 +180,8 @@ const Dashboard = ({
 	}, [search, searchKey, getAllInvestors, pageLimit, token, investorsList]);
 
 	const getEncryptedPan = (panNumber) => {
-		const last4 = panNumber.substring(panNumber.length - 4);
-		const mask = panNumber.substring(0, 6).replace("XXXXXX");
-		console.log(mask + last4, mask);
-		return mask + last4;
+		const endDigits = panNumber.slice(-4);
+		return endDigits.padStart(panNumber.length, "X");
 	};
 
 	const columns = [
@@ -360,15 +366,33 @@ const Dashboard = ({
 	};
 
 	const handleNextPage = () => {
-		getAllInvestors({ pageSize: pageLimit, bookmark: newBookmark }, token);
-		setSearch("");
-		setSearchKey("");
+		if (searchKey && search) {
+			getAllInvestors(
+				{ pageSize: pageLimit, bookmark: newBookmark, [searchKey]: search },
+				token,
+				"search",
+				true
+			);
+		} else {
+			getAllInvestors(
+				{ pageSize: pageLimit, bookmark: newBookmark },
+				token,
+				"",
+				true
+			);
+			setSearch("");
+			setSearchKey("");
+		}
 	};
 
 	const handlePreviousPage = () => {
-		setPreviousBookmark();
-		setSearch("");
-		setSearchKey("");
+		if (searchKey && search) {
+			setPreviousBookmark();
+		} else {
+			setPreviousBookmark();
+			setSearch("");
+			setSearchKey("");
+		}
 	};
 
 	return (

@@ -21,7 +21,6 @@ const Navbar = ({ page, token, user, userLogout }) => {
 	));
 
 	const handleDropdown = (key) => {
-		console.log(key === 3);
 		if (key === "3") {
 			userLogout();
 		}

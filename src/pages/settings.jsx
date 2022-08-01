@@ -129,7 +129,6 @@ const Settings = ({
 								touched,
 								resetForm,
 							}) => {
-								console.log(values);
 								return (
 									<Form className="form-align" noValidate onSubmit={handleSubmit}>
 										<Form.Label className="text-bold">

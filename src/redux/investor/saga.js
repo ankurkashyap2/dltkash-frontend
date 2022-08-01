@@ -46,7 +46,7 @@ export function* getInvestorData() {
 				payload,
 				token
 			);
-			console.log(response);
+
 			if (response.status === 200) {
 				yield put(
 					getExchangeInvestorDataSuccess(response.data.data.results[0].Record)
@@ -101,18 +101,23 @@ export function* verifyInvestorMobile() {
 }
 
 export function* getAllInvestors() {
-	yield takeEvery(GET_ALL_INVESTORS, function* ({ payload, token, typekey }) {
-		try {
-			const response = yield call(INVESTOR_API.getAllInvestors, payload, token);
-			if (response.status === 200) {
-				yield put(getAllInvestorsSuccess(response.data.data, typekey));
-			} else {
-				yield put(getAllInvestorsError(response.error.error.message));
+	yield takeEvery(
+		GET_ALL_INVESTORS,
+		function* ({ payload, token, typekey, isSearchContinue }) {
+			try {
+				const response = yield call(INVESTOR_API.getAllInvestors, payload, token);
+				if (response.status === 200) {
+					yield put(
+						getAllInvestorsSuccess(response.data.data, typekey, isSearchContinue)
+					);
+				} else {
+					yield put(getAllInvestorsError(response.error.error.message));
+				}
+			} catch (ex) {
+				yield put(getAllInvestorsError("Error while fetching investors"));
 			}
-		} catch (ex) {
-			yield put(getAllInvestorsError("Error while fetching investors"));
 		}
-	});
+	);
 }
 
 export function* mobileRedirection() {

@@ -110,7 +110,6 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 					touched,
 					setFieldValue,
 				}) => {
-					console.log(values, errors);
 					return (
 						<Form className="form-align" noValidate onSubmit={handleSubmit}>
 							<Row>

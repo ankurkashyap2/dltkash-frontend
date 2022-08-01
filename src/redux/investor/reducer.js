@@ -120,7 +120,7 @@ const investorReducer = (state = initState, action) => {
 			};
 		case GET_ALL_INVESTORS_SUCCESS:
 			let investors = state.investors;
-			if (action.typekey === "search") {
+			if (action.typekey === "search" && !action.isSearchContinue) {
 				investors = [action.response];
 			} else {
 				investors = [...state.investors, action.response];
@@ -131,7 +131,7 @@ const investorReducer = (state = initState, action) => {
 				isMobileVerified: true,
 				investors: investors,
 				previousBookmark:
-					state.investors.length >= 1
+					state.investors.length >= 1 && action.isSearchContinue
 						? state.investors[state.investors.length - 1].bookmark
 						: "",
 				newBookmark: action.response.bookmark,
