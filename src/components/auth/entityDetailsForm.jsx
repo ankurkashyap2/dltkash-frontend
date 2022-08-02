@@ -15,23 +15,28 @@ import Dropzone from "react-dropzone";
 import "../../styles/register.css";
 
 const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
-	const [sebiCertificateError, setSebiCertificateError] = useState(false);
-	const [cinCertificateError, setCinCertificateError] = useState(false);
-	const [panError, setPanError] = useState(false);
-	const [logoError, setLogoError] = useState(false);
+	const [sebiCertificateError, setSebiCertificateError] = useState("");
+	const [cinCertificateError, setCinCertificateError] = useState("");
+	const [panError, setPanError] = useState("");
+	const [logoError, setLogoError] = useState("");
 
 	const validationSchema = () => {
 		return Yup.object().shape({
-			legalEntityName: Yup.string().required("* Legal Entity Name is required"),
+			legalEntityName: Yup.string()
+				.trim()
+				.required("* Legal Entity Name is required"),
 			sebiCertificateNumber: Yup.string()
+				.trim()
 				.min(4, "* Invalid SEBI Certificate Number")
 				.max(10, "* Invalid SEBI Certificate Number")
 				.required("* SEBI Certificate Number is required"),
 			cinNumber: Yup.string()
+				.trim()
 				.min(4, "* Invalid CIN Number")
 				.max(22, "* Invalid CIN Number")
 				.required("* CIN Number is required"),
 			panNumber: Yup.string()
+				.trim()
 				.min(4, "* Invalid PAN Number")
 				.max(10, "* Invalid PAN Number")
 				.required("* PAN Number is required"),
@@ -80,13 +85,37 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 
 	const handleDropReject = (type, rejected) => {
 		if (type === "sebi") {
-			setSebiCertificateError("* SEBI Certificate is required");
+			setSebiCertificateError(
+				rejected.length > 0 && rejected[0].errors[0].code === "file-too-large"
+					? "* File size should be less than 5mb"
+					: rejected[0].errors[0].code === "file-invalid-type"
+					? "* File type should be .pdf only"
+					: "* File is invalid"
+			);
 		} else if (type === "cin") {
-			setCinCertificateError("* CIN Certificate is required");
+			setCinCertificateError(
+				rejected.length > 0 && rejected[0].errors[0].code === "file-too-large"
+					? "* File size should be less than 5mb"
+					: rejected[0].errors[0].code === "file-invalid-type"
+					? "* File type should be .pdf only"
+					: "* File is invalid"
+			);
 		} else if (type === "logo") {
-			setLogoError("* Logo is required");
+			setLogoError(
+				rejected.length > 0 && rejected[0].errors[0].code === "file-too-large"
+					? "* File size should be less than 5mb"
+					: rejected[0].errors[0].code === "file-invalid-type"
+					? "* File type should be .png, .jpg, .jpeg only"
+					: "* File is invalid"
+			);
 		} else {
-			setPanError("* PAN is required");
+			setPanError(
+				rejected.length > 0 && rejected[0].errors[0].code === "file-too-large"
+					? "* File size should be less than 5mb"
+					: rejected[0].errors[0].code === "file-invalid-type"
+					? "* File type should be .pdf only"
+					: "* File is invalid"
+			);
 		}
 	};
 
@@ -133,7 +162,9 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 															})
 														)
 													);
+													setLogoError("");
 												}}
+												onDropRejected={(rejected) => handleDropReject("logo", rejected)}
 												multiple={false}
 												accept=".png, .jpg, .jpeg"
 											>
@@ -180,7 +211,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										</div>
 									</div>
 									{((!!touched.logo && !!errors.logo) || logoError) && (
-										<p className="error-text">{errors.logo}</p>
+										<p className="error-text">{errors.logo || logoError}</p>
 									)}
 								</Form.Group>
 								<Form.Group
@@ -301,7 +332,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									{((!!touched.sebiCertificate && !!errors.sebiCertificate) ||
 										sebiCertificateError) && (
 										<p className="error-text">
-											{errors.sebiCertificate || "* File size should be less than 5mb"}
+											{errors.sebiCertificate || sebiCertificateError}
 										</p>
 									)}
 								</Form.Group>
@@ -399,7 +430,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 									{((!!touched.cinCertificate && !!errors.cinCertificate) ||
 										cinCertificateError) && (
 										<p className="error-text">
-											{errors.cinCertificate || "* File size should be less than 5mb"}
+											{errors.cinCertificate || cinCertificateError}
 										</p>
 									)}
 								</Form.Group>
@@ -495,9 +526,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 										)}
 									</Dropzone>
 									{((!!touched.pan && !!errors.pan) || panError) && (
-										<p className="error-text">
-											{errors.pan || "* File size should be less than 5mb"}
-										</p>
+										<p className="error-text">{errors.pan || panError}</p>
 									)}
 								</Form.Group>
 							</Row>

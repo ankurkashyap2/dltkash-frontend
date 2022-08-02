@@ -19,8 +19,8 @@ const Login = ({ userLogin, error, loading }) => {
 
 	const validationSchema = () => {
 		return Yup.object().shape({
-			email: Yup.string().required("*Email is required"),
-			password: Yup.string().required("* Password is required"),
+			email: Yup.string().trim().required("*Email is required"),
+			password: Yup.string().trim().required("* Password is required"),
 		});
 	};
 

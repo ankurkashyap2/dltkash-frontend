@@ -28,35 +28,43 @@ const UCCVerification = ({
 	const formikRef = useRef();
 	const validationSchema = () => {
 		return Yup.object().shape({
-			uccRequestId: Yup.string().required("* Request Id is required"),
-			uccTmId: Yup.string().required("* TM Id is required"),
-			uccTmName: Yup.string().required("* TM Name is required"),
+			uccRequestId: Yup.string().trim().required("* Request Id is required"),
+			uccTmId: Yup.string().trim().required("* TM Id is required"),
+			uccTmName: Yup.string().trim().required("* TM Name is required"),
 			uccPanExempt: Yup.boolean().required("* PAN EXempt is required"),
-			uccPanNo: Yup.string().when("uccPanExempt", {
-				is: false,
-				then: Yup.string().required("* PAN Number is required"),
-			}),
-			uccCountry: Yup.string().required("* Country is required"),
+			uccPanNo: Yup.string()
+				.trim()
+				.when("uccPanExempt", {
+					is: false,
+					then: Yup.string().required("* PAN Number is required"),
+				}),
+			uccCountry: Yup.string().trim().required("* Country is required"),
 			uccMobileNo: Yup.string()
+				.trim()
 				.required("* Mobile Number is required")
 				.matches(
 					/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
 					"* Invalid Mobile Number"
 				),
 			uccEmailId: Yup.string()
+				.trim()
 				.required("* Email Id is required")
 				.email("* Please enter valid format"),
-			uccDpId: Yup.string().when("uccPanExempt", {
-				is: true,
-				then: Yup.string().required("* DP Id is required"),
-			}),
-			uccClientId: Yup.string().when("uccPanExempt", {
-				is: true,
-				then: Yup.string().required("* Client Id is required"),
-			}),
-			uccInvestorCode: Yup.string().required("* Investor Code is required"),
-			uccRequestType: Yup.string().required("* Request Type is required"),
-			uccNodeStatus: Yup.string().required("* Node Status is required"),
+			uccDpId: Yup.string()
+				.trim()
+				.when("uccPanExempt", {
+					is: true,
+					then: Yup.string().required("* DP Id is required"),
+				}),
+			uccClientId: Yup.string()
+				.trim()
+				.when("uccPanExempt", {
+					is: true,
+					then: Yup.string().required("* Client Id is required"),
+				}),
+			uccInvestorCode: Yup.string().trim().required("* Investor Code is required"),
+			uccRequestType: Yup.string().trim().required("* Request Type is required"),
+			uccNodeStatus: Yup.string().trim().required("* Node Status is required"),
 			uccPanStatus: Yup.boolean().required("* PAN Status is required"),
 		});
 	};

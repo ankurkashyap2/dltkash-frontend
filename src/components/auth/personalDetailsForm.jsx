@@ -76,17 +76,20 @@ const PersonalDetailsForm = ({
 
 	const validationSchema = () => {
 		return Yup.object().shape({
-			userName: Yup.string().required("*User Name is required"),
+			userName: Yup.string().trim().required("*User Name is required"),
 			phoneNo: Yup.string()
+				.trim()
 				.required("* Mobile Number is required")
 				.matches(
 					/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
 					"* Invalid Mobile Number"
 				),
 			email: Yup.string()
+				.trim()
 				.required("* Email is required")
 				.email("* Please enter valid format"),
 			password: Yup.string()
+				.trim()
 				.required("* Password is required")
 				.min(
 					8,
@@ -97,6 +100,7 @@ const PersonalDetailsForm = ({
 					"* Minimum of 8 characters with a capital letter, a number, and a symbol."
 				),
 			confirmPassword: Yup.string()
+				.trim()
 				.required("* Please confirm your password")
 				.oneOf([Yup.ref("password"), null], "* Password does not match."),
 		});

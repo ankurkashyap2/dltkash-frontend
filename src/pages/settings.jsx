@@ -32,19 +32,25 @@ const Settings = ({
 
 	const validationSchema = () => {
 		return Yup.object().shape({
-			uccRequestType: Yup.string().required("* Request Type is required"),
-			newAttempts: Yup.string().when("uccRequestType", {
-				is: "NEW",
-				then: Yup.string().required("* Number of days required"),
-			}),
-			existingAttempts: Yup.string().when("uccRequestType", {
-				is: "EXISTING",
-				then: Yup.string().required("* Number of days required"),
-			}),
-			modifiedAttempts: Yup.string().when("uccRequestType", {
-				is: "MODIFIED",
-				then: Yup.string().required("* Number of days required"),
-			}),
+			uccRequestType: Yup.string().trim().required("* Request Type is required"),
+			newAttempts: Yup.string()
+				.trim()
+				.when("uccRequestType", {
+					is: "NEW",
+					then: Yup.string().required("* Number of days required"),
+				}),
+			existingAttempts: Yup.string()
+				.trim()
+				.when("uccRequestType", {
+					is: "EXISTING",
+					then: Yup.string().required("* Number of days required"),
+				}),
+			modifiedAttempts: Yup.string()
+				.trim()
+				.when("uccRequestType", {
+					is: "MODIFIED",
+					then: Yup.string().required("* Number of days required"),
+				}),
 		});
 	};
 

@@ -21,6 +21,7 @@ const Forgot = ({
 	const validationSchema = () => {
 		return Yup.object().shape({
 			email: Yup.string()
+				.trim()
 				.required("* Email is required")
 				.email("* Please enter valid format"),
 		});

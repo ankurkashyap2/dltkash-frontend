@@ -28,6 +28,7 @@ const Reset = ({
 	const validationSchema = () => {
 		return Yup.object().shape({
 			password: Yup.string()
+				.trim()
 				.required("* Password is required")
 				.min(
 					8,
@@ -38,6 +39,7 @@ const Reset = ({
 					"* Minimum of 8 characters with a capital letter, a number, and a symbol."
 				),
 			confirmPassword: Yup.string()
+				.trim()
 				.required("* Please confirm your password")
 				.oneOf([Yup.ref("password"), null], "* Password does not match."),
 		});
