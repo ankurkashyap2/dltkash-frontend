@@ -13,6 +13,7 @@ import Sidebar from "../components/navbar/sidebar";
 import {
 	getAllInvestors,
 	setPreviousBookmark,
+	setIsSearch,
 } from "../redux/investor/actions";
 
 const Dashboard = ({
@@ -23,6 +24,8 @@ const Dashboard = ({
 	previousBookmark,
 	newBookmark,
 	setPreviousBookmark,
+	isSearch,
+	setIsSearch,
 }) => {
 	const [search, setSearch] = useState("");
 	const [searchKey, setSearchKey] = useState("all");
@@ -91,13 +94,14 @@ const Dashboard = ({
 							className="search-select"
 							name="uccRequestType"
 							onChange={(e) => {
-								if (e.target.value === "all" && search) {
+								if (e.target.value === "all" && (search || isSearch)) {
 									getAllInvestors(
 										{ pageSize: pageLimit, bookmark: "" },
 										token,
 										"search",
 										false
 									);
+									setIsSearch();
 								}
 								setSearchKey(e.target.value);
 								setSearch("");
@@ -461,10 +465,14 @@ const mapStateToProps = (state) => {
 		previousBookmark: state.investor.previousBookmark,
 		newBookmark: state.investor.newBookmark,
 		token: state.user.token,
+		isSearch: state.investor.isSearch,
 	};
 };
 
 const mapDispatchToProps = (dispatch) =>
-	bindActionCreators({ getAllInvestors, setPreviousBookmark }, dispatch);
+	bindActionCreators(
+		{ getAllInvestors, setPreviousBookmark, setIsSearch },
+		dispatch
+	);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

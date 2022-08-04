@@ -120,8 +120,15 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 	};
 
 	const handleSubmit = (values) => {
-		setEntityDetails(values);
-		setActiveTab("personalDetails");
+		if (
+			!sebiCertificateError &&
+			!panError &&
+			!cinCertificateError &&
+			!logoError
+		) {
+			setEntityDetails(values);
+			setActiveTab("personalDetails");
+		}
 	};
 
 	return (

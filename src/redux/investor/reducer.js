@@ -21,6 +21,7 @@ import {
 	RESET_ON_LOGOUT,
 	RESET_EXCHANGE_DATA,
 	SET_PREVIOUS_BOOKMARK,
+	SET_IS_SEARCH,
 } from "../actionTypes";
 
 const initState = {
@@ -34,6 +35,7 @@ const initState = {
 	redirectionUrl: "",
 	previousBookmark: "",
 	newBookmark: "",
+	isSearch: false,
 };
 
 const investorReducer = (state = initState, action) => {
@@ -121,6 +123,7 @@ const investorReducer = (state = initState, action) => {
 		case GET_ALL_INVESTORS_SUCCESS:
 			let investors = state.investors;
 			if (action.typekey === "search" && !action.isSearchContinue) {
+				state.isSearch = true;
 				investors = [action.response];
 			} else {
 				investors = [...state.investors, action.response];
@@ -186,6 +189,11 @@ const investorReducer = (state = initState, action) => {
 						? state.investors[state.investors.length - 2].bookmark
 						: "",
 				newBookmark: state.investors[state.investors.length - 1].bookmark,
+			};
+		case SET_IS_SEARCH:
+			return {
+				...state,
+				isSearch: false,
 			};
 		default:
 			return state;

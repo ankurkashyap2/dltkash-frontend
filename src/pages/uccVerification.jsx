@@ -65,7 +65,7 @@ const UCCVerification = ({
 			uccInvestorCode: Yup.string().trim().required("* Investor Code is required"),
 			uccRequestType: Yup.string().trim().required("* Request Type is required"),
 			uccNodeStatus: Yup.string().trim().required("* Node Status is required"),
-			uccPanStatus: Yup.boolean().required("* PAN Status is required"),
+			// uccPanStatus: Yup.boolean().required("* PAN Status is required"),
 		});
 	};
 
@@ -106,7 +106,7 @@ const UCCVerification = ({
 			uccInvestorCode: "",
 			uccRequestType: "NEW",
 			uccNodeStatus: "01",
-			uccPanStatus: true,
+			// uccPanStatus: true,
 		};
 		return initialValues;
 	};
@@ -117,7 +117,7 @@ const UCCVerification = ({
 			...payload,
 			email: values.uccEmailId.toLowerCase(),
 			uccPanExempt: values.uccPanExempt.toString(),
-			uccPanStatus: !values.uccPanExempt ? "VERIFIED" : "NOT_VERIFIED",
+			// uccPanStatus: !values.uccPanExempt ? "VERIFIED" : "NOT_VERIFIED",
 		};
 		if (values.uccPanExempt) {
 			delete payload.uccPanNo;
@@ -149,6 +149,7 @@ const UCCVerification = ({
 								touched,
 								resetForm,
 							}) => {
+								console.log(values);
 								return (
 									<Form className="form-align" noValidate onSubmit={handleSubmit}>
 										<Row className="mb-4">
@@ -323,7 +324,7 @@ const UCCVerification = ({
 																		id="custom-switch switch-ucc"
 																		name="uccPanExempt"
 																		className="switch-label"
-																		onChange={handleChange}
+																		onChange={handleChange("uccPanExempt")}
 																		value={values.uccPanExempt}
 																	/>
 																</Col>
@@ -398,7 +399,7 @@ const UCCVerification = ({
 															</Form.Group>
 														</Row>
 													)}
-													{values.uccPanExempt ? null : (
+													{/* {values.uccPanExempt ? null : (
 														<Row>
 															<Form.Group
 																as={Col}
@@ -431,7 +432,7 @@ const UCCVerification = ({
 																)}
 															</Form.Group>
 														</Row>
-													)}
+													)} */}
 												</div>
 												<div className="box-line">
 													<Row className="mb-3">

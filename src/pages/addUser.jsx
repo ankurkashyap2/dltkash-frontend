@@ -28,7 +28,10 @@ const AddUser = ({
 	const formikRef1 = useRef();
 	const validationSchema = () => {
 		return Yup.object().shape({
-			userName: Yup.string().trim().required("*User Name is required"),
+			userName: Yup.string()
+				.trim()
+				.required("*User Name is required")
+				.matches(/^(?!.* )/, "* Spaces are not allowed."),
 			phoneNo: Yup.string()
 				.trim()
 				.required("* Mobile Number is required")
@@ -48,8 +51,8 @@ const AddUser = ({
 					"* Minimum of 8 characters with a capital letter, a number, and a symbol."
 				)
 				.matches(
-					/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#%&])(?=.{8,})/,
-					"* Minimum of 8 characters with a capital letter, a number, and a symbol."
+					/^(?!.* ).*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+					"* Minimum of 8 characters with a capital letter, a number, and a symbol without spaces."
 				),
 		});
 	};
@@ -92,7 +95,8 @@ const AddUser = ({
 			{
 				...values,
 				email: values.email.toLowerCase(),
-				userName: values.userName.toLowerCase(),
+				userName: values.userName.toLowerCase().trim(),
+				password: values.password.trim(),
 				role: activeTab === "admin" ? "ADMIN" : "OPERATIONAL",
 				exchangeId: profile && profile.exchangeId,
 			},

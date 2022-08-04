@@ -21,6 +21,7 @@ import {
 	RESET_ON_LOGOUT,
 	RESET_EXCHANGE_DATA,
 	SET_PREVIOUS_BOOKMARK,
+	SET_IS_SEARCH,
 } from "../actionTypes";
 
 export const addSingleInvestor = (payload, token) => {
@@ -93,4 +94,7 @@ export const resetExchangeData = () => {
 };
 export const setPreviousBookmark = () => {
 	return { type: SET_PREVIOUS_BOOKMARK };
+};
+export const setIsSearch = () => {
+	return { type: SET_IS_SEARCH };
 };
