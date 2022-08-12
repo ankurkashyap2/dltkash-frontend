@@ -11,7 +11,6 @@ import { ReactComponent as Download } from "../components/icons/download.svg";
 import { ReactComponent as Filter } from "../components/icons/filter.svg";
 import AppLayout from "../layouts/appLayout";
 import "../styles/dashboard.css";
-import Sidebar from "../components/navbar/sidebar";
 
 const Trails = ({ loading }) => {
 	return (

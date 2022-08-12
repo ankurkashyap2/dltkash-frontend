@@ -6,7 +6,6 @@ import { bindActionCreators } from "redux";
 import { Form, Button, Row, Col, Tabs, Tab, Alert } from "react-bootstrap";
 import AppLayout from "../layouts/appLayout";
 import "../styles/dashboard.css";
-import Sidebar from "../components/navbar/sidebar";
 import { ReactComponent as EyeIcon } from "../components/icons/eye.svg";
 import { ReactComponent as EyeHiddenIcon } from "../components/icons/eye-hidden.svg";
 import { addUser, resetUserFlags } from "../redux/user/actions";

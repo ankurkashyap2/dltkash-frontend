@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { Form, FormControl, Button, Row, Col, Spinner } from "react-bootstrap";
+import { Form, FormControl, Button, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DataTable from "react-data-table-component";
@@ -9,7 +9,6 @@ import { ReactComponent as Search } from "../components/icons/search.svg";
 import { ReactComponent as Refresh } from "../components/icons/Refresh.svg";
 import AppLayout from "../layouts/appLayout";
 import "../styles/dashboard.css";
-import Sidebar from "../components/navbar/sidebar";
 import {
 	getAllInvestors,
 	setPreviousBookmark,

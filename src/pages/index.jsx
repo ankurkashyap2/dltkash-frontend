@@ -13,7 +13,6 @@ import Settings from "./settings";
 import Trails from "./trails";
 import NotFound from "./notFound";
 import MobileRedirect from "./mobileRedirect";
-import AppLayout from "../layouts/appLayout";
 
 const AppRoutes = (props) => {
 	return (

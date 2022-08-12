@@ -72,6 +72,7 @@ const Navbar = ({ page, token, user, userLogout }) => {
 											? user.documentLinks && user.documentLinks.logo
 											: "/assets/images/dltkashlogo.png"
 									}
+									alt="logo"
 								/>
 
 								<span
@@ -86,7 +87,11 @@ const Navbar = ({ page, token, user, userLogout }) => {
 							</Dropdown.Toggle>
 							<Dropdown.Menu variant="light" className="list-login">
 								<Dropdown.Item eventKey={3}>
-									<img src={"/assets/images/switch.png"} className="logout-icon" />
+									<img
+										src={"/assets/images/switch.png"}
+										className="logout-icon"
+										alt="logout icon"
+									/>
 									Logout
 								</Dropdown.Item>
 							</Dropdown.Menu>

@@ -5,7 +5,6 @@ import { Form, Button, Row, Col, Alert, Modal } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AppLayout from "../layouts/appLayout";
-import Sidebar from "../components/navbar/sidebar";
 import {
 	addSingleInvestor,
 	resetInvestorFlags,
