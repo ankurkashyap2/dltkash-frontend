@@ -17,7 +17,7 @@ ul.pagination .page-item a {
 	display: flex;
 	min-height: 100%;
 	overflow-x: hidden;
-	margin-top: 90px;
+	margin-top: 80px;
 }
 
 .sidebar {
@@ -47,7 +47,6 @@ ul.pagination .page-item a {
 	font-size: 14px;
 	border: 2px solid #a1a0a021 !important;
 }
-
 
 .dashboard-table {
 	border: 1px solid #d7d7d785;
@@ -84,7 +83,7 @@ table.table.table-hover.dashboard-table {
 
 .verfied-pill {
 	color: #039855;
-	
+
 	padding: 4px 10px;
 	border-radius: 30px;
 	font-size: 13px;
@@ -93,7 +92,7 @@ table.table.table-hover.dashboard-table {
 
 .not-verfied-pill {
 	color: #f04438;
-	
+
 	padding: 4px 10px;
 	border-radius: 30px;
 	font-size: 13px;
@@ -352,21 +351,21 @@ select.search-select.form-select {
 	margin-left: 12px;
 }
 
-.investor-popup p{
+.investor-popup p {
 	text-align: left;
 }
 
-.date-picker-custom{
+.date-picker-custom {
 	padding: 10px;
 }
-.arrows{
+.arrows {
 	float: right;
 }
 
 .arrows img {
-    padding-right: 16px;
-    max-width: 35px;
-    padding-top: 18px;
+	padding-right: 16px;
+	max-width: 35px;
+	padding-top: 18px;
 }
 @media only screen and (max-width: 768px) {
 	.content {

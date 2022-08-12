@@ -29,7 +29,6 @@ const Reset = ({
 		return Yup.object().shape({
 			password: Yup.string()
 				.trim()
-				.required("* Password is required")
 				.min(
 					8,
 					"* Minimum of 8 characters with a capital letter, a number, and a symbol."
@@ -37,11 +36,12 @@ const Reset = ({
 				.matches(
 					/^(?!.* ).*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
 					"* Minimum of 8 characters with a capital letter, a number, and a symbol without spaces."
-				),
+				)
+				.required("* Password is required"),
 			confirmPassword: Yup.string()
 				.trim()
-				.required("* Please confirm your password")
-				.oneOf([Yup.ref("password"), null], "* Password does not match."),
+				.oneOf([Yup.ref("password"), null], "* Password does not match.")
+				.required("* Please confirm your password"),
 		});
 	};
 

@@ -41,15 +41,15 @@ const UCCVerification = ({
 			uccCountry: Yup.string().trim().required("* Country is required"),
 			uccMobileNo: Yup.string()
 				.trim()
-				.required("* Mobile Number is required")
 				.matches(
 					/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
 					"* Invalid Mobile Number"
-				),
+				)
+				.required("* Mobile Number is required"),
 			uccEmailId: Yup.string()
 				.trim()
-				.required("* Email Id is required")
-				.email("* Please enter valid format"),
+				.email("* Please enter valid format")
+				.required("* Email Id is required"),
 			uccDpId: Yup.string()
 				.trim()
 				.when("uccPanExempt", {
@@ -129,7 +129,7 @@ const UCCVerification = ({
 	};
 
 	return (
-		<>
+		<AppLayout page="UCC Verification" loading={loading}>
 			<div className="content content-is-open">
 				<Row className="add_user">
 					<Col className="col-lg-10 col-md-12">
@@ -542,7 +542,7 @@ const UCCVerification = ({
 					</Button>
 				</Modal.Body>
 			</Modal>
-		</>
+		</AppLayout>
 	);
 };
 

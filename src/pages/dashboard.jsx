@@ -409,7 +409,7 @@ const Dashboard = ({
 	};
 
 	return (
-		<>
+		<AppLayout page="UCC Verification" loading={loading}>
 			<div className="content content-is-open">
 				<DataTable
 					columns={columns}
@@ -421,7 +421,8 @@ const Dashboard = ({
 					highlightOnHover
 					customStyles={customStyles}
 					progressPending={loading}
-					progressComponent={<Spinner animation="border" variant="info" />}
+					progressComponent={null}
+					// progressComponent={<Spinner animation="border" variant="info" />}
 				/>
 				<div className="arrows">
 					<img
@@ -460,7 +461,7 @@ const Dashboard = ({
 					/>
 				</div>
 			</div>
-		</>
+		</AppLayout>
 	);
 };
 

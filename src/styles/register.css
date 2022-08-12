@@ -355,3 +355,8 @@ ul.btn-tab {
 		margin-top: 150px;
 	}
 }
+@-moz-document url-prefix() {
+	.Register-box {
+		margin-top: 75px;
+	}
+}

@@ -115,7 +115,8 @@ const Settings = ({
 	};
 
 	return (
-		<>
+		<AppLayout page="Settings" loading={loading}>
+			{/* <Sidebar /> */}
 			<div className="content content-is-open">
 				<Row className="add_user">
 					<Col className="col-lg-10 col-md-12">
@@ -303,7 +304,7 @@ const Settings = ({
 					resetUserFlags("isSettingChanged");
 				}}
 			/>
-		</>
+		</AppLayout>
 	);
 };
 

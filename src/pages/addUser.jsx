@@ -30,22 +30,21 @@ const AddUser = ({
 		return Yup.object().shape({
 			userName: Yup.string()
 				.trim()
-				.required("*User Name is required")
-				.matches(/^(?!.* )/, "* Spaces are not allowed."),
+				.matches(/^(?!.* )/, "* Spaces are not allowed.")
+				.required("*User Name is required"),
 			phoneNo: Yup.string()
 				.trim()
-				.required("* Mobile Number is required")
 				.matches(
 					/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
 					"* Invalid Mobile Number"
-				),
+				)
+				.required("* Mobile Number is required"),
 			email: Yup.string()
 				.trim()
-				.required("* Email is required")
-				.email("* Please enter valid format"),
+				.email("* Please enter valid format")
+				.required("* Email is required"),
 			password: Yup.string()
 				.trim()
-				.required("* Password is required")
 				.min(
 					8,
 					"* Minimum of 8 characters with a capital letter, a number, and a symbol."
@@ -53,7 +52,8 @@ const AddUser = ({
 				.matches(
 					/^(?!.* ).*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
 					"* Minimum of 8 characters with a capital letter, a number, and a symbol without spaces."
-				),
+				)
+				.required("* Password is required"),
 		});
 	};
 
@@ -197,7 +197,7 @@ const AddUser = ({
 	};
 
 	return (
-		<>
+		<AppLayout page="UCC Verification" loading={loading}>
 			<div className="content content-is-open">
 				<Row className="add_user">
 					<Col className="col-lg-10 col-md-12">
@@ -263,7 +263,7 @@ const AddUser = ({
 					resetUserFlags("isUserAdded");
 				}}
 			/>
-		</>
+		</AppLayout>
 	);
 };
 

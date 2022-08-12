@@ -44,7 +44,7 @@ const Navbar = ({ page, token, user, userLogout }) => {
 				<h3 className="text-dark">{page}</h3>
 			</Nav.Item>
 			<Nav.Item>
-				{token ? (
+				{user ? (
 					<Row>
 						{/* <div
 							style={{
@@ -72,7 +72,6 @@ const Navbar = ({ page, token, user, userLogout }) => {
 											? user.documentLinks && user.documentLinks.logo
 											: "/assets/images/dltkashlogo.png"
 									}
-									className="right-logo"
 								/>
 
 								<span
@@ -86,7 +85,10 @@ const Navbar = ({ page, token, user, userLogout }) => {
 								</span>
 							</Dropdown.Toggle>
 							<Dropdown.Menu variant="light" className="list-login">
-								<Dropdown.Item eventKey={3}>Logout</Dropdown.Item>
+								<Dropdown.Item eventKey={3}>
+									<img src={"/assets/images/switch.png"} className="logout-icon" />
+									Logout
+								</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
 					</Row>

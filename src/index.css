@@ -58,6 +58,11 @@ code {
 	margin-top: 20px;
 }
 a.nav-link .text-link {
-    font-size: 20px;
-    line-height: 30px;
+	font-size: 20px;
+	line-height: 30px;
+}
+@-moz-document url-prefix() {
+	body {
+		font-family: "Inter", sans-serif !important;
+	}
 }

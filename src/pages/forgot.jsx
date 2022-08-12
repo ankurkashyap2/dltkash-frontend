@@ -22,8 +22,8 @@ const Forgot = ({
 		return Yup.object().shape({
 			email: Yup.string()
 				.trim()
-				.required("* Email is required")
-				.email("* Please enter valid format"),
+				.email("* Please enter valid format")
+				.required("* Email is required"),
 		});
 	};
 
