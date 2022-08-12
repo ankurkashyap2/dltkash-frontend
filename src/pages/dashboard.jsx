@@ -181,7 +181,16 @@ const Dashboard = ({
 				</Row>
 			</div>
 		);
-	}, [search, searchKey, getAllInvestors, pageLimit, token, investorsList]);
+	}, [
+		search,
+		searchKey,
+		getAllInvestors,
+		pageLimit,
+		token,
+		investorsList,
+		isSearch,
+		setIsSearch,
+	]);
 
 	const getEncryptedPan = (panNumber) => {
 		const endDigits = panNumber.slice(-4);
@@ -400,9 +409,7 @@ const Dashboard = ({
 	};
 
 	return (
-		<AppLayout page="Dashboard">
-			<Sidebar />
-
+		<>
 			<div className="content content-is-open">
 				<DataTable
 					columns={columns}
@@ -453,7 +460,7 @@ const Dashboard = ({
 					/>
 				</div>
 			</div>
-		</AppLayout>
+		</>
 	);
 };
 

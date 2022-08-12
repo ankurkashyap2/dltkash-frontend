@@ -4,19 +4,12 @@ import { bindActionCreators } from "redux";
 import { Nav, Offcanvas, Navbar } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import { ReactComponent as Dashboard1 } from "../icons/Dashboard1.svg";
-import { setSelectedDrawerItem, userLogout } from "../../redux/user/actions";
 import { ReactComponent as User } from "../icons/User.svg";
 import { ReactComponent as Varification } from "../icons/Varification.svg";
 import { ReactComponent as Settings } from "../icons/gears-solid.svg";
 import "../../styles/sidebar.css";
 
-const Sidebar = ({
-	setSelectedDrawerItem,
-	selectedDrawerTab,
-	history,
-	profile,
-	userLogout,
-}) => {
+const Sidebar = ({ profile }) => {
 	let location = useLocation();
 
 	const renderWeb = () => {
@@ -147,30 +140,20 @@ const Sidebar = ({
 			</Navbar>
 		);
 	};
-	return (
+	return profile ? (
 		<div className="wrapper">
 			<div className="sidebar-web sidebar">{renderWeb()}</div>
 			<div className="sidebar-mobile">{renderMobile()}</div>
 		</div>
+	) : (
+		<></>
 	);
 };
 
 const mapStateToProps = (state) => {
 	return {
-		loading: state.user.loading,
 		profile: state.user.profile,
-		error: state.user.error,
-		selectedDrawerTab: state.user.selectedDrawerTab,
 	};
 };
 
-const mapDispatchToProps = (dispatch) =>
-	bindActionCreators(
-		{
-			setSelectedDrawerItem,
-			userLogout,
-		},
-		dispatch
-	);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default connect(mapStateToProps, {})(Sidebar);

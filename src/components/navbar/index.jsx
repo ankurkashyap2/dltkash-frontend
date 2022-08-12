@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Dropdown, Nav } from "react-bootstrap";
+import { Dropdown, Nav, Row } from "react-bootstrap";
 import { userLogout } from "../../redux/user/actions";
 import "../../styles/navbar.css";
 
@@ -25,7 +25,7 @@ const Navbar = ({ page, token, user, userLogout }) => {
 			userLogout();
 		}
 	};
-
+	console.log(user);
 	return (
 		<Nav className="customnavbar-container">
 			<Nav.Item>
@@ -45,30 +45,43 @@ const Navbar = ({ page, token, user, userLogout }) => {
 			</Nav.Item>
 			<Nav.Item>
 				{token ? (
-					<>
+					<Row>
+						{/* <div
+							style={{
+								background: `url(${user.documentLinks && user.documentLinks.logo})`,
+							}}
+							className="right-logo"
+						/> */}
+						{/* <img
+							src={
+								user
+									? user.documentLinks && user.documentLinks.logo
+									: "/assets/images/dltkashlogo.png"
+							}
+							className="right-logo"
+						/> */}
 						<Dropdown onSelect={handleDropdown}>
 							<Dropdown.Toggle
 								id="dropdown-button-dark-example1"
 								className="login-link"
 								as={CustomToggle}
 							>
-								<div
-									style={{
-										background: user
-											? `url(${user.documentLinks && user.documentLinks.logo})`
-											: "url(/assets/images/dltkashlogo.png)",
-										height: 70,
-										width: 70,
-										backgroundPosition: "center center",
-										borderRadius: "50%",
-										marginRight: "5px",
-										backgroundRepeat: "no-repeat",
-										backgroundSize: "contain",
-										border: "1px solid #4FADEA",
-									}}
+								<img
+									src={
+										user
+											? user.documentLinks && user.documentLinks.logo
+											: "/assets/images/dltkashlogo.png"
+									}
+									className="right-logo"
 								/>
 
-								<span style={{ marginRight: "5px", textTransform: "capitalize" }}>
+								<span
+									style={{
+										marginRight: "5px",
+										marginLeft: "5px",
+										textTransform: "capitalize",
+									}}
+								>
 									{user && user.userName}
 								</span>
 							</Dropdown.Toggle>
@@ -76,7 +89,7 @@ const Navbar = ({ page, token, user, userLogout }) => {
 								<Dropdown.Item eventKey={3}>Logout</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
-					</>
+					</Row>
 				) : (
 					<Nav.Link
 						className="top-link"

@@ -115,8 +115,7 @@ const Settings = ({
 	};
 
 	return (
-		<AppLayout page="Settings" loading={loading}>
-			<Sidebar />
+		<>
 			<div className="content content-is-open">
 				<Row className="add_user">
 					<Col className="col-lg-10 col-md-12">
@@ -238,6 +237,7 @@ const Settings = ({
 																		name="existingDate"
 																		className="field-size form-control"
 																		minDate={new Date()}
+																		placeholderText="Select a Due Date"
 																	/>
 																	{!startDate && (
 																		<p className="error-text">{errors.existingDate}</p>
@@ -303,7 +303,7 @@ const Settings = ({
 					resetUserFlags("isSettingChanged");
 				}}
 			/>
-		</AppLayout>
+		</>
 	);
 };
 

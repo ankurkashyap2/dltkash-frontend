@@ -122,7 +122,7 @@ const Investor = ({
 					)}
 					<Form>
 						<Form.Check
-							label="Reject Verification"
+							label={`This ${otpType} does not belongs to me`}
 							name="group1"
 							type="radio"
 							id="reject"
@@ -213,12 +213,12 @@ const Investor = ({
 													? investorData && investorData.uccEmailStatus === "VERIFIED"
 														? "Your email is verified!"
 														: investorData && investorData.uccEmailStatus === "REJECTED"
-														? "Your email request has been rejected"
+														? "You have rejected verification of Email."
 														: "Please Verify your Account"
 													: investorData && investorData.uccMobileStatus === "VERIFIED"
 													? "Your mobile is verified!"
 													: investorData && investorData.uccMobileStatus === "REJECTED"
-													? "Your mobile request has been rejected"
+													? "You have rejected verification of Mobile Number."
 													: investorData && investorData.uccMobileStatus === "SENT"
 													? "Verification Link is already sent to your mobile number!"
 													: "Please Verify your Account"
@@ -226,12 +226,12 @@ const Investor = ({
 												? investorData && investorData.uccMobileStatus === "VERIFIED"
 													? "Your mobile is verified!"
 													: investorData && investorData.uccMobileStatus === "REJECTED"
-													? "Your mobile request has been rejected"
+													? "You have rejected verification of Mobile Number."
 													: "Please Verify your Account"
 												: investorData && investorData.uccEmailStatus === "VERIFIED"
 												? "Your email is verified!"
 												: investorData && investorData.uccEmailStatus === "REJECTED"
-												? "Your email request has been rejected"
+												? "You have rejected verification of Email."
 												: investorData && investorData.uccEmailStatus === "SENT"
 												? "Verification Link is already sent to your Email Id!"
 												: "Please Verify your Account"}
@@ -290,17 +290,7 @@ const Investor = ({
 			</div>
 			<SuccessModal
 				show={isEmailVerified || isMobileVerified}
-				message={
-					isEmailVerified
-						? investorData && investorData.uccEmailStatus === "REJECTED"
-							? "Your Email has been Rejected!"
-							: "Verified successfully!"
-						: isMobileVerified
-						? investorData && investorData.uccMobileStatus === "REJECTED"
-							? "Your Mobile Number has been Rejected!"
-							: "Verified successfully!"
-						: ""
-				}
+				message={"Thanks for Verification!"}
 				onHide={() =>
 					resetInvestorFlags(
 						isEmailVerified ? "isEmailVerified" : "isMobileVerified"

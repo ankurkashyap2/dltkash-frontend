@@ -15,9 +15,7 @@ import Sidebar from "../components/navbar/sidebar";
 
 const Trails = ({ loading }) => {
 	return (
-		<AppLayout page="Trails" loading={loading}>
-			<Sidebar />
-
+		<>
 			<div className="content content-is-open">
 				<span className="side-panel-toggle">
 					<i className="fa fa-bars"></i>
@@ -117,7 +115,7 @@ const Trails = ({ loading }) => {
 					</Col>
 				</Row>
 			</div>
-		</AppLayout>
+		</>
 	);
 };
 

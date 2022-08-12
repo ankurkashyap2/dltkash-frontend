@@ -37,8 +37,7 @@ const EntityDetailsForm = ({ setActiveTab, setEntityDetails }) => {
 				.required("* CIN Number is required"),
 			panNumber: Yup.string()
 				.trim()
-				.min(4, "* Invalid PAN Number")
-				.max(10, "* Invalid PAN Number")
+				.matches(/([A-Z]){5}([0-9]){4}([A-Z]){1}$/, "* Invalid PAN Number.")
 				.required("* PAN Number is required"),
 			logo: Yup.mixed().required("* Logo is required"),
 			sebiCertificate: Yup.mixed().required("* SEBI Certificate is required"),

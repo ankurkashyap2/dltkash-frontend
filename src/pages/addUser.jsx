@@ -197,9 +197,7 @@ const AddUser = ({
 	};
 
 	return (
-		<AppLayout page="Add User" loading={loading}>
-			<Sidebar />
-
+		<>
 			<div className="content content-is-open">
 				<Row className="add_user">
 					<Col className="col-lg-10 col-md-12">
@@ -265,7 +263,7 @@ const AddUser = ({
 					resetUserFlags("isUserAdded");
 				}}
 			/>
-		</AppLayout>
+		</>
 	);
 };
 

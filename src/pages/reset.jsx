@@ -35,8 +35,8 @@ const Reset = ({
 					"* Minimum of 8 characters with a capital letter, a number, and a symbol."
 				)
 				.matches(
-					/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#%&])(?=.{8,})/,
-					"* Minimum of 8 characters with a capital letter, a number, and a symbol."
+					/^(?!.* ).*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+					"* Minimum of 8 characters with a capital letter, a number, and a symbol without spaces."
 				),
 			confirmPassword: Yup.string()
 				.trim()

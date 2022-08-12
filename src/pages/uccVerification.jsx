@@ -129,8 +129,7 @@ const UCCVerification = ({
 	};
 
 	return (
-		<AppLayout page="UCC Verification" loading={loading}>
-			<Sidebar />
+		<>
 			<div className="content content-is-open">
 				<Row className="add_user">
 					<Col className="col-lg-10 col-md-12">
@@ -543,7 +542,7 @@ const UCCVerification = ({
 					</Button>
 				</Modal.Body>
 			</Modal>
-		</AppLayout>
+		</>
 	);
 };
 
