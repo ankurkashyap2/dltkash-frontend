@@ -147,7 +147,6 @@ const UCCVerification = ({
 								touched,
 								resetForm,
 							}) => {
-								console.log(values);
 								return (
 									<Form className="form-align" noValidate onSubmit={handleSubmit}>
 										<Row className="mb-4">
@@ -323,7 +322,7 @@ const UCCVerification = ({
 																		name="uccPanExempt"
 																		className="switch-label"
 																		onChange={handleChange("uccPanExempt")}
-																		value={values.uccPanExempt}
+																		checked={values.uccPanExempt}
 																	/>
 																</Col>
 															</Row>
