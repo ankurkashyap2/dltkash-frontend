@@ -44,16 +44,20 @@
 	height: 40px;
 	border-radius: 40px;
 	margin-right: 5px;
+	z-index: 999;
 }
 .list-login {
 	border: 1px solid #4fadea !important;
 	border-radius: 5px;
 	padding: 0px !important;
+	min-width: 7rem !important;
+	margin-left: 4rem !important;
 }
 .list-login a {
 	color: #4fadea;
 	line-height: 38px;
 	padding: 0px 10px !important;
+	text-align: center;
 }
 p {
 	color: #000;

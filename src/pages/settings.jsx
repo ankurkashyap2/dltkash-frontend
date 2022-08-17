@@ -239,6 +239,12 @@ const Settings = ({
 																		minDate={new Date()}
 																		placeholderText="Select a Due Date"
 																	/>
+																	<img
+																		src={"/assets/images/calendar.png"}
+																		className="calendar-img"
+																		alt="calendar"
+																		id="imagePreview"
+																	/>
 																	{!startDate && (
 																		<p className="error-text">{errors.existingDate}</p>
 																	)}

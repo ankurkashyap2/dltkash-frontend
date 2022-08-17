@@ -109,6 +109,12 @@ table.table.table-hover.dashboard-table {
 .filter-section {
 	width: 100%;
 }
+.calendar-img {
+	float: right;
+	position: relative;
+	left: -13px;
+	top: -35px;
+}
 .table {
 	@media only screen and (min-width: 768px) {
 		table-layout: fixed;
@@ -307,6 +313,7 @@ input.investor-search.form-control {
 }
 .action-btns {
 	text-align: right;
+	margin-right: -15px;
 }
 .action-btns .btn-filled {
 	border: 1px solid #4fadea !important;
@@ -348,7 +355,7 @@ select.search-select.form-select {
 	padding: 5px 12px;
 	font-size: 14px;
 	width: 30%;
-	margin-left: 12px;
+	margin-left: -23px;
 }
 
 .investor-popup p {
