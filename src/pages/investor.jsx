@@ -122,7 +122,7 @@ const Investor = ({
 					)}
 					<Form>
 						<Form.Check
-							label={`This ${otpType} does not belongs to me`}
+							label={`This Trading account does not belong to me`}
 							name="group1"
 							type="radio"
 							id="reject"
@@ -290,7 +290,7 @@ const Investor = ({
 			</div>
 			<SuccessModal
 				show={isEmailVerified || isMobileVerified}
-				message={"Thanks for Verification!"}
+				message={""}
 				onHide={() =>
 					resetInvestorFlags(
 						isEmailVerified ? "isEmailVerified" : "isMobileVerified"
